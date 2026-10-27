@@ -1,0 +1,41 @@
+{
+  "scope": "WebShop control pilot steps 1-14; ASIN literal audit, not semantic or causal proof",
+  "input_sha256": "210ceaabbe1702780be0891ad292ab1a240cc8d3427eaa2cbe5c82b92563226f",
+  "public_scaffold_literal_ids": [],
+  "case_normalization": "ASIN case-insensitive; supersedes initial uppercase-only audit",
+  "raw_rows": 7168,
+  "training_rows": 7168,
+  "matched_rows": 7168,
+  "unmatched_rollouts": 0,
+  "unmatched_training_rows": 0,
+  "read_failures": [],
+  "doc_archives": 448,
+  "nonempty_docs": 319,
+  "docs_with_asin": 294,
+  "arm_stats": {
+    "0": {
+      "rows": 3584,
+      "positive_rows": 316,
+      "positive_mass_all_rows": 245.99999910593033,
+      "doc_asin_rows": 2352,
+      "initial_unobserved_doc_rows": 2352,
+      "before_exposure_action_rows": 0,
+      "before_exposure_any_rows": 0,
+      "before_exposure_action_positive_rows": 0,
+      "positive_mass": 191.5714275240898,
+      "missing_doc_rows": 1032
+    },
+    "1": {
+      "rows": 3584,
+      "positive_rows": 443,
+      "positive_mass_all_rows": 335.72348491847515,
+      "doc_asin_rows": 2352,
+      "initial_unobserved_doc_rows": 2352,
+      "before_exposure_action_rows": 0,
+      "before_exposure_any_rows": 0,
+      "before_exposure_action_positive_rows": 0,
+      "positive_mass": 267.61246217787266,
+      "missing_doc_rows": 1032
+    }
+  }
+}

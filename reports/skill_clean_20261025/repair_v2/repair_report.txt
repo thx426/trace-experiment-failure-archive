@@ -1,0 +1,24 @@
+Clean-Skill 首次巡检修复记录（2026-10-25，北京时间）
+
+发现的问题
+首批 16 个研究会话全部产出 Skill，80 次研究员正式请求平均输入 1956.1875 token，最大 2498，超 3072 次数为 0。HTTP 409、断连及 OOM 均未发现。
+但是逐项对照公开任务后，确认新编译器 exact_specs 存在缺陷：只识别 color、size、fit type，导致 webshop_06866 的 item shape: round 被吞进颜色值，错误输出为 color="brown | beige, and item shape: round"。正确值应分别为 color="brown | beige"、item shape="round"、size="21 in x 35 in"。
+最初的文档核验复用了生产解析器，因此报告的零差异不可靠；review_0326.json 中该项结论已被本记录否定。
+
+影响与处置
+对 256 道训练题和 256 道 dev 题的公开格式检查发现，旧解析器分别有 15、14 道题存在遗漏或合并；这不是模型效果评测。
+03:26:48 保存故障现场并发出 ABORT，03:26:54 前两个 owner 完成清理，四张 GPU 显存全部释放。原 v1 目录和日志保留，不续跑、不拼接。
+失败成本：16 个研究会话，156495 输入 token、35002 输出 token，191497 token 合计；没有完成的优化器训练步。已完成初始 bare 评测 1280 条和首批训练 rollout 128 条。研究会话耗时总和 3694.29 秒为并行会话之和，不是实际经过时间。
+首批 64 条被分配引导的轨迹实际 steer_count=0，原因是沿用配置的 entropy 门控首步预热，steer_entropy_theta=-1；此项不属于缺 Skill 故障。后续必须核对门控更新与实际 steering。
+
+最小修复
+训练源码只修改 trace_opd/research/clean_skill.py：按公开任务的属性边界解析全部标签，保留原始值，识别 item shape、style、scent、flavor 等；出现重复或无法解析的属性时明确报错，防止静默合并。
+新增独立 spec_oracle.py，按公开子句读取期望值，不调用生产解析器。巡检脚本比较每份 Skill 与独立期望值，输出 independent_spec_audit，并按训练步区分预热与实际 steering。
+保持同一初始学生 checkpoint、研究员版本、奖励、数据、种子、优化器、每题 8 条 rollout、0.5 引导分配、无 Skill 评测口径和停止规则。研究员硬限 3072 token、并发 16、最多 100 步不变。
+
+验证与重启
+远端 CPU 测试 21 项全部通过；512 道公开规格检查零差异；576 组历史轨迹回放通过，最长生成文档 326 词。没有 GPU 小试。
+CPU 准备时第一次将回放数量写死为 336，但实际旧目录包含更多已归档组，得到 576；该检查已修正，保留 prepare.log，重新完成全部 CPU 合约，结果在 cpu_finish.log。此问题发生在正式启动之前。
+03:32:51 正式启动修复版：/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2。序列 PID 2536102。run 为 code/runs/pass5_clean_skill_v2_s42。研究员 owner /tmp/p5compact3072-research25clean2；学生 owner /tmp/p5compact3072-clean25v2。
+复用 webshop 每 30 分钟自动巡检，已改为 v2，禁止恢复旧 All-Skill、Selective 或故障 v1。完整训练后 bare 评测任一成功指标落后同一步 GRPO 则停止，不以重启规避停止规则。
+重启后的实际运行进度以 monitor_state.json 与最新远端快照为准。v1 的输入样本不得计入 v2；代码与 CPU 合约检查不能证明模型能力已经改善。

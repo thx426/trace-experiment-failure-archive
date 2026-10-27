@@ -1,0 +1,110 @@
+[
+  {
+    "path": "configs/experiments/a800-1p7b-a0-pure.yaml",
+    "commit": "4bc0da93f4a95cc6ba508cd119af0da729a0277e",
+    "git_blob_sha1": "ddeaf9d5e25dd34f78032b61d0e071a263845e70",
+    "url": "https://github.com/wus2000/PGGRPO/blob/4bc0da93f4a95cc6ba508cd119af0da729a0277e/configs/experiments/a800-1p7b-a0-pure.yaml"
+  },
+  {
+    "path": "configs/experiments/a800-1p7b-a1-rl.yaml",
+    "commit": "4bc0da93f4a95cc6ba508cd119af0da729a0277e",
+    "git_blob_sha1": "cb74a375e67a78c13a7a557b107d1d5911fb87c6",
+    "url": "https://github.com/wus2000/PGGRPO/blob/4bc0da93f4a95cc6ba508cd119af0da729a0277e/configs/experiments/a800-1p7b-a1-rl.yaml"
+  },
+  {
+    "path": "scripts/launch_train.py",
+    "commit": "4bc0da93f4a95cc6ba508cd119af0da729a0277e",
+    "git_blob_sha1": "e0f3d892c8bcd09d1fd0714bb985bd4c11d13aa4",
+    "url": "https://github.com/wus2000/PGGRPO/blob/4bc0da93f4a95cc6ba508cd119af0da729a0277e/scripts/launch_train.py"
+  },
+  {
+    "path": "src/trace_opd/train/agent_loop.py",
+    "commit": "4bc0da93f4a95cc6ba508cd119af0da729a0277e",
+    "git_blob_sha1": "784bc9f0f82f9f2b7f7fa062a3395158db5426f8",
+    "url": "https://github.com/wus2000/PGGRPO/blob/4bc0da93f4a95cc6ba508cd119af0da729a0277e/src/trace_opd/train/agent_loop.py"
+  },
+  {
+    "path": "verl/verl/trainer/ppo/v1/trainer_base.py",
+    "commit": "4bc0da93f4a95cc6ba508cd119af0da729a0277e",
+    "git_blob_sha1": "80d333a2451ffcc1c1b89420f8f536d39e9f4add",
+    "url": "https://github.com/wus2000/PGGRPO/blob/4bc0da93f4a95cc6ba508cd119af0da729a0277e/verl/verl/trainer/ppo/v1/trainer_base.py"
+  },
+  {
+    "path": "verl/verl/workers/utils/losses.py",
+    "commit": "4bc0da93f4a95cc6ba508cd119af0da729a0277e",
+    "git_blob_sha1": "ebaa4e4d8b759db980f62bf96f83be305f54847e",
+    "url": "https://github.com/wus2000/PGGRPO/blob/4bc0da93f4a95cc6ba508cd119af0da729a0277e/verl/verl/workers/utils/losses.py"
+  },
+  {
+    "path": "verl/verl/trainer/distillation/fsdp/losses.py",
+    "commit": "4bc0da93f4a95cc6ba508cd119af0da729a0277e",
+    "git_blob_sha1": "a7a06b63bc55c548545c94512395e3d446a6ea89",
+    "url": "https://github.com/wus2000/PGGRPO/blob/4bc0da93f4a95cc6ba508cd119af0da729a0277e/verl/verl/trainer/distillation/fsdp/losses.py"
+  },
+  {
+    "path": "verl/verl/trainer/distillation/teacher_topk_fsdp.py",
+    "commit": "4bc0da93f4a95cc6ba508cd119af0da729a0277e",
+    "git_blob_sha1": "fed71c5cfc2d4e030e5437258ab6feb18a2158b6",
+    "url": "https://github.com/wus2000/PGGRPO/blob/4bc0da93f4a95cc6ba508cd119af0da729a0277e/verl/verl/trainer/distillation/teacher_topk_fsdp.py"
+  },
+  {
+    "path": "docs/mixed-objective-design.md",
+    "commit": "4bc0da93f4a95cc6ba508cd119af0da729a0277e",
+    "git_blob_sha1": "a450b9d9f61474d951387fad62af6cba5fae219c",
+    "url": "https://github.com/wus2000/PGGRPO/blob/4bc0da93f4a95cc6ba508cd119af0da729a0277e/docs/mixed-objective-design.md"
+  },
+  {
+    "path": "docs/mixed-objective-runbook.md",
+    "commit": "4bc0da93f4a95cc6ba508cd119af0da729a0277e",
+    "git_blob_sha1": "c4526660a06e5e7959faba653aee0421ff6bdf7a",
+    "url": "https://github.com/wus2000/PGGRPO/blob/4bc0da93f4a95cc6ba508cd119af0da729a0277e/docs/mixed-objective-runbook.md"
+  },
+  {
+    "path": "verl/verl/workers/engine/fsdp/transformer_impl.py",
+    "commit": "4bc0da93f4a95cc6ba508cd119af0da729a0277e",
+    "git_blob_sha1": "61cd3791c329f39c70ce075e208e084d978055a5",
+    "url": "https://github.com/wus2000/PGGRPO/blob/4bc0da93f4a95cc6ba508cd119af0da729a0277e/verl/verl/workers/engine/fsdp/transformer_impl.py"
+  },
+  {
+    "path": "src/trace_opd/common/config.py",
+    "commit": "4bc0da93f4a95cc6ba508cd119af0da729a0277e",
+    "git_blob_sha1": "faf3826cfd89e4b397faecfe48d016aa767742b6",
+    "url": "https://github.com/wus2000/PGGRPO/blob/4bc0da93f4a95cc6ba508cd119af0da729a0277e/src/trace_opd/common/config.py"
+  },
+  {
+    "path": "verl/verl/trainer/distillation/losses.py",
+    "commit": "4bc0da93f4a95cc6ba508cd119af0da729a0277e",
+    "git_blob_sha1": "d3612cc7a02c8db6f08119043284b602f72bc02e",
+    "url": "https://github.com/wus2000/PGGRPO/blob/4bc0da93f4a95cc6ba508cd119af0da729a0277e/verl/verl/trainer/distillation/losses.py"
+  },
+  {
+    "path": "verl/verl/workers/engine_workers.py",
+    "commit": "4bc0da93f4a95cc6ba508cd119af0da729a0277e",
+    "git_blob_sha1": "3a5d5f908cdc92aeb27f5a0b180ae40c3e0f127f",
+    "url": "https://github.com/wus2000/PGGRPO/blob/4bc0da93f4a95cc6ba508cd119af0da729a0277e/verl/verl/workers/engine_workers.py"
+  },
+  {
+    "path": "verl/verl/workers/config/distillation.py",
+    "commit": "4bc0da93f4a95cc6ba508cd119af0da729a0277e",
+    "git_blob_sha1": "a4e98fc68e03d3a18182d3e3ed72c9c89b24760e",
+    "url": "https://github.com/wus2000/PGGRPO/blob/4bc0da93f4a95cc6ba508cd119af0da729a0277e/verl/verl/workers/config/distillation.py"
+  },
+  {
+    "path": "verl/verl/trainer/distillation/fsdp/losses.py",
+    "commit": "5beecec57ba95503e4e7138317ed5ae2271bb9d4",
+    "git_blob_sha1": "e05430f0c7e423567a4d5222eca3c2af1ff89219",
+    "url": "https://github.com/wus2000/PGGRPO/blob/5beecec57ba95503e4e7138317ed5ae2271bb9d4/verl/verl/trainer/distillation/fsdp/losses.py"
+  },
+  {
+    "path": "docs/teacher-grounding-design.md",
+    "commit": "5beecec57ba95503e4e7138317ed5ae2271bb9d4",
+    "git_blob_sha1": "f69deb5b679b4da5c40a43541162ccfda6cce7c6",
+    "url": "https://github.com/wus2000/PGGRPO/blob/5beecec57ba95503e4e7138317ed5ae2271bb9d4/docs/teacher-grounding-design.md"
+  },
+  {
+    "path": "scripts/launch_train.py",
+    "commit": "5beecec57ba95503e4e7138317ed5ae2271bb9d4",
+    "git_blob_sha1": "55127962021a5044f5c31537ca2a22a41116f255",
+    "url": "https://github.com/wus2000/PGGRPO/blob/5beecec57ba95503e4e7138317ed5ae2271bb9d4/scripts/launch_train.py"
+  }
+]

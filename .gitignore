@@ -1,0 +1,14 @@
+.DS_Store
+._*
+__pycache__/
+*.pyc
+.venv/
+.env
+.env.*
+*.pem
+*.key
+*.pt
+*.pth
+*.safetensors
+*.zip
+*.tar.gz

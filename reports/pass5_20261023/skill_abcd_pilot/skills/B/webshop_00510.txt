@@ -1,0 +1,47 @@
+# Current Understanding & Ruled-Out Directions
+
+## Task Requirements
+Find a product matching: machine wash men's dress shirts, polyester heathers/cotton heather fabric, needle sleeve, classic fit, color heather grey, fit type youth, size small, price under $30.00. The executor scores type, attribute, option, and price match; full match requires score 1.0.
+
+## What We Learned From 6 Episodes (0 Successes)
+
+### Search Behavior
+- The search bar appears on a dedicated search page with a `"search"` button that must be clicked after typing.
+- On results pages, `"next >"` is a no-op — it returns the same "Page 1 (Total results: 50)" every time. This has been confirmed across ep001, ep003, ep005, ep006.
+- Different search queries yield different product mixes, but results are noisy: generic queries return t-shirts, tank tops, hoodies, and sweaters alongside shirts.
+
+### Product Discovery
+- B07HRFSNL4 (Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt) appears in search results for queries like `"youth shirt heather grey classic fit"` (seen in ep003, ep005, ep006). It has `"small"` size and `"grey heather"` color options available on its product page. Price ranges from $16.05 to $40.98.
+- The executor purchased B07HRFSNL4 in ep005 (clicked `"small"`, `"grey heather"`, then `"buy now"`) but evaluation FAILED. This product is a T-shirt, not a dress shirt, suggesting the catalog may not contain products matching all criteria exactly.
+
+### Ruled-Out Approaches
+- **Pagination**: Clicking `"next >"` does not work — ruled out by repeated observations of identical "Page 1" output.
+- **Searching endless variations**: The executor in ep003 and ep006 tried multiple search refinements (3+ searches per episode) without clicking any product, wasting all 15 actions.
+- **Selecting options on results page**: Options like size/color don't appear on results pages — they only appear on product pages.
+
+# Failure Modes & Lessons
+
+## FM1: Infinite pagination loop
+- **Symptom**: 4+ consecutive `"click[next >]"` actions. Observation always shows "Page 1".
+- **How to recognize**: Multiple steps in a row where the same "Page 1 (Total results: 50)" appears in the observation after clicking `"next >"`.
+- **Lesson**: Do not use `"next >"`. Return to search with a new query instead. Untested as a fixed approach since no run succeeded.
+
+## FM2: Repeated option selection loop
+- **Symptom**: 5+ consecutive clicks on the same option (e.g., `"click[small]"` x7). Observation text is identical each time.
+- **How to recognize**: The executor clicks a size or color option, then the next observation shows the exact same available actions — no change in what's clickable.
+- **Lesson**: Option selection produces no visual feedback. Select each option exactly once, then proceed to Buy Now. Untested fix — no run completed successfully to validate.
+
+## FM3: Invalid action spam
+- **Symptom**: Multiple invalid actions logged. The executor clicks elements not in the available list.
+- **How to recognize**: Check the `"clickables"` list in the observation before acting. If the executor attempts something not listed, it's invalid.
+- **Lesson**: Always reference the `"clickables"` list. Untested.
+
+## FM4: Product type mismatch causing score < 1.0
+- **Symptom**: Executor completes all steps including Buy Now, but evaluation still fails.
+- **How to recognize**: Product name in the observation indicates a different category (e.g., "T-Shirt" instead of "dress shirt").
+- **Lesson**: Read product names carefully before selecting. The required "dress shirt" may not exist with all specified attributes in the catalog. Untested alternative approach.
+
+## FM5: Premature search without product examination
+- **Symptom**: Executor cycles through 3+ searches without clicking any product, running out of actions.
+- **How to recognize**: Multiple `"search[...]"` actions in sequence with no `"click[product_id]"` actions.
+- **Lesson**: Click on at least one product from each results page to inspect full details. Attributes like material, sleeve type, and fit are only visible on the product page. Untested.

@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "tests": 21,
+  "inference_calls": 0,
+  "new_rollouts": 0,
+  "configuration_equal_except_name": true,
+  "src_diffs": [
+    "trace_opd/research/clean_skill.py"
+  ],
+  "public_spec_cases": 512,
+  "independent_spec_issues": 0,
+  "offline_replayed_groups": 576,
+  "max_doc_words": 326
+}

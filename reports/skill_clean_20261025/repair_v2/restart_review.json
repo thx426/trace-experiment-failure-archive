@@ -1,0 +1,1738 @@
+{
+  "exported_at": "2026-10-25T03:33:46.249541+08:00",
+  "runtime_snapshot.json": {
+    "checked_at": "2026-10-25T03:33:45.562904+08:00",
+    "sequence": {
+      "phase": "starting_researcher",
+      "pid": 2536102,
+      "time": 1792870377.5621462,
+      "input_limit": 3072,
+      "server_concurrency": 16,
+      "order": [
+        "clean_skill"
+      ]
+    },
+    "webshop": {
+      "8321": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 0,
+          "queue_seconds": 0,
+          "backend_seconds": 0,
+          "max_queue_seconds": 0,
+          "max_backend_seconds": 0
+        },
+        "http_statuses": {},
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8322": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 0,
+          "queue_seconds": 0,
+          "backend_seconds": 0,
+          "max_queue_seconds": 0,
+          "max_backend_seconds": 0
+        },
+        "http_statuses": {},
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8323": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 0,
+          "queue_seconds": 0,
+          "backend_seconds": 0,
+          "max_queue_seconds": 0,
+          "max_backend_seconds": 0
+        },
+        "http_statuses": {},
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8324": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 0,
+          "queue_seconds": 0,
+          "backend_seconds": 0,
+          "max_queue_seconds": 0,
+          "max_backend_seconds": 0
+        },
+        "http_statuses": {},
+        "disconnects": 0,
+        "tracebacks": 0
+      }
+    },
+    "rollout_rows": {},
+    "researcher_inputs": {
+      "calls": 0,
+      "mean": null,
+      "max": null,
+      "above_3072": 0
+    },
+    "experiment_root": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2",
+    "gpu": "index, utilization.gpu [%], memory.used [MiB]\n0, 21 %, 33901 MiB\n1, 0 %, 0 MiB\n2, 0 %, 0 MiB\n3, 21 %, 33901 MiB\n",
+    "gpu_processes": "pid, used_gpu_memory [MiB]\n1790979, 33894 MiB\n1790980, 33894 MiB\n",
+    "process_identity": {
+      "sequence": {
+        "pid": 2536102,
+        "alive": true,
+        "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python -u /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/run_sequence.py "
+      },
+      "student_owner": {
+        "pid": null,
+        "alive": false,
+        "cmdline": null
+      },
+      "researcher_owner": {
+        "pid": null,
+        "alive": false,
+        "cmdline": null
+      }
+    },
+    "skill_compiler": {
+      "sessions": 0,
+      "missing_docs": 0,
+      "over_500_words": 0,
+      "origins": {},
+      "max_words": null,
+      "research_errors": 0,
+      "mean_turns": null
+    },
+    "training_diagnostics": {
+      "complete_groups": 0,
+      "score_heterogeneous_complete_groups": 0,
+      "advantage_proxy_only": true,
+      "guided_assigned_rows": 0,
+      "positive_steering_rows": 0
+    },
+    "baseline_reviews": null,
+    "baseline_stop": null,
+    "cpu_validation": {
+      "passed": true,
+      "tests": 21,
+      "inference_calls": 0,
+      "new_rollouts": 0,
+      "configuration_equal_except_name": true,
+      "src_diffs": [
+        "trace_opd/research/clean_skill.py"
+      ],
+      "public_spec_cases": 512,
+      "independent_spec_issues": 0,
+      "offline_replayed_groups": 576,
+      "max_doc_words": 326
+    },
+    "last_progress_mtime": null,
+    "preflight_note": "researcher_inputs contains role=researcher only; startup tokenize and researcher-preflight excluded. Zero calls means no actual formal-input samples.",
+    "independent_spec_audit": {
+      "checked": 0,
+      "issues": []
+    },
+    "steering_by_step": {}
+  },
+  "cpu_validation.json": {
+    "passed": true,
+    "tests": 21,
+    "inference_calls": 0,
+    "new_rollouts": 0,
+    "configuration_equal_except_name": true,
+    "src_diffs": [
+      "trace_opd/research/clean_skill.py"
+    ],
+    "public_spec_cases": 512,
+    "independent_spec_issues": 0,
+    "offline_replayed_groups": 576,
+    "max_doc_words": 326
+  },
+  "experiment_contract.json": {
+    "version": "clean_skill_v2",
+    "original_root": "/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3",
+    "order": [
+      "clean_skill"
+    ],
+    "steps": 100,
+    "student_checkpoint": "/root/trace-webshop-arm-ratio/models/Qwen2.5-3B-Instruct",
+    "researcher": "Qwen3.6-35B-A3B",
+    "input_limit": 3072,
+    "concurrency": 16,
+    "unchanged": [
+      "reward",
+      "student initial checkpoint",
+      "data splits",
+      "seed42",
+      "optimizer",
+      "GRPO objective",
+      "8 rollouts/task",
+      "0.5 guided fraction",
+      "bare eval n5 temperature0.6"
+    ],
+    "changes": [
+      "mechanical evidence instead of narrative excerpt",
+      "reserve finalization turns",
+      "at most two fetch calls after experiment budget exhaustion",
+      "compile exploratory/final Skill from exact public specifications and checked evidence",
+      "label fallback checklist when normal session exhausts without finalize",
+      "abort on missing Skill or infrastructure failure",
+      "stop at complete same-step bare eval if pass1 or pass5 below GRPO"
+    ],
+    "comparability": "New guidance variant, not pure infrastructure fix; compare to archived original PGS/GRPO, count all researcher cost. No claims that this isolates each component.",
+    "evaluation": "Existing dev protocol is retained for stop decisions; not a new independent final test.",
+    "fallback": "No new inference; task checklist only, explicitly labelled and never counted as exploration success.",
+    "approval": "2026-10-25 user authorized stopping both old arms, minimum Skill clean-up, one new guided experiment and 30-minute review/repair.",
+    "resume": "Disabled. On confirmed unrecoverable implementation fault, keep failed directory and restart in a new directory only after diagnosis and CPU contract checks; never auto-restart a below-baseline stop.",
+    "repair_parent": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1",
+    "repair": "Generic public option parser; independently verify every label/value; no reward/guidance-allocation change",
+    "failed_run_not_resumed": true
+  },
+  "predecessor_failure_cost.json": {
+    "parent": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1",
+    "failure": {
+      "time": "2026-10-25T03:26:48.552858+08:00",
+      "root": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1",
+      "reason": "Confirmed exact_specs parser merges item shape into color for webshop_06866; validation reused same parser and missed it.",
+      "completed_steps_at_last_snapshot": [],
+      "sequence_pid": 2475494,
+      "process_cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python -u /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/run_sequence.py ",
+      "restart_policy": "fresh directory same initial checkpoint; no resume; preserve failed run"
+    },
+    "recorded_at": "2026-10-25T03:32:08.112058+08:00",
+    "completed_steps": [],
+    "research_sessions": 16,
+    "research_prompt_tokens": 156495,
+    "research_completion_tokens": 35002,
+    "research_wall_s_sum": 3694.290633931756,
+    "owner_status": {
+      "p5compact3072-clean25v1": {
+        "schema_version": 1,
+        "owner_pid": 2476238,
+        "owner_start_ticks": 2068904393,
+        "deadline": null,
+        "deadline_enforced": false,
+        "gpus": [
+          "GPU-898848ff-113b-983d-6d3b-89d4240710ba",
+          "GPU-cdbf6827-dda0-1a50-8b17-1decc354048b"
+        ],
+        "cuda_visible_devices": "1,2",
+        "ray_address": "local",
+        "result_status": "INCOMPLETE",
+        "ray_tmpdir": "/tmp/p5compact3072-clean25v1/ray",
+        "reason": "abort_file",
+        "returncode": -15,
+        "gpu_release_verified": true,
+        "signals": [
+          {
+            "pid": 2476251,
+            "start_ticks": 2068904423,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2476299,
+            "start_ticks": 2068904886,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2476401,
+            "start_ticks": 2068905635,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2476561,
+            "start_ticks": 2068905763,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2476565,
+            "start_ticks": 2068905803,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2476626,
+            "start_ticks": 2068905873,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2476627,
+            "start_ticks": 2068905873,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2476628,
+            "start_ticks": 2068905873,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2476629,
+            "start_ticks": 2068905873,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2476630,
+            "start_ticks": 2068905873,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2476631,
+            "start_ticks": 2068905873,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2476632,
+            "start_ticks": 2068905873,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2476633,
+            "start_ticks": 2068905873,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2476634,
+            "start_ticks": 2068905873,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2476635,
+            "start_ticks": 2068905873,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477096,
+            "start_ticks": 2068905947,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477097,
+            "start_ticks": 2068905950,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477166,
+            "start_ticks": 2068905954,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477168,
+            "start_ticks": 2068905954,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477341,
+            "start_ticks": 2068906264,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477342,
+            "start_ticks": 2068906264,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477343,
+            "start_ticks": 2068906265,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477344,
+            "start_ticks": 2068906265,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477345,
+            "start_ticks": 2068906265,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477346,
+            "start_ticks": 2068906265,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477347,
+            "start_ticks": 2068906266,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477348,
+            "start_ticks": 2068906266,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477349,
+            "start_ticks": 2068906266,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477350,
+            "start_ticks": 2068906266,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477351,
+            "start_ticks": 2068906267,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477352,
+            "start_ticks": 2068906267,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477354,
+            "start_ticks": 2068906267,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477355,
+            "start_ticks": 2068906268,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477356,
+            "start_ticks": 2068906271,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477358,
+            "start_ticks": 2068906271,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477359,
+            "start_ticks": 2068906272,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477361,
+            "start_ticks": 2068906272,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477362,
+            "start_ticks": 2068906273,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477363,
+            "start_ticks": 2068906273,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477364,
+            "start_ticks": 2068906273,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477365,
+            "start_ticks": 2068906274,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477366,
+            "start_ticks": 2068906274,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477367,
+            "start_ticks": 2068906274,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477369,
+            "start_ticks": 2068906275,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477371,
+            "start_ticks": 2068906275,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477373,
+            "start_ticks": 2068906276,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477374,
+            "start_ticks": 2068906276,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477375,
+            "start_ticks": 2068906276,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477376,
+            "start_ticks": 2068906277,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477378,
+            "start_ticks": 2068906277,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2477380,
+            "start_ticks": 2068906278,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2480062,
+            "start_ticks": 2068906346,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2480203,
+            "start_ticks": 2068907136,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2480422,
+            "start_ticks": 2068907453,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2480492,
+            "start_ticks": 2068907538,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2480493,
+            "start_ticks": 2068907539,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2480494,
+            "start_ticks": 2068907540,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2480495,
+            "start_ticks": 2068907540,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2480496,
+            "start_ticks": 2068907540,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2480497,
+            "start_ticks": 2068907541,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2480498,
+            "start_ticks": 2068907541,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2480499,
+            "start_ticks": 2068907542,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2481038,
+            "start_ticks": 2068908005,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2481039,
+            "start_ticks": 2068908005,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2481432,
+            "start_ticks": 2068911267,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2481433,
+            "start_ticks": 2068911267,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2481434,
+            "start_ticks": 2068911268,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2481435,
+            "start_ticks": 2068911269,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2481436,
+            "start_ticks": 2068911270,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2481437,
+            "start_ticks": 2068911270,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2481438,
+            "start_ticks": 2068911271,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2481439,
+            "start_ticks": 2068911272,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2481949,
+            "start_ticks": 2068911592,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2481950,
+            "start_ticks": 2068911596,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482211,
+            "start_ticks": 2068912781,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482212,
+            "start_ticks": 2068912781,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482213,
+            "start_ticks": 2068912781,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482218,
+            "start_ticks": 2068912785,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482219,
+            "start_ticks": 2068912785,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482220,
+            "start_ticks": 2068912785,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482500,
+            "start_ticks": 2068913945,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482648,
+            "start_ticks": 2068914759,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482649,
+            "start_ticks": 2068914761,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482650,
+            "start_ticks": 2068914762,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482651,
+            "start_ticks": 2068914764,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482652,
+            "start_ticks": 2068914765,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482653,
+            "start_ticks": 2068914766,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482654,
+            "start_ticks": 2068914768,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482655,
+            "start_ticks": 2068914769,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482656,
+            "start_ticks": 2068914771,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482657,
+            "start_ticks": 2068914772,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482658,
+            "start_ticks": 2068914774,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482659,
+            "start_ticks": 2068914775,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482660,
+            "start_ticks": 2068914776,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482661,
+            "start_ticks": 2068914778,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482662,
+            "start_ticks": 2068914779,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2482663,
+            "start_ticks": 2068914781,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2486302,
+            "start_ticks": 2068916675,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2486311,
+            "start_ticks": 2068916679,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487088,
+            "start_ticks": 2068917048,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487090,
+            "start_ticks": 2068917049,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487094,
+            "start_ticks": 2068917049,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487096,
+            "start_ticks": 2068917050,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487098,
+            "start_ticks": 2068917051,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487100,
+            "start_ticks": 2068917051,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487102,
+            "start_ticks": 2068917052,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487104,
+            "start_ticks": 2068917052,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487106,
+            "start_ticks": 2068917053,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487112,
+            "start_ticks": 2068917053,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487124,
+            "start_ticks": 2068917054,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487128,
+            "start_ticks": 2068917054,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487131,
+            "start_ticks": 2068917055,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487138,
+            "start_ticks": 2068917056,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487140,
+            "start_ticks": 2068917056,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487142,
+            "start_ticks": 2068917057,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487144,
+            "start_ticks": 2068917057,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487146,
+            "start_ticks": 2068917058,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487148,
+            "start_ticks": 2068917058,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487159,
+            "start_ticks": 2068917059,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487164,
+            "start_ticks": 2068917059,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487168,
+            "start_ticks": 2068917060,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487171,
+            "start_ticks": 2068917061,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487173,
+            "start_ticks": 2068917061,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487174,
+            "start_ticks": 2068917061,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487177,
+            "start_ticks": 2068917062,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487178,
+            "start_ticks": 2068917062,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487181,
+            "start_ticks": 2068917062,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487182,
+            "start_ticks": 2068917062,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487185,
+            "start_ticks": 2068917063,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487186,
+            "start_ticks": 2068917063,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487191,
+            "start_ticks": 2068917064,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487195,
+            "start_ticks": 2068917064,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487201,
+            "start_ticks": 2068917064,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487204,
+            "start_ticks": 2068917064,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487208,
+            "start_ticks": 2068917065,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487210,
+            "start_ticks": 2068917065,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487211,
+            "start_ticks": 2068917065,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487214,
+            "start_ticks": 2068917066,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487215,
+            "start_ticks": 2068917066,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487220,
+            "start_ticks": 2068917066,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487224,
+            "start_ticks": 2068917067,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487227,
+            "start_ticks": 2068917067,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487230,
+            "start_ticks": 2068917068,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487232,
+            "start_ticks": 2068917069,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487240,
+            "start_ticks": 2068917069,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487242,
+            "start_ticks": 2068917070,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487244,
+            "start_ticks": 2068917071,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487246,
+            "start_ticks": 2068917071,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487248,
+            "start_ticks": 2068917072,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487250,
+            "start_ticks": 2068917072,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487252,
+            "start_ticks": 2068917073,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487254,
+            "start_ticks": 2068917074,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487256,
+            "start_ticks": 2068917074,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487263,
+            "start_ticks": 2068917075,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487267,
+            "start_ticks": 2068917075,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487271,
+            "start_ticks": 2068917076,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487274,
+            "start_ticks": 2068917076,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487283,
+            "start_ticks": 2068917077,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487287,
+            "start_ticks": 2068917078,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487290,
+            "start_ticks": 2068917078,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487293,
+            "start_ticks": 2068917079,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487295,
+            "start_ticks": 2068917079,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2487299,
+            "start_ticks": 2068917080,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2523329,
+            "start_ticks": 2069039971,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2523337,
+            "start_ticks": 2069039973,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2523345,
+            "start_ticks": 2069039974,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2523353,
+            "start_ticks": 2069039976,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2523361,
+            "start_ticks": 2069039978,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2523369,
+            "start_ticks": 2069039979,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2523377,
+            "start_ticks": 2069039981,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2523385,
+            "start_ticks": 2069039982,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2530971,
+            "start_ticks": 2069079340,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2530973,
+            "start_ticks": 2069079342,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531243,
+            "start_ticks": 2069079677,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531245,
+            "start_ticks": 2069079677,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531247,
+            "start_ticks": 2069079678,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531249,
+            "start_ticks": 2069079679,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531251,
+            "start_ticks": 2069079680,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531253,
+            "start_ticks": 2069079681,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531255,
+            "start_ticks": 2069079682,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531257,
+            "start_ticks": 2069079682,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531259,
+            "start_ticks": 2069079683,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531261,
+            "start_ticks": 2069079684,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531263,
+            "start_ticks": 2069079685,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531265,
+            "start_ticks": 2069079686,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531267,
+            "start_ticks": 2069079687,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531269,
+            "start_ticks": 2069079687,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531271,
+            "start_ticks": 2069079688,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531273,
+            "start_ticks": 2069079689,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531275,
+            "start_ticks": 2069079689,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531277,
+            "start_ticks": 2069079690,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531279,
+            "start_ticks": 2069079690,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531281,
+            "start_ticks": 2069079691,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531284,
+            "start_ticks": 2069079692,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531286,
+            "start_ticks": 2069079692,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531288,
+            "start_ticks": 2069079693,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531289,
+            "start_ticks": 2069079693,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531292,
+            "start_ticks": 2069079694,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531293,
+            "start_ticks": 2069079694,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531296,
+            "start_ticks": 2069079695,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531297,
+            "start_ticks": 2069079695,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531300,
+            "start_ticks": 2069079696,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531301,
+            "start_ticks": 2069079696,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531304,
+            "start_ticks": 2069079697,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531305,
+            "start_ticks": 2069079697,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531308,
+            "start_ticks": 2069079698,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531309,
+            "start_ticks": 2069079698,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531312,
+            "start_ticks": 2069079699,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531314,
+            "start_ticks": 2069079699,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531315,
+            "start_ticks": 2069079699,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531318,
+            "start_ticks": 2069079700,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531319,
+            "start_ticks": 2069079700,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531322,
+            "start_ticks": 2069079700,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531326,
+            "start_ticks": 2069079701,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531328,
+            "start_ticks": 2069079702,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531330,
+            "start_ticks": 2069079703,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531332,
+            "start_ticks": 2069079704,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531334,
+            "start_ticks": 2069079705,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531336,
+            "start_ticks": 2069079706,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531338,
+            "start_ticks": 2069079706,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531340,
+            "start_ticks": 2069079708,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531342,
+            "start_ticks": 2069079709,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531344,
+            "start_ticks": 2069079709,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531346,
+            "start_ticks": 2069079710,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531348,
+            "start_ticks": 2069079710,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531350,
+            "start_ticks": 2069079711,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531352,
+            "start_ticks": 2069079711,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531354,
+            "start_ticks": 2069079712,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531356,
+            "start_ticks": 2069079712,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531358,
+            "start_ticks": 2069079713,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531360,
+            "start_ticks": 2069079713,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531362,
+            "start_ticks": 2069079714,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531364,
+            "start_ticks": 2069079714,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531366,
+            "start_ticks": 2069079714,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531368,
+            "start_ticks": 2069079715,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531370,
+            "start_ticks": 2069079715,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2531372,
+            "start_ticks": 2069079716,
+            "signal": 15,
+            "outcome": "sent"
+          }
+        ],
+        "cleanup_errors": [],
+        "child_pid": 2476251,
+        "remaining_owned": [],
+        "remaining_owned_gpu_processes": [],
+        "foreign_gpu_processes_not_touched": [],
+        "ended_at": "2026-10-24T19:26:54.064996+00:00",
+        "finished_before_deadline": null
+      },
+      "p5compact3072-research25clean1": {
+        "schema_version": 1,
+        "owner_pid": 2475801,
+        "owner_start_ticks": 2068897872,
+        "deadline": null,
+        "deadline_enforced": false,
+        "gpus": [
+          "GPU-704a22f6-0065-1169-012c-ad8becde82b7",
+          "GPU-ffc2ca94-dcb4-83f4-b80a-867d69515be0"
+        ],
+        "cuda_visible_devices": "0,3",
+        "ray_address": "local",
+        "result_status": "INCOMPLETE",
+        "ray_tmpdir": "/tmp/p5compact3072-research25clean1/ray",
+        "reason": "abort_file",
+        "returncode": 0,
+        "gpu_release_verified": true,
+        "signals": [
+          {
+            "pid": 2475806,
+            "start_ticks": 2068897902,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2475913,
+            "start_ticks": 2068898976,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2475914,
+            "start_ticks": 2068898976,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2476017,
+            "start_ticks": 2068899699,
+            "signal": 15,
+            "outcome": "sent"
+          },
+          {
+            "pid": 2476018,
+            "start_ticks": 2068899699,
+            "signal": 15,
+            "outcome": "sent"
+          }
+        ],
+        "cleanup_errors": [],
+        "child_pid": 2475806,
+        "remaining_owned": [],
+        "remaining_owned_gpu_processes": [],
+        "foreign_gpu_processes_not_touched": [],
+        "ended_at": "2026-10-24T19:26:53.548504+00:00",
+        "finished_before_deadline": null
+      }
+    },
+    "cause": "item shape swallowed into color; old spec test reused same extractor"
+  },
+  "sequence_status.json": {
+    "phase": "starting_researcher",
+    "pid": 2536102,
+    "time": 1792870377.5621462,
+    "input_limit": 3072,
+    "server_concurrency": 16,
+    "order": [
+      "clean_skill"
+    ]
+  },
+  "sequence_log": "starting_webshop {}\nwebshop_ready {'ports': [8321, 8322, 8323, 8324], 'pids': [2536152, 2536153, 2536154, 2536155], 'semantic_equivalence': True}\nstarting_researcher {}\n",
+  "p5compact3072-clean25v2_tail": null,
+  "p5compact3072-research25clean2_tail": "4] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].\n(Worker_TP0 pid=2536626) INFO 10-25 03:33:27 [flash_attn.py:596] Using FlashAttention version 2\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:   0% Completed | 0/26 [00:00<?, ?it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:   4% Completed | 1/26 [00:00<00:19,  1.25it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:   8% Completed | 2/26 [00:01<00:11,  2.06it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  12% Completed | 3/26 [00:01<00:15,  1.53it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  15% Completed | 4/26 [00:02<00:16,  1.32it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  19% Completed | 5/26 [00:03<00:17,  1.20it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  23% Completed | 6/26 [00:04<00:18,  1.09it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  27% Completed | 7/26 [00:05<00:13,  1.39it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  31% Completed | 8/26 [00:06<00:13,  1.29it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  35% Completed | 9/26 [00:06<00:11,  1.52it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  38% Completed | 10/26 [00:07<00:11,  1.36it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  42% Completed | 11/26 [00:07<00:09,  1.57it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  46% Completed | 12/26 [00:08<00:09,  1.42it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  50% Completed | 13/26 [00:09<00:08,  1.58it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  54% Completed | 14/26 [00:10<00:08,  1.41it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  58% Completed | 15/26 [00:10<00:06,  1.59it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  62% Completed | 16/26 [00:11<00:07,  1.33it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  65% Completed | 17/26 [00:11<00:05,  1.61it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  69% Completed | 18/26 [00:12<00:05,  1.41it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  73% Completed | 19/26 [00:13<00:04,  1.60it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  77% Completed | 20/26 [00:14<00:04,  1.42it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  81% Completed | 21/26 [00:14<00:03,  1.59it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  85% Completed | 22/26 [00:15<00:02,  1.47it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  88% Completed | 23/26 [00:16<00:02,  1.35it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  92% Completed | 24/26 [00:17<00:01,  1.26it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  96% Completed | 25/26 [00:17<00:00,  1.32it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards: 100% Completed | 26/26 [00:18<00:00,  1.56it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards: 100% Completed | 26/26 [00:18<00:00,  1.43it/s]\n(Worker_TP0 pid=2536626) \n(Worker_TP0 pid=2536626) INFO 10-25 03:33:46 [default_loader.py:384] Loading weights took 18.17 seconds\n"
+}

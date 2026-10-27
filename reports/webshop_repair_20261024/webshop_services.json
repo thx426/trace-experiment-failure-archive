@@ -1,0 +1,458 @@
+{
+  "shards": [
+    {
+      "port": 8321,
+      "pid": 2014398,
+      "provenance": {
+        "reconstructed": true,
+        "service_revision": "reconstructed-webshop-http-v3-idempotent",
+        "service_sha256": "f7f7ecfe16efb890201af73633f5152112ab37b644c7b07e904cf89ae9f0efcd",
+        "upstream_commit": "64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd",
+        "upstream_source": {
+          "source_kind": "official_codeload_archive",
+          "source_url": "https://codeload.github.com/princeton-nlp/WebShop/tar.gz/64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd",
+          "archive_sha256": "2e3e671ad76ee5dd1b143f1a060f91386b9699602bee794259b5de79ebfaea8a",
+          "git_checkout_verified": false
+        },
+        "upstream_repository": "https://github.com/princeton-nlp/WebShop",
+        "product_goal_generation_seed": 0,
+        "goal_shuffle_seed": 0,
+        "goal_order_method": "invert pinned upstream seed-233 permutation; shuffle canonical order with seed 0",
+        "option_fix": true,
+        "human_goals": false,
+        "num_products": 1000,
+        "option_fix_method": "shallow-copy dict goal_options to list(values()) before unchanged upstream get_reward",
+        "option_fix_implementation_sha256": "20d1cdf5a75b6ac68430c8e3b0f1e0ea02ff4d6f674708bc733d2d217273c1a6",
+        "upstream_reward_source_sha256": "9703c8583244e2041182eb14856186b998145ab16ce2ba9aef8cb680877c8ed5",
+        "python": "3.10.22",
+        "runtime_packages": {
+          "spacy": "3.3.0",
+          "en-core-web-sm": "3.3.0",
+          "thefuzz": "0.19.0",
+          "pyserini": "0.17.0",
+          "gym": "0.24.0",
+          "Flask": "2.1.2",
+          "numpy": "1.22.4"
+        },
+        "dataset_sha256": {
+          "items_shuffle_1000.json": "30a4765c3a327af72d9a9a95a6b2486d516f0fa1d3ecd83681901ce82a21b269",
+          "items_ins_v2_1000.json": "f88a36314a397b53b3d9c3fa5878e5f7b26d35019a51ec83fbedeca61a948f6f",
+          "items_human_ins.json": "cf78667548a71786e1d9049c24b802e48e1084ad4bb021cae56ce1f6d96954a3"
+        },
+        "dataset_source_manifest": {
+          "present": true,
+          "manifest_sha256": "0d123534b995e273a0cd70ebea75d204453744210d21abca28f5bb46faf3a1d1",
+          "content": {
+            "schema_version": 1,
+            "source_kind": "community_mirror_with_official_human_blob",
+            "repository": "sparklabutah/timewarp-env-data",
+            "revision": "e6b1db309d01ca37cb52a0f8bc4537e798456b63",
+            "transport": "https://hf-mirror.com",
+            "metadata_verification": "Pinned Git blob IDs obtained from mirror tree API; independent HF API verification unavailable",
+            "official_upstream_commit": "64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd",
+            "official_human_source": "https://github.com/princeton-nlp/WebShop/blob/64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd/baseline_models/data/items_human_ins.json",
+            "num_products": 1000,
+            "expected_num_goals": 6910,
+            "files": {
+              "items_shuffle_1000.json": {
+                "size": 4467013,
+                "git_blob_sha1": "08dfda9a1c896e0f69d50e3437dd3fe94419b7d7",
+                "sha256": "30a4765c3a327af72d9a9a95a6b2486d516f0fa1d3ecd83681901ce82a21b269",
+                "acquisition": "preexisting_verified",
+                "mirror_url": "https://hf-mirror.com/datasets/sparklabutah/timewarp-env-data/resolve/e6b1db309d01ca37cb52a0f8bc4537e798456b63/webshop/items_shuffle_1000.json",
+                "official_original_byte_equivalence": "UNVERIFIED"
+              },
+              "items_ins_v2_1000.json": {
+                "size": 147099,
+                "git_blob_sha1": "22837ad99f3173712fc9cb1cce7de6b75fe90595",
+                "sha256": "f88a36314a397b53b3d9c3fa5878e5f7b26d35019a51ec83fbedeca61a948f6f",
+                "acquisition": "preexisting_verified",
+                "mirror_url": "https://hf-mirror.com/datasets/sparklabutah/timewarp-env-data/resolve/e6b1db309d01ca37cb52a0f8bc4537e798456b63/webshop/items_ins_v2_1000.json",
+                "official_original_byte_equivalence": "UNVERIFIED"
+              },
+              "items_human_ins.json": {
+                "size": 5137548,
+                "git_blob_sha1": "b2ab7479b9798e0b62ea394e065f3d506875f090",
+                "sha256": "cf78667548a71786e1d9049c24b802e48e1084ad4bb021cae56ce1f6d96954a3",
+                "acquisition": "preexisting_verified",
+                "mirror_url": "https://hf-mirror.com/datasets/sparklabutah/timewarp-env-data/resolve/e6b1db309d01ca37cb52a0f8bc4537e798456b63/webshop/items_human_ins.json",
+                "official_original_byte_equivalence": "VERIFIED_PINNED_GITHUB_BLOB"
+              }
+            },
+            "limitation": "Product and attribute bytes match the pinned community repository. Equivalence to original Google Drive or historical experiment files is UNVERIFIED."
+          }
+        },
+        "index_sha256": {
+          "_0.fdm": "ddf8264f08ccabea741d92c255a6f4ef817d1ac08277ddf22ecc23da746cc5ca",
+          "_0.fdt": "05315ec7c9fe70d0eadd32cf5ac7208aecb0b54f8b7fdf12cb5a7aedd8779f21",
+          "_0.fdx": "31aa78b591a457480d86cbd008708d787f0c4a9ade169f6d49b844dc759f1605",
+          "_0.fnm": "38f975c3350bf3844af1e833121f6d01b6dae48ec8989f8033b7535da739ff74",
+          "_0.nvd": "f2b02265e31ad28b56c5f76fec1cb04f5da19a361da7e8a4cf204b2fc90810ed",
+          "_0.nvm": "41617c3172d9d746a5e2b8d20e4a69a3936793510b82f3492de41373635eb8ad",
+          "_0.si": "5a73df1a75635db03dcc11f622e271fdbe62f4cf89a83ea85e6abe915681fba8",
+          "_0.tvd": "9d4d8236f307a4abb84c74fb4197e3a8ca5f4b6edc9b3e23a3ecc13ded1db29f",
+          "_0.tvm": "501303db5cb4f4fcf990893547635e7c218fcf8dc90e68d5af33b5027a88ac20",
+          "_0.tvx": "71b491d731314f54eace4c71bbe2afb6160b6154f8bbd8b8b8618030a403c83f",
+          "_0_Lucene80_0.dvd": "2cd8e9a2183f6d56257df350a33ac7e526839db3d16a77ca4ff38152ac5e6439",
+          "_0_Lucene80_0.dvm": "fcb128416e1c9f14afd9999cd3b315c39dfb281e4db38052cf98f813182230b5",
+          "_0_Lucene84_0.doc": "20f6b801021111f38cee41c93f072a2a7c1de864b3fb25abb4122b77d3299264",
+          "_0_Lucene84_0.pos": "ccc71bf225ca32774219467f011135789c49cb77b7f7eeee5ecdbbd20ea58523",
+          "_0_Lucene84_0.tim": "45025f9a75b7f099fba206341c8a260cdf16496f181baa54e8c4e6fc20b391e5",
+          "_0_Lucene84_0.tip": "d37defd28e49166d96ac59fa5abce7a724bb32a2b73e403e25bc697c5b673e41",
+          "_0_Lucene84_0.tmd": "a240612d0349c2b1c4443f2ff09a1dd32452f93b3e45050aae8c065b07115943",
+          "segments_1": "1010ab1733fbd0419a09306ae39c45a75075062186e1120c7f3f6dc56bf72c5d"
+        },
+        "goals_sha256": "04fd004ca86903716d7626ff5d3e7e0c8abf0f972d5dcb8737d07aa3e8e142b2",
+        "product_prices_sha256": "585e2625433f345b08c6ca63d7c540f5abd7a3b7fd9a8e0eacc3e2f9fa4b0168",
+        "limitation": "Historical HTTP service and its exact patches were unavailable. New arms share this reconstruction; historical scores are reference only."
+      }
+    },
+    {
+      "port": 8322,
+      "pid": 2014399,
+      "provenance": {
+        "reconstructed": true,
+        "service_revision": "reconstructed-webshop-http-v3-idempotent",
+        "service_sha256": "f7f7ecfe16efb890201af73633f5152112ab37b644c7b07e904cf89ae9f0efcd",
+        "upstream_commit": "64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd",
+        "upstream_source": {
+          "source_kind": "official_codeload_archive",
+          "source_url": "https://codeload.github.com/princeton-nlp/WebShop/tar.gz/64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd",
+          "archive_sha256": "2e3e671ad76ee5dd1b143f1a060f91386b9699602bee794259b5de79ebfaea8a",
+          "git_checkout_verified": false
+        },
+        "upstream_repository": "https://github.com/princeton-nlp/WebShop",
+        "product_goal_generation_seed": 0,
+        "goal_shuffle_seed": 0,
+        "goal_order_method": "invert pinned upstream seed-233 permutation; shuffle canonical order with seed 0",
+        "option_fix": true,
+        "human_goals": false,
+        "num_products": 1000,
+        "option_fix_method": "shallow-copy dict goal_options to list(values()) before unchanged upstream get_reward",
+        "option_fix_implementation_sha256": "20d1cdf5a75b6ac68430c8e3b0f1e0ea02ff4d6f674708bc733d2d217273c1a6",
+        "upstream_reward_source_sha256": "9703c8583244e2041182eb14856186b998145ab16ce2ba9aef8cb680877c8ed5",
+        "python": "3.10.22",
+        "runtime_packages": {
+          "spacy": "3.3.0",
+          "en-core-web-sm": "3.3.0",
+          "thefuzz": "0.19.0",
+          "pyserini": "0.17.0",
+          "gym": "0.24.0",
+          "Flask": "2.1.2",
+          "numpy": "1.22.4"
+        },
+        "dataset_sha256": {
+          "items_shuffle_1000.json": "30a4765c3a327af72d9a9a95a6b2486d516f0fa1d3ecd83681901ce82a21b269",
+          "items_ins_v2_1000.json": "f88a36314a397b53b3d9c3fa5878e5f7b26d35019a51ec83fbedeca61a948f6f",
+          "items_human_ins.json": "cf78667548a71786e1d9049c24b802e48e1084ad4bb021cae56ce1f6d96954a3"
+        },
+        "dataset_source_manifest": {
+          "present": true,
+          "manifest_sha256": "0d123534b995e273a0cd70ebea75d204453744210d21abca28f5bb46faf3a1d1",
+          "content": {
+            "schema_version": 1,
+            "source_kind": "community_mirror_with_official_human_blob",
+            "repository": "sparklabutah/timewarp-env-data",
+            "revision": "e6b1db309d01ca37cb52a0f8bc4537e798456b63",
+            "transport": "https://hf-mirror.com",
+            "metadata_verification": "Pinned Git blob IDs obtained from mirror tree API; independent HF API verification unavailable",
+            "official_upstream_commit": "64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd",
+            "official_human_source": "https://github.com/princeton-nlp/WebShop/blob/64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd/baseline_models/data/items_human_ins.json",
+            "num_products": 1000,
+            "expected_num_goals": 6910,
+            "files": {
+              "items_shuffle_1000.json": {
+                "size": 4467013,
+                "git_blob_sha1": "08dfda9a1c896e0f69d50e3437dd3fe94419b7d7",
+                "sha256": "30a4765c3a327af72d9a9a95a6b2486d516f0fa1d3ecd83681901ce82a21b269",
+                "acquisition": "preexisting_verified",
+                "mirror_url": "https://hf-mirror.com/datasets/sparklabutah/timewarp-env-data/resolve/e6b1db309d01ca37cb52a0f8bc4537e798456b63/webshop/items_shuffle_1000.json",
+                "official_original_byte_equivalence": "UNVERIFIED"
+              },
+              "items_ins_v2_1000.json": {
+                "size": 147099,
+                "git_blob_sha1": "22837ad99f3173712fc9cb1cce7de6b75fe90595",
+                "sha256": "f88a36314a397b53b3d9c3fa5878e5f7b26d35019a51ec83fbedeca61a948f6f",
+                "acquisition": "preexisting_verified",
+                "mirror_url": "https://hf-mirror.com/datasets/sparklabutah/timewarp-env-data/resolve/e6b1db309d01ca37cb52a0f8bc4537e798456b63/webshop/items_ins_v2_1000.json",
+                "official_original_byte_equivalence": "UNVERIFIED"
+              },
+              "items_human_ins.json": {
+                "size": 5137548,
+                "git_blob_sha1": "b2ab7479b9798e0b62ea394e065f3d506875f090",
+                "sha256": "cf78667548a71786e1d9049c24b802e48e1084ad4bb021cae56ce1f6d96954a3",
+                "acquisition": "preexisting_verified",
+                "mirror_url": "https://hf-mirror.com/datasets/sparklabutah/timewarp-env-data/resolve/e6b1db309d01ca37cb52a0f8bc4537e798456b63/webshop/items_human_ins.json",
+                "official_original_byte_equivalence": "VERIFIED_PINNED_GITHUB_BLOB"
+              }
+            },
+            "limitation": "Product and attribute bytes match the pinned community repository. Equivalence to original Google Drive or historical experiment files is UNVERIFIED."
+          }
+        },
+        "index_sha256": {
+          "_0.fdm": "ddf8264f08ccabea741d92c255a6f4ef817d1ac08277ddf22ecc23da746cc5ca",
+          "_0.fdt": "05315ec7c9fe70d0eadd32cf5ac7208aecb0b54f8b7fdf12cb5a7aedd8779f21",
+          "_0.fdx": "31aa78b591a457480d86cbd008708d787f0c4a9ade169f6d49b844dc759f1605",
+          "_0.fnm": "38f975c3350bf3844af1e833121f6d01b6dae48ec8989f8033b7535da739ff74",
+          "_0.nvd": "f2b02265e31ad28b56c5f76fec1cb04f5da19a361da7e8a4cf204b2fc90810ed",
+          "_0.nvm": "41617c3172d9d746a5e2b8d20e4a69a3936793510b82f3492de41373635eb8ad",
+          "_0.si": "5a73df1a75635db03dcc11f622e271fdbe62f4cf89a83ea85e6abe915681fba8",
+          "_0.tvd": "9d4d8236f307a4abb84c74fb4197e3a8ca5f4b6edc9b3e23a3ecc13ded1db29f",
+          "_0.tvm": "501303db5cb4f4fcf990893547635e7c218fcf8dc90e68d5af33b5027a88ac20",
+          "_0.tvx": "71b491d731314f54eace4c71bbe2afb6160b6154f8bbd8b8b8618030a403c83f",
+          "_0_Lucene80_0.dvd": "2cd8e9a2183f6d56257df350a33ac7e526839db3d16a77ca4ff38152ac5e6439",
+          "_0_Lucene80_0.dvm": "fcb128416e1c9f14afd9999cd3b315c39dfb281e4db38052cf98f813182230b5",
+          "_0_Lucene84_0.doc": "20f6b801021111f38cee41c93f072a2a7c1de864b3fb25abb4122b77d3299264",
+          "_0_Lucene84_0.pos": "ccc71bf225ca32774219467f011135789c49cb77b7f7eeee5ecdbbd20ea58523",
+          "_0_Lucene84_0.tim": "45025f9a75b7f099fba206341c8a260cdf16496f181baa54e8c4e6fc20b391e5",
+          "_0_Lucene84_0.tip": "d37defd28e49166d96ac59fa5abce7a724bb32a2b73e403e25bc697c5b673e41",
+          "_0_Lucene84_0.tmd": "a240612d0349c2b1c4443f2ff09a1dd32452f93b3e45050aae8c065b07115943",
+          "segments_1": "1010ab1733fbd0419a09306ae39c45a75075062186e1120c7f3f6dc56bf72c5d"
+        },
+        "goals_sha256": "04fd004ca86903716d7626ff5d3e7e0c8abf0f972d5dcb8737d07aa3e8e142b2",
+        "product_prices_sha256": "585e2625433f345b08c6ca63d7c540f5abd7a3b7fd9a8e0eacc3e2f9fa4b0168",
+        "limitation": "Historical HTTP service and its exact patches were unavailable. New arms share this reconstruction; historical scores are reference only."
+      }
+    },
+    {
+      "port": 8323,
+      "pid": 2014400,
+      "provenance": {
+        "reconstructed": true,
+        "service_revision": "reconstructed-webshop-http-v3-idempotent",
+        "service_sha256": "f7f7ecfe16efb890201af73633f5152112ab37b644c7b07e904cf89ae9f0efcd",
+        "upstream_commit": "64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd",
+        "upstream_source": {
+          "source_kind": "official_codeload_archive",
+          "source_url": "https://codeload.github.com/princeton-nlp/WebShop/tar.gz/64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd",
+          "archive_sha256": "2e3e671ad76ee5dd1b143f1a060f91386b9699602bee794259b5de79ebfaea8a",
+          "git_checkout_verified": false
+        },
+        "upstream_repository": "https://github.com/princeton-nlp/WebShop",
+        "product_goal_generation_seed": 0,
+        "goal_shuffle_seed": 0,
+        "goal_order_method": "invert pinned upstream seed-233 permutation; shuffle canonical order with seed 0",
+        "option_fix": true,
+        "human_goals": false,
+        "num_products": 1000,
+        "option_fix_method": "shallow-copy dict goal_options to list(values()) before unchanged upstream get_reward",
+        "option_fix_implementation_sha256": "20d1cdf5a75b6ac68430c8e3b0f1e0ea02ff4d6f674708bc733d2d217273c1a6",
+        "upstream_reward_source_sha256": "9703c8583244e2041182eb14856186b998145ab16ce2ba9aef8cb680877c8ed5",
+        "python": "3.10.22",
+        "runtime_packages": {
+          "spacy": "3.3.0",
+          "en-core-web-sm": "3.3.0",
+          "thefuzz": "0.19.0",
+          "pyserini": "0.17.0",
+          "gym": "0.24.0",
+          "Flask": "2.1.2",
+          "numpy": "1.22.4"
+        },
+        "dataset_sha256": {
+          "items_shuffle_1000.json": "30a4765c3a327af72d9a9a95a6b2486d516f0fa1d3ecd83681901ce82a21b269",
+          "items_ins_v2_1000.json": "f88a36314a397b53b3d9c3fa5878e5f7b26d35019a51ec83fbedeca61a948f6f",
+          "items_human_ins.json": "cf78667548a71786e1d9049c24b802e48e1084ad4bb021cae56ce1f6d96954a3"
+        },
+        "dataset_source_manifest": {
+          "present": true,
+          "manifest_sha256": "0d123534b995e273a0cd70ebea75d204453744210d21abca28f5bb46faf3a1d1",
+          "content": {
+            "schema_version": 1,
+            "source_kind": "community_mirror_with_official_human_blob",
+            "repository": "sparklabutah/timewarp-env-data",
+            "revision": "e6b1db309d01ca37cb52a0f8bc4537e798456b63",
+            "transport": "https://hf-mirror.com",
+            "metadata_verification": "Pinned Git blob IDs obtained from mirror tree API; independent HF API verification unavailable",
+            "official_upstream_commit": "64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd",
+            "official_human_source": "https://github.com/princeton-nlp/WebShop/blob/64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd/baseline_models/data/items_human_ins.json",
+            "num_products": 1000,
+            "expected_num_goals": 6910,
+            "files": {
+              "items_shuffle_1000.json": {
+                "size": 4467013,
+                "git_blob_sha1": "08dfda9a1c896e0f69d50e3437dd3fe94419b7d7",
+                "sha256": "30a4765c3a327af72d9a9a95a6b2486d516f0fa1d3ecd83681901ce82a21b269",
+                "acquisition": "preexisting_verified",
+                "mirror_url": "https://hf-mirror.com/datasets/sparklabutah/timewarp-env-data/resolve/e6b1db309d01ca37cb52a0f8bc4537e798456b63/webshop/items_shuffle_1000.json",
+                "official_original_byte_equivalence": "UNVERIFIED"
+              },
+              "items_ins_v2_1000.json": {
+                "size": 147099,
+                "git_blob_sha1": "22837ad99f3173712fc9cb1cce7de6b75fe90595",
+                "sha256": "f88a36314a397b53b3d9c3fa5878e5f7b26d35019a51ec83fbedeca61a948f6f",
+                "acquisition": "preexisting_verified",
+                "mirror_url": "https://hf-mirror.com/datasets/sparklabutah/timewarp-env-data/resolve/e6b1db309d01ca37cb52a0f8bc4537e798456b63/webshop/items_ins_v2_1000.json",
+                "official_original_byte_equivalence": "UNVERIFIED"
+              },
+              "items_human_ins.json": {
+                "size": 5137548,
+                "git_blob_sha1": "b2ab7479b9798e0b62ea394e065f3d506875f090",
+                "sha256": "cf78667548a71786e1d9049c24b802e48e1084ad4bb021cae56ce1f6d96954a3",
+                "acquisition": "preexisting_verified",
+                "mirror_url": "https://hf-mirror.com/datasets/sparklabutah/timewarp-env-data/resolve/e6b1db309d01ca37cb52a0f8bc4537e798456b63/webshop/items_human_ins.json",
+                "official_original_byte_equivalence": "VERIFIED_PINNED_GITHUB_BLOB"
+              }
+            },
+            "limitation": "Product and attribute bytes match the pinned community repository. Equivalence to original Google Drive or historical experiment files is UNVERIFIED."
+          }
+        },
+        "index_sha256": {
+          "_0.fdm": "ddf8264f08ccabea741d92c255a6f4ef817d1ac08277ddf22ecc23da746cc5ca",
+          "_0.fdt": "05315ec7c9fe70d0eadd32cf5ac7208aecb0b54f8b7fdf12cb5a7aedd8779f21",
+          "_0.fdx": "31aa78b591a457480d86cbd008708d787f0c4a9ade169f6d49b844dc759f1605",
+          "_0.fnm": "38f975c3350bf3844af1e833121f6d01b6dae48ec8989f8033b7535da739ff74",
+          "_0.nvd": "f2b02265e31ad28b56c5f76fec1cb04f5da19a361da7e8a4cf204b2fc90810ed",
+          "_0.nvm": "41617c3172d9d746a5e2b8d20e4a69a3936793510b82f3492de41373635eb8ad",
+          "_0.si": "5a73df1a75635db03dcc11f622e271fdbe62f4cf89a83ea85e6abe915681fba8",
+          "_0.tvd": "9d4d8236f307a4abb84c74fb4197e3a8ca5f4b6edc9b3e23a3ecc13ded1db29f",
+          "_0.tvm": "501303db5cb4f4fcf990893547635e7c218fcf8dc90e68d5af33b5027a88ac20",
+          "_0.tvx": "71b491d731314f54eace4c71bbe2afb6160b6154f8bbd8b8b8618030a403c83f",
+          "_0_Lucene80_0.dvd": "2cd8e9a2183f6d56257df350a33ac7e526839db3d16a77ca4ff38152ac5e6439",
+          "_0_Lucene80_0.dvm": "fcb128416e1c9f14afd9999cd3b315c39dfb281e4db38052cf98f813182230b5",
+          "_0_Lucene84_0.doc": "20f6b801021111f38cee41c93f072a2a7c1de864b3fb25abb4122b77d3299264",
+          "_0_Lucene84_0.pos": "ccc71bf225ca32774219467f011135789c49cb77b7f7eeee5ecdbbd20ea58523",
+          "_0_Lucene84_0.tim": "45025f9a75b7f099fba206341c8a260cdf16496f181baa54e8c4e6fc20b391e5",
+          "_0_Lucene84_0.tip": "d37defd28e49166d96ac59fa5abce7a724bb32a2b73e403e25bc697c5b673e41",
+          "_0_Lucene84_0.tmd": "a240612d0349c2b1c4443f2ff09a1dd32452f93b3e45050aae8c065b07115943",
+          "segments_1": "1010ab1733fbd0419a09306ae39c45a75075062186e1120c7f3f6dc56bf72c5d"
+        },
+        "goals_sha256": "04fd004ca86903716d7626ff5d3e7e0c8abf0f972d5dcb8737d07aa3e8e142b2",
+        "product_prices_sha256": "585e2625433f345b08c6ca63d7c540f5abd7a3b7fd9a8e0eacc3e2f9fa4b0168",
+        "limitation": "Historical HTTP service and its exact patches were unavailable. New arms share this reconstruction; historical scores are reference only."
+      }
+    },
+    {
+      "port": 8324,
+      "pid": 2014401,
+      "provenance": {
+        "reconstructed": true,
+        "service_revision": "reconstructed-webshop-http-v3-idempotent",
+        "service_sha256": "f7f7ecfe16efb890201af73633f5152112ab37b644c7b07e904cf89ae9f0efcd",
+        "upstream_commit": "64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd",
+        "upstream_source": {
+          "source_kind": "official_codeload_archive",
+          "source_url": "https://codeload.github.com/princeton-nlp/WebShop/tar.gz/64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd",
+          "archive_sha256": "2e3e671ad76ee5dd1b143f1a060f91386b9699602bee794259b5de79ebfaea8a",
+          "git_checkout_verified": false
+        },
+        "upstream_repository": "https://github.com/princeton-nlp/WebShop",
+        "product_goal_generation_seed": 0,
+        "goal_shuffle_seed": 0,
+        "goal_order_method": "invert pinned upstream seed-233 permutation; shuffle canonical order with seed 0",
+        "option_fix": true,
+        "human_goals": false,
+        "num_products": 1000,
+        "option_fix_method": "shallow-copy dict goal_options to list(values()) before unchanged upstream get_reward",
+        "option_fix_implementation_sha256": "20d1cdf5a75b6ac68430c8e3b0f1e0ea02ff4d6f674708bc733d2d217273c1a6",
+        "upstream_reward_source_sha256": "9703c8583244e2041182eb14856186b998145ab16ce2ba9aef8cb680877c8ed5",
+        "python": "3.10.22",
+        "runtime_packages": {
+          "spacy": "3.3.0",
+          "en-core-web-sm": "3.3.0",
+          "thefuzz": "0.19.0",
+          "pyserini": "0.17.0",
+          "gym": "0.24.0",
+          "Flask": "2.1.2",
+          "numpy": "1.22.4"
+        },
+        "dataset_sha256": {
+          "items_shuffle_1000.json": "30a4765c3a327af72d9a9a95a6b2486d516f0fa1d3ecd83681901ce82a21b269",
+          "items_ins_v2_1000.json": "f88a36314a397b53b3d9c3fa5878e5f7b26d35019a51ec83fbedeca61a948f6f",
+          "items_human_ins.json": "cf78667548a71786e1d9049c24b802e48e1084ad4bb021cae56ce1f6d96954a3"
+        },
+        "dataset_source_manifest": {
+          "present": true,
+          "manifest_sha256": "0d123534b995e273a0cd70ebea75d204453744210d21abca28f5bb46faf3a1d1",
+          "content": {
+            "schema_version": 1,
+            "source_kind": "community_mirror_with_official_human_blob",
+            "repository": "sparklabutah/timewarp-env-data",
+            "revision": "e6b1db309d01ca37cb52a0f8bc4537e798456b63",
+            "transport": "https://hf-mirror.com",
+            "metadata_verification": "Pinned Git blob IDs obtained from mirror tree API; independent HF API verification unavailable",
+            "official_upstream_commit": "64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd",
+            "official_human_source": "https://github.com/princeton-nlp/WebShop/blob/64fa2a5c15c7daa698b9ac93f5bb5437b634c9bd/baseline_models/data/items_human_ins.json",
+            "num_products": 1000,
+            "expected_num_goals": 6910,
+            "files": {
+              "items_shuffle_1000.json": {
+                "size": 4467013,
+                "git_blob_sha1": "08dfda9a1c896e0f69d50e3437dd3fe94419b7d7",
+                "sha256": "30a4765c3a327af72d9a9a95a6b2486d516f0fa1d3ecd83681901ce82a21b269",
+                "acquisition": "preexisting_verified",
+                "mirror_url": "https://hf-mirror.com/datasets/sparklabutah/timewarp-env-data/resolve/e6b1db309d01ca37cb52a0f8bc4537e798456b63/webshop/items_shuffle_1000.json",
+                "official_original_byte_equivalence": "UNVERIFIED"
+              },
+              "items_ins_v2_1000.json": {
+                "size": 147099,
+                "git_blob_sha1": "22837ad99f3173712fc9cb1cce7de6b75fe90595",
+                "sha256": "f88a36314a397b53b3d9c3fa5878e5f7b26d35019a51ec83fbedeca61a948f6f",
+                "acquisition": "preexisting_verified",
+                "mirror_url": "https://hf-mirror.com/datasets/sparklabutah/timewarp-env-data/resolve/e6b1db309d01ca37cb52a0f8bc4537e798456b63/webshop/items_ins_v2_1000.json",
+                "official_original_byte_equivalence": "UNVERIFIED"
+              },
+              "items_human_ins.json": {
+                "size": 5137548,
+                "git_blob_sha1": "b2ab7479b9798e0b62ea394e065f3d506875f090",
+                "sha256": "cf78667548a71786e1d9049c24b802e48e1084ad4bb021cae56ce1f6d96954a3",
+                "acquisition": "preexisting_verified",
+                "mirror_url": "https://hf-mirror.com/datasets/sparklabutah/timewarp-env-data/resolve/e6b1db309d01ca37cb52a0f8bc4537e798456b63/webshop/items_human_ins.json",
+                "official_original_byte_equivalence": "VERIFIED_PINNED_GITHUB_BLOB"
+              }
+            },
+            "limitation": "Product and attribute bytes match the pinned community repository. Equivalence to original Google Drive or historical experiment files is UNVERIFIED."
+          }
+        },
+        "index_sha256": {
+          "_0.fdm": "ddf8264f08ccabea741d92c255a6f4ef817d1ac08277ddf22ecc23da746cc5ca",
+          "_0.fdt": "05315ec7c9fe70d0eadd32cf5ac7208aecb0b54f8b7fdf12cb5a7aedd8779f21",
+          "_0.fdx": "31aa78b591a457480d86cbd008708d787f0c4a9ade169f6d49b844dc759f1605",
+          "_0.fnm": "38f975c3350bf3844af1e833121f6d01b6dae48ec8989f8033b7535da739ff74",
+          "_0.nvd": "f2b02265e31ad28b56c5f76fec1cb04f5da19a361da7e8a4cf204b2fc90810ed",
+          "_0.nvm": "41617c3172d9d746a5e2b8d20e4a69a3936793510b82f3492de41373635eb8ad",
+          "_0.si": "5a73df1a75635db03dcc11f622e271fdbe62f4cf89a83ea85e6abe915681fba8",
+          "_0.tvd": "9d4d8236f307a4abb84c74fb4197e3a8ca5f4b6edc9b3e23a3ecc13ded1db29f",
+          "_0.tvm": "501303db5cb4f4fcf990893547635e7c218fcf8dc90e68d5af33b5027a88ac20",
+          "_0.tvx": "71b491d731314f54eace4c71bbe2afb6160b6154f8bbd8b8b8618030a403c83f",
+          "_0_Lucene80_0.dvd": "2cd8e9a2183f6d56257df350a33ac7e526839db3d16a77ca4ff38152ac5e6439",
+          "_0_Lucene80_0.dvm": "fcb128416e1c9f14afd9999cd3b315c39dfb281e4db38052cf98f813182230b5",
+          "_0_Lucene84_0.doc": "20f6b801021111f38cee41c93f072a2a7c1de864b3fb25abb4122b77d3299264",
+          "_0_Lucene84_0.pos": "ccc71bf225ca32774219467f011135789c49cb77b7f7eeee5ecdbbd20ea58523",
+          "_0_Lucene84_0.tim": "45025f9a75b7f099fba206341c8a260cdf16496f181baa54e8c4e6fc20b391e5",
+          "_0_Lucene84_0.tip": "d37defd28e49166d96ac59fa5abce7a724bb32a2b73e403e25bc697c5b673e41",
+          "_0_Lucene84_0.tmd": "a240612d0349c2b1c4443f2ff09a1dd32452f93b3e45050aae8c065b07115943",
+          "segments_1": "1010ab1733fbd0419a09306ae39c45a75075062186e1120c7f3f6dc56bf72c5d"
+        },
+        "goals_sha256": "04fd004ca86903716d7626ff5d3e7e0c8abf0f972d5dcb8737d07aa3e8e142b2",
+        "product_prices_sha256": "585e2625433f345b08c6ca63d7c540f5abd7a3b7fd9a8e0eacc3e2f9fa4b0168",
+        "limitation": "Historical HTTP service and its exact patches were unavailable. New arms share this reconstruction; historical scores are reference only."
+      }
+    }
+  ],
+  "semantic_equivalence": true,
+  "compared_fields": [
+    "reconstructed",
+    "upstream_commit",
+    "upstream_source",
+    "upstream_repository",
+    "product_goal_generation_seed",
+    "goal_shuffle_seed",
+    "goal_order_method",
+    "option_fix",
+    "human_goals",
+    "num_products",
+    "option_fix_method",
+    "option_fix_implementation_sha256",
+    "upstream_reward_source_sha256",
+    "python",
+    "runtime_packages",
+    "dataset_sha256",
+    "dataset_source_manifest",
+    "index_sha256",
+    "goals_sha256",
+    "product_prices_sha256",
+    "limitation"
+  ],
+  "blas_threads": 1,
+  "transport_protocol": 3
+}

@@ -1,0 +1,32 @@
+{
+  "checked_at": "2026-10-24T13:16:20.517353+08:00",
+  "completed_metric_steps": 19,
+  "current_phase": "step_20_checkpoint_saving",
+  "formal_researcher_inputs": {
+    "calls": 4032,
+    "mean": 2170.996031746032,
+    "max": 2500,
+    "above_3072": 0
+  },
+  "mean_training_step_seconds": 788.0430651622776,
+  "bare_successes": 88,
+  "assigned_steered_successes": 92,
+  "attempts_per_arm": 1216,
+  "research_task_step_sessions": 304,
+  "missing_skill_sessions": 162,
+  "mean_research_doc_missing_fraction": 0.5328947368421053,
+  "evaluations": {
+    "0": {
+      "status": "passed",
+      "tasks": 256,
+      "attempts": 1280,
+      "successes": 79,
+      "pass1_estimate": 0.06171875,
+      "pass5": 0.20703125
+    }
+  },
+  "webshop_operations": 79169,
+  "interpretation": "Infrastructure healthy and training faster. Assigned steered and bare training success differ little. Over half of task-step researcher sessions return no usable document, so assigned-arm comparison mixes effective guidance and fallback. This is not proof that privileged information or input compaction caused the missing documents. No completed post-training dev evaluation yet.",
+  "experiment_changes": [],
+  "evidence_file": "<PROJECT_ROOT>/reports/webshop_repair_20261024/feedback_20261024_1316.json"
+}

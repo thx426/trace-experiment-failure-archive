@@ -1,0 +1,306 @@
+{
+  "grpo.yaml": {
+    "train.adv_estimator": "grpo",
+    "steering.enabled": false,
+    "research.enabled": false,
+    "research.n_exp": 3
+  },
+  "all_skill.yaml": {
+    "train.adv_estimator": "grpo",
+    "steering.enabled": true,
+    "steering.gate_mode": "entropy",
+    "steering.w_beh_mode": "off",
+    "steering.adv_mode": "legacy_shared",
+    "steering.steered_adv_weight": 1.0,
+    "steering.steered_adv_decay_steps": 0,
+    "steering.steered_adv_cap": 0.0,
+    "steering.entropy_theta_ratchet": true,
+    "steering.steered_fraction": 0.5,
+    "research.enabled": true,
+    "research.n_exp": 3
+  },
+  "selective_skill.yaml": {
+    "train.adv_estimator": "grpo",
+    "steering.enabled": true,
+    "steering.gate_mode": "entropy",
+    "steering.w_beh_mode": "off",
+    "steering.adv_mode": "legacy_shared",
+    "steering.steered_adv_weight": 1.0,
+    "steering.steered_adv_decay_steps": 0,
+    "steering.steered_adv_cap": 0.0,
+    "steering.entropy_theta_ratchet": true,
+    "steering.steered_fraction": 0.5,
+    "research.enabled": true,
+    "research.n_exp": 3
+  },
+  "grpo_smoke.yaml": {
+    "train.adv_estimator": "grpo",
+    "steering.enabled": false,
+    "research.enabled": false,
+    "research.n_exp": 3
+  },
+  "grpo.pre_memory_fix.yaml": {
+    "train.adv_estimator": "grpo",
+    "steering.enabled": false,
+    "research.enabled": false,
+    "research.n_exp": 3
+  },
+  "all_skill.pre_memory_fix.yaml": {
+    "train.adv_estimator": "grpo",
+    "steering.enabled": true,
+    "steering.gate_mode": "entropy",
+    "steering.w_beh_mode": "off",
+    "steering.adv_mode": "legacy_shared",
+    "steering.steered_adv_weight": 1.0,
+    "steering.steered_adv_decay_steps": 0,
+    "steering.steered_adv_cap": 0.0,
+    "steering.entropy_theta_ratchet": true,
+    "steering.steered_fraction": 0.5,
+    "research.enabled": true,
+    "research.n_exp": 3
+  },
+  "selective_skill.pre_memory_fix.yaml": {
+    "train.adv_estimator": "grpo",
+    "steering.enabled": true,
+    "steering.gate_mode": "entropy",
+    "steering.w_beh_mode": "off",
+    "steering.adv_mode": "legacy_shared",
+    "steering.steered_adv_weight": 1.0,
+    "steering.steered_adv_decay_steps": 0,
+    "steering.steered_adv_cap": 0.0,
+    "steering.entropy_theta_ratchet": true,
+    "steering.steered_fraction": 0.5,
+    "research.enabled": true,
+    "research.n_exp": 3
+  },
+  "grpo_smoke.pre_memory_fix.yaml": {
+    "train.adv_estimator": "grpo",
+    "steering.enabled": false,
+    "research.enabled": false,
+    "research.n_exp": 3
+  },
+  "selective_smoke.yaml": {
+    "train.adv_estimator": "grpo",
+    "steering.enabled": true,
+    "steering.gate_mode": "entropy",
+    "steering.w_beh_mode": "off",
+    "steering.adv_mode": "legacy_shared",
+    "steering.steered_adv_weight": 1.0,
+    "steering.steered_adv_decay_steps": 0,
+    "steering.steered_adv_cap": 0.0,
+    "steering.entropy_theta_ratchet": true,
+    "steering.steered_fraction": 0.5,
+    "research.enabled": true,
+    "research.n_exp": 3
+  },
+  "selective_smoke_ctx32k.yaml": {
+    "train.adv_estimator": "grpo",
+    "steering.enabled": true,
+    "steering.gate_mode": "entropy",
+    "steering.w_beh_mode": "off",
+    "steering.adv_mode": "legacy_shared",
+    "steering.steered_adv_weight": 1.0,
+    "steering.steered_adv_decay_steps": 0,
+    "steering.steered_adv_cap": 0.0,
+    "steering.entropy_theta_ratchet": true,
+    "steering.steered_fraction": 0.5,
+    "research.enabled": true,
+    "research.n_exp": 3
+  },
+  "selective_smoke_ctx112k.yaml": {
+    "train.adv_estimator": "grpo",
+    "steering.enabled": true,
+    "steering.gate_mode": "entropy",
+    "steering.w_beh_mode": "off",
+    "steering.adv_mode": "legacy_shared",
+    "steering.steered_adv_weight": 1.0,
+    "steering.steered_adv_decay_steps": 0,
+    "steering.steered_adv_cap": 0.0,
+    "steering.entropy_theta_ratchet": true,
+    "steering.steered_fraction": 0.5,
+    "research.enabled": true,
+    "research.n_exp": 3
+  },
+  "selective_smoke_final.yaml": {
+    "train.adv_estimator": "grpo",
+    "steering.enabled": true,
+    "steering.gate_mode": "entropy",
+    "steering.w_beh_mode": "off",
+    "steering.adv_mode": "legacy_shared",
+    "steering.steered_adv_weight": 1.0,
+    "steering.steered_adv_decay_steps": 0,
+    "steering.steered_adv_cap": 0.0,
+    "steering.entropy_theta_ratchet": true,
+    "steering.steered_fraction": 0.5,
+    "research.enabled": true,
+    "research.n_exp": 3
+  },
+  "selective_effect_smoke.yaml": {
+    "train.adv_estimator": "grpo",
+    "steering.enabled": true,
+    "steering.gate_mode": "entropy",
+    "steering.w_beh_mode": "off",
+    "steering.adv_mode": "legacy_shared",
+    "steering.steered_adv_weight": 1.0,
+    "steering.steered_adv_decay_steps": 0,
+    "steering.steered_adv_cap": 0.0,
+    "steering.entropy_theta_ratchet": true,
+    "steering.steered_fraction": 0.5,
+    "research.enabled": true,
+    "research.n_exp": 3
+  },
+  "hashes": {
+    "src/trace_opd/train/agent_loop.py": "306d042298b1dbb948136fbf0c1f37628566177e1d25f408647a444e7676889c",
+    "src/trace_opd/research/tools.py": "3030b58bbba0c1fac21cb89a07f61b52dc79e5a0d34e06174a294aeb9262cf8d",
+    "src/trace_opd/steering/arms.py": "2be7130f10b2b15701fec9a4c4b35ad325ff11d43dd092314cab361224f81461",
+    "src/trace_opd/analysis/pass5.py": "a4a3fb4f92f69396264fabc8ce525ee7205cdd27e7dab860f39a3abf9f04b799",
+    "verl/verl/trainer/ppo/core_algos.py": "49144d6e2e4ec92f64657532601b3a076d5675cdae2b5134e78d5815faa28333",
+    "verl/verl/trainer/ppo/v1/trainer_base.py": "6cd1ed53acbf6af8b73b000537f9fc141eecae6e58034236e7c62712b8a478e4"
+  },
+  "examples": [
+    {
+      "task": "webshop_02091",
+      "step": 99,
+      "reward_fields": {
+        "outcome": "FAILED",
+        "won": false,
+        "score": 0.6666666666666666
+      },
+      "trajectory_keys": [
+        "episode_id",
+        "task_id",
+        "guidance_hash",
+        "sample_idx",
+        "initial_obs",
+        "steps",
+        "outcome",
+        "won",
+        "score",
+        "error",
+        "meta"
+      ],
+      "actions": [
+        {
+          "action": "search[loose fit light weight slim fit men's henleys with long sleeve short sleeve contrast color unique design gym workout a-blue xx-large size xx-large color a-blue price <20]",
+          "valid": true
+        },
+        {
+          "action": "click[b09qqp3356]",
+          "valid": true
+        },
+        {
+          "action": "click[light blue]",
+          "valid": true
+        },
+        {
+          "action": "click[xx-large]",
+          "valid": true
+        },
+        {
+          "action": "click[light blue]",
+          "valid": true
+        },
+        {
+          "action": "click[buy now]",
+          "valid": true
+        }
+      ]
+    },
+    {
+      "task": "webshop_02599",
+      "step": 100,
+      "reward_fields": {
+        "outcome": "FAILED",
+        "won": false,
+        "score": 0.5
+      },
+      "trajectory_keys": [
+        "episode_id",
+        "task_id",
+        "guidance_hash",
+        "sample_idx",
+        "initial_obs",
+        "steps",
+        "outcome",
+        "won",
+        "score",
+        "error",
+        "meta"
+      ],
+      "actions": [
+        {
+          "action": "search[men's polos short sleeve navy blue button closure <20.00]",
+          "valid": true
+        },
+        {
+          "action": "click[b09qqp3356]",
+          "valid": true
+        },
+        {
+          "action": "click[navy blue]",
+          "valid": false
+        },
+        {
+          "action": "click[large]",
+          "valid": true
+        },
+        {
+          "action": "click[buy now]",
+          "valid": true
+        }
+      ]
+    },
+    {
+      "task": "webshop_04885",
+      "step": 86,
+      "reward_fields": {
+        "outcome": "FAILED",
+        "won": false,
+        "score": 0.0
+      },
+      "trajectory_keys": [
+        "episode_id",
+        "task_id",
+        "guidance_hash",
+        "sample_idx",
+        "initial_obs",
+        "steps",
+        "outcome",
+        "won",
+        "score",
+        "error",
+        "meta"
+      ],
+      "actions": [
+        {
+          "action": "search[slim fit men's suits & sport coats with button closure green classic fit medium 90.00]",
+          "valid": true
+        },
+        {
+          "action": "click[b09nnmv9ln]",
+          "valid": true
+        },
+        {
+          "action": "click[a-green]",
+          "valid": true
+        },
+        {
+          "action": "click[medium]",
+          "valid": true
+        },
+        {
+          "action": "click[buy now]",
+          "valid": true
+        }
+      ]
+    }
+  ],
+  "resolved": {
+    "grpo": {
+      "reward_from_score": false,
+      "norm_adv_by_std": false,
+      "use_kl_in_reward": null,
+      "training_audit": true
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "status": "prepared_not_launched",
+  "scope": "Controlled follow-up to August WebShop 3B experiments",
+  "gpu_policy": "Do not launch or allocate GPUs from this thread; deployment is owned by the user's other thread.",
+  "historical_sources": [
+    "runs/classic_ws3b_grpo/launch_manifest_20260817_002916.json",
+    "runs/classic_ws3b_pgs/launch_manifest_20260817_002909.json"
+  ],
+  "common_design": {
+    "student": "Qwen2.5-3B-Instruct, same pinned revision across arms",
+    "researcher": "Self-hosted Qwen3.6-35B-A3B from deployment thread; freeze weight hash and serving version before any arm",
+    "train_batch_size": 32,
+    "rollout_n": 16,
+    "learning_rate": 0.000001,
+    "loss_aggregation": "seq-mean-token-mean",
+    "norm_adv_by_std": false,
+    "response_length": 16384,
+    "initial_paired_seed": 42,
+    "confirmatory_seeds_if_pilot_passes": [43, 44],
+    "full_training_steps": 200,
+    "checkpoint_eval_steps": [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200],
+    "skill_retirement_step": 133,
+    "guided_fraction": 0.5,
+    "behavior_weights": "off",
+    "base_reward": "explicit train.reward_from_score=false; retrospective August flag was not serialized",
+    "evaluation": "No Skill; fixed held-out tasks, temperature=0.6, n=3; freeze decoding seeds and full task IDs",
+    "selection": "Choose any tuning on disjoint dev tasks; report fixed step 200 and predeclared learning-curve area, not best test checkpoint",
+    "resources": "Same allocated student GPU count, model dtype, research concurrency, and timeouts across paired arms; record any change from August",
+    "budget": "Record environment episodes, researcher tokens, GPU-hours and wall time; researcher experiments add cost beyond student rollouts"
+  },
+  "arms": [
+    {"id": "G0", "base": "runs/classic_ws3b_grpo/effective_config.yaml", "changes": {"train.reward_from_score": false}, "purpose": "Historical-style GRPO baseline"},
+    {"id": "G1", "base": "runs/classic_ws3b_grpo/effective_config.yaml", "changes": {"train.adv_estimator": "grpo_loo", "train.reward_from_score": false}, "purpose": "Isolate inclusive-mean versus LOO baseline scale without Skill"},
+    {"id": "P0", "base": "runs/classic_ws3b_pgs/effective_config.yaml", "changes": {"steering.fallback_advantage": "assigned", "train.reward_from_score": false}, "purpose": "Asymmetric PGS control"},
+    {"id": "P1", "base": "runs/classic_ws3b_pgs/effective_config.yaml", "changes": {"steering.fallback_advantage": "effective_bare", "train.reward_from_score": false}, "purpose": "Primary one-factor fallback-grouping ablation against P0"},
+    {"id": "R1", "base": "runs/classic_ws3b_pgs/effective_config.yaml", "changes": {"steering.fallback_advantage": "assigned", "train.reward_from_score": true}, "purpose": "Optional reward-objective ablation; partial score changes the objective and must not be described as merely denser supervision"}
+  ],
+  "priority": ["P0 versus P1", "G0 versus G1", "R1 versus P0"],
+  "required_evidence": [
+    "Launch manifest, source hashes, weight hashes, dataset hashes and exact task ordering",
+    "Per-task complete rollout groups, assigned arm and advantage arm, missing/overflow doc flags and fallback reason",
+    "Skill text, generating experiments, policy version, independent verification of task-specific claims",
+    "Training binary reward and score side by side, scalar advantages, valid-token masks, truncation, actor update marker",
+    "No-Skill per-task evaluation outcomes; task-cluster paired confidence intervals and separate training-seed variation",
+    "Do not treat 60-step smoke/pilot as post-retirement evidence for T=133",
+    "Report if no fallbacks occur: P1 then cannot test the targeted fallback mechanism"
+  ],
+  "current_result": "No new model-training comparison has been run in this task after the user's GPU restriction. CPU checks establish mechanism behavior only."
+}

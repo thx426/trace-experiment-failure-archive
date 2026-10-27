@@ -1,0 +1,162 @@
+{
+  "checked_at": "2026-10-25T02:55:33.963275+08:00",
+  "sequence": {
+    "phase": "running",
+    "pid": 2475494,
+    "time": 1792867982.2478464,
+    "input_limit": 3072,
+    "server_concurrency": 16,
+    "order": [
+      "clean_skill"
+    ],
+    "job": "clean_skill",
+    "run": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42",
+    "owner_pid": 2476238,
+    "owner_state": "/tmp/p5compact3072-clean25v1",
+    "researcher_owner_pid": 2475801,
+    "next_job": null
+  },
+  "webshop": {
+    "8321": {
+      "active": 320,
+      "stats": {
+        "reset_replays": 0,
+        "step_replays": 0,
+        "operations": 900,
+        "queue_seconds": 633.9985791184008,
+        "backend_seconds": 25.87541613355279,
+        "max_queue_seconds": 2.672474544495344,
+        "max_backend_seconds": 0.47693464159965515
+      },
+      "http_statuses": {
+        "200": 900
+      },
+      "disconnects": 0,
+      "tracebacks": 0
+    },
+    "8322": {
+      "active": 303,
+      "stats": {
+        "reset_replays": 0,
+        "step_replays": 0,
+        "operations": 844,
+        "queue_seconds": 219.93424236029387,
+        "backend_seconds": 24.278608933091164,
+        "max_queue_seconds": 1.3939007557928562,
+        "max_backend_seconds": 0.43410303071141243
+      },
+      "http_statuses": {
+        "200": 844
+      },
+      "disconnects": 0,
+      "tracebacks": 0
+    },
+    "8323": {
+      "active": 250,
+      "stats": {
+        "reset_replays": 0,
+        "step_replays": 0,
+        "operations": 746,
+        "queue_seconds": 236.99574030935764,
+        "backend_seconds": 22.24605182930827,
+        "max_queue_seconds": 1.7735321335494518,
+        "max_backend_seconds": 0.4519883841276169
+      },
+      "http_statuses": {
+        "200": 746
+      },
+      "disconnects": 0,
+      "tracebacks": 0
+    },
+    "8324": {
+      "active": 393,
+      "stats": {
+        "reset_replays": 0,
+        "step_replays": 0,
+        "operations": 1051,
+        "queue_seconds": 1748.4115373790264,
+        "backend_seconds": 29.98001691699028,
+        "max_queue_seconds": 4.946343157440424,
+        "max_backend_seconds": 0.5267065837979317
+      },
+      "http_statuses": {
+        "200": 1051
+      },
+      "disconnects": 0,
+      "tracebacks": 0
+    }
+  },
+  "rollout_rows": {
+    "step_00000_val": 14
+  },
+  "error_mentions": {
+    "webshop service unreachable": 0,
+    "webshop HTTP 409": 0,
+    "student episode infra error": 0,
+    "OutOfMemoryError": 0,
+    "ReplayBuffer:": 0
+  },
+  "training_tail": [
+    "\u001b[36m(AgentLoopWorkerTQ pid=2482658)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/sglang/srt/layers/quantization/awq.py:76: UserWarning: Only CUDA, HIP and XPU support AWQ currently.\u001b[32m [repeated 14x across cluster]\u001b[0m",
+    "\u001b[36m(AgentLoopWorkerTQ pid=2482658)\u001b[0m   warnings.warn(f\"Only CUDA, HIP and XPU support AWQ currently.\")\u001b[32m [repeated 14x across cluster]\u001b[0m",
+    "\u001b[36m(AgentLoopWorkerTQ pid=2482662)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/sglang/srt/layers/quantization/gguf.py:47: UserWarning: Only CUDA support GGUF quantization currently.\u001b[32m [repeated 13x across cluster]\u001b[0m",
+    "\u001b[36m(AgentLoopWorkerTQ pid=2482662)\u001b[0m   warnings.warn(f\"Only CUDA support GGUF quantization currently.\")\u001b[32m [repeated 13x across cluster]\u001b[0m"
+  ],
+  "completed_steps": [],
+  "timing_rows": [],
+  "researcher_inputs": {
+    "calls": 0,
+    "mean": null,
+    "max": null,
+    "above_3072": 0
+  },
+  "experiment_root": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1",
+  "gpu": "index, utilization.gpu [%], memory.used [MiB]\n0, 0 %, 39027 MiB\n1, 97 %, 24835 MiB\n2, 100 %, 24833 MiB\n3, 0 %, 39027 MiB\n",
+  "gpu_processes": "pid, used_gpu_memory [MiB]\n1648301, 39020 MiB\n1655596, 656 MiB\n1658193, 24156 MiB\n1655597, 656 MiB\n1658186, 24154 MiB\n1648302, 39020 MiB\n",
+  "process_identity": {
+    "sequence": {
+      "pid": 2475494,
+      "alive": true,
+      "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python -u /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/run_sequence.py "
+    },
+    "student_owner": {
+      "pid": 2476238,
+      "alive": true,
+      "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/scripts/cloud/run_owned_job.py --state-dir /tmp/p5compact3072-clean25v1 --gpus 1,2 --no-deadline --abort-file /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/ABORT --cwd /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code -- /root/trace-webshop-arm-ratio/.venvs/train/bin/python -u scripts/launch_train.py --config /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/configs/clean_skill.yaml "
+    },
+    "researcher_owner": {
+      "pid": 2475801,
+      "alive": true,
+      "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/scripts/cloud/run_owned_job.py --state-dir /tmp/p5compact3072-research25clean1 --gpus 0,3 --no-deadline --abort-file /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/ABORT --cwd /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code -- /root/trace-webshop-arm-ratio/.venvs/researcher/bin/vllm serve /root/trace-webshop-arm-ratio/models/Qwen3.6-35B-A3B --served-model-name qwen3.6-35b-a3b --host 127.0.0.1 --port 18881 --api-key loopback-only --tensor-parallel-size 2 --dtype bfloat16 --max-model-len 7168 --max-num-seqs 16 --max-num-batched-tokens 4096 --gpu-memory-utilization 0.95 --enforce-eager --language-model-only --enable-auto-tool-choice --tool-call-parser qwen3_coder --reasoning-parser qwen3 "
+    }
+  },
+  "skill_compiler": {
+    "sessions": 0,
+    "missing_docs": 0,
+    "over_500_words": 0,
+    "origins": {},
+    "max_words": null,
+    "research_errors": 0,
+    "mean_turns": null
+  },
+  "training_diagnostics": {
+    "complete_groups": 0,
+    "score_heterogeneous_complete_groups": 0,
+    "advantage_proxy_only": true,
+    "guided_assigned_rows": 0,
+    "positive_steering_rows": 0
+  },
+  "baseline_reviews": null,
+  "baseline_stop": null,
+  "cpu_validation": {
+    "passed": true,
+    "inference_calls": 0,
+    "new_rollouts": 0,
+    "configuration_equal_except_name": true,
+    "offline_replayed_groups": 320,
+    "old_missing_covered": 170,
+    "max_doc_words": 330
+  },
+  "last_progress_mtime": 1792868133.2744372,
+  "preflight_note": "researcher_inputs contains role=researcher only; startup tokenize and researcher-preflight excluded. Zero calls means no actual formal-input samples."
+}

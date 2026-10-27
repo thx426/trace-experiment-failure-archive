@@ -1,0 +1,815 @@
+webshop_06866 完整证据对照
+
+训练步：36；八条训练rollout的学生policy版本：35
+
+选取性质：机制案例，非随机样本，非最终DEV评测。
+
+公开任务原文：
+
+Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars
+
+
+
+证据结论：
+
+第二份探索原稿把 brown | beige 改成 brown or beige。最终原稿又把成功路径概括为 Search -> Buy Now，省略了尺寸、形状、颜色三次选择。编译器从公开题目保留完整 brown | beige，并要求逐项选择。成功探索和指导组 sid2 都有六步动作。指导组 sid0 进入另一商品页，分别点 brown 和 beige，继续尝试不存在的目标并购买失败。
+
+
+
+一、研究员最终原始 Skill（finalize.experience_doc 原文）
+
+The executor successfully identified home office furniture sets matching the specific constraints: color (brown | beige), item shape (round), size (21 in x 35 in), and price under $60.00. The successful strategy, validated in episodes ep004, ep005, and ep006, utilizes a concise search query: `home office furniture brown beige round 21 in x 35 in`. This query directly targets the key attributes, filtering the results effectively. After the search, the executor selects the appropriate product from the results page and proceeds to click [Buy Now]. This action sequence (Search -> Buy Now) is consistent and robust, completing the task in 6 steps. Previous attempts using broader searches or separate filtering steps were less efficient or failed to converge on the correct item. The key to success is embedding the specific size and shape constraints directly into the initial search string.
+
+
+
+二、研究员每次探索提交的原始指导（原文）
+
+session.jsonl 第3行，run_experiment 参数：
+
+{
+  "guidance": "search[home office furniture sets]"
+}
+
+session.jsonl 第5行，run_experiment 参数：
+
+{
+  "guidance": "Search for \"dining table round 21x35 brown beige under 60\". The size 21 in x 35 in is very small for a dining table, possibly a drop-leaf or accent table. Look for \"21 in x 35 in\" or \"21x35\" in the title or specs. Color must be brown or beige. Shape must be round. Price < $60. If no exact match, try \"round table 21x35\".",
+  "k": 2
+}
+
+session.jsonl 第7行，run_experiment 参数：
+
+{
+  "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"brown | beige\", \"item shape\": \"round\", \"size\": \"21 in x 35 in\"}.\n\nSearch query: \"home office furniture brown beige round 21 in x 35 in\" (omit 'sets', 'dining room', 'living room', 'price < 60' from query to broaden results).\nSelect the first product that appears to match the general description.\nOn the product page, ensure you select:\n- Size: \"21 in x 35 in\"\n- Shape: \"round\"\n- Color: \"brown | beige\"\nThen click \"buy now\".",
+  "k": 2
+}
+
+
+
+三、最终编译 Skill（doc.md 原文）
+
+# Task constraints and completion procedure
+
+Exact required option values from your instruction: {"color": "brown | beige", "item shape": "round", "size": "21 in x 35 in"}.
+
+Preserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.
+
+WHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.
+
+WHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.
+
+WHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.
+
+Track successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.
+
+WHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.
+
+WHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.
+
+# Evidence and recovery
+
+Candidate search query: "home office furniture brown beige round 21 in x 35 in". Observed in a successful attempt; verify current results.
+
+Invalid actions occurred in exploration: copy a single target exactly from current clickables; if unavailable, reconsider the page before acting.
+
+Repeated action/observation pairs occurred in exploration: use your action history to choose the next unmet requirement instead of repeating an unchanged action.
+
+
+
+编译审计：
+
+{
+  "version": "webshop_clean_skill_v2",
+  "origin": "researcher_finalized",
+  "required_options": {
+    "color": "brown | beige",
+    "item shape": "round",
+    "size": "21 in x 35 in"
+  },
+  "source": "public_task_and_mechanical_episode_evidence",
+  "successes": 3,
+  "invalid_actions": 11,
+  "repeated_pairs": 23,
+  "candidate_query": "home office furniture brown beige round 21 in x 35 in",
+  "free_form_prose_forwarded": false,
+  "words": 308
+}
+
+CPU复核：保存的原稿、公开任务和探索记录可精确重现doc.md；只删除最终原稿，仍得到完全相同的文档。此操作保留了研究员先前安排的全部探索，因此不能视为去研究员的训练消融。
+
+
+
+四、研究员探索的学生动作（全部探索轨迹）
+
+episode=ep001 guidance_hash=a78cb784712d won=False score=0.0 outcome=FAILED
+  01. search[home office furniture sets]  [valid=True, acted=True]
+  02. click[b09688c4xm]  [valid=True, acted=True]
+  03. click[3psc]  [valid=True, acted=True]
+  04. click[small]  [valid=True, acted=True]
+  05. click[gs2900]  [valid=True, acted=True]
+  06. click[small]  [valid=True, acted=True]
+  07. click[gs2900b]  [valid=True, acted=True]
+  08. click[large]  [valid=True, acted=True]
+  09. click[<prev>]  [valid=False, acted=True]
+  10. click[small]  [valid=True, acted=True]
+  11. click[gs2900b]  [valid=True, acted=True]
+  12. click[large]  [valid=True, acted=True]
+  13. click[gs2900]  [valid=True, acted=True]
+  14. click[c]  [valid=True, acted=True]
+  15. click[small]  [valid=True, acted=True]
+
+
+
+episode=ep002 guidance_hash=a78cb784712d won=False score=0.0 outcome=FAILED
+  01.   [valid=False, acted=False]
+  02. click[search]  [valid=False, acted=True]
+  03.   [valid=False, acted=False]
+  04. search[home office furniture sets brown beige round 21in x 35in price <60.00]  [valid=True, acted=True]
+  05.   [valid=False, acted=False]
+  06. click[next >]  [valid=True, acted=True]
+  07.   [valid=False, acted=False]
+  08. click[next >]  [valid=True, acted=True]
+  09.   [valid=False, acted=False]
+  10. click[next >]  [valid=True, acted=True]
+  11.   [valid=False, acted=False]
+  12. click[next >]  [valid=True, acted=True]
+  13.   [valid=False, acted=False]
+  14. click["back to search"]  [valid=False, acted=True]
+  15.   [valid=False, acted=False]
+
+
+
+episode=ep003 guidance_hash=ce8b825231c8 won=False score=0.0 outcome=FAILED
+  01. search[home office furniture sets color brown beige shape round size 21 in x 35 in]  [valid=True, acted=True]
+  02. click[b09jc84p1m]  [valid=True, acted=True]
+  03. click[description]  [valid=True, acted=True]
+  04. click[back to search]  [valid=True, acted=True]
+  05. search[home office furniture sets color brown beige shape round size 21 in x 35 in price less than 60]  [valid=True, acted=True]
+  06. click[b09jc84p1m]  [valid=True, acted=True]
+  07. click[description]  [valid=True, acted=True]
+  08. click[back to search]  [valid=True, acted=True]
+  09. search[home office furniture sets color brown beige shape round size 21 in x 35 in price less than 60]  [valid=True, acted=True]
+  10. click[b09jc84p1m]  [valid=True, acted=True]
+  11. click[description]  [valid=True, acted=True]
+  12. click[back to search]  [valid=True, acted=True]
+  13. search[home office furniture sets color brown beige shape round size 21 in x 35 in price less than 60]  [valid=True, acted=True]
+  14. click[b09jc84p1m]  [valid=True, acted=True]
+  15. click[description]  [valid=True, acted=True]
+
+
+
+episode=ep004 guidance_hash=ce8b825231c8 won=True score=1.0 outcome=SUCCESS
+  01. search[home office furniture brown beige round 21 in x 35 in]  [valid=True, acted=True]
+  02. click[b07fkgqkz1]  [valid=True, acted=True]
+  03. click[21 in x 35 in]  [valid=True, acted=True]
+  04. click[round]  [valid=True, acted=True]
+  05. click[brown | beige]  [valid=True, acted=True]
+  06. click[buy now]  [valid=True, acted=True]
+
+
+
+episode=ep005 guidance_hash=2a4b37aeaff3 won=True score=1.0 outcome=SUCCESS
+  01. search[home office furniture brown beige round 21 in x 35 in]  [valid=True, acted=True]
+  02. click[b07fkgqkz1]  [valid=True, acted=True]
+  03. click[21 in x 35 in]  [valid=True, acted=True]
+  04. click[round]  [valid=True, acted=True]
+  05. click[brown | beige]  [valid=True, acted=True]
+  06. click[buy now]  [valid=True, acted=True]
+
+
+
+episode=ep006 guidance_hash=2a4b37aeaff3 won=True score=1.0 outcome=SUCCESS
+  01. search[home office furniture brown beige round 21 in x 35 in]  [valid=True, acted=True]
+  02. click[b07fkgqkz1]  [valid=True, acted=True]
+  03. click[21 in x 35 in]  [valid=True, acted=True]
+  04. click[round]  [valid=True, acted=True]
+  05. click[brown | beige]  [valid=True, acted=True]
+  06. click[buy now]  [valid=True, acted=True]
+
+
+
+五、正式训练的八条学生动作（全部）
+
+sid0 指导组，steer_count=18，won=False，score=0.0
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[home office furniture brown beige round 21x35 60]  [valid=True, acted=True]
+  02. click[b09nrf2qgd]  [valid=True, acted=True]
+  03. click[brown]  [valid=True, acted=True]
+  04. click[beige]  [valid=True, acted=True]
+  05. click[shape]  [valid=False, acted=True]
+  06. click[round]  [valid=False, acted=True]
+  07. click[size]  [valid=False, acted=True]
+  08. click[21 in x 35 in]  [valid=False, acted=True]
+  09. click[price]  [valid=False, acted=True]
+  10. click[< 60]  [valid=False, acted=True]
+  11. click[buy now]  [valid=True, acted=True]
+
+
+
+sid1 指导组，steer_count=11，won=True，score=1.0
+
+episode=student guidance_hash=bare won=True score=1.0 outcome=SUCCESS
+  01. search[home office furniture sets brown beige round 21 in x 35 in]  [valid=True, acted=True]
+  02. click[b07fkgqkz1]  [valid=True, acted=True]
+  03. click[21 in x 35 in]  [valid=True, acted=True]
+  04. click[round]  [valid=True, acted=True]
+  05. click[brown | beige]  [valid=True, acted=True]
+  06. click[buy now]  [valid=True, acted=True]
+
+
+
+sid2 指导组，steer_count=9，won=True，score=1.0
+
+episode=student guidance_hash=bare won=True score=1.0 outcome=SUCCESS
+  01. search[home office furniture brown beige round 21 in x 35 in]  [valid=True, acted=True]
+  02. click[b07fkgqkz1]  [valid=True, acted=True]
+  03. click[21 in x 35 in]  [valid=True, acted=True]
+  04. click[round]  [valid=True, acted=True]
+  05. click[brown | beige]  [valid=True, acted=True]
+  06. click[buy now]  [valid=True, acted=True]
+
+
+
+sid3 指导组，steer_count=110，won=False，score=0.0
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[home office furniture sets brown beige round 21in x 35in price less than 60]  [valid=True, acted=True]
+  02. click[b09nrf2qgd]  [valid=True, acted=True]
+  03. click[brown]  [valid=True, acted=True]
+  04. click[brown]  [valid=True, acted=True]
+  05. click[beige]  [valid=True, acted=True]
+  06. click[back to search]  [valid=True, acted=True]
+  07.   [valid=False, acted=False]
+  08. search[home office furniture round brown beige 21x35 in under 60]  [valid=True, acted=True]
+  09. click[b09jc84p1m]  [valid=True, acted=True]
+  10. click[features]  [valid=True, acted=True]
+  11. click[< prev]  [valid=True, acted=True]
+  12. click[description]  [valid=True, acted=True]
+  13. click[back to search]  [valid=True, acted=True]
+  14.   [valid=False, acted=False]
+  15. search[home office furniture round brown beige 21x35 in under 60 and item shape: round and size: 21 in x 35 in]  [valid=True, acted=True]
+
+
+
+sid4 无指导组，steer_count=0，won=False，score=0.8333333333333334
+
+episode=student guidance_hash=bare won=False score=0.8333333333333334 outcome=FAILED
+  01. search[home office furniture sets brown beige round 21 in x 35 in price < 60.00]  [valid=True, acted=True]
+  02. click[b07fkgqkz1]  [valid=True, acted=True]
+  03. click[size]  [valid=False, acted=True]
+  04. click[round]  [valid=True, acted=True]
+  05. click[brown | beige]  [valid=True, acted=True]
+  06. click[buy now]  [valid=True, acted=True]
+
+
+
+sid5 无指导组，steer_count=0，won=True，score=1.0
+
+episode=student guidance_hash=bare won=True score=1.0 outcome=SUCCESS
+  01. search[home office furniture brown beige round 21 x 35 60]  [valid=True, acted=True]
+  02. click[b07fkgqkz1]  [valid=True, acted=True]
+  03. click[21 in x 35 in]  [valid=True, acted=True]
+  04. click[round]  [valid=True, acted=True]
+  05. click[brown | beige]  [valid=True, acted=True]
+  06. click[buy now]  [valid=True, acted=True]
+
+
+
+sid6 无指导组，steer_count=0，won=True，score=1.0
+
+episode=student guidance_hash=bare won=True score=1.0 outcome=SUCCESS
+  01. search[home office furniture brown beige round 21 in x 35 in size 21 in x 35 in price less than 60.00]  [valid=True, acted=True]
+  02. click[b07fkgqkz1]  [valid=True, acted=True]
+  03. click[21 in x 35 in]  [valid=True, acted=True]
+  04. click[round]  [valid=True, acted=True]
+  05. click[brown | beige]  [valid=True, acted=True]
+  06. click[buy now]  [valid=True, acted=True]
+
+
+
+sid7 无指导组，steer_count=0，won=True，score=1.0
+
+episode=student guidance_hash=bare won=True score=1.0 outcome=SUCCESS
+  01. search[home office furniture sets brown beige round 21 in x 35 in price less than 60]  [valid=True, acted=True]
+  02. click[b07fkgqkz1]  [valid=True, acted=True]
+  03. click[21 in x 35 in]  [valid=True, acted=True]
+  04. click[round]  [valid=True, acted=True]
+  05. click[brown | beige]  [valid=True, acted=True]
+  06. click[buy now]  [valid=True, acted=True]
+
+
+
+六、探索时实际使用的指导（非空原稿也经过编译；以下为guidance_log原文）
+
+experiment_idx=1 k=2 guidance_hash=a78cb784712d episodes_before=0
+
+# Task constraints and completion procedure
+
+Exact required option values from your instruction: {"color": "brown | beige", "item shape": "round", "size": "21 in x 35 in"}.
+
+Preserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.
+
+WHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.
+
+WHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.
+
+WHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.
+
+Track successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.
+
+WHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.
+
+WHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.
+
+# Evidence and recovery
+
+Candidate search query: "home office furniture sets". Untested retrieval suggestion; verify current results.
+
+No successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.
+
+
+
+experiment_idx=2 k=2 guidance_hash=ce8b825231c8 episodes_before=2
+
+# Task constraints and completion procedure
+
+Exact required option values from your instruction: {"color": "brown | beige", "item shape": "round", "size": "21 in x 35 in"}.
+
+Preserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.
+
+WHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.
+
+WHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.
+
+WHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.
+
+Track successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.
+
+WHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.
+
+WHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.
+
+# Evidence and recovery
+
+No checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.
+
+Invalid actions occurred in exploration: copy a single target exactly from current clickables; if unavailable, reconsider the page before acting.
+
+Repeated action/observation pairs occurred in exploration: use your action history to choose the next unmet requirement instead of repeating an unchanged action.
+
+No successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.
+
+
+
+experiment_idx=3 k=2 guidance_hash=2a4b37aeaff3 episodes_before=4
+
+# Task constraints and completion procedure
+
+Exact required option values from your instruction: {"color": "brown | beige", "item shape": "round", "size": "21 in x 35 in"}.
+
+Preserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.
+
+WHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.
+
+WHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.
+
+WHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.
+
+Track successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.
+
+WHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.
+
+WHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.
+
+# Evidence and recovery
+
+Candidate search query: "home office furniture brown beige round 21 in x 35 in". Observed in a successful attempt; verify current results.
+
+Invalid actions occurred in exploration: copy a single target exactly from current clickables; if unavailable, reconsider the page before acting.
+
+Repeated action/observation pairs occurred in exploration: use your action history to choose the next unmet requirement instead of repeating an unchanged action.
+
+
+
+七、正式训练动作后的页面观察（用于检查可用目标、选择是否有效）
+
+sid0 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[home office furniture brown beige round 21x35 60]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09NRF2QGD [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] $311.5 [SEP] B09JC84P1M [SEP] RUIXFLR Round End Table with Fabric Storage Basket, Marble Look Tray Side Table, Chic 2 Tier Coffee Table for Living Room Bedroom Office [SEP] $121.99 [SEP] B07FKGQKZ1 [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] $44.99 to $33.98 [SEP] B08P8LRFZ4 [SEP] MTFY Cute Faux Fur Desk Chair for Girls Women, Comfy Fluffy Modern Home Office Chair with Wheels, Elegant Swivel Fuzzy Vanity Chair Makeup Arm Chair for Living Room, Bedroom [SEP] $95.99 [SEP] B09HKZS7LV [SEP] Studio Outback Pillow Covers Pillow Cover Set of 2 Throw Pillow Covers 18x18 Throw Pillows Embroidered Pillow Covers Pillows Decorative Pillow Covers Bedroom Decor Farmhouse Decor House Décor [SEP] $24.99 [SEP] B0784G74Z9 [SEP] Daonanba Durable Stable Coffee Table Teak Resin Handmade Unique Furniture Elegant Style Home Decoration 23.6" Round Tabletop [SEP] $156.92 [SEP] B09H2NB41N [SEP] YFF-Corrimano Portable Projection Screen 4:3/16:9 HD Roll-Down Pull-Down Retractable Manual Projection Screen W/Auto-Locking, for Indoor Movie Home Theater Office [SEP] $289.57 [SEP] B08PYQVNBQ [SEP] YITAHOME 5 Tier Bookshelf, Open Freestanding 5 Shelf Bookcase 5 Tier Storage Shelf for Display and Collection, Industrial Decorative Shelf for Living Room, Home, Office, Retro Brown Bookshelf [SEP] $159.99 [SEP] B09Q2ZBB1G [SEP] CubiCubi Computer Desk with Shelves, Office Desk with Drawers, 47 Inch Writing Desk with Storage Study Table for Home Office, Living Room, Bedroom, Rustic Brown [SEP] $100.0 [SEP] B09MCTMRH6 [SEP] Dinmmgg Computer Desk with Shelf, Gaming Desk with Storage, Drafting Drawing Table with Tiltable Tabletop, Computer Writing Desk, Gaming Computer Desk, Home Office Desk Wood, for Bedroom [SEP] $152.76
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nrf2qgd", "b09jc84p1m", "b07fkgqkz1", "b08p8lrfz4", "b09hkzs7lv", "b0784g74z9", "b09h2nb41n", "b08pyqvnbq", "b09q2zbb1g", "b09mctmrh6"]
+  02. click[b09nrf2qgd]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] beige [SEP] brown [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] Price: $311.5 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "beige", "brown"]
+  03. click[brown]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] beige [SEP] brown [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] Price: $311.5 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "beige", "brown"]
+  04. click[beige]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] beige [SEP] brown [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] Price: $311.5 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "beige", "brown"]
+  05. click[shape]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] beige [SEP] brown [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] Price: $311.5 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "beige", "brown"]
+  06. click[round]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] beige [SEP] brown [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] Price: $311.5 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "beige", "brown"]
+  07. click[size]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] beige [SEP] brown [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] Price: $311.5 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "beige", "brown"]
+  08. click[21 in x 35 in]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] beige [SEP] brown [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] Price: $311.5 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "beige", "brown"]
+  09. click[price]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] beige [SEP] brown [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] Price: $311.5 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "beige", "brown"]
+  10. click[< 60]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] beige [SEP] brown [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] Price: $311.5 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "beige", "brown"]
+  11. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+sid1 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=True score=1.0 outcome=SUCCESS
+  01. search[home office furniture sets brown beige round 21 in x 35 in]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07FKGQKZ1 [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] $44.99 to $33.98 [SEP] B09NRF2QGD [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] $311.5 [SEP] B09JC84P1M [SEP] RUIXFLR Round End Table with Fabric Storage Basket, Marble Look Tray Side Table, Chic 2 Tier Coffee Table for Living Room Bedroom Office [SEP] $121.99 [SEP] B09B7G7P58 [SEP] 3-Piece Dining Table Set, Farmhouse Counter Height Dining Table Set, Wood Dining Table Set with Drop Leaf Table/2 Cross Back Padded Chairs/One Shelf [SEP] $319.0 [SEP] B07FVHPK5X [SEP] wall26 Canvas Print Wall Art Window View of Yellow Poppies & Field Nature Wilderness Photography Realism Rustic Scenic Colorful Relax/Calm Ultra for Living Room, Bedroom, Office - 16"x24" [SEP] $32.99 [SEP] B09HKZS7LV [SEP] Studio Outback Pillow Covers Pillow Cover Set of 2 Throw Pillow Covers 18x18 Throw Pillows Embroidered Pillow Covers Pillows Decorative Pillow Covers Bedroom Decor Farmhouse Decor House Décor [SEP] $24.99 [SEP] B08P8LRFZ4 [SEP] MTFY Cute Faux Fur Desk Chair for Girls Women, Comfy Fluffy Modern Home Office Chair with Wheels, Elegant Swivel Fuzzy Vanity Chair Makeup Arm Chair for Living Room, Bedroom [SEP] $95.99 [SEP] B08K7LDM7Q [SEP] 2 Pcs Cowhide Throw Pillow Covers Decorative Pillow Cases Farm Animal Brown Cow Hide Skin Print Pillow Case 18 X 18 Inch Velvet Square Cushion Cover for Sofa Bedroom [SEP] $17.99 [SEP] B09688C4XM [SEP] Lifestyle Furniture Sectional Recliner Sofa Set Living Room Reclining Couch with Drop Down Table (Single Piece or Combination) (GS2900, 3PCS) [SEP] $1847.0 [SEP] B09QKJHF4Q [SEP] LIUEONG Lady Metal Buckle Platform Shoes Booties Comfortable High Top Boots Casual Shoes Comfort Women's Closed Toe Ankle Strap [SEP] $37.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07fkgqkz1", "b09nrf2qgd", "b09jc84p1m", "b09b7g7p58", "b07fvhpk5x", "b09hkzs7lv", "b08p8lrfz4", "b08k7ldm7q", "b09688c4xm", "b09qkjhf4q"]
+  02. click[b07fkgqkz1]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  03. click[21 in x 35 in]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  04. click[round]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  05. click[brown | beige]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  06. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+sid2 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=True score=1.0 outcome=SUCCESS
+  01. search[home office furniture brown beige round 21 in x 35 in]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07FKGQKZ1 [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] $44.99 to $33.98 [SEP] B09NRF2QGD [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] $311.5 [SEP] B09JC84P1M [SEP] RUIXFLR Round End Table with Fabric Storage Basket, Marble Look Tray Side Table, Chic 2 Tier Coffee Table for Living Room Bedroom Office [SEP] $121.99 [SEP] B07FVHPK5X [SEP] wall26 Canvas Print Wall Art Window View of Yellow Poppies & Field Nature Wilderness Photography Realism Rustic Scenic Colorful Relax/Calm Ultra for Living Room, Bedroom, Office - 16"x24" [SEP] $32.99 [SEP] B08P8LRFZ4 [SEP] MTFY Cute Faux Fur Desk Chair for Girls Women, Comfy Fluffy Modern Home Office Chair with Wheels, Elegant Swivel Fuzzy Vanity Chair Makeup Arm Chair for Living Room, Bedroom [SEP] $95.99 [SEP] B09QKJHF4Q [SEP] LIUEONG Lady Metal Buckle Platform Shoes Booties Comfortable High Top Boots Casual Shoes Comfort Women's Closed Toe Ankle Strap [SEP] $37.99 [SEP] B079N3VLRJ [SEP] Baja Night Stand / 2 Drawer / Solid Wood / Rustic Bedside Table for Bedroom, Living Room, Sofa Couch, Hall / Metal Drawer Pulls, Barnwood Finish [SEP] $237.0 [SEP] B09B7G7P58 [SEP] 3-Piece Dining Table Set, Farmhouse Counter Height Dining Table Set, Wood Dining Table Set with Drop Leaf Table/2 Cross Back Padded Chairs/One Shelf [SEP] $319.0 [SEP] B09RQ22QJY [SEP] Buffet Sideboard Kitchen Break Room Lunch Coffee Kitchenette Model 8004 BREAKTIME 2 pc Espresso – Factory Assembled (Furniture Items Purchase ONLY) [SEP] $1997.5 [SEP] B08K7LDM7Q [SEP] 2 Pcs Cowhide Throw Pillow Covers Decorative Pillow Cases Farm Animal Brown Cow Hide Skin Print Pillow Case 18 X 18 Inch Velvet Square Cushion Cover for Sofa Bedroom [SEP] $17.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07fkgqkz1", "b09nrf2qgd", "b09jc84p1m", "b07fvhpk5x", "b08p8lrfz4", "b09qkjhf4q", "b079n3vlrj", "b09b7g7p58", "b09rq22qjy", "b08k7ldm7q"]
+  02. click[b07fkgqkz1]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  03. click[21 in x 35 in]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  04. click[round]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  05. click[brown | beige]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  06. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+sid3 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[home office furniture sets brown beige round 21in x 35in price less than 60]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07FKGQKZ1 [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] $44.99 to $33.98 [SEP] B09NRF2QGD [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] $311.5 [SEP] B09JC84P1M [SEP] RUIXFLR Round End Table with Fabric Storage Basket, Marble Look Tray Side Table, Chic 2 Tier Coffee Table for Living Room Bedroom Office [SEP] $121.99 [SEP] B06XFZXXTC [SEP] Coralpearl Inflatable Hanger Travel X 4, White Round Shoulder, Portable Folding Clothes Drying Rack in Metal Hook,Space Saving Coat Storage Set Non Slip Foldable for Home Car Camping Indoor Outdoor [SEP] $17.99 [SEP] B09B7G7P58 [SEP] 3-Piece Dining Table Set, Farmhouse Counter Height Dining Table Set, Wood Dining Table Set with Drop Leaf Table/2 Cross Back Padded Chairs/One Shelf [SEP] $319.0 [SEP] B099YQ75WT [SEP] BOWERY HILL Traditional 84" Tall 12-Shelf Double Wide Wood Bookcase in Espresso [SEP] $596.71 [SEP] B09HKZS7LV [SEP] Studio Outback Pillow Covers Pillow Cover Set of 2 Throw Pillow Covers 18x18 Throw Pillows Embroidered Pillow Covers Pillows Decorative Pillow Covers Bedroom Decor Farmhouse Decor House Décor [SEP] $24.99 [SEP] B08P8LRFZ4 [SEP] MTFY Cute Faux Fur Desk Chair for Girls Women, Comfy Fluffy Modern Home Office Chair with Wheels, Elegant Swivel Fuzzy Vanity Chair Makeup Arm Chair for Living Room, Bedroom [SEP] $95.99 [SEP] B08K7LDM7Q [SEP] 2 Pcs Cowhide Throw Pillow Covers Decorative Pillow Cases Farm Animal Brown Cow Hide Skin Print Pillow Case 18 X 18 Inch Velvet Square Cushion Cover for Sofa Bedroom [SEP] $17.99 [SEP] B09688C4XM [SEP] Lifestyle Furniture Sectional Recliner Sofa Set Living Room Reclining Couch with Drop Down Table (Single Piece or Combination) (GS2900, 3PCS) [SEP] $1847.0
+
+[Available actions]
+clickables: ["back to search", "next >", "b07fkgqkz1", "b09nrf2qgd", "b09jc84p1m", "b06xfzxxtc", "b09b7g7p58", "b099yq75wt", "b09hkzs7lv", "b08p8lrfz4", "b08k7ldm7q", "b09688c4xm"]
+  02. click[b09nrf2qgd]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] beige [SEP] brown [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] Price: $311.5 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "beige", "brown"]
+  03. click[brown]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] beige [SEP] brown [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] Price: $311.5 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "beige", "brown"]
+  04. click[brown]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] beige [SEP] brown [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] Price: $311.5 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "beige", "brown"]
+  05. click[beige]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] beige [SEP] brown [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] Price: $311.5 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "beige", "brown"]
+  06. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  07.   [valid=False, acted=False]
+      动作后观察（原文）: (Your reply had no <action>...</action> block — respond with <reasoning>...</reasoning> then <action>one command</action>.)
+  08. search[home office furniture round brown beige 21x35 in under 60]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09NRF2QGD [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] $311.5 [SEP] B09JC84P1M [SEP] RUIXFLR Round End Table with Fabric Storage Basket, Marble Look Tray Side Table, Chic 2 Tier Coffee Table for Living Room Bedroom Office [SEP] $121.99 [SEP] B07FKGQKZ1 [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] $44.99 to $33.98 [SEP] B08P8LRFZ4 [SEP] MTFY Cute Faux Fur Desk Chair for Girls Women, Comfy Fluffy Modern Home Office Chair with Wheels, Elegant Swivel Fuzzy Vanity Chair Makeup Arm Chair for Living Room, Bedroom [SEP] $95.99 [SEP] B09HKZS7LV [SEP] Studio Outback Pillow Covers Pillow Cover Set of 2 Throw Pillow Covers 18x18 Throw Pillows Embroidered Pillow Covers Pillows Decorative Pillow Covers Bedroom Decor Farmhouse Decor House Décor [SEP] $24.99 [SEP] B0784G74Z9 [SEP] Daonanba Durable Stable Coffee Table Teak Resin Handmade Unique Furniture Elegant Style Home Decoration 23.6" Round Tabletop [SEP] $156.92 [SEP] B09H2NB41N [SEP] YFF-Corrimano Portable Projection Screen 4:3/16:9 HD Roll-Down Pull-Down Retractable Manual Projection Screen W/Auto-Locking, for Indoor Movie Home Theater Office [SEP] $289.57 [SEP] B08PYQVNBQ [SEP] YITAHOME 5 Tier Bookshelf, Open Freestanding 5 Shelf Bookcase 5 Tier Storage Shelf for Display and Collection, Industrial Decorative Shelf for Living Room, Home, Office, Retro Brown Bookshelf [SEP] $159.99 [SEP] B09Q2ZBB1G [SEP] CubiCubi Computer Desk with Shelves, Office Desk with Drawers, 47 Inch Writing Desk with Storage Study Table for Home Office, Living Room, Bedroom, Rustic Brown [SEP] $100.0 [SEP] B09MCTMRH6 [SEP] Dinmmgg Computer Desk with Shelf, Gaming Desk with Storage, Drafting Drawing Table with Tiltable Tabletop, Computer Writing Desk, Gaming Computer Desk, Home Office Desk Wood, for Bedroom [SEP] $152.76
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nrf2qgd", "b09jc84p1m", "b07fkgqkz1", "b08p8lrfz4", "b09hkzs7lv", "b0784g74z9", "b09h2nb41n", "b08pyqvnbq", "b09q2zbb1g", "b09mctmrh6"]
+  09. click[b09jc84p1m]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] RUIXFLR Round End Table with Fabric Storage Basket, Marble Look Tray Side Table, Chic 2 Tier Coffee Table for Living Room Bedroom Office [SEP] Price: $121.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now"]
+  10. click[features]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] Premium Material: Made of solid MDF board, the anti-rust finish strong metal frame make this end table a nice piece of furniture for your home; the storage basket is made of durable linen cloth for durability and long lasting performance [SEP] Handy Storage: The table top with reinforced edge can hold books, remote, phone, photos etc, and it can also be removed and used for serving food and tea. The cloth basket offers extra storage for blankets, cushion, soft toys, magazines [SEP] Versatile To Use: The round table can be used as sofa table, nightstand, coffee table, snack table, bedside table, laptop desk, lamp table and more. It's an ideal choice for your living room, bedroom, hallway, or office [SEP] Chic & Stylish Style: Natural and fresh color enables the tea table to be compatible well with any decor of your room. With the fine workmanship and chic style, the round table is a perfect addition to your living room, bedroom, balcony, office and other places [SEP] Easy Assembly: All tools and accessories you need for this tall end table are included. Plus the clear manual, you could easily assemble them in 20 minutes
+
+[Available actions]
+clickables: ["back to search", "< prev"]
+  11. click[< prev]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] RUIXFLR Round End Table with Fabric Storage Basket, Marble Look Tray Side Table, Chic 2 Tier Coffee Table for Living Room Bedroom Office [SEP] Price: $121.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now"]
+  12. click[description]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] -Need a piece of furniture to uplift your living space? -No matter where you place the round side table, it looks great. -This elegant table is easy to move around for your changing needs. Ideal for the living room, bedroom, kids' room, porch, office and small space.  Specifications: Product name: Side table Diverse Usage: Pet Bed, Sofa Table, Corner Table, Nightstand Color: White+Grey+Gold Material: Wood + Metal + Canvas Fabric Shape: Round  Package include: End table x 1  Note: Manual measurement, there will be 1-3cm error, please understand. If a slight odor is normal, it will disappear within two to three days. Due to light and personal differences in color understanding, there will be small color difference, in kind prevail.
+
+[Available actions]
+clickables: ["back to search", "< prev"]
+  13. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  14.   [valid=False, acted=False]
+      动作后观察（原文）: (Your reply had no <action>...</action> block — respond with <reasoning>...</reasoning> then <action>one command</action>.)
+  15. search[home office furniture round brown beige 21x35 in under 60 and item shape: round and size: 21 in x 35 in]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07FKGQKZ1 [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] $44.99 to $33.98 [SEP] B09JC84P1M [SEP] RUIXFLR Round End Table with Fabric Storage Basket, Marble Look Tray Side Table, Chic 2 Tier Coffee Table for Living Room Bedroom Office [SEP] $121.99 [SEP] B09NRF2QGD [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] $311.5 [SEP] B09QKJHF4Q [SEP] LIUEONG Lady Metal Buckle Platform Shoes Booties Comfortable High Top Boots Casual Shoes Comfort Women's Closed Toe Ankle Strap [SEP] $37.99 [SEP] B09M63B87V [SEP] YALFJV Women Long Sleeve Crew Neck Side Button T Shirts Tunic Dress Loose Asymmetric Hem Tunic Pullover to Wear with Leggings [SEP] $10.71 to $18.34 [SEP] B08HN55NGW [SEP] Prepac Entryway Shoe Cubby Console, 60", Drifted Gray [SEP] $280.99 [SEP] B09RQ22QJY [SEP] Buffet Sideboard Kitchen Break Room Lunch Coffee Kitchenette Model 8004 BREAKTIME 2 pc Espresso – Factory Assembled (Furniture Items Purchase ONLY) [SEP] $1997.5 [SEP] B0784G74Z9 [SEP] Daonanba Durable Stable Coffee Table Teak Resin Handmade Unique Furniture Elegant Style Home Decoration 23.6" Round Tabletop [SEP] $156.92 [SEP] B07FVHPK5X [SEP] wall26 Canvas Print Wall Art Window View of Yellow Poppies & Field Nature Wilderness Photography Realism Rustic Scenic Colorful Relax/Calm Ultra for Living Room, Bedroom, Office - 16"x24" [SEP] $32.99 [SEP] B085RBZCHH [SEP] MEETWARM 16 inch Table Legs Wood Furniture Legs Tapered Round for Coffee End Tables Side Table Chair Mid-Century Modern DIY Furniture Leg Natural M8 Hanger Bolts, Set of 4 [SEP] $23.99 to $21.59
+
+[Available actions]
+clickables: ["back to search", "next >", "b07fkgqkz1", "b09jc84p1m", "b09nrf2qgd", "b09qkjhf4q", "b09m63b87v", "b08hn55ngw", "b09rq22qjy", "b0784g74z9", "b07fvhpk5x", "b085rbzchh"]
+
+
+
+sid4 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.8333333333333334 outcome=FAILED
+  01. search[home office furniture sets brown beige round 21 in x 35 in price < 60.00]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07FKGQKZ1 [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] $44.99 to $33.98 [SEP] B09NRF2QGD [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] $311.5 [SEP] B09JC84P1M [SEP] RUIXFLR Round End Table with Fabric Storage Basket, Marble Look Tray Side Table, Chic 2 Tier Coffee Table for Living Room Bedroom Office [SEP] $121.99 [SEP] B09B7G7P58 [SEP] 3-Piece Dining Table Set, Farmhouse Counter Height Dining Table Set, Wood Dining Table Set with Drop Leaf Table/2 Cross Back Padded Chairs/One Shelf [SEP] $319.0 [SEP] B07FVHPK5X [SEP] wall26 Canvas Print Wall Art Window View of Yellow Poppies & Field Nature Wilderness Photography Realism Rustic Scenic Colorful Relax/Calm Ultra for Living Room, Bedroom, Office - 16"x24" [SEP] $32.99 [SEP] B09HKZS7LV [SEP] Studio Outback Pillow Covers Pillow Cover Set of 2 Throw Pillow Covers 18x18 Throw Pillows Embroidered Pillow Covers Pillows Decorative Pillow Covers Bedroom Decor Farmhouse Decor House Décor [SEP] $24.99 [SEP] B08P8LRFZ4 [SEP] MTFY Cute Faux Fur Desk Chair for Girls Women, Comfy Fluffy Modern Home Office Chair with Wheels, Elegant Swivel Fuzzy Vanity Chair Makeup Arm Chair for Living Room, Bedroom [SEP] $95.99 [SEP] B08K7LDM7Q [SEP] 2 Pcs Cowhide Throw Pillow Covers Decorative Pillow Cases Farm Animal Brown Cow Hide Skin Print Pillow Case 18 X 18 Inch Velvet Square Cushion Cover for Sofa Bedroom [SEP] $17.99 [SEP] B09688C4XM [SEP] Lifestyle Furniture Sectional Recliner Sofa Set Living Room Reclining Couch with Drop Down Table (Single Piece or Combination) (GS2900, 3PCS) [SEP] $1847.0 [SEP] B09QKJHF4Q [SEP] LIUEONG Lady Metal Buckle Platform Shoes Booties Comfortable High Top Boots Casual Shoes Comfort Women's Closed Toe Ankle Strap [SEP] $37.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07fkgqkz1", "b09nrf2qgd", "b09jc84p1m", "b09b7g7p58", "b07fvhpk5x", "b09hkzs7lv", "b08p8lrfz4", "b08k7ldm7q", "b09688c4xm", "b09qkjhf4q"]
+  02. click[b07fkgqkz1]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  03. click[size]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  04. click[round]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  05. click[brown | beige]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  06. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+sid5 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=True score=1.0 outcome=SUCCESS
+  01. search[home office furniture brown beige round 21 x 35 60]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07FKGQKZ1 [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] $44.99 to $33.98 [SEP] B09NRF2QGD [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] $311.5 [SEP] B09JC84P1M [SEP] RUIXFLR Round End Table with Fabric Storage Basket, Marble Look Tray Side Table, Chic 2 Tier Coffee Table for Living Room Bedroom Office [SEP] $121.99 [SEP] B07FVHPK5X [SEP] wall26 Canvas Print Wall Art Window View of Yellow Poppies & Field Nature Wilderness Photography Realism Rustic Scenic Colorful Relax/Calm Ultra for Living Room, Bedroom, Office - 16"x24" [SEP] $32.99 [SEP] B09M63B87V [SEP] YALFJV Women Long Sleeve Crew Neck Side Button T Shirts Tunic Dress Loose Asymmetric Hem Tunic Pullover to Wear with Leggings [SEP] $10.71 to $18.34 [SEP] B08P8LRFZ4 [SEP] MTFY Cute Faux Fur Desk Chair for Girls Women, Comfy Fluffy Modern Home Office Chair with Wheels, Elegant Swivel Fuzzy Vanity Chair Makeup Arm Chair for Living Room, Bedroom [SEP] $95.99 [SEP] B09QKJHF4Q [SEP] LIUEONG Lady Metal Buckle Platform Shoes Booties Comfortable High Top Boots Casual Shoes Comfort Women's Closed Toe Ankle Strap [SEP] $37.99 [SEP] B079N3VLRJ [SEP] Baja Night Stand / 2 Drawer / Solid Wood / Rustic Bedside Table for Bedroom, Living Room, Sofa Couch, Hall / Metal Drawer Pulls, Barnwood Finish [SEP] $237.0 [SEP] B09B7G7P58 [SEP] 3-Piece Dining Table Set, Farmhouse Counter Height Dining Table Set, Wood Dining Table Set with Drop Leaf Table/2 Cross Back Padded Chairs/One Shelf [SEP] $319.0 [SEP] B09RQ22QJY [SEP] Buffet Sideboard Kitchen Break Room Lunch Coffee Kitchenette Model 8004 BREAKTIME 2 pc Espresso – Factory Assembled (Furniture Items Purchase ONLY) [SEP] $1997.5
+
+[Available actions]
+clickables: ["back to search", "next >", "b07fkgqkz1", "b09nrf2qgd", "b09jc84p1m", "b07fvhpk5x", "b09m63b87v", "b08p8lrfz4", "b09qkjhf4q", "b079n3vlrj", "b09b7g7p58", "b09rq22qjy"]
+  02. click[b07fkgqkz1]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  03. click[21 in x 35 in]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  04. click[round]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  05. click[brown | beige]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  06. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+sid6 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=True score=1.0 outcome=SUCCESS
+  01. search[home office furniture brown beige round 21 in x 35 in size 21 in x 35 in price less than 60.00]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07FKGQKZ1 [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] $44.99 to $33.98 [SEP] B07FVHPK5X [SEP] wall26 Canvas Print Wall Art Window View of Yellow Poppies & Field Nature Wilderness Photography Realism Rustic Scenic Colorful Relax/Calm Ultra for Living Room, Bedroom, Office - 16"x24" [SEP] $32.99 [SEP] B08GFNJN5R [SEP] Byootique Classic Black Makeup Train Case Soft Sided Barber Cosmetic Backpack Organize Storage Carry on Travel with Side Pocket Removable Bag [SEP] $79.9 [SEP] B09NRF2QGD [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] $311.5 [SEP] B09JC84P1M [SEP] RUIXFLR Round End Table with Fabric Storage Basket, Marble Look Tray Side Table, Chic 2 Tier Coffee Table for Living Room Bedroom Office [SEP] $121.99 [SEP] B079N3VLRJ [SEP] Baja Night Stand / 2 Drawer / Solid Wood / Rustic Bedside Table for Bedroom, Living Room, Sofa Couch, Hall / Metal Drawer Pulls, Barnwood Finish [SEP] $237.0 [SEP] B09QKJHF4Q [SEP] LIUEONG Lady Metal Buckle Platform Shoes Booties Comfortable High Top Boots Casual Shoes Comfort Women's Closed Toe Ankle Strap [SEP] $37.99 [SEP] B09RQ22QJY [SEP] Buffet Sideboard Kitchen Break Room Lunch Coffee Kitchenette Model 8004 BREAKTIME 2 pc Espresso – Factory Assembled (Furniture Items Purchase ONLY) [SEP] $1997.5 [SEP] B085HGD5Z3 [SEP] haoricu Womens Platform Sandals Summer Fashion Ladies Bow Tie Flats Rome Casual Basic Slipper [SEP] $14.98 to $25.98 [SEP] B089K79PQ1 [SEP] Milumia Women's Sexy Spaghetti Strap Floral Print Cami Bodycon Bodysuit Shirt Tops [SEP] $14.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07fkgqkz1", "b07fvhpk5x", "b08gfnjn5r", "b09nrf2qgd", "b09jc84p1m", "b079n3vlrj", "b09qkjhf4q", "b09rq22qjy", "b085hgd5z3", "b089k79pq1"]
+  02. click[b07fkgqkz1]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  03. click[21 in x 35 in]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  04. click[round]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  05. click[brown | beige]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  06. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+sid7 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=True score=1.0 outcome=SUCCESS
+  01. search[home office furniture sets brown beige round 21 in x 35 in price less than 60]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07FKGQKZ1 [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] $44.99 to $33.98 [SEP] B09NRF2QGD [SEP] DIANDIAN Sturdy Coat Rack Stand Hall Solid Wood Coat Tree with 9 Round Hook, for Clothing Hats, Hallway Entryway Office, Easy Assembly (Color : Beige) [SEP] $311.5 [SEP] B09JC84P1M [SEP] RUIXFLR Round End Table with Fabric Storage Basket, Marble Look Tray Side Table, Chic 2 Tier Coffee Table for Living Room Bedroom Office [SEP] $121.99 [SEP] B06XFZXXTC [SEP] Coralpearl Inflatable Hanger Travel X 4, White Round Shoulder, Portable Folding Clothes Drying Rack in Metal Hook,Space Saving Coat Storage Set Non Slip Foldable for Home Car Camping Indoor Outdoor [SEP] $17.99 [SEP] B09B7G7P58 [SEP] 3-Piece Dining Table Set, Farmhouse Counter Height Dining Table Set, Wood Dining Table Set with Drop Leaf Table/2 Cross Back Padded Chairs/One Shelf [SEP] $319.0 [SEP] B099YQ75WT [SEP] BOWERY HILL Traditional 84" Tall 12-Shelf Double Wide Wood Bookcase in Espresso [SEP] $596.71 [SEP] B07FVHPK5X [SEP] wall26 Canvas Print Wall Art Window View of Yellow Poppies & Field Nature Wilderness Photography Realism Rustic Scenic Colorful Relax/Calm Ultra for Living Room, Bedroom, Office - 16"x24" [SEP] $32.99 [SEP] B09HKZS7LV [SEP] Studio Outback Pillow Covers Pillow Cover Set of 2 Throw Pillow Covers 18x18 Throw Pillows Embroidered Pillow Covers Pillows Decorative Pillow Covers Bedroom Decor Farmhouse Decor House Décor [SEP] $24.99 [SEP] B09M63B87V [SEP] YALFJV Women Long Sleeve Crew Neck Side Button T Shirts Tunic Dress Loose Asymmetric Hem Tunic Pullover to Wear with Leggings [SEP] $10.71 to $18.34 [SEP] B08P8LRFZ4 [SEP] MTFY Cute Faux Fur Desk Chair for Girls Women, Comfy Fluffy Modern Home Office Chair with Wheels, Elegant Swivel Fuzzy Vanity Chair Makeup Arm Chair for Living Room, Bedroom [SEP] $95.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07fkgqkz1", "b09nrf2qgd", "b09jc84p1m", "b06xfzxxtc", "b09b7g7p58", "b099yq75wt", "b07fvhpk5x", "b09hkzs7lv", "b09m63b87v", "b08p8lrfz4"]
+  02. click[b07fkgqkz1]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  03. click[21 in x 35 in]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  04. click[round]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  05. click[brown | beige]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: round, and size: 21 in x 35 in, and price lower than 60.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 1 ft 9 in x 7 ft 2 in [SEP] 3 ft 7 in x 5 ft 2 in [SEP] 5 ft 2 in x 7 ft 4 in [SEP] 5 ft 3 in x 7 ft 5 in [SEP] 7 ft 8 in [SEP] 7 ft 8 in x 10 ft 7 in [SEP] 7 ft 9 in x 10 ft 8 in [SEP] 9 ft 2 in x 12 ft 5 in [SEP] 21 in x 35 in [SEP] item shape [SEP] runner [SEP] rectangular [SEP] round [SEP] color [SEP] black-gray [SEP] blue | gray [SEP] brown | black [SEP] blue [SEP] navy | red [SEP] taupe | orange [SEP] black | gray [SEP] brown | beige [SEP] navy-multi [SEP] taupe [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] Price: $44.99 to $33.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "1 ft 9 in x 7 ft 2 in", "3 ft 7 in x 5 ft 2 in", "5 ft 2 in x 7 ft 4 in", "5 ft 3 in x 7 ft 5 in", "7 ft 8 in", "7 ft 8 in x 10 ft 7 in", "7 ft 9 in x 10 ft 8 in", "9 ft 2 in x 12 ft 5 in", "21 in x 35 in", "runner", "rectangular", "round", "black-gray", "blue | gray", "brown | black", "blue", "navy | red", "taupe | orange", "black | gray", "brown | beige", "navy-multi", "taupe"]
+  06. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+八、来源
+
+远端会话目录：/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/research/webshop_06866--f8311095c3/20261025_102437_v35
+
+原始文件SHA256：
+
+{
+  "meta.json": "3baa152bd7b448c9281dbbc16f9fa3efd8e3ae1d495f8918d3d8f08a6c81f784",
+  "session.jsonl": "11d3f38fd6d5e4503049ab722a285ea46db57b88a3b29d0d3c04ef11f1aebc70",
+  "doc.md": "47dfa3c848ba6e2e5936e8253e454308c59a9164e225604439ed6794c1394ec9",
+  "episodes.jsonl": "f95a9aac0b4c6ba2a284caab2582232e2e9a4e0d736a7b28ae61e9144898e64e"
+}
+
+训练rollout来源及SHA256：
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00036/webshop_06866_0af2f584.json
+5b1909c60d22597ace51d4dba0b7e6491a9495c1ac4c12e8366ac3d72cd9be18
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00036/webshop_06866_ca37618f.json
+0cbcd7991efd5993585a963d1db3217ff504350ad11153f6b867cac70afbadc6
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00036/webshop_06866_1656acca.json
+e76f726845fc2cf095f8762e684052ae17a64338bcf80937408483b09566f315
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00036/webshop_06866_baa76cf8.json
+768771c83a8958eeeeb248512f636e4c8c3ec02d78704b5237374cb7545952b6
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00036/webshop_06866_02834081.json
+4c81a07e0e77db86c261a5c3bbd9fe6eef0760d53dfe76b499f2321d73899a42
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00036/webshop_06866_08965540.json
+e4e64ae8fc2a837e62cfe218469113840da2783e6f29a20b01d24af87fc4302e
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00036/webshop_06866_753b3f94.json
+874dcc40718c57e46742696ea5dafc67534227e01bebaa96e52d2ecaf934c9f3
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00036/webshop_06866_e630c20e.json
+56cfb73fa156dfc6d9b91912f638f447cfefe6d331b9d571ebfedacce221f6f7

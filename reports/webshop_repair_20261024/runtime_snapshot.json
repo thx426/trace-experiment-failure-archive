@@ -1,0 +1,114 @@
+{
+  "checked_at": "2026-10-24T08:41:52.561543+08:00",
+  "sequence": {
+    "phase": "running",
+    "pid": 2014347,
+    "time": 1792801923.9596894,
+    "input_limit": 3072,
+    "server_concurrency": 16,
+    "order": [
+      "all_skill",
+      "selective_skill"
+    ],
+    "job": "all_skill",
+    "run": "/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/code/runs/pass5_compact3072_all_skill_s42",
+    "owner_pid": 2015098,
+    "owner_state": "/tmp/p5compact3072-all24r3",
+    "researcher_owner_pid": 2014656,
+    "next_job": "selective_skill"
+  },
+  "webshop": {
+    "8321": {
+      "active": 233,
+      "stats": {
+        "reset_replays": 0,
+        "step_replays": 0,
+        "operations": 2968,
+        "queue_seconds": 1053.1366909258068,
+        "backend_seconds": 100.80460366979241,
+        "max_queue_seconds": 3.555290099233389,
+        "max_backend_seconds": 0.7339263670146465
+      },
+      "http_statuses": {
+        "200": 2968
+      },
+      "disconnects": 0,
+      "tracebacks": 0
+    },
+    "8322": {
+      "active": 214,
+      "stats": {
+        "reset_replays": 0,
+        "step_replays": 0,
+        "operations": 2766,
+        "queue_seconds": 692.9817081168294,
+        "backend_seconds": 89.44640046358109,
+        "max_queue_seconds": 2.1518811732530594,
+        "max_backend_seconds": 0.5971399322152138
+      },
+      "http_statuses": {
+        "200": 2766
+      },
+      "disconnects": 0,
+      "tracebacks": 0
+    },
+    "8323": {
+      "active": 171,
+      "stats": {
+        "reset_replays": 0,
+        "step_replays": 0,
+        "operations": 2277,
+        "queue_seconds": 294.5570871755481,
+        "backend_seconds": 76.29587725549936,
+        "max_queue_seconds": 1.1953264325857162,
+        "max_backend_seconds": 0.45766666159033775
+      },
+      "http_statuses": {
+        "200": 2277
+      },
+      "disconnects": 0,
+      "tracebacks": 0
+    },
+    "8324": {
+      "active": 302,
+      "stats": {
+        "reset_replays": 0,
+        "step_replays": 0,
+        "operations": 3595,
+        "queue_seconds": 2089.6405026726425,
+        "backend_seconds": 120.90739705786109,
+        "max_queue_seconds": 4.360935088247061,
+        "max_backend_seconds": 0.6597558408975601
+      },
+      "http_statuses": {
+        "200": 3595
+      },
+      "disconnects": 0,
+      "tracebacks": 0
+    }
+  },
+  "rollout_rows": {
+    "step_00000_val": 360
+  },
+  "error_mentions": {
+    "webshop service unreachable": 0,
+    "webshop HTTP 409": 0,
+    "student episode infra error": 0,
+    "OutOfMemoryError": 0,
+    "ReplayBuffer:": 0
+  },
+  "training_tail": [
+    "\u001b[36m(SimpleStorageUnit pid=2019337)\u001b[0m Time range: last 5.22 minutes; ",
+    "\u001b[36m(TaskRunnerV1 pid=2018898)\u001b[0m INFO:2026-10-24 08:39:09,323:pending: 0, running: 247, finished: 9, failure: 0",
+    "\u001b[36m(TaskRunnerV1 pid=2018898)\u001b[0m INFO:2026-10-24 08:40:09,490:pending: 0, running: 246, finished: 10, failure: 0",
+    "\u001b[36m(TaskRunnerV1 pid=2018898)\u001b[0m INFO:2026-10-24 08:41:09,654:pending: 0, running: 246, finished: 10, failure: 0"
+  ],
+  "completed_steps": [],
+  "timing_rows": [],
+  "researcher_inputs": {
+    "calls": 0,
+    "mean": null,
+    "max": null,
+    "above_3072": 0
+  }
+}

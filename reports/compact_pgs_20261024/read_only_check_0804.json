@@ -1,0 +1,74 @@
+{
+  "checked_at": "2026-10-24T08:03:56+08:00",
+  "run": "/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r2/code/runs/pass5_compact3072_all_skill_s42",
+  "status": "stopped_on_error",
+  "training_updates_completed": 0,
+  "stop_time": "2026-10-24T01:09:32+08:00",
+  "validation": {
+    "step": 0,
+    "record_count": 202,
+    "complete": false,
+    "evaluation_n": 5,
+    "bare": true,
+    "recorded_successes": 33,
+    "recorded_failures": 169,
+    "not_an_unbiased_evaluation": true
+  },
+  "formal_researcher_inputs": {
+    "completed_requests": 0,
+    "mean_tokens": null,
+    "maximum_tokens": null,
+    "observed_over_limit": 0,
+    "hard_limit": 3072,
+    "interpretation": "No formal task request occurred, so this is not empirical evidence of compliance."
+  },
+  "researcher_startup_checks": {
+    "chat_http200": 2,
+    "tokenization_http200": 1,
+    "template_only_tokens": 736,
+    "excluded_from_formal_research_statistics": true
+  },
+  "researcher_server": {
+    "configured_concurrency": 16,
+    "oom_lines": 0,
+    "preemption_lines": 0,
+    "load_performance_not_measured": true
+  },
+  "proximate_failure": "WebShop /step timed out repeatedly and returned HTTP 409; ReplayBuffer stopped initial validation after 3 prompt groups failed twice.",
+  "root_cause_of_service_timeouts": "Not determined by this read-only inspection.",
+  "old_all_skill_reference": {
+    "snapshot_at": "2026-10-23T23:37:50.696844+08:00",
+    "steps": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "mean_step_seconds": 1440.136804111302,
+    "mean_generation_seconds": 1134.0774273216725,
+    "mean_actor_update_seconds": 226.88134099803864,
+    "mean_old_log_prob_seconds": 73.25066461861134
+  },
+  "new_mean_step_seconds": null,
+  "speedup_percentage": null,
+  "selective_skill_started": false,
+  "owned_gpu_release_verified": true,
+  "gpu_compute_processes_at_check": 0,
+  "inspection_only": true,
+  "experiment_changed_or_restarted": false,
+  "sources": [
+    "sequence_status.json",
+    "/tmp/p5compact3072-all24r2/command.log",
+    "/tmp/p5compact3072-all24r2/status.json",
+    "/tmp/p5compact3072-research24r2/status.json",
+    "/tmp/p5compact3072-research24r2/command.log",
+    "code/runs/pass5_compact3072_all_skill_s42/rollouts/step_00000_val",
+    "reports/pass5_20261023/grpo_final_review/all_skill_timing_derived.json"
+  ]
+}

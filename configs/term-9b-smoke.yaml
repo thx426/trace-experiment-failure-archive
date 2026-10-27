@@ -1,0 +1,183 @@
+# =============================================================================
+# 终端域 × Qwen3.5-9B × PGS v4 自体研究员 —— 正式训练(A800 训练 + 162 环境池)
+#
+# 用户裁定(2026-08-12):
+#   ① researcher = v4 selfres 引擎内自体(research_rl.enabled=true ⇒ 配置校验
+#      强制 research.backend=engine + tool_protocol=text,与 external+fncall 的
+#      探针路径不同);
+#   ② 不设纯 GRPO 对照臂(对照另在 162 四卡起独立 run);
+#   ③ 规模 = 训练集两个 epoch;
+#   ④ 训练集不再单独划 val,val 直接用 Terminal-Bench 各版本测试集,分开上报。
+#   ⑤ batch32 × n16;max_prompt_length 8K;response_length 64K。
+#
+# 数据事实(2026-08-11/12 实测,非估计):
+#   * 快照覆盖 14,005/14,602(95.9%);preflight 32/32 全绿,reward 阴性对照
+#     零假阳性;失败 597 个已定性(约 345 境外网络、201 任务自身、1 数据缺失)。
+#   * 9B bare 基线在 TMax valid 上 20/65=30.8%(**与 TB2.0 的 21.1% 锚不可比**,
+#     不同数据集口径)。
+#   * 单 episode ≈ 12k token(25.1 步 × ~480 tok);8 卡 dp4×tp2 实测 14,247 tok/s
+#     ⇒ batch32×n16=512 episode/step,纯 rollout 约 7.2 分钟。
+#   * 两个 epoch = 14,005 ÷ 32 × 2 ≈ **876 步**。按 15 min/step 计约 9 天;
+#     首个 step 的真实墙钟出来后按实测修正本注释。
+# =============================================================================
+
+run:
+  name: term_9b_smoke
+  runs_root: /fs/fast/u2021000902/wushang/workspace/TRACE-OPD-TERM/runs
+  tape: true                 # 全量交互磁带:selfres 首次上终端域,轨迹必须可回溯
+
+environment:
+  name: terminal             # 环境注册表选路(默认 alfworld,不设会静默跑错域)
+
+# --- v4 自体研究员 ---------------------------------------------------------
+# backend=engine + tool_protocol=text 是 research_rl 的**强制约束**(config
+# _validate);external+fncall 那条路径是探针用的,两者不可混。
+research:
+  enabled: true
+  backend: engine
+  tool_protocol: text
+  n_exp: 2                   # 探针实测:平均用到 3.7 次即 finalize,6 是宽松上限
+  k_default: 2
+  k_max: 4
+  max_turns: 24              # 探针实测轮次中位 7.1,24 留足余量
+  wrapup_buffer: 2
+  fetch_raw_limit: 20
+  fetch_raw_max_chars: 16000
+  doc_max_words: 800         # 终端说明书本就长,文档不宜再膨胀(探针中位 491 词)
+  gt: "off"                  # 信息状态红线:researcher 无特权 GT
+  episode_temperature: 1.0
+  researcher_max_tokens: 4096
+  session_timeout_s: 2400
+  session_token_budget: 60000
+  # 只限 researcher **首调** prompt(system + tools 块 + kickoff),不是全会话。
+  # 终端域实测该 scaffold ≈ 10.1k 字符 ≈ 3k token(ALFWorld 仅 1.4k)。两条硬约束:
+  #   ① ≤ train.max_prompt_length(8192) —— research 行与 executor 行共用 padding 维度
+  #   ② + session_token_budget ≤ rollout_max_model_len(73728)
+  max_prompt_tokens: 8000
+
+research_rl:
+  enabled: true              # ← selfres 开关本身
+  research_n: 2              # research GRPO 组大小
+  continuation_samples: 4
+  continuation_temperature: 1.0
+  researcher_temperature: 1.0
+  research_rl_weight: 0.1    # λ_r
+  research_warmup_steps: 0
+
+narration:
+  backend: engine
+  max_words: 1000
+  temperature: 0.3
+  max_prompt_tokens: 6144
+
+# --- 采样端特权(v3.3 asym,沿用 9B 冒烟档)---------------------------------
+steering:
+  enabled: true
+  doc_source: researcher
+  doc_table: ""
+  eta_max: 0.5
+  c: 2.5
+  b_max: .inf
+  topk: 64
+  obs_topk: 256
+  theta_d: 0.0
+  gate_mode: entropy
+  gate_adaptive: true
+  gate_target_rate: 0.10
+  gate_ema_beta: 0.1
+  epsilon: 0.05
+  gate_rate_bounds: [0.05, 0.25]
+  r_max: 0
+  w_beh_mode: "off"
+  w_beh_shaped_gamma: 0.1
+  adv_mode: asym
+  steered_adv_weight: 1.0
+  steered_adv_decay_steps: 400     # ≈ 876 步的前半程退火(冒烟档的 240 按 300 步定)
+  steered_adv_decay_mode: cosine_steps
+  steered_adv_cap: 0.0
+  entropy_target_rate: 0.05
+  # direct 档(现行默认):θ 由分位自标定 + ratchet 防坍缩,不再需要绝对量纲的
+  # entropy_floor(那是 ema 档的语义)。entropy_theta_init 仅作 warmup 前的哨兵,
+  # step-1 的 steer_ent_hist 落地后按 9B 终端域分布复核。
+  entropy_theta_init: 1.28
+  intensity_w_min: 0.05
+  steered_fraction: 0.5
+  budget_pacing: false
+  budget_u0: 5.0
+  budget_profile_power: 2.0
+
+episode:
+  max_env_steps: 30          # TMax 官方 agent 预算语境;实测成功者步数 p90=27
+  max_assistant_turns: 40
+  session_token_budget: 0    # 0 = 跟随 train.response_length
+  max_tokens_per_turn: 2048
+
+# --- 环境池(162,跨机 docker socket)---------------------------------------
+terminal:
+  protocol: fncall
+  backend: docker
+  docker_host: unix:///tmp/docker162.sock   # 先跑 ~/dockfwd.sh;ControlMaster 必须关
+  snapshot_root: /data4/wushang/tmax-snap   # **宿主侧**路径(bind 由 daemon 解析)
+  snapshot_index: ${TERMINAL_SNAPSHOT_INDEX} # 客户端可见清单(A800 看不到 162 的盘)
+  task_data_root: ${TERMINAL_TASK_DATA}
+  image: ${TERMINAL_IMAGE}
+  pod_cpu: "1"
+  pod_memory: "2g"           # docker 单位(K8s 的 2Gi 写法 docker 不认)
+  spawn_concurrency: 256     # 环境侧不做瓶颈:162 实测舒适区 192-256 容器
+  create_timeout_s: 300.0
+  setup_timeout_s: 600.0
+  command_timeout_s: 120.0
+  test_timeout_s: 600.0      # TMax _MIN_TEST_TIMEOUT_S 下限
+  test_grace_s: 120.0
+
+train:
+  model_path: /fs/fast/u2021000902/wushang/model/Qwen/Qwen3.5-9B
+  train_file: ${TRACE_TRAIN_FILE}
+  val_files:
+    - ${TRACE_VAL_FILES}
+  experiment_name: term_9b_smoke
+  project_name: trace_opd
+  n_gpus: 8
+  rollout_tp: 1
+  train_batch_size: 4
+  rollout_n: 4
+  agent_num_workers: 4      # 必须 == train_batch_size(同任务副本同 worker)
+  ppo_mini_batch_size: 4
+  lr: 1.0e-6
+  lr_scheduler_type: constant
+  lr_warmup_steps_ratio: 0.0
+  adv_estimator: pgs_asym_grpo
+  norm_adv_by_std: false
+  max_prompt_length: 8192    # 用户指令。ALFWorld 的 2048 会截断终端说明书
+  response_length: 65536     # 用户指令
+  max_token_len_per_gpu: 73728        # = prompt + response,单序列可容
+  ppo_max_token_len_per_gpu: 16384
+  log_prob_max_token_len_per_gpu: 16384
+  ulysses_sp: 4
+  use_fused_kernels: true
+  rollout_max_model_len: 73728        # 8192 + 65536,模型上限 262144 内
+  rollout_max_num_batched_tokens: 16384
+  rollout_backend: sglang
+  rollout_gpu_mem: 0.55
+  rollout_max_num_seqs: 1024          # 用户指令:GPU 侧推理最大并发 1024
+  rollout_temperature: 1.0
+  loss_agg_mode: seq-mean-token-mean
+  vllm_rpc_timeout_ms: 300000
+  agent_task_timeout_s: 5400          # 必须显著大于 research.session_timeout_s(2400)
+  fsdp_mode: shard
+  fsdp_strategy: fsdp2
+  fsdp_size: 0
+  param_offload: true
+  reshard_after_forward: true
+  dist_backend: ""
+  total_epochs: 1
+  test_freq: 0
+  save_freq: 0
+  max_ckpt_to_keep: 2
+  val_before_train: false     # 训前 val = 9B 在 TB 各版本上的 base 读数(白拿基线)
+  resume_mode: auto
+  loggers: [console, swanlab]
+
+eval:
+  response_budget: 65536     # 训练/评测同构(PG-3)
+  temperature: 0.0

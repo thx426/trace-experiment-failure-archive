@@ -1,0 +1,75 @@
+# RESOLVED CONFIG — written by launch_train.py, read by every worker.
+# Do not edit: it is regenerated at each launch from
+#   config   : /fs/fast/u2021000902/wushang/workspace/TRACE-OPD-TERM/configs/classic/searchqa_7b_grpo.yaml
+# objective fingerprint: e098c99f019d
+run:
+  name: classic_sqa7b_grpo
+environment:
+  name: searchqa
+episode:
+  max_env_steps: 4
+  max_assistant_turns: 6
+  max_tokens_per_turn: 1024
+searchqa:
+  protocol: text
+  retriever_url: http://HOST_IP:8000
+  topk: 3
+  search_concurrency: 2
+  search_max_batch: 128
+  search_timeout_s: 90.0
+  search_batch_wait_ms: 15.0
+eval:
+  response_budget: 8192
+  temperature: 0.0
+  n: 1
+train:
+  model_path: /fs/fast/u2021000902/wushang/model/Qwen/Qwen2.5-7B-Instruct
+  train_file: /fs/fast/u2021000902/wushang/data/classic/classic_searchqa_data/train_trainer.parquet
+  val_files:
+  - /fs/fast/u2021000902/wushang/data/classic/classic_searchqa_data/val_shuf2048.parquet
+  experiment_name: classic_sqa7b_grpo
+  project_name: trace_opd
+  n_gpus: 4
+  rollout_tp: 1
+  train_batch_size: 128
+  rollout_n: 8
+  agent_num_workers: 16
+  ppo_mini_batch_size: 128
+  lr: 1.0e-06
+  lr_scheduler_type: constant
+  lr_warmup_steps_ratio: 0.0
+  adv_estimator: grpo
+  norm_adv_by_std: false
+  max_prompt_length: 4096
+  response_length: 8192
+  max_token_len_per_gpu: 12288
+  ppo_max_token_len_per_gpu: 8192
+  log_prob_max_token_len_per_gpu: 8192
+  ulysses_sp: 2
+  use_fused_kernels: false
+  rollout_max_model_len: 12288
+  rollout_max_num_batched_tokens: 32768
+  rollout_backend: sglang
+  rollout_gpu_mem: 0.55
+  rollout_max_num_seqs: 512
+  rollout_temperature: 1.0
+  loss_agg_mode: seq-mean-token-mean
+  vllm_rpc_timeout_ms: 300000
+  agent_task_timeout_s: 3600
+  total_epochs: 2
+  test_freq: 50
+  save_freq: 50
+  max_ckpt_to_keep: 1
+  val_before_train: true
+  resume_mode: auto
+  loggers:
+  - console
+  - swanlab
+  fsdp_strategy: fsdp2
+  param_offload: true
+  reshard_after_forward: true
+steering:
+  enabled: false
+  doc_source: static
+research:
+  enabled: false

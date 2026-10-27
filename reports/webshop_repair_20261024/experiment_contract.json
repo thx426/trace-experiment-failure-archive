@@ -1,0 +1,51 @@
+{
+  "version": "compact3072_v1",
+  "request_token_limit": 3072,
+  "raw_page_tokens": 512,
+  "server_max_num_seqs": 16,
+  "server_max_model_len": 7168,
+  "max_tokens": 4096,
+  "steps_per_arm": 100,
+  "order": [
+    "all_skill",
+    "selective_skill"
+  ],
+  "baseline": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/code/runs/pass5_grpo_s42",
+  "pilot": false,
+  "resume": false,
+  "initial_student": "/root/trace-webshop-arm-ratio/models/Qwen2.5-3B-Instruct",
+  "original_code": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/code",
+  "approval": "User approved 2026-10-24; no pilot; strict input 3072 and concurrency16",
+  "failure_policy": "Stop on contract violation, OOM, sustained preemption or failed completion audit; no automatic retry",
+  "controlled_training": "Unchanged student, reward, data, seed, optimizer, group size, guidance fraction and evaluation",
+  "research_changes": [
+    "bounded structured context",
+    "paged raw evidence",
+    "dynamic tools",
+    "concise document prompt",
+    "hard document word rejection after one repair"
+  ],
+  "transport_repair": {
+    "protocol": 3,
+    "shards": 4,
+    "ports": [
+      8321,
+      8322,
+      8323,
+      8324
+    ],
+    "idempotent_reset_and_step": true,
+    "http_backlog": 1024,
+    "blas_threads_per_shard": 1,
+    "preserved": [
+      "student checkpoint",
+      "reward function",
+      "data and goals",
+      "training schedule",
+      "sampling",
+      "research input cap 3072",
+      "research concurrency 16"
+    ],
+    "approval": "2026-10-24 user explicitly approved diagnosis, repair and direct formal restart; no pilot"
+  }
+}

@@ -1,0 +1,951 @@
+{
+  "scope": "August 2026 local historical artifacts ONLY; October API run excluded",
+  "gpu_used": false,
+  "network_used": false,
+  "valid_manifests": 22,
+  "invalid_manifests": [
+    "runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260814_140602.json"
+  ],
+  "runs": 11,
+  "manifests": [
+    {
+      "run": "classic_alf3b_grpo",
+      "timestamp": "2026-08-16 19:34:34",
+      "source": "runs/classic_alf3b_grpo/launch_manifest_20260816_193434.json",
+      "estimator": "grpo",
+      "norm_adv_by_std": false,
+      "group_size": 8,
+      "train_batch_size": 16,
+      "steered_fraction": null,
+      "alpha_decay_steps": null,
+      "w_beh_mode": null,
+      "eval": {
+        "response_budget": 16384,
+        "temperature": 0.6,
+        "n": 3
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic/classic_alfworld_data/valid_seen.parquet",
+        "/fs/fast/u2021000902/wushang/data/classic/classic_alfworld_data/valid_unseen.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": null,
+      "researcher_model": null,
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_alf3b_pgs",
+      "timestamp": "2026-08-16 15:06:08",
+      "source": "runs/classic_alf3b_pgs/launch_manifest_20260816_150608.json",
+      "estimator": "pgs_asym_grpo",
+      "norm_adv_by_std": false,
+      "group_size": 8,
+      "train_batch_size": 16,
+      "steered_fraction": 0.5,
+      "alpha_decay_steps": 300,
+      "w_beh_mode": "off",
+      "eval": {
+        "response_budget": 16384,
+        "temperature": 0.6,
+        "n": 3
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic/classic_alfworld_data/valid_seen.parquet",
+        "/fs/fast/u2021000902/wushang/data/classic/classic_alfworld_data/valid_unseen.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": "http://HOST_IP:8880/v1,http://HOST_IP:8881/v1",
+      "researcher_model": "qwen3.6-35b-a3b",
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_alf7b_grpo",
+      "timestamp": "2026-08-13 01:40:30",
+      "source": "runs/classic_alf7b_grpo/launch_manifest_20260813_014030.json",
+      "estimator": "grpo",
+      "norm_adv_by_std": false,
+      "group_size": 8,
+      "train_batch_size": 16,
+      "steered_fraction": null,
+      "alpha_decay_steps": null,
+      "w_beh_mode": null,
+      "eval": {
+        "response_budget": 16384,
+        "temperature": 0.0,
+        "n": 1
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic/classic_alfworld_data/valid_seen.parquet",
+        "/fs/fast/u2021000902/wushang/data/classic/classic_alfworld_data/valid_unseen.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": null,
+      "researcher_model": null,
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_alf7b_pgs",
+      "timestamp": "2026-08-13 01:40:11",
+      "source": "runs/classic_alf7b_pgs/launch_manifest_20260813_014011.json",
+      "estimator": "pgs_asym_grpo",
+      "norm_adv_by_std": false,
+      "group_size": 8,
+      "train_batch_size": 16,
+      "steered_fraction": 0.5,
+      "alpha_decay_steps": 300,
+      "w_beh_mode": "off",
+      "eval": {
+        "response_budget": 16384,
+        "temperature": 0.0,
+        "n": 1
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic/classic_alfworld_data/valid_seen.parquet",
+        "/fs/fast/u2021000902/wushang/data/classic/classic_alfworld_data/valid_unseen.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": "http://HOST_IP:8880/v1,http://HOST_IP:8881/v1",
+      "researcher_model": "qwen3.6-35b-a3b",
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_math7b_pgs",
+      "timestamp": "2026-08-14 14:22:55",
+      "source": "runs/classic_math7b_pgs/launch_manifest_20260814_142255.json",
+      "estimator": "pgs_asym_grpo",
+      "norm_adv_by_std": false,
+      "group_size": 8,
+      "train_batch_size": 128,
+      "steered_fraction": 0.5,
+      "alpha_decay_steps": 180,
+      "w_beh_mode": "off",
+      "eval": {
+        "response_budget": 16384,
+        "temperature": 0.0,
+        "n": 1
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic_math/valid.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": "http://HOST_IP:8880/v1,http://HOST_IP:8881/v1",
+      "researcher_model": "qwen3.6-35b-a3b",
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_math7b_pgs",
+      "timestamp": "2026-08-14 14:42:00",
+      "source": "runs/classic_math7b_pgs/launch_manifest_20260814_144200.json",
+      "estimator": "pgs_asym_grpo",
+      "norm_adv_by_std": false,
+      "group_size": 8,
+      "train_batch_size": 128,
+      "steered_fraction": 0.5,
+      "alpha_decay_steps": 180,
+      "w_beh_mode": "off",
+      "eval": {
+        "response_budget": 16384,
+        "temperature": 0.6,
+        "n": 3
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic_math/valid.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": "http://HOST_IP:8880/v1,http://HOST_IP:8881/v1",
+      "researcher_model": "qwen3.6-35b-a3b",
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_math7b_pgs",
+      "timestamp": "2026-08-14 15:15:11",
+      "source": "runs/classic_math7b_pgs/launch_manifest_20260814_151511.json",
+      "estimator": "pgs_asym_grpo",
+      "norm_adv_by_std": false,
+      "group_size": 8,
+      "train_batch_size": 128,
+      "steered_fraction": 0.5,
+      "alpha_decay_steps": 180,
+      "w_beh_mode": "off",
+      "eval": {
+        "response_budget": 16384,
+        "temperature": 0.6,
+        "n": 3
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic_math/valid.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": "http://HOST_IP:8880/v1,http://HOST_IP:8881/v1",
+      "researcher_model": "qwen3.6-35b-a3b",
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_sqa7b_grpo",
+      "timestamp": "2026-08-13 18:25:25",
+      "source": "runs/classic_sqa7b_grpo/launch_manifest_20260813_182525.json",
+      "estimator": "grpo",
+      "norm_adv_by_std": false,
+      "group_size": 8,
+      "train_batch_size": 128,
+      "steered_fraction": null,
+      "alpha_decay_steps": null,
+      "w_beh_mode": null,
+      "eval": {
+        "response_budget": 8192,
+        "temperature": 0.0,
+        "n": 1
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic/classic_searchqa_data/val_shuf2048.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": null,
+      "researcher_model": null,
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_sqa7b_grpo",
+      "timestamp": "2026-08-14 14:17:31",
+      "source": "runs/classic_sqa7b_grpo/launch_manifest_20260814_141731.json",
+      "estimator": "grpo",
+      "norm_adv_by_std": false,
+      "group_size": 8,
+      "train_batch_size": 128,
+      "steered_fraction": null,
+      "alpha_decay_steps": null,
+      "w_beh_mode": null,
+      "eval": {
+        "response_budget": 8192,
+        "temperature": 0.0,
+        "n": 1
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic/classic_searchqa_data/val_shuf2048.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": null,
+      "researcher_model": null,
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_sqa7b_pgs",
+      "timestamp": "2026-08-27 21:50:24",
+      "source": "runs/classic_sqa7b_pgs/launch_manifest_20260827_215024.json",
+      "estimator": "pgs_asym_grpo",
+      "norm_adv_by_std": false,
+      "group_size": 8,
+      "train_batch_size": 128,
+      "steered_fraction": 0.5,
+      "alpha_decay_steps": 1400,
+      "w_beh_mode": "off",
+      "eval": {
+        "response_budget": 8192,
+        "temperature": 0.6,
+        "n": 3
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic/classic_searchqa_data/val_eq320.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": "http://127.0.0.1:8880/v1,http://127.0.0.1:8881/v1,http://127.0.0.1:8882/v1,http://127.0.0.1:8883/v1",
+      "researcher_model": "qwen3.6-35b-a3b",
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_sqa7b_pgs",
+      "timestamp": "2026-08-28 13:18:48",
+      "source": "runs/classic_sqa7b_pgs/launch_manifest_20260828_131848.json",
+      "estimator": "pgs_asym_grpo",
+      "norm_adv_by_std": false,
+      "group_size": 8,
+      "train_batch_size": 128,
+      "steered_fraction": 0.5,
+      "alpha_decay_steps": 1400,
+      "w_beh_mode": "off",
+      "eval": {
+        "response_budget": 8192,
+        "temperature": 0.6,
+        "n": 3
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic/classic_searchqa_data/val_eq320.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": "http://127.0.0.1:8880/v1,http://127.0.0.1:8881/v1,http://127.0.0.1:8882/v1,http://127.0.0.1:8883/v1",
+      "researcher_model": "qwen3.6-35b-a3b",
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_sqa7b_pgs",
+      "timestamp": "2026-08-29 23:35:19",
+      "source": "runs/classic_sqa7b_pgs/launch_manifest_20260829_233519.json",
+      "estimator": "pgs_asym_grpo",
+      "norm_adv_by_std": false,
+      "group_size": 8,
+      "train_batch_size": 128,
+      "steered_fraction": 0.5,
+      "alpha_decay_steps": 1400,
+      "w_beh_mode": "off",
+      "eval": {
+        "response_budget": 8192,
+        "temperature": 0.6,
+        "n": 3
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic/classic_searchqa_data/val_eq320.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": "http://127.0.0.1:8880/v1,http://127.0.0.1:8881/v1,http://127.0.0.1:8882/v1,http://127.0.0.1:8883/v1",
+      "researcher_model": "qwen3.6-35b-a3b",
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_sqa7b_pgs_legacy0813",
+      "timestamp": "2026-08-13 18:25:07",
+      "source": "runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260813_182507.json",
+      "estimator": "pgs_asym_grpo",
+      "norm_adv_by_std": false,
+      "group_size": 8,
+      "train_batch_size": 128,
+      "steered_fraction": 0.5,
+      "alpha_decay_steps": 1800,
+      "w_beh_mode": "off",
+      "eval": {
+        "response_budget": 8192,
+        "temperature": 0.0,
+        "n": 1
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic/classic_searchqa_data/val_shuf2048.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": "http://HOST_IP:8880/v1,http://HOST_IP:8881/v1",
+      "researcher_model": "qwen3.6-35b-a3b",
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_sqa7b_pgs_legacy0813",
+      "timestamp": "2026-08-14 14:17:12",
+      "source": "runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260814_141712.json",
+      "estimator": "pgs_asym_grpo",
+      "norm_adv_by_std": false,
+      "group_size": 8,
+      "train_batch_size": 128,
+      "steered_fraction": 0.5,
+      "alpha_decay_steps": 1800,
+      "w_beh_mode": "off",
+      "eval": {
+        "response_budget": 8192,
+        "temperature": 0.0,
+        "n": 1
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic/classic_searchqa_data/val_shuf2048.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": "http://HOST_IP:8880/v1,http://HOST_IP:8881/v1",
+      "researcher_model": "qwen3.6-35b-a3b",
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_sqa7b_pgs_legacy0813",
+      "timestamp": "2026-08-14 14:22:30",
+      "source": "runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260814_142230.json",
+      "estimator": "pgs_asym_grpo",
+      "norm_adv_by_std": false,
+      "group_size": 8,
+      "train_batch_size": 128,
+      "steered_fraction": 0.5,
+      "alpha_decay_steps": 1800,
+      "w_beh_mode": "off",
+      "eval": {
+        "response_budget": 8192,
+        "temperature": 0.0,
+        "n": 1
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic/classic_searchqa_data/val_shuf2048.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": "http://HOST_IP:8880/v1,http://HOST_IP:8881/v1",
+      "researcher_model": "qwen3.6-35b-a3b",
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_sqa7b_pgs_legacy0813",
+      "timestamp": "2026-08-14 14:41:37",
+      "source": "runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260814_144137.json",
+      "estimator": "pgs_asym_grpo",
+      "norm_adv_by_std": false,
+      "group_size": 8,
+      "train_batch_size": 128,
+      "steered_fraction": 0.5,
+      "alpha_decay_steps": 1800,
+      "w_beh_mode": "off",
+      "eval": {
+        "response_budget": 8192,
+        "temperature": 0.6,
+        "n": 3
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic/classic_searchqa_data/val_shuf2048.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": "http://HOST_IP:8880/v1,http://HOST_IP:8881/v1",
+      "researcher_model": "qwen3.6-35b-a3b",
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_sqa7b_pgs_legacy0813",
+      "timestamp": "2026-08-14 14:53:15",
+      "source": "runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260814_145315.json",
+      "estimator": "pgs_asym_grpo",
+      "norm_adv_by_std": false,
+      "group_size": 8,
+      "train_batch_size": 128,
+      "steered_fraction": 0.5,
+      "alpha_decay_steps": 1800,
+      "w_beh_mode": "off",
+      "eval": {
+        "response_budget": 8192,
+        "temperature": 0.6,
+        "n": 3
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic/classic_searchqa_data/val_shuf2048.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": "http://HOST_IP:8880/v1,http://HOST_IP:8881/v1",
+      "researcher_model": "qwen3.6-35b-a3b",
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_sqa7b_pgs_legacy0813",
+      "timestamp": "2026-08-14 14:55:32",
+      "source": "runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260814_145532.json",
+      "estimator": "pgs_asym_grpo",
+      "norm_adv_by_std": false,
+      "group_size": 8,
+      "train_batch_size": 128,
+      "steered_fraction": 0.5,
+      "alpha_decay_steps": 1800,
+      "w_beh_mode": "off",
+      "eval": {
+        "response_budget": 8192,
+        "temperature": 0.6,
+        "n": 3
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic/classic_searchqa_data/val_shuf2048.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": "http://HOST_IP:8880/v1,http://HOST_IP:8881/v1",
+      "researcher_model": "qwen3.6-35b-a3b",
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_ssb3b_pgs",
+      "timestamp": "2026-08-18 11:21:08",
+      "source": "runs/classic_ssb3b_pgs/launch_manifest_20260818_112108.json",
+      "estimator": "pgs_asym_grpo",
+      "norm_adv_by_std": false,
+      "group_size": 16,
+      "train_batch_size": 32,
+      "steered_fraction": 0.5,
+      "alpha_decay_steps": 176,
+      "w_beh_mode": "off",
+      "eval": {
+        "response_budget": 24576,
+        "temperature": 0.6,
+        "n": 3
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic/classic_ssb_data/test_ssb400.parquet",
+        "/fs/fast/u2021000902/wushang/data/classic/classic_ssb_data/val_srl123.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": "http://127.0.0.1:8880/v1,http://127.0.0.1:8881/v1,http://127.0.0.1:8882/v1",
+      "researcher_model": "qwen3.6-35b-a3b",
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_ssb3b_pgs",
+      "timestamp": "2026-08-20 03:17:53",
+      "source": "runs/classic_ssb3b_pgs/launch_manifest_20260820_031753.json",
+      "estimator": "pgs_asym_grpo",
+      "norm_adv_by_std": false,
+      "group_size": 16,
+      "train_batch_size": 32,
+      "steered_fraction": 0.5,
+      "alpha_decay_steps": 176,
+      "w_beh_mode": "off",
+      "eval": {
+        "response_budget": 24576,
+        "temperature": 0.6,
+        "n": 3
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic/classic_ssb_data/test_ssb400.parquet",
+        "/fs/fast/u2021000902/wushang/data/classic/classic_ssb_data/val_srl123.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": "http://127.0.0.1:8880/v1,http://127.0.0.1:8881/v1,http://127.0.0.1:8882/v1",
+      "researcher_model": "qwen3.6-35b-a3b",
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_ws3b_grpo",
+      "timestamp": "2026-08-17 00:29:16",
+      "source": "runs/classic_ws3b_grpo/launch_manifest_20260817_002916.json",
+      "estimator": "grpo",
+      "norm_adv_by_std": false,
+      "group_size": 16,
+      "train_batch_size": 32,
+      "steered_fraction": null,
+      "alpha_decay_steps": null,
+      "w_beh_mode": null,
+      "eval": {
+        "response_budget": 16384,
+        "temperature": 0.6,
+        "n": 3
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic/classic_webshop_data_v4/test.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": null,
+      "researcher_model": null,
+      "code_revision": "not_recorded"
+    },
+    {
+      "run": "classic_ws3b_pgs",
+      "timestamp": "2026-08-17 00:29:09",
+      "source": "runs/classic_ws3b_pgs/launch_manifest_20260817_002909.json",
+      "estimator": "pgs_asym_grpo",
+      "norm_adv_by_std": false,
+      "group_size": 16,
+      "train_batch_size": 32,
+      "steered_fraction": 0.5,
+      "alpha_decay_steps": 133,
+      "w_beh_mode": "off",
+      "eval": {
+        "response_budget": 16384,
+        "temperature": 0.6,
+        "n": 3
+      },
+      "val_files": [
+        "/fs/fast/u2021000902/wushang/data/classic/classic_webshop_data_v4/test.parquet"
+      ],
+      "reward_from_score": "not_recorded",
+      "researcher_endpoint": "http://HOST_IP:8880/v1,http://HOST_IP:8881/v1",
+      "researcher_model": "qwen3.6-35b-a3b",
+      "code_revision": "not_recorded"
+    }
+  ],
+  "latest_config_comparisons": {
+    "alf3b": {
+      "latest_launch_differences": {
+        "train.adv_estimator": {
+          "pgs": "pgs_asym_grpo",
+          "grpo": "grpo"
+        },
+        "train.agent_task_timeout_s": {
+          "pgs": 5400,
+          "grpo": 3600
+        },
+        "train.experiment_name": {
+          "pgs": "classic_alf3b_pgs",
+          "grpo": "classic_alf3b_grpo"
+        }
+      },
+      "caution": "Latest launch configuration is not a per-checkpoint provenance record."
+    },
+    "alf7b": {
+      "latest_launch_differences": {
+        "train.adv_estimator": {
+          "pgs": "pgs_asym_grpo",
+          "grpo": "grpo"
+        },
+        "train.agent_task_timeout_s": {
+          "pgs": 5400,
+          "grpo": 3600
+        },
+        "train.experiment_name": {
+          "pgs": "classic_alf7b_pgs",
+          "grpo": "classic_alf7b_grpo"
+        }
+      },
+      "caution": "Latest launch configuration is not a per-checkpoint provenance record."
+    },
+    "ws3b": {
+      "latest_launch_differences": {
+        "train.adv_estimator": {
+          "pgs": "pgs_asym_grpo",
+          "grpo": "grpo"
+        },
+        "train.experiment_name": {
+          "pgs": "classic_ws3b_pgs",
+          "grpo": "classic_ws3b_grpo"
+        }
+      },
+      "caution": "Latest launch configuration is not a per-checkpoint provenance record."
+    },
+    "sqa7b": {
+      "latest_launch_differences": {
+        "eval.n": {
+          "pgs": 3,
+          "grpo": 1
+        },
+        "eval.temperature": {
+          "pgs": 0.6,
+          "grpo": 0.0
+        },
+        "train.adv_estimator": {
+          "pgs": "pgs_asym_grpo",
+          "grpo": "grpo"
+        },
+        "train.agent_task_timeout_s": {
+          "pgs": 5400,
+          "grpo": 3600
+        },
+        "train.experiment_name": {
+          "pgs": "classic_sqa7b_pgs",
+          "grpo": "classic_sqa7b_grpo"
+        },
+        "train.save_freq": {
+          "pgs": 20,
+          "grpo": 50
+        },
+        "train.test_freq": {
+          "pgs": 20,
+          "grpo": 50
+        },
+        "train.total_epochs": {
+          "pgs": 1,
+          "grpo": 2
+        },
+        "train.val_files": {
+          "pgs": [
+            "/fs/fast/u2021000902/wushang/data/classic/classic_searchqa_data/val_eq320.parquet"
+          ],
+          "grpo": [
+            "/fs/fast/u2021000902/wushang/data/classic/classic_searchqa_data/val_shuf2048.parquet"
+          ]
+        }
+      },
+      "caution": "Latest launch configuration is not a per-checkpoint provenance record."
+    }
+  },
+  "raw_artifact_counts": {
+    "classic_alf3b_grpo": {
+      "rollout_json": 0,
+      "skill_docs": 0,
+      "research_episodes": 0
+    },
+    "classic_alf3b_pgs": {
+      "rollout_json": 0,
+      "skill_docs": 0,
+      "research_episodes": 0
+    },
+    "classic_alf7b_grpo": {
+      "rollout_json": 0,
+      "skill_docs": 0,
+      "research_episodes": 0
+    },
+    "classic_alf7b_pgs": {
+      "rollout_json": 0,
+      "skill_docs": 0,
+      "research_episodes": 0
+    },
+    "classic_math7b_pgs": {
+      "rollout_json": 0,
+      "skill_docs": 0,
+      "research_episodes": 0
+    },
+    "classic_sqa7b_grpo": {
+      "rollout_json": 0,
+      "skill_docs": 0,
+      "research_episodes": 0
+    },
+    "classic_sqa7b_pgs": {
+      "rollout_json": 0,
+      "skill_docs": 0,
+      "research_episodes": 0
+    },
+    "classic_sqa7b_pgs_legacy0813": {
+      "rollout_json": 0,
+      "skill_docs": 0,
+      "research_episodes": 0
+    },
+    "classic_ssb3b_pgs": {
+      "rollout_json": 0,
+      "skill_docs": 0,
+      "research_episodes": 0
+    },
+    "classic_ws3b_grpo": {
+      "rollout_json": 0,
+      "skill_docs": 0,
+      "research_episodes": 0
+    },
+    "classic_ws3b_pgs": {
+      "rollout_json": 0,
+      "skill_docs": 0,
+      "research_episodes": 0
+    }
+  },
+  "august_main_ppo_logs": 71,
+  "nonempty_august_main_ppo_logs": 0,
+  "ssb_runtime_checks": {
+    "updates": 67,
+    "first": 101,
+    "last": 167,
+    "max_loss_difference": 9.89530235528946e-10,
+    "max_alpha_difference": 5.551115123125783e-17,
+    "max_reward_vs_won_difference": 0.0
+  },
+  "evaluation_replica_anomalies": [
+    {
+      "run": "classic_sqa7b_pgs",
+      "split": "test",
+      "step": 50,
+      "n_traj": 10240,
+      "n_won": 4252,
+      "n_task": 2048,
+      "rate": 0.415234375,
+      "replicas_per_task": 5.0
+    },
+    {
+      "run": "classic_ssb3b_pgs",
+      "split": "valid",
+      "step": 100,
+      "n_traj": 3132,
+      "n_won": 280,
+      "n_task": 522,
+      "rate": 0.08939974457215837,
+      "replicas_per_task": 6.0
+    }
+  ],
+  "evaluation_cautions": [
+    "Aggregate exports do not establish per-checkpoint provenance or statistical significance.",
+    "SQA export has 2048 tasks but late-August PGS manifests use val_eq320; do not pool the eras.",
+    "SQA PGS sampling n=3 temperature=.6 differs from GRPO greedy n=1 temperature=0.",
+    "WebShop arm_series_all.json is score; val_scan_out.csv is won rate.",
+    "No optimizer step or new trained-policy evaluation is performed by this script."
+  ],
+  "synthetic_controls": [
+    {
+      "group_size": 8,
+      "label": "synthetic fixed outcomes; no historical trajectories",
+      "bare_all_fail_guided_all_succeed": {
+        "asymmetric": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "pooled": [
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "all_documents_missing": {
+        "rewards": [
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "assigned_arm_advantages": [
+          -0.6666666865348816,
+          0.6666666269302368,
+          -0.6666666865348816,
+          0.6666666269302368,
+          0.0,
+          0.5,
+          0.0,
+          0.5
+        ],
+        "effective_bare_advantages": [
+          -0.5714285969734192,
+          0.5714285373687744,
+          -0.5714285969734192,
+          0.5714285373687744,
+          -0.5714285969734192,
+          0.5714285373687744,
+          -0.5714285969734192,
+          0.5714285373687744
+        ]
+      },
+      "bare_loo_scale_vs_same_bare_group_mean": 1.3333333333333333
+    },
+    {
+      "group_size": 16,
+      "label": "synthetic fixed outcomes; no historical trajectories",
+      "bare_all_fail_guided_all_succeed": {
+        "asymmetric": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "pooled": [
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          -0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "all_documents_missing": {
+        "rewards": [
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "assigned_arm_advantages": [
+          -0.5714285969734192,
+          0.5714285373687744,
+          -0.5714285969734192,
+          0.5714285373687744,
+          -0.5714285969734192,
+          0.5714285373687744,
+          -0.5714285969734192,
+          0.5714285373687744,
+          0.0,
+          0.5,
+          0.0,
+          0.5,
+          0.0,
+          0.5,
+          0.0,
+          0.5
+        ],
+        "effective_bare_advantages": [
+          -0.5333333611488342,
+          0.5333333015441895,
+          -0.5333333611488342,
+          0.5333333015441895,
+          -0.5333333611488342,
+          0.5333333015441895,
+          -0.5333333611488342,
+          0.5333333015441895,
+          -0.5333333611488342,
+          0.5333333015441895,
+          -0.5333333611488342,
+          0.5333333015441895,
+          -0.5333333611488342,
+          0.5333333015441895,
+          -0.5333333611488342,
+          0.5333333015441895
+        ]
+      },
+      "bare_loo_scale_vs_same_bare_group_mean": 1.1428571428571428
+    }
+  ],
+  "synthetic_partial_reward_control": {
+    "arms": [
+      0,
+      0,
+      1,
+      1
+    ],
+    "scores": [
+      0,
+      0,
+      0.4,
+      0.8
+    ],
+    "binary_advantages": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "score_advantages": [
+      0.0,
+      0.0,
+      0.4000000059604645,
+      0.800000011920929
+    ]
+  },
+  "behavior_importance_counterexample": {
+    "label": "exact enumeration of a synthetic two-action MDP; NOT benchmark training",
+    "student_p": 0.2,
+    "behavior_b": 0.6,
+    "terminal_reward": "1 iff both actions equal 1",
+    "true_on_policy_logit_gradient": [
+      0.03200000000000001,
+      0.03200000000000001
+    ],
+    "estimated_expected_gradients": {
+      "off": [
+        0.288,
+        0.288
+      ],
+      "per_token": [
+        0.09600000286102295,
+        0.09600000286102295
+      ],
+      "per_decision": [
+        0.09600000286102295,
+        0.03200000023841858
+      ],
+      "full_trajectory": [
+        0.032,
+        0.032
+      ]
+    },
+    "conclusion": "Token-local or prefix-only ratios do not in general correct the future terminal reward distribution. Full-trajectory IS is exact here, but may have severe variance in long trajectories."
+  }
+}

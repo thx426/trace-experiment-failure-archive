@@ -1,0 +1,1716 @@
+{
+  "histogram": {
+    "grpo": {
+      "0": 51,
+      "4": 29,
+      "1": 8,
+      "5": 158,
+      "3": 3,
+      "2": 7
+    },
+    "clean": {
+      "5": 193,
+      "0": 42,
+      "1": 6,
+      "4": 7,
+      "3": 4,
+      "2": 4
+    }
+  },
+  "strata": {
+    "low": {
+      "n": 221,
+      "grpo": {
+        "pass1": 0.7013574660633484,
+        "pass5": 0.7737556561085973,
+        "solved": 171
+      },
+      "clean": {
+        "pass1": 0.7692307692307693,
+        "pass5": 0.8144796380090498,
+        "solved": 180
+      },
+      "lost": 9,
+      "new": 18
+    },
+    "middle": {
+      "n": 21,
+      "grpo": {
+        "pass1": 0.9333333333333333,
+        "pass5": 0.9523809523809523,
+        "solved": 20
+      },
+      "clean": {
+        "pass1": 0.9904761904761905,
+        "pass5": 1.0,
+        "solved": 21
+      },
+      "lost": 0,
+      "new": 1
+    },
+    "high": {
+      "n": 14,
+      "grpo": {
+        "pass1": 0.9142857142857143,
+        "pass5": 1.0,
+        "solved": 14
+      },
+      "clean": {
+        "pass1": 0.9285714285714286,
+        "pass5": 0.9285714285714286,
+        "solved": 13
+      },
+      "lost": 1,
+      "new": 0
+    }
+  },
+  "newly_solved": [
+    {
+      "task_id": "webshop_00511",
+      "instruction": "Instruction: Find me women's lingerie, sleep & lounge with long sleeve, tummy control, high waist, short sleeve with color: khaki, and size: large, and price lower than 50.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_00989",
+      "instruction": "Instruction: Find me machine wash men's pants with drawstring closure, elastic waist, polyester spandex with color: navy, and size: large, and price lower than 50.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_01102",
+      "instruction": "Instruction: Find me men's polos with short sleeve, button closure with color: green, and price lower than 20.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 3,
+        "pass_at_5": 0.6008771929824561,
+        "stratum": "middle",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_01987",
+      "instruction": "Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: bright white, and size: x-large, and price lower than 40.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_03021",
+      "instruction": "Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: navy, and fit type: men, and size: xx-large, and price lower than 40.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_03404",
+      "instruction": "Instruction: Find me men's shorts with comfortable fit, elastic waistband for gym workout, daily wear with color: black 1, and size: xx-large, and price lower than 40.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_03538",
+      "instruction": "Instruction: Find me officially licensed, machine wash men's t-shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: baby blue, and fit type: youth, and size: 3t, and price lower than 50.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_03561",
+      "instruction": "Instruction: Find me officially licensed, machine wash men's t-shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: 3t, and price lower than 50.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_03993",
+      "instruction": "Instruction: Find me eco friendly decorative pillows for living room with color: love heart flower, and price lower than 40.00 dollars",
+      "clean_100_k": 2,
+      "grpo_100_k": 0,
+      "delta_k": 2,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 1,
+        "pass_at_5": 0.25,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_04378",
+      "instruction": "Instruction: Find me soy free, plant based, dairy free, non gmo, gluten free wasabi peas with artificial flavors with flavor: 3-flavor variety, and size: 0.8 ounce (pack of 20), and price lower than 50.00 dollars",
+      "clean_100_k": 4,
+      "grpo_100_k": 0,
+      "delta_k": 4,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_04477",
+      "instruction": "Instruction: Find me wash cold, hand wash, machine wash men's t-shirts & tanks with color: silver 2, and size: x-large, and price lower than 60.00 dollars",
+      "clean_100_k": 1,
+      "grpo_100_k": 0,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_04565",
+      "instruction": "Instruction: Find me officially licensed, machine wash men's t-shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: white, and fit type: youth, and size: 3t, and price lower than 50.00 dollars",
+      "clean_100_k": 4,
+      "grpo_100_k": 0,
+      "delta_k": 4,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_04587",
+      "instruction": "Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: women, and size: 3t, and price lower than 50.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_04726",
+      "instruction": "Instruction: Find me knee high, open toe women's loafers & slip-ons with steel toe, high heel, faux fur, arch support with color: black, and size: 9, and price lower than 30.00 dollars",
+      "clean_100_k": 4,
+      "grpo_100_k": 0,
+      "delta_k": 4,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_04792",
+      "instruction": "Instruction: Find me slim fit men's suits & sport coats with button closure, classic fit with color: green, and size: x-small, and price lower than 90.00 dollars",
+      "clean_100_k": 2,
+      "grpo_100_k": 0,
+      "delta_k": 2,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_05152",
+      "instruction": "Instruction: Find me men's fashion sneakers with lace closure, rubber outsole, rubber sole with color: white | black, and size: 11, and price lower than 60.00 dollars",
+      "clean_100_k": 1,
+      "grpo_100_k": 0,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_05219",
+      "instruction": "Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: men, and size: x-large, and price lower than 30.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_06171",
+      "instruction": "Instruction: Find me men's shorts with elastic waist, classic fit, short sleeve for gym workout with color: navy, and size: small, and price lower than 50.00 dollars",
+      "clean_100_k": 1,
+      "grpo_100_k": 0,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 1,
+        "pass_at_5": 0.25,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_06667",
+      "instruction": "Instruction: Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: rectangular, and size: 21 in x 35 in, and price lower than 60.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    }
+  ],
+  "lost": [
+    {
+      "task_id": "webshop_00985",
+      "instruction": "Instruction: Find me machine washable men's t-shirts with short sleeve for tumble dry with color: 12 pack tank top undershirts, and size: medium, and price lower than 160.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 5,
+      "delta_k": -5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_01705",
+      "instruction": "Instruction: Find me home office furniture sets for dining room, living room with color: navy-multi, and item shape: runner, and size: 7 ft 8 in x 10 ft 7 in, and price lower than 60.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 5,
+      "delta_k": -5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_02397",
+      "instruction": "Instruction: Find me officially licensed, machine wash men's t-shirts & tanks with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: women, and size: x-large, and price lower than 60.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 5,
+      "delta_k": -5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_02839",
+      "instruction": "Instruction: Find me men's t-shirts & tanks with short sleeve, fashion design, long sleeve, button closure with color: a-red, and size: 5x-large, and price lower than 50.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 2,
+      "delta_k": -2,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_03385",
+      "instruction": "Instruction: Find me machine wash women's swimsuits & cover ups with tummy control, high waist with color: green, and size: small, and price lower than 40.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 5,
+      "delta_k": -5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 2,
+        "pass_at_5": 0.4473684210526315,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_03571",
+      "instruction": "Instruction: Find me slim fit men's henleys with short sleeve with color: 158- purple, and size: large, and price lower than 40.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 4,
+      "delta_k": -4,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_04195",
+      "instruction": "Instruction: Find me long lasting, white item table lamps for living room with color: black, and price lower than 60.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 1,
+      "delta_k": -1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 6,
+        "pass_at_5": 0.8708720330237358,
+        "stratum": "high",
+        "skill_eligible": false
+      }
+    },
+    {
+      "task_id": "webshop_04717",
+      "instruction": "Instruction: Find me hand wash, machine wash women's sweaters with long sleeve, unique design with color: black, and size: medium, and price lower than 50.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 5,
+      "delta_k": -5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_05317",
+      "instruction": "Instruction: Find me machine wash, wash cold women's fashion hoodies & sweatshirts for dry clean, tumble dry with color: red, and size: large, and price lower than 70.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 2,
+      "delta_k": -2,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 2,
+        "pass_at_5": 0.4473684210526315,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_06752",
+      "instruction": "Instruction: Find me machine wash men's t-shirts with long sleeve with color: black, and size: 4x-large big tall, and price lower than 70.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 5,
+      "delta_k": -5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    }
+  ],
+  "improved": [
+    {
+      "task_id": "webshop_00511",
+      "instruction": "Instruction: Find me women's lingerie, sleep & lounge with long sleeve, tummy control, high waist, short sleeve with color: khaki, and size: large, and price lower than 50.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_00529",
+      "instruction": "Instruction: Find me machine washable, hand wash, machine wash women's pants with tummy control, high waist for daily wear with size: x-large, and price lower than 30.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_00545",
+      "instruction": "Instruction: Find me slip resistant, non slip men's loafers & slip-ons with rubber outsole, rubber sole with color: 228black, and size: 10.5, and price lower than 70.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_00665",
+      "instruction": "Instruction: Find me slim fit, loose fit men's tuxedo shirts with long sleeve, short sleeve, contrast color, classic fit for teen girls with color: b-bk1, and size: large, and price lower than 30.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_00671",
+      "instruction": "Instruction: Find me slim fit, hand wash, machine wash men's tuxedo shirts with short sleeve, regular fit, long sleeve, polyester cotton for gym workout with color: black, and size: medium, and price lower than 30.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 3,
+      "delta_k": 2,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_00724",
+      "instruction": "Instruction: Find me slim fit, loose fit women's tops, tees & blouses with long sleeve, short sleeve with color: a01#purple, and size: x-large, and price lower than 40.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_00878",
+      "instruction": "Instruction: Find me loose fit women's tops, tees & blouses with short sleeve, long sleeve with color: b3-wine, and size: small, and price lower than 30.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 2,
+      "delta_k": 3,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 1,
+        "pass_at_5": 0.25,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_00950",
+      "instruction": "Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: estate blue, and size: xx-large, and price lower than 40.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_00989",
+      "instruction": "Instruction: Find me machine wash men's pants with drawstring closure, elastic waist, polyester spandex with color: navy, and size: large, and price lower than 50.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_01102",
+      "instruction": "Instruction: Find me men's polos with short sleeve, button closure with color: green, and price lower than 20.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 3,
+        "pass_at_5": 0.6008771929824561,
+        "stratum": "middle",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_01284",
+      "instruction": "Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: barolo, and size: 5x-large tall, and price lower than 40.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 1,
+        "pass_at_5": 0.25,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_01628",
+      "instruction": "Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: baby blue, and fit type: women, and size: xx-large, and price lower than 30.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_01649",
+      "instruction": "Instruction: Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-blue, and size: medium, and price lower than 40.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 3,
+        "pass_at_5": 0.6008771929824561,
+        "stratum": "middle",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_01838",
+      "instruction": "Instruction: Find me height adjustable dining tables with glass shade, contemporary design, clear glass for dining room with color: black and brass, and price lower than 230.00 dollars",
+      "clean_100_k": 3,
+      "grpo_100_k": 1,
+      "delta_k": 2,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 1,
+        "pass_at_5": 0.25,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_01987",
+      "instruction": "Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: bright white, and size: x-large, and price lower than 40.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_02020",
+      "instruction": "Instruction: Find me machine wash men's t-shirts & tanks with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: women, and size: x-large, and price lower than 40.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_02137",
+      "instruction": "Instruction: Find me machine washable window coverings for living room with color: sea mist, and size: 52\"w x 96\"l, and price lower than 50.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_02158",
+      "instruction": "Instruction: Find me wall mounted decorative mirrors for living room with size: 40x40cm | 15.7x15.7in, and price lower than 130.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 1,
+        "pass_at_5": 0.25,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_02378",
+      "instruction": "Instruction: Find me men's t-shirts & tanks with needle sleeve, classic fit with color: black, and fit type: women, and size: x-large, and price lower than 40.00 dollars",
+      "clean_100_k": 4,
+      "grpo_100_k": 2,
+      "delta_k": 2,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_02399",
+      "instruction": "Instruction: Find me height adjustable, high density, easy install, easy assemble home office chairs for living room with color: type 2-grey pu, and price lower than 130.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 1,
+        "pass_at_5": 0.25,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_02530",
+      "instruction": "Instruction: Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo1780, and size: 39x49in, and price lower than 50.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_02558",
+      "instruction": "Instruction: Find me home office furniture sets for dining room, living room with color: taupe | orange, and item shape: runner, and size: 7 ft 9 in x 10 ft 8 in, and price lower than 60.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_02607",
+      "instruction": "Instruction: Find me slip resistant, non slip men's loafers & slip-ons with rubber outsole, rubber sole with color: black137, and size: 11, and price lower than 70.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 3,
+      "delta_k": 2,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_02779",
+      "instruction": "Instruction: Find me non slip, easy install ottomans with faux leather with size: 100x40x40cm, and price lower than 170.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 8,
+        "pass_at_5": 0.9489164086687306,
+        "stratum": "high",
+        "skill_eligible": false
+      }
+    },
+    {
+      "task_id": "webshop_02926",
+      "instruction": "Instruction: Find me machine wash women's pants with elastic waist with color: victory crimson, and size: xx-small, and price lower than 40.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_02955",
+      "instruction": "Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: women, and size: 4t, and price lower than 50.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 1,
+      "delta_k": 4,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_03021",
+      "instruction": "Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: navy, and fit type: men, and size: xx-large, and price lower than 40.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_03404",
+      "instruction": "Instruction: Find me men's shorts with comfortable fit, elastic waistband for gym workout, daily wear with color: black 1, and size: xx-large, and price lower than 40.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_03477",
+      "instruction": "Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: navy, and fit type: women, and size: large, and price lower than 30.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 2,
+      "delta_k": 3,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_03538",
+      "instruction": "Instruction: Find me officially licensed, machine wash men's t-shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: baby blue, and fit type: youth, and size: 3t, and price lower than 50.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_03561",
+      "instruction": "Instruction: Find me officially licensed, machine wash men's t-shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: 3t, and price lower than 50.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_03631",
+      "instruction": "Instruction: Find me machine wash men's t-shirts & tanks with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: women, and size: small, and price lower than 40.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 1,
+      "delta_k": 4,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_03664",
+      "instruction": "Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: delft, and size: xx-large, and price lower than 40.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 1,
+      "delta_k": 4,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_03993",
+      "instruction": "Instruction: Find me eco friendly decorative pillows for living room with color: love heart flower, and price lower than 40.00 dollars",
+      "clean_100_k": 2,
+      "grpo_100_k": 0,
+      "delta_k": 2,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 1,
+        "pass_at_5": 0.25,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_04027",
+      "instruction": "Instruction: Find me high performance, high speed flashes with color: blue, and size: 512mb, and price lower than 130.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_04378",
+      "instruction": "Instruction: Find me soy free, plant based, dairy free, non gmo, gluten free wasabi peas with artificial flavors with flavor: 3-flavor variety, and size: 0.8 ounce (pack of 20), and price lower than 50.00 dollars",
+      "clean_100_k": 4,
+      "grpo_100_k": 0,
+      "delta_k": 4,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_04477",
+      "instruction": "Instruction: Find me wash cold, hand wash, machine wash men's t-shirts & tanks with color: silver 2, and size: x-large, and price lower than 60.00 dollars",
+      "clean_100_k": 1,
+      "grpo_100_k": 0,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_04507",
+      "instruction": "Instruction: Find me loose fit, day comfort, hand wash women's tops, tees & blouses with short sleeve, polyester spandex for teen girls with color: a1-gray, and size: large, and price lower than 40.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 3,
+        "pass_at_5": 0.6008771929824561,
+        "stratum": "middle",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_04565",
+      "instruction": "Instruction: Find me officially licensed, machine wash men's t-shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: white, and fit type: youth, and size: 3t, and price lower than 50.00 dollars",
+      "clean_100_k": 4,
+      "grpo_100_k": 0,
+      "delta_k": 4,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_04587",
+      "instruction": "Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: women, and size: 3t, and price lower than 50.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_04726",
+      "instruction": "Instruction: Find me knee high, open toe women's loafers & slip-ons with steel toe, high heel, faux fur, arch support with color: black, and size: 9, and price lower than 30.00 dollars",
+      "clean_100_k": 4,
+      "grpo_100_k": 0,
+      "delta_k": 4,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_04792",
+      "instruction": "Instruction: Find me slim fit men's suits & sport coats with button closure, classic fit with color: green, and size: x-small, and price lower than 90.00 dollars",
+      "clean_100_k": 2,
+      "grpo_100_k": 0,
+      "delta_k": 2,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_04827",
+      "instruction": "Instruction: Find me officially licensed, machine wash men's t-shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: silver, and fit type: women, and size: 2t, and price lower than 50.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 1,
+      "delta_k": 4,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 1,
+        "pass_at_5": 0.25,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_05152",
+      "instruction": "Instruction: Find me men's fashion sneakers with lace closure, rubber outsole, rubber sole with color: white | black, and size: 11, and price lower than 60.00 dollars",
+      "clean_100_k": 1,
+      "grpo_100_k": 0,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_05219",
+      "instruction": "Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: men, and size: x-large, and price lower than 30.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_05310",
+      "instruction": "Instruction: Find me slim fit, machine wash women's jumpsuits, rompers & overalls with short sleeve, high waist, polyester spandex for daily wear with color: letter blue, and size: small, and price lower than 50.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 1,
+        "pass_at_5": 0.25,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_05463",
+      "instruction": "Instruction: Find me machine washable men's t-shirts with short sleeve for tumble dry with color: 36 pack mix, and size: 3x-large, and price lower than 160.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 1,
+        "pass_at_5": 0.25,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_05596",
+      "instruction": "Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: noon blue, and size: 3x, and price lower than 40.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_05687",
+      "instruction": "Instruction: Find me hands free flashes with usb port, and price lower than 100.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 10,
+        "pass_at_5": 0.9837461300309598,
+        "stratum": "high",
+        "skill_eligible": false
+      }
+    },
+    {
+      "task_id": "webshop_05798",
+      "instruction": "Instruction: Find me slim fit, loose fit men's tuxedo shirts with long sleeve, short sleeve, contrast color, classic fit for teen girls with color: a-bk1, and size: x-large, and price lower than 30.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 2,
+      "delta_k": 3,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_05859",
+      "instruction": "Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: kelly green, and fit type: women, and size: xx-large, and price lower than 30.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_05873",
+      "instruction": "Instruction: Find me home office furniture sets for dining room, living room with color: blue, and item shape: round, and size: 9 ft 2 in x 12 ft 5 in, and price lower than 60.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_06171",
+      "instruction": "Instruction: Find me men's shorts with elastic waist, classic fit, short sleeve for gym workout with color: navy, and size: small, and price lower than 50.00 dollars",
+      "clean_100_k": 1,
+      "grpo_100_k": 0,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 1,
+        "pass_at_5": 0.25,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_06275",
+      "instruction": "Instruction: Find me slip resistant, non slip men's loafers & slip-ons with rubber outsole, rubber sole with color: black2070, and size: 10, and price lower than 70.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 1,
+        "pass_at_5": 0.25,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_06458",
+      "instruction": "Instruction: Find me slip resistant, non slip men's loafers & slip-ons with rubber outsole, rubber sole with color: 228blue, and size: 8, and price lower than 70.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 4,
+      "delta_k": 1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_06502",
+      "instruction": "Instruction: Find me loose fit, day comfort, hand wash women's tops, tees & blouses with short sleeve, polyester spandex for teen girls with color: b15-red, and size: small, and price lower than 40.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 3,
+      "delta_k": 2,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 1,
+        "pass_at_5": 0.25,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_06542",
+      "instruction": "Instruction: Find me quick drying, moisture wicking women's activewear with long sleeve with color: b-green-thumbhole, and size: xx-large, and price lower than 40.00 dollars",
+      "clean_100_k": 3,
+      "grpo_100_k": 1,
+      "delta_k": 2,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 2,
+        "pass_at_5": 0.4473684210526315,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_06667",
+      "instruction": "Instruction: Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: rectangular, and size: 21 in x 35 in, and price lower than 60.00 dollars",
+      "clean_100_k": 5,
+      "grpo_100_k": 0,
+      "delta_k": 5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    }
+  ],
+  "regressed": [
+    {
+      "task_id": "webshop_00985",
+      "instruction": "Instruction: Find me machine washable men's t-shirts with short sleeve for tumble dry with color: 12 pack tank top undershirts, and size: medium, and price lower than 160.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 5,
+      "delta_k": -5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_01075",
+      "instruction": "Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: charcoal heather (dark), and size: xx-large tall, and price lower than 40.00 dollars",
+      "clean_100_k": 4,
+      "grpo_100_k": 5,
+      "delta_k": -1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 4,
+        "pass_at_5": 0.7182662538699691,
+        "stratum": "middle",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_01159",
+      "instruction": "Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: charcoal heather (dark), and size: 3x, and price lower than 40.00 dollars",
+      "clean_100_k": 1,
+      "grpo_100_k": 5,
+      "delta_k": -4,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 1,
+        "pass_at_5": 0.25,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_01705",
+      "instruction": "Instruction: Find me home office furniture sets for dining room, living room with color: navy-multi, and item shape: runner, and size: 7 ft 8 in x 10 ft 7 in, and price lower than 60.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 5,
+      "delta_k": -5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_02060",
+      "instruction": "Instruction: Find me home office furniture sets for dining room, living room with color: taupe | orange, and item shape: runner, and size: 7 ft 8 in x 10 ft 7 in, and price lower than 60.00 dollars",
+      "clean_100_k": 2,
+      "grpo_100_k": 5,
+      "delta_k": -3,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_02086",
+      "instruction": "Instruction: Find me slim fit, loose fit women's tops, tees & blouses with long sleeve, short sleeve with color: a01#sky blue, and size: small, and price lower than 40.00 dollars",
+      "clean_100_k": 4,
+      "grpo_100_k": 5,
+      "delta_k": -1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_02397",
+      "instruction": "Instruction: Find me officially licensed, machine wash men's t-shirts & tanks with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: women, and size: x-large, and price lower than 60.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 5,
+      "delta_k": -5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_02839",
+      "instruction": "Instruction: Find me men's t-shirts & tanks with short sleeve, fashion design, long sleeve, button closure with color: a-red, and size: 5x-large, and price lower than 50.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 2,
+      "delta_k": -2,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_02945",
+      "instruction": "Instruction: Find me machine wash men's tuxedo shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: x-large, and price lower than 40.00 dollars",
+      "clean_100_k": 4,
+      "grpo_100_k": 5,
+      "delta_k": -1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 1,
+        "pass_at_5": 0.25,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_03385",
+      "instruction": "Instruction: Find me machine wash women's swimsuits & cover ups with tummy control, high waist with color: green, and size: small, and price lower than 40.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 5,
+      "delta_k": -5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 2,
+        "pass_at_5": 0.4473684210526315,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_03571",
+      "instruction": "Instruction: Find me slim fit men's henleys with short sleeve with color: 158- purple, and size: large, and price lower than 40.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 4,
+      "delta_k": -4,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_04008",
+      "instruction": "Instruction: Find me machine wash men's tuxedo shirts with cotton heather, needle sleeve, classic fit with color: navy | athletic heather, and fit type: women, and size: xx-large, and price lower than 60.00 dollars",
+      "clean_100_k": 3,
+      "grpo_100_k": 5,
+      "delta_k": -2,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_04195",
+      "instruction": "Instruction: Find me long lasting, white item table lamps for living room with color: black, and price lower than 60.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 1,
+      "delta_k": -1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 6,
+        "pass_at_5": 0.8708720330237358,
+        "stratum": "high",
+        "skill_eligible": false
+      }
+    },
+    {
+      "task_id": "webshop_04717",
+      "instruction": "Instruction: Find me hand wash, machine wash women's sweaters with long sleeve, unique design with color: black, and size: medium, and price lower than 50.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 5,
+      "delta_k": -5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_05317",
+      "instruction": "Instruction: Find me machine wash, wash cold women's fashion hoodies & sweatshirts for dry clean, tumble dry with color: red, and size: large, and price lower than 70.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 2,
+      "delta_k": -2,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 2,
+        "pass_at_5": 0.4473684210526315,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_05397",
+      "instruction": "Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: purple, and fit type: women, and size: x-large, and price lower than 40.00 dollars",
+      "clean_100_k": 3,
+      "grpo_100_k": 4,
+      "delta_k": -1,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_05863",
+      "instruction": "Instruction: Find me machine wash men's t-shirts with long sleeve with color: country, and size: medium, and price lower than 70.00 dollars",
+      "clean_100_k": 1,
+      "grpo_100_k": 4,
+      "delta_k": -3,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    },
+    {
+      "task_id": "webshop_06752",
+      "instruction": "Instruction: Find me machine wash men's t-shirts with long sleeve with color: black, and size: 4x-large big tall, and price lower than 70.00 dollars",
+      "clean_100_k": 0,
+      "grpo_100_k": 5,
+      "delta_k": -5,
+      "initial_gate": {
+        "split": "dev",
+        "n": 20,
+        "c": 0,
+        "pass_at_5": 0.0,
+        "stratum": "low",
+        "skill_eligible": true
+      }
+    }
+  ],
+  "transition_matrix_grpo_rows_clean_columns": [
+    [
+      32,
+      3,
+      2,
+      0,
+      3,
+      11
+    ],
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      4
+    ],
+    [
+      2,
+      0,
+      1,
+      0,
+      1,
+      3
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      3
+    ],
+    [
+      1,
+      1,
+      0,
+      1,
+      0,
+      26
+    ],
+    [
+      6,
+      1,
+      1,
+      1,
+      3,
+      146
+    ]
+  ],
+  "success_delta_decomposition": {
+    "newly_solved_attempts": 74,
+    "lost_attempts": -39,
+    "both_solved_net_attempts": 47
+  },
+  "paired_task_bootstrap_95ci_pp": {
+    "pass1": [
+      2.421875000000001,
+      10.390624999999995
+    ],
+    "pass5": [
+      -0.390625,
+      7.8125
+    ]
+  },
+  "mcnemar_exact_two_sided_pass5": 0.13604594767093658
+}

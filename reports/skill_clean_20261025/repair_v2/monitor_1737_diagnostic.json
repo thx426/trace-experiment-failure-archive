@@ -1,0 +1,1786 @@
+{
+  "checked_at": "2026-10-25T17:37:25.399348+08:00",
+  "error_time": "2026-10-25T17:12:32+08:00",
+  "candidate_records": [
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543425.jsonl",
+      "line": 381,
+      "ts": 1792919552.4183378,
+      "ctx": "research:webshop_06496:turn04",
+      "finish_reason": "stop",
+      "latency_s": 19.323,
+      "usage": {
+        "prompt_tokens": 2362,
+        "completion_tokens": 232
+      },
+      "error": null,
+      "tools": [],
+      "parameter_headers": [
+        "<parameter=guiding",
+        "<parameter=k>"
+      ],
+      "function_names": [
+        "run_experiment"
+      ]
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543421.jsonl",
+      "line": 374,
+      "ts": 1792919550.4021752,
+      "ctx": "research:webshop_04076:turn03",
+      "finish_reason": "tool_calls",
+      "latency_s": 50.394,
+      "usage": {
+        "prompt_tokens": 2459,
+        "completion_tokens": 599
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543414.jsonl",
+      "line": 400,
+      "ts": 1792919550.9864237,
+      "ctx": "research:webshop_04518:turn05",
+      "finish_reason": "tool_calls",
+      "latency_s": 23.715,
+      "usage": {
+        "prompt_tokens": 2483,
+        "completion_tokens": 287
+      },
+      "error": null,
+      "tools": [
+        "fetch_raw"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543423.jsonl",
+      "line": 339,
+      "ts": 1792919550.4002914,
+      "ctx": "research:webshop_06493:turn02",
+      "finish_reason": "tool_calls",
+      "latency_s": 85.176,
+      "usage": {
+        "prompt_tokens": 1948,
+        "completion_tokens": 988
+      },
+      "error": null,
+      "tools": [
+        "finalize"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    }
+  ],
+  "followup": [
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543425.jsonl",
+      "line": 378,
+      "ts": 1792919467.8668792,
+      "ctx": "research:webshop_06496:turn01",
+      "finish_reason": "tool_calls",
+      "latency_s": 20.632,
+      "usage": {
+        "prompt_tokens": 950,
+        "completion_tokens": 220
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543425.jsonl",
+      "line": 379,
+      "ts": 1792919486.6029904,
+      "ctx": "research:webshop_06496:turn02",
+      "finish_reason": "tool_calls",
+      "latency_s": 14.792,
+      "usage": {
+        "prompt_tokens": 1978,
+        "completion_tokens": 168
+      },
+      "error": null,
+      "tools": [
+        "fetch_raw"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543425.jsonl",
+      "line": 380,
+      "ts": 1792919529.4921255,
+      "ctx": "research:webshop_06496:turn03",
+      "finish_reason": "tool_calls",
+      "latency_s": 42.856,
+      "usage": {
+        "prompt_tokens": 1918,
+        "completion_tokens": 489
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543425.jsonl",
+      "line": 381,
+      "ts": 1792919552.4183378,
+      "ctx": "research:webshop_06496:turn04",
+      "finish_reason": "stop",
+      "latency_s": 19.323,
+      "usage": {
+        "prompt_tokens": 2362,
+        "completion_tokens": 232
+      },
+      "error": null,
+      "tools": [],
+      "parameter_headers": [
+        "<parameter=guiding",
+        "<parameter=k>"
+      ],
+      "function_names": [
+        "run_experiment"
+      ]
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543425.jsonl",
+      "line": 382,
+      "ts": 1792919567.3348796,
+      "ctx": "research:webshop_06496:turn05",
+      "finish_reason": "tool_calls",
+      "latency_s": 14.894,
+      "usage": {
+        "prompt_tokens": 1867,
+        "completion_tokens": 174
+      },
+      "error": null,
+      "tools": [
+        "fetch_raw"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543425.jsonl",
+      "line": 383,
+      "ts": 1792919656.5952735,
+      "ctx": "research:webshop_06496:turn06",
+      "finish_reason": "tool_calls",
+      "latency_s": 89.227,
+      "usage": {
+        "prompt_tokens": 2302,
+        "completion_tokens": 1068
+      },
+      "error": null,
+      "tools": [
+        "finalize"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543412.jsonl",
+      "line": 389,
+      "ts": 1792919871.1189785,
+      "ctx": "research:webshop_05016:turn01",
+      "finish_reason": "tool_calls",
+      "latency_s": 12.479,
+      "usage": {
+        "prompt_tokens": 933,
+        "completion_tokens": 133
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543412.jsonl",
+      "line": 390,
+      "ts": 1792919893.4147203,
+      "ctx": "research:webshop_05016:turn02",
+      "finish_reason": "tool_calls",
+      "latency_s": 17.663,
+      "usage": {
+        "prompt_tokens": 1951,
+        "completion_tokens": 198
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543412.jsonl",
+      "line": 391,
+      "ts": 1792919955.1335073,
+      "ctx": "research:webshop_05016:turn03",
+      "finish_reason": "tool_calls",
+      "latency_s": 58.617,
+      "usage": {
+        "prompt_tokens": 2323,
+        "completion_tokens": 689
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543412.jsonl",
+      "line": 392,
+      "ts": 1792920000.073761,
+      "ctx": "research:webshop_05016:turn04",
+      "finish_reason": "stop",
+      "latency_s": 40.967,
+      "usage": {
+        "prompt_tokens": 2499,
+        "completion_tokens": 491
+      },
+      "error": null,
+      "tools": [],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543412.jsonl",
+      "line": 393,
+      "ts": 1792920051.6579697,
+      "ctx": "research:webshop_05016:turn05",
+      "finish_reason": "tool_calls",
+      "latency_s": 51.559,
+      "usage": {
+        "prompt_tokens": 2004,
+        "completion_tokens": 614
+      },
+      "error": null,
+      "tools": [
+        "fetch_raw"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543412.jsonl",
+      "line": 394,
+      "ts": 1792920053.5733163,
+      "ctx": "research:webshop_05016:turn06",
+      "finish_reason": "stop",
+      "latency_s": 1.883,
+      "usage": {
+        "prompt_tokens": 2439,
+        "completion_tokens": 20
+      },
+      "error": null,
+      "tools": [],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543412.jsonl",
+      "line": 395,
+      "ts": 1792920080.5744298,
+      "ctx": "research:webshop_05016:turn07",
+      "finish_reason": "tool_calls",
+      "latency_s": 26.973,
+      "usage": {
+        "prompt_tokens": 2004,
+        "completion_tokens": 319
+      },
+      "error": null,
+      "tools": [
+        "fetch_raw"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543412.jsonl",
+      "line": 396,
+      "ts": 1792920408.5556479,
+      "ctx": "research:webshop_05016:turn08",
+      "finish_reason": "length",
+      "latency_s": 327.945,
+      "usage": {
+        "prompt_tokens": 2332,
+        "completion_tokens": 4096
+      },
+      "error": null,
+      "tools": [],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543421.jsonl",
+      "line": 372,
+      "ts": 1792919460.9624991,
+      "ctx": "research:webshop_04076:turn01",
+      "finish_reason": "tool_calls",
+      "latency_s": 13.728,
+      "usage": {
+        "prompt_tokens": 956,
+        "completion_tokens": 148
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543421.jsonl",
+      "line": 373,
+      "ts": 1792919496.2679603,
+      "ctx": "research:webshop_04076:turn02",
+      "finish_reason": "tool_calls",
+      "latency_s": 30.782,
+      "usage": {
+        "prompt_tokens": 2235,
+        "completion_tokens": 342
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543421.jsonl",
+      "line": 374,
+      "ts": 1792919550.4021752,
+      "ctx": "research:webshop_04076:turn03",
+      "finish_reason": "tool_calls",
+      "latency_s": 50.394,
+      "usage": {
+        "prompt_tokens": 2459,
+        "completion_tokens": 599
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543421.jsonl",
+      "line": 375,
+      "ts": 1792919635.0846417,
+      "ctx": "research:webshop_04076:turn04",
+      "finish_reason": "tool_calls",
+      "latency_s": 80.247,
+      "usage": {
+        "prompt_tokens": 2274,
+        "completion_tokens": 958
+      },
+      "error": null,
+      "tools": [
+        "finalize"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543414.jsonl",
+      "line": 396,
+      "ts": 1792919461.2923884,
+      "ctx": "research:webshop_04518:turn01",
+      "finish_reason": "tool_calls",
+      "latency_s": 14.082,
+      "usage": {
+        "prompt_tokens": 932,
+        "completion_tokens": 153
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543414.jsonl",
+      "line": 397,
+      "ts": 1792919488.1777346,
+      "ctx": "research:webshop_04518:turn02",
+      "finish_reason": "tool_calls",
+      "latency_s": 23.375,
+      "usage": {
+        "prompt_tokens": 1953,
+        "completion_tokens": 261
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543414.jsonl",
+      "line": 398,
+      "ts": 1792919502.602594,
+      "ctx": "research:webshop_04518:turn03",
+      "finish_reason": "tool_calls",
+      "latency_s": 11.712,
+      "usage": {
+        "prompt_tokens": 2323,
+        "completion_tokens": 129
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543414.jsonl",
+      "line": 399,
+      "ts": 1792919527.2229073,
+      "ctx": "research:webshop_04518:turn04",
+      "finish_reason": "tool_calls",
+      "latency_s": 20.922,
+      "usage": {
+        "prompt_tokens": 2063,
+        "completion_tokens": 245
+      },
+      "error": null,
+      "tools": [
+        "fetch_raw"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543414.jsonl",
+      "line": 400,
+      "ts": 1792919550.9864237,
+      "ctx": "research:webshop_04518:turn05",
+      "finish_reason": "tool_calls",
+      "latency_s": 23.715,
+      "usage": {
+        "prompt_tokens": 2483,
+        "completion_tokens": 287
+      },
+      "error": null,
+      "tools": [
+        "fetch_raw"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543414.jsonl",
+      "line": 401,
+      "ts": 1792919597.5096257,
+      "ctx": "research:webshop_04518:turn06",
+      "finish_reason": "tool_calls",
+      "latency_s": 46.468,
+      "usage": {
+        "prompt_tokens": 2376,
+        "completion_tokens": 551
+      },
+      "error": null,
+      "tools": [
+        "finalize"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543423.jsonl",
+      "line": 338,
+      "ts": 1792919460.0269315,
+      "ctx": "research:webshop_06493:turn01",
+      "finish_reason": "tool_calls",
+      "latency_s": 12.791,
+      "usage": {
+        "prompt_tokens": 939,
+        "completion_tokens": 135
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543423.jsonl",
+      "line": 339,
+      "ts": 1792919550.4002914,
+      "ctx": "research:webshop_06493:turn02",
+      "finish_reason": "tool_calls",
+      "latency_s": 85.176,
+      "usage": {
+        "prompt_tokens": 1948,
+        "completion_tokens": 988
+      },
+      "error": null,
+      "tools": [
+        "finalize"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    }
+  ],
+  "metadata": [
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/research/webshop_06493--48e0481eaa/20261025_171230_v88/meta.json",
+      "task_id": "webshop_06493",
+      "ts": 1792919550.4024231,
+      "policy_version": 88,
+      "global_step": 89,
+      "finalized": true,
+      "no_finalize": false,
+      "turns_used": 2,
+      "experiments_used": 1,
+      "episodes_consumed": 2,
+      "doc_words": 274,
+      "self_assessment": "{\"version\": \"webshop_clean_skill_v2\", \"origin\": \"researcher_finalized\", \"required_options\": {\"color\": \"halloweengoo7556\", \"size\": \"39x49in\"}, \"source\": \"public_task_and_mechanical_episode_evidence\", \"successes\": 2, \"invalid_actions\": 0, \"repeated_pairs\": 3, \"candidate_query\": null, \"free_form_prose_forwarded\": false, \"words\": 274}",
+      "flags": [
+        "clean_skill_v2",
+        "researcher_finalized"
+      ],
+      "last_exp_successes": 2,
+      "last_exp_attempts": 2,
+      "guidance_log": [
+        {
+          "ts": 1792919460.0274606,
+          "experiment_idx": 1,
+          "guidance_hash": "aaa62e0a63af",
+          "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"halloweengoo7556\", \"size\": \"39x49in\"}.\n\nPreserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.\n\nWHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.\n\nWHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.\n\nWHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.\n\nTrack successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.\n\nWHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.\n\nWHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.\n\n# Evidence and recovery\n\nCandidate search query: \"eco friendly throw blankets fleece\". Untested retrieval suggestion; verify current results.\n\nNo successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.",
+          "episodes_before": 0,
+          "k": 2,
+          "new_version": true
+        }
+      ],
+      "session_error": null,
+      "researcher_prompt_tokens": 2887,
+      "researcher_completion_tokens": 1123,
+      "researcher_model": "qwen3.6-35b-a3b",
+      "tool_protocol": "fncall",
+      "narration_backend": "engine",
+      "gt": "off",
+      "gt_injected": false,
+      "research_wall_s": 103.25348630174994,
+      "error": null
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/research/webshop_04076--ce9f1bb7bd/20261025_171355_v88/meta.json",
+      "task_id": "webshop_04076",
+      "ts": 1792919635.0887868,
+      "policy_version": 88,
+      "global_step": 89,
+      "finalized": true,
+      "no_finalize": false,
+      "turns_used": 4,
+      "experiments_used": 3,
+      "episodes_consumed": 12,
+      "doc_words": 297,
+      "self_assessment": "{\"version\": \"webshop_clean_skill_v2\", \"origin\": \"researcher_finalized\", \"required_options\": {\"color\": \"heather grey\", \"fit type\": \"women\", \"size\": \"3x-large\"}, \"source\": \"public_task_and_mechanical_episode_evidence\", \"successes\": 0, \"invalid_actions\": 0, \"repeated_pairs\": 4, \"candidate_query\": null, \"free_form_prose_forwarded\": false, \"words\": 297}",
+      "flags": [
+        "clean_skill_v2",
+        "researcher_finalized"
+      ],
+      "last_exp_successes": 0,
+      "last_exp_attempts": 4,
+      "guidance_log": [
+        {
+          "ts": 1792919460.963007,
+          "experiment_idx": 1,
+          "guidance_hash": "f48efbd6b129",
+          "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"heather grey\", \"fit type\": \"women\", \"size\": \"3x-large\"}.\n\nPreserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.\n\nWHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.\n\nWHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.\n\nWHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.\n\nTrack successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.\n\nWHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.\n\nWHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.\n\n# Evidence and recovery\n\nNo checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.\n\nNo successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.",
+          "episodes_before": 0,
+          "k": 4,
+          "new_version": true
+        },
+        {
+          "ts": 1792919496.2683492,
+          "experiment_idx": 2,
+          "guidance_hash": "bare",
+          "guidance": "",
+          "episodes_before": 4,
+          "k": 4,
+          "new_version": true
+        },
+        {
+          "ts": 1792919550.4036047,
+          "experiment_idx": 3,
+          "guidance_hash": "b3ea6655abf5",
+          "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"heather grey\", \"fit type\": \"women\", \"size\": \"3x-large\"}.\n\nPreserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.\n\nWHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.\n\nWHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.\n\nWHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.\n\nTrack successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.\n\nWHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.\n\nWHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.\n\n# Evidence and recovery\n\nNo checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.\n\nRepeated action/observation pairs occurred in exploration: use your action history to choose the next unmet requirement instead of repeating an unchanged action.\n\nNo successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.",
+          "episodes_before": 8,
+          "k": 4,
+          "new_version": true
+        }
+      ],
+      "session_error": null,
+      "researcher_prompt_tokens": 7924,
+      "researcher_completion_tokens": 2047,
+      "researcher_model": "qwen3.6-35b-a3b",
+      "tool_protocol": "fncall",
+      "narration_backend": "engine",
+      "gt": "off",
+      "gt_injected": false,
+      "research_wall_s": 187.94063444808125,
+      "error": null
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/research/webshop_04518--224f25bf8b/20261025_171317_v88/meta.json",
+      "task_id": "webshop_04518",
+      "ts": 1792919597.512797,
+      "policy_version": 88,
+      "global_step": 89,
+      "finalized": true,
+      "no_finalize": false,
+      "turns_used": 6,
+      "experiments_used": 3,
+      "episodes_consumed": 8,
+      "doc_words": 271,
+      "self_assessment": "{\"version\": \"webshop_clean_skill_v2\", \"origin\": \"researcher_finalized\", \"required_options\": {\"color\": \"black\", \"size\": \"large\"}, \"source\": \"public_task_and_mechanical_episode_evidence\", \"successes\": 0, \"invalid_actions\": 0, \"repeated_pairs\": 0, \"candidate_query\": null, \"free_form_prose_forwarded\": false, \"words\": 271}",
+      "flags": [
+        "clean_skill_v2",
+        "researcher_finalized"
+      ],
+      "last_exp_successes": 0,
+      "last_exp_attempts": 4,
+      "guidance_log": [
+        {
+          "ts": 1792919461.292831,
+          "experiment_idx": 1,
+          "guidance_hash": "b70692397a3f",
+          "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"black\", \"size\": \"large\"}.\n\nPreserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.\n\nWHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.\n\nWHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.\n\nWHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.\n\nTrack successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.\n\nWHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.\n\nWHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.\n\n# Evidence and recovery\n\nNo checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.\n\nNo successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.",
+          "episodes_before": 0,
+          "k": 2,
+          "new_version": true
+        },
+        {
+          "ts": 1792919488.178262,
+          "experiment_idx": 2,
+          "guidance_hash": "b70692397a3f",
+          "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"black\", \"size\": \"large\"}.\n\nPreserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.\n\nWHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.\n\nWHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.\n\nWHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.\n\nTrack successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.\n\nWHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.\n\nWHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.\n\n# Evidence and recovery\n\nNo checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.\n\nNo successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.",
+          "episodes_before": 2,
+          "k": 2,
+          "new_version": false
+        },
+        {
+          "ts": 1792919502.6031084,
+          "experiment_idx": 3,
+          "guidance_hash": "b70692397a3f",
+          "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"black\", \"size\": \"large\"}.\n\nPreserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.\n\nWHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.\n\nWHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.\n\nWHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.\n\nTrack successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.\n\nWHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.\n\nWHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.\n\n# Evidence and recovery\n\nNo checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.\n\nNo successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.",
+          "episodes_before": 4,
+          "k": 4,
+          "new_version": false
+        }
+      ],
+      "session_error": null,
+      "researcher_prompt_tokens": 12130,
+      "researcher_completion_tokens": 1626,
+      "researcher_model": "qwen3.6-35b-a3b",
+      "tool_protocol": "fncall",
+      "narration_backend": "engine",
+      "gt": "off",
+      "gt_injected": false,
+      "research_wall_s": 150.36848061159253,
+      "error": null
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/research/webshop_06496--2adcc21fe6/20261025_171416_v88/meta.json",
+      "task_id": "webshop_06496",
+      "ts": 1792919656.598189,
+      "policy_version": 88,
+      "global_step": 89,
+      "finalized": true,
+      "no_finalize": false,
+      "turns_used": 6,
+      "experiments_used": 2,
+      "episodes_consumed": 4,
+      "doc_words": 316,
+      "self_assessment": "{\"version\": \"webshop_clean_skill_v2\", \"origin\": \"researcher_finalized\", \"required_options\": {\"color\": \"pink\", \"fit type\": \"women\", \"size\": \"3t\"}, \"source\": \"public_task_and_mechanical_episode_evidence\", \"successes\": 0, \"invalid_actions\": 4, \"repeated_pairs\": 1, \"candidate_query\": null, \"free_form_prose_forwarded\": false, \"words\": 316}",
+      "flags": [
+        "clean_skill_v2",
+        "researcher_finalized"
+      ],
+      "last_exp_successes": 0,
+      "last_exp_attempts": 2,
+      "guidance_log": [
+        {
+          "ts": 1792919467.8674054,
+          "experiment_idx": 1,
+          "guidance_hash": "7f902553c604",
+          "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"pink\", \"fit type\": \"women\", \"size\": \"3t\"}.\n\nPreserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.\n\nWHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.\n\nWHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.\n\nWHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.\n\nTrack successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.\n\nWHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.\n\nWHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.\n\n# Evidence and recovery\n\nNo checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.\n\nNo successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.",
+          "episodes_before": 0,
+          "k": 2,
+          "new_version": true
+        },
+        {
+          "ts": 1792919529.4929628,
+          "experiment_idx": 2,
+          "guidance_hash": "e6fd0a3f4c38",
+          "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"pink\", \"fit type\": \"women\", \"size\": \"3t\"}.\n\nPreserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.\n\nWHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.\n\nWHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.\n\nWHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.\n\nTrack successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.\n\nWHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.\n\nWHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.\n\n# Evidence and recovery\n\nNo checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.\n\nInvalid actions occurred in exploration: copy a single target exactly from current clickables; if unavailable, reconsider the page before acting.\n\nRepeated action/observation pairs occurred in exploration: use your action history to choose the next unmet requirement instead of repeating an unchanged action.\n\nNo successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.",
+          "episodes_before": 2,
+          "k": 2,
+          "new_version": true
+        }
+      ],
+      "session_error": null,
+      "researcher_prompt_tokens": 11377,
+      "researcher_completion_tokens": 2351,
+      "researcher_model": "qwen3.6-35b-a3b",
+      "tool_protocol": "fncall",
+      "narration_backend": "engine",
+      "gt": "off",
+      "gt_injected": false,
+      "research_wall_s": 209.44965274259448,
+      "error": null
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/research/webshop_05016--5e9d1a622b/20261025_172648_v89/meta.json",
+      "task_id": "webshop_05016",
+      "ts": 1792920408.5596857,
+      "policy_version": 89,
+      "global_step": 90,
+      "finalized": true,
+      "no_finalize": false,
+      "turns_used": 8,
+      "experiments_used": 3,
+      "episodes_consumed": 6,
+      "doc_words": 313,
+      "self_assessment": "{\"version\": \"webshop_clean_skill_v2\", \"origin\": \"task_checklist_fallback\", \"required_options\": {\"color\": \"khaki\", \"size\": \"medium\"}, \"source\": \"public_task_and_mechanical_episode_evidence\", \"successes\": 0, \"invalid_actions\": 6, \"repeated_pairs\": 2, \"candidate_query\": null, \"free_form_prose_forwarded\": false, \"words\": 313}",
+      "flags": [
+        "clean_skill_v2",
+        "task_checklist_fallback"
+      ],
+      "last_exp_successes": 0,
+      "last_exp_attempts": 2,
+      "guidance_log": [
+        {
+          "ts": 1792919871.119478,
+          "experiment_idx": 1,
+          "guidance_hash": "891794846b27",
+          "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"khaki\", \"size\": \"medium\"}.\n\nPreserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.\n\nWHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.\n\nWHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.\n\nWHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.\n\nTrack successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.\n\nWHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.\n\nWHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.\n\n# Evidence and recovery\n\nNo checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.\n\nNo successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.",
+          "episodes_before": 0,
+          "k": 2,
+          "new_version": true
+        },
+        {
+          "ts": 1792919893.4152343,
+          "experiment_idx": 2,
+          "guidance_hash": "45dc948ca5ba",
+          "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"khaki\", \"size\": \"medium\"}.\n\nPreserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.\n\nWHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.\n\nWHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.\n\nWHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.\n\nTrack successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.\n\nWHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.\n\nWHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.\n\n# Evidence and recovery\n\nNo checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.\n\nInvalid actions occurred in exploration: copy a single target exactly from current clickables; if unavailable, reconsider the page before acting.\n\nNo successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.",
+          "episodes_before": 2,
+          "k": 2,
+          "new_version": true
+        },
+        {
+          "ts": 1792919955.1338449,
+          "experiment_idx": 3,
+          "guidance_hash": "bare",
+          "guidance": "",
+          "episodes_before": 4,
+          "k": 2,
+          "new_version": true
+        }
+      ],
+      "session_error": null,
+      "researcher_prompt_tokens": 16485,
+      "researcher_completion_tokens": 6560,
+      "researcher_model": "qwen3.6-35b-a3b",
+      "tool_protocol": "fncall",
+      "narration_backend": "engine",
+      "gt": "off",
+      "gt_injected": false,
+      "research_wall_s": 549.9773757681251,
+      "error": null
+    }
+  ],
+  "fallbacks": [
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/research/webshop_01418--97a3b9472f/20261025_045322_v4/meta.json",
+      "task_id": "webshop_01418",
+      "ts": 1792875202.2031565,
+      "policy_version": 4,
+      "global_step": 5,
+      "finalized": true,
+      "no_finalize": false,
+      "turns_used": 7,
+      "experiments_used": 3,
+      "episodes_consumed": 6,
+      "doc_words": 313,
+      "self_assessment": "{\"version\": \"webshop_clean_skill_v2\", \"origin\": \"task_checklist_fallback\", \"required_options\": {\"color\": \"c-black\", \"size\": \"x-large\"}, \"source\": \"public_task_and_mechanical_episode_evidence\", \"successes\": 0, \"invalid_actions\": 14, \"repeated_pairs\": 32, \"candidate_query\": null, \"free_form_prose_forwarded\": false, \"words\": 313}",
+      "flags": [
+        "clean_skill_v2",
+        "task_checklist_fallback"
+      ],
+      "last_exp_successes": 0,
+      "last_exp_attempts": 2,
+      "guidance_log": [
+        {
+          "ts": 1792874692.8900065,
+          "experiment_idx": 1,
+          "guidance_hash": "832e3f0f4de2",
+          "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"c-black\", \"size\": \"x-large\"}.\n\nPreserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.\n\nWHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.\n\nWHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.\n\nWHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.\n\nTrack successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.\n\nWHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.\n\nWHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.\n\n# Evidence and recovery\n\nCandidate search query: \"women's long sleeve activewear\". Untested retrieval suggestion; verify current results.\n\nNo successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.",
+          "episodes_before": 0,
+          "k": 2,
+          "new_version": true
+        },
+        {
+          "ts": 1792874754.1946692,
+          "experiment_idx": 2,
+          "guidance_hash": "9612b45b472a",
+          "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"c-black\", \"size\": \"x-large\"}.\n\nPreserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.\n\nWHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.\n\nWHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.\n\nWHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.\n\nTrack successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.\n\nWHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.\n\nWHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.\n\n# Evidence and recovery\n\nNo checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.\n\nInvalid actions occurred in exploration: copy a single target exactly from current clickables; if unavailable, reconsider the page before acting.\n\nRepeated action/observation pairs occurred in exploration: use your action history to choose the next unmet requirement instead of repeating an unchanged action.\n\nNo successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.",
+          "episodes_before": 2,
+          "k": 2,
+          "new_version": true
+        },
+        {
+          "ts": 1792874805.497024,
+          "experiment_idx": 3,
+          "guidance_hash": "9612b45b472a",
+          "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"c-black\", \"size\": \"x-large\"}.\n\nPreserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.\n\nWHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.\n\nWHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.\n\nWHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.\n\nTrack successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.\n\nWHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.\n\nWHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.\n\n# Evidence and recovery\n\nNo checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.\n\nInvalid actions occurred in exploration: copy a single target exactly from current clickables; if unavailable, reconsider the page before acting.\n\nRepeated action/observation pairs occurred in exploration: use your action history to choose the next unmet requirement instead of repeating an unchanged action.\n\nNo successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.",
+          "episodes_before": 4,
+          "k": 2,
+          "new_version": false
+        }
+      ],
+      "session_error": null,
+      "researcher_prompt_tokens": 14487,
+      "researcher_completion_tokens": 5658,
+      "researcher_model": "qwen3.6-35b-a3b",
+      "tool_protocol": "fncall",
+      "narration_backend": "engine",
+      "gt": "off",
+      "gt_injected": false,
+      "research_wall_s": 520.33917818591,
+      "error": null
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/research/webshop_05016--5e9d1a622b/20261025_172648_v89/meta.json",
+      "task_id": "webshop_05016",
+      "ts": 1792920408.5596857,
+      "policy_version": 89,
+      "global_step": 90,
+      "finalized": true,
+      "no_finalize": false,
+      "turns_used": 8,
+      "experiments_used": 3,
+      "episodes_consumed": 6,
+      "doc_words": 313,
+      "self_assessment": "{\"version\": \"webshop_clean_skill_v2\", \"origin\": \"task_checklist_fallback\", \"required_options\": {\"color\": \"khaki\", \"size\": \"medium\"}, \"source\": \"public_task_and_mechanical_episode_evidence\", \"successes\": 0, \"invalid_actions\": 6, \"repeated_pairs\": 2, \"candidate_query\": null, \"free_form_prose_forwarded\": false, \"words\": 313}",
+      "flags": [
+        "clean_skill_v2",
+        "task_checklist_fallback"
+      ],
+      "last_exp_successes": 0,
+      "last_exp_attempts": 2,
+      "guidance_log": [
+        {
+          "ts": 1792919871.119478,
+          "experiment_idx": 1,
+          "guidance_hash": "891794846b27",
+          "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"khaki\", \"size\": \"medium\"}.\n\nPreserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.\n\nWHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.\n\nWHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.\n\nWHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.\n\nTrack successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.\n\nWHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.\n\nWHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.\n\n# Evidence and recovery\n\nNo checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.\n\nNo successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.",
+          "episodes_before": 0,
+          "k": 2,
+          "new_version": true
+        },
+        {
+          "ts": 1792919893.4152343,
+          "experiment_idx": 2,
+          "guidance_hash": "45dc948ca5ba",
+          "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"khaki\", \"size\": \"medium\"}.\n\nPreserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.\n\nWHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.\n\nWHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.\n\nWHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.\n\nTrack successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.\n\nWHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.\n\nWHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.\n\n# Evidence and recovery\n\nNo checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.\n\nInvalid actions occurred in exploration: copy a single target exactly from current clickables; if unavailable, reconsider the page before acting.\n\nNo successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.",
+          "episodes_before": 2,
+          "k": 2,
+          "new_version": true
+        },
+        {
+          "ts": 1792919955.1338449,
+          "experiment_idx": 3,
+          "guidance_hash": "bare",
+          "guidance": "",
+          "episodes_before": 4,
+          "k": 2,
+          "new_version": true
+        }
+      ],
+      "session_error": null,
+      "researcher_prompt_tokens": 16485,
+      "researcher_completion_tokens": 6560,
+      "researcher_model": "qwen3.6-35b-a3b",
+      "tool_protocol": "fncall",
+      "narration_backend": "engine",
+      "gt": "off",
+      "gt_injected": false,
+      "research_wall_s": 549.9773757681251,
+      "error": null
+    }
+  ],
+  "rollouts": [
+    {
+      "global_step": 89,
+      "task_id": "webshop_06493",
+      "session_id": 6,
+      "won": true,
+      "score": 1,
+      "outcome": "SUCCESS",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 1,
+        "research_episodes": 2,
+        "research_turns": 2,
+        "research_final_success": 1,
+        "research_doc_words": 274,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_06493--48e0481eaa/20261025_171230_v88"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_06493",
+      "session_id": 7,
+      "won": true,
+      "score": 1,
+      "outcome": "SUCCESS",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 1,
+        "research_episodes": 2,
+        "research_turns": 2,
+        "research_final_success": 1,
+        "research_doc_words": 274,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_06493--48e0481eaa/20261025_171230_v88"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_06493",
+      "session_id": 4,
+      "won": true,
+      "score": 1,
+      "outcome": "SUCCESS",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 1,
+        "research_episodes": 2,
+        "research_turns": 2,
+        "research_final_success": 1,
+        "research_doc_words": 274,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_06493--48e0481eaa/20261025_171230_v88"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_06493",
+      "session_id": 5,
+      "won": true,
+      "score": 1,
+      "outcome": "SUCCESS",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 1,
+        "research_episodes": 2,
+        "research_turns": 2,
+        "research_final_success": 1,
+        "research_doc_words": 274,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_06493--48e0481eaa/20261025_171230_v88"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_06493",
+      "session_id": 1,
+      "won": true,
+      "score": 1,
+      "outcome": "SUCCESS",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 1,
+        "research_episodes": 2,
+        "research_turns": 2,
+        "research_final_success": 1,
+        "research_doc_words": 274,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_06493--48e0481eaa/20261025_171230_v88"
+      },
+      "steer_count": 3,
+      "steer_arm": 1
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_06493",
+      "session_id": 2,
+      "won": true,
+      "score": 1,
+      "outcome": "SUCCESS",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 1,
+        "research_episodes": 2,
+        "research_turns": 2,
+        "research_final_success": 1,
+        "research_doc_words": 274,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_06493--48e0481eaa/20261025_171230_v88"
+      },
+      "steer_count": 4,
+      "steer_arm": 1
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_06493",
+      "session_id": 0,
+      "won": true,
+      "score": 1,
+      "outcome": "SUCCESS",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 1,
+        "research_episodes": 2,
+        "research_turns": 2,
+        "research_final_success": 1,
+        "research_doc_words": 274,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_06493--48e0481eaa/20261025_171230_v88"
+      },
+      "steer_count": 4,
+      "steer_arm": 1
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_06493",
+      "session_id": 3,
+      "won": true,
+      "score": 1,
+      "outcome": "SUCCESS",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 1,
+        "research_episodes": 2,
+        "research_turns": 2,
+        "research_final_success": 1,
+        "research_doc_words": 274,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_06493--48e0481eaa/20261025_171230_v88"
+      },
+      "steer_count": 4,
+      "steer_arm": 1
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_04518",
+      "session_id": 6,
+      "won": false,
+      "score": 0.35714285714285715,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 8,
+        "research_turns": 6,
+        "research_final_success": 0,
+        "research_doc_words": 271,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_04518--224f25bf8b/20261025_171317_v88"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_04518",
+      "session_id": 7,
+      "won": false,
+      "score": 0.35714285714285715,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 8,
+        "research_turns": 6,
+        "research_final_success": 0,
+        "research_doc_words": 271,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_04518--224f25bf8b/20261025_171317_v88"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_04518",
+      "session_id": 4,
+      "won": false,
+      "score": 0.35714285714285715,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 8,
+        "research_turns": 6,
+        "research_final_success": 0,
+        "research_doc_words": 271,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_04518--224f25bf8b/20261025_171317_v88"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_04518",
+      "session_id": 5,
+      "won": false,
+      "score": 0.35714285714285715,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 8,
+        "research_turns": 6,
+        "research_final_success": 0,
+        "research_doc_words": 271,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_04518--224f25bf8b/20261025_171317_v88"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_04518",
+      "session_id": 1,
+      "won": false,
+      "score": 0.35714285714285715,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 8,
+        "research_turns": 6,
+        "research_final_success": 0,
+        "research_doc_words": 271,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_04518--224f25bf8b/20261025_171317_v88"
+      },
+      "steer_count": 4,
+      "steer_arm": 1
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_04518",
+      "session_id": 0,
+      "won": false,
+      "score": 0.35714285714285715,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 8,
+        "research_turns": 6,
+        "research_final_success": 0,
+        "research_doc_words": 271,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_04518--224f25bf8b/20261025_171317_v88"
+      },
+      "steer_count": 4,
+      "steer_arm": 1
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_04518",
+      "session_id": 3,
+      "won": false,
+      "score": 0.35714285714285715,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 8,
+        "research_turns": 6,
+        "research_final_success": 0,
+        "research_doc_words": 271,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_04518--224f25bf8b/20261025_171317_v88"
+      },
+      "steer_count": 4,
+      "steer_arm": 1
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_04518",
+      "session_id": 2,
+      "won": false,
+      "score": 0.35714285714285715,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 8,
+        "research_turns": 6,
+        "research_final_success": 0,
+        "research_doc_words": 271,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_04518--224f25bf8b/20261025_171317_v88"
+      },
+      "steer_count": 4,
+      "steer_arm": 1
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_04076",
+      "session_id": 4,
+      "won": false,
+      "score": 0.6363636363636364,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 12,
+        "research_turns": 4,
+        "research_final_success": 0,
+        "research_doc_words": 297,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_04076--ce9f1bb7bd/20261025_171355_v88"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_04076",
+      "session_id": 5,
+      "won": false,
+      "score": 0.6363636363636364,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 12,
+        "research_turns": 4,
+        "research_final_success": 0,
+        "research_doc_words": 297,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_04076--ce9f1bb7bd/20261025_171355_v88"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_04076",
+      "session_id": 6,
+      "won": false,
+      "score": 0.6363636363636364,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 12,
+        "research_turns": 4,
+        "research_final_success": 0,
+        "research_doc_words": 297,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_04076--ce9f1bb7bd/20261025_171355_v88"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_04076",
+      "session_id": 7,
+      "won": false,
+      "score": 0.6363636363636364,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 12,
+        "research_turns": 4,
+        "research_final_success": 0,
+        "research_doc_words": 297,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_04076--ce9f1bb7bd/20261025_171355_v88"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_04076",
+      "session_id": 2,
+      "won": false,
+      "score": 0.6363636363636364,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 12,
+        "research_turns": 4,
+        "research_final_success": 0,
+        "research_doc_words": 297,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_04076--ce9f1bb7bd/20261025_171355_v88"
+      },
+      "steer_count": 4,
+      "steer_arm": 1
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_04076",
+      "session_id": 0,
+      "won": false,
+      "score": 0.6363636363636364,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 12,
+        "research_turns": 4,
+        "research_final_success": 0,
+        "research_doc_words": 297,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_04076--ce9f1bb7bd/20261025_171355_v88"
+      },
+      "steer_count": 8,
+      "steer_arm": 1
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_04076",
+      "session_id": 3,
+      "won": false,
+      "score": 0.6363636363636364,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 12,
+        "research_turns": 4,
+        "research_final_success": 0,
+        "research_doc_words": 297,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_04076--ce9f1bb7bd/20261025_171355_v88"
+      },
+      "steer_count": 8,
+      "steer_arm": 1
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_04076",
+      "session_id": 1,
+      "won": false,
+      "score": 0.6363636363636364,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 12,
+        "research_turns": 4,
+        "research_final_success": 0,
+        "research_doc_words": 297,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_04076--ce9f1bb7bd/20261025_171355_v88"
+      },
+      "steer_count": 6,
+      "steer_arm": 1
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_06496",
+      "session_id": 4,
+      "won": false,
+      "score": 0.7,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 2,
+        "research_episodes": 4,
+        "research_turns": 6,
+        "research_final_success": 0,
+        "research_doc_words": 316,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_06496--2adcc21fe6/20261025_171416_v88"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_06496",
+      "session_id": 5,
+      "won": false,
+      "score": 0.7,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 2,
+        "research_episodes": 4,
+        "research_turns": 6,
+        "research_final_success": 0,
+        "research_doc_words": 316,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_06496--2adcc21fe6/20261025_171416_v88"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_06496",
+      "session_id": 6,
+      "won": false,
+      "score": 0.7,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 2,
+        "research_episodes": 4,
+        "research_turns": 6,
+        "research_final_success": 0,
+        "research_doc_words": 316,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_06496--2adcc21fe6/20261025_171416_v88"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_06496",
+      "session_id": 7,
+      "won": false,
+      "score": 0.7,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 2,
+        "research_episodes": 4,
+        "research_turns": 6,
+        "research_final_success": 0,
+        "research_doc_words": 316,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_06496--2adcc21fe6/20261025_171416_v88"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_06496",
+      "session_id": 2,
+      "won": false,
+      "score": 0.7,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 2,
+        "research_episodes": 4,
+        "research_turns": 6,
+        "research_final_success": 0,
+        "research_doc_words": 316,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_06496--2adcc21fe6/20261025_171416_v88"
+      },
+      "steer_count": 13,
+      "steer_arm": 1
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_06496",
+      "session_id": 3,
+      "won": false,
+      "score": 0.7,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 2,
+        "research_episodes": 4,
+        "research_turns": 6,
+        "research_final_success": 0,
+        "research_doc_words": 316,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_06496--2adcc21fe6/20261025_171416_v88"
+      },
+      "steer_count": 13,
+      "steer_arm": 1
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_06496",
+      "session_id": 0,
+      "won": false,
+      "score": 0.7,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 2,
+        "research_episodes": 4,
+        "research_turns": 6,
+        "research_final_success": 0,
+        "research_doc_words": 316,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_06496--2adcc21fe6/20261025_171416_v88"
+      },
+      "steer_count": 8,
+      "steer_arm": 1
+    },
+    {
+      "global_step": 89,
+      "task_id": "webshop_06496",
+      "session_id": 1,
+      "won": false,
+      "score": 0.7,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 2,
+        "research_episodes": 4,
+        "research_turns": 6,
+        "research_final_success": 0,
+        "research_doc_words": 316,
+        "research_doc_missing": 0,
+        "research_policy_version": 88,
+        "research_archive": "research/webshop_06496--2adcc21fe6/20261025_171416_v88"
+      },
+      "steer_count": 12,
+      "steer_arm": 1
+    },
+    {
+      "global_step": 90,
+      "task_id": "webshop_05016",
+      "session_id": 7,
+      "won": false,
+      "score": 0,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 6,
+        "research_turns": 8,
+        "research_final_success": 0,
+        "research_doc_words": 313,
+        "research_doc_missing": 0,
+        "research_policy_version": 89,
+        "research_archive": "research/webshop_05016--5e9d1a622b/20261025_172648_v89"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 90,
+      "task_id": "webshop_05016",
+      "session_id": 4,
+      "won": false,
+      "score": 0,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 6,
+        "research_turns": 8,
+        "research_final_success": 0,
+        "research_doc_words": 313,
+        "research_doc_missing": 0,
+        "research_policy_version": 89,
+        "research_archive": "research/webshop_05016--5e9d1a622b/20261025_172648_v89"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 90,
+      "task_id": "webshop_05016",
+      "session_id": 6,
+      "won": false,
+      "score": 0,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 6,
+        "research_turns": 8,
+        "research_final_success": 0,
+        "research_doc_words": 313,
+        "research_doc_missing": 0,
+        "research_policy_version": 89,
+        "research_archive": "research/webshop_05016--5e9d1a622b/20261025_172648_v89"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 90,
+      "task_id": "webshop_05016",
+      "session_id": 5,
+      "won": false,
+      "score": 0,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 6,
+        "research_turns": 8,
+        "research_final_success": 0,
+        "research_doc_words": 313,
+        "research_doc_missing": 0,
+        "research_policy_version": 89,
+        "research_archive": "research/webshop_05016--5e9d1a622b/20261025_172648_v89"
+      },
+      "steer_count": 0,
+      "steer_arm": 0
+    },
+    {
+      "global_step": 90,
+      "task_id": "webshop_05016",
+      "session_id": 1,
+      "won": false,
+      "score": 0,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 6,
+        "research_turns": 8,
+        "research_final_success": 0,
+        "research_doc_words": 313,
+        "research_doc_missing": 0,
+        "research_policy_version": 89,
+        "research_archive": "research/webshop_05016--5e9d1a622b/20261025_172648_v89"
+      },
+      "steer_count": 5,
+      "steer_arm": 1
+    },
+    {
+      "global_step": 90,
+      "task_id": "webshop_05016",
+      "session_id": 3,
+      "won": false,
+      "score": 0,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 6,
+        "research_turns": 8,
+        "research_final_success": 0,
+        "research_doc_words": 313,
+        "research_doc_missing": 0,
+        "research_policy_version": 89,
+        "research_archive": "research/webshop_05016--5e9d1a622b/20261025_172648_v89"
+      },
+      "steer_count": 5,
+      "steer_arm": 1
+    },
+    {
+      "global_step": 90,
+      "task_id": "webshop_05016",
+      "session_id": 0,
+      "won": false,
+      "score": 0,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 6,
+        "research_turns": 8,
+        "research_final_success": 0,
+        "research_doc_words": 313,
+        "research_doc_missing": 0,
+        "research_policy_version": 89,
+        "research_archive": "research/webshop_05016--5e9d1a622b/20261025_172648_v89"
+      },
+      "steer_count": 6,
+      "steer_arm": 1
+    },
+    {
+      "global_step": 90,
+      "task_id": "webshop_05016",
+      "session_id": 2,
+      "won": false,
+      "score": 0,
+      "outcome": "FAILED",
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 6,
+        "research_turns": 8,
+        "research_final_success": 0,
+        "research_doc_words": 313,
+        "research_doc_missing": 0,
+        "research_policy_version": 89,
+        "research_archive": "research/webshop_05016--5e9d1a622b/20261025_172648_v89"
+      },
+      "steer_count": 3,
+      "steer_arm": 1
+    }
+  ],
+  "latest_update_lines": [
+    "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:88 - global_seqlen/min:336797.0 - global_seqlen/max:336797.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:336797.0 - global_seqlen/balanced_max:336797.0 - global_seqlen/mean:336797.0 - actor/entropy:0.04461878538131714 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:1.0659236907958984 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:80.14801406860352 - perf/mfu/actor:0.12485416680085618 - rollout_extra/won/mean:0.9140625 - rollout_extra/score/mean:0.9211774553571428 - rollout_extra/env_steps/mean:5.6875 - rollout_extra/invalid_format/mean:0.0 - rollout_extra/truncated/mean:0.0 - rollout_extra/generated_token_count/mean:79.1875 - rollout_extra/accepted_generated_token_count/mean:79.1875 - rollout_extra/invalid_action_count/mean:0.0703125 - rollout_extra/repeated_action_observation_count/mean:0.4609375 - rollout_extra/max_consecutive_action_observation/mean:1.296875 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:3.264609375 - rollout_extra/student_attempt_generated_tokens/mean:79.1875 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:2.235573227982709 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:3.3046875 - rollout_extra/steer_record_rows/mean:3.5 - rollout_extra/steer_reject_count/mean:0.15625 - rollout_extra/steer_n_draft_discarded/mean:1.90625 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:19.9921875 - rollout_extra/steer_d_mean/mean:0.07006696254791916 - rollout_extra/steer_n_candidates/mean:19.9921875 - rollout_extra/steer_n_base_open/mean:3.5 - rollout_extra/steer_n_probe_flipped/mean:0.1953125 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:18.8515625 - rollout_extra/steer_n_pt_window_miss/mean:31.2265625 - rollout_extra/steer_ell_count/mean:1496.3359375 - rollout_extra/steer_ent_count/mean:38.84375 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.24072814158763972 - rollout_extra/steer_entropy_mean/mean:0.04267243567120581 - rollout_extra/steer_gate_open_rate/mean:0.08699541482510162 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.74389171781994 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:1.75 - rollout_extra/research_episodes/mean:3.5625 - rollout_extra/research_turns/mean:2.875 - rollout_extra/research_final_success/mean:0.9375 - rollout_extra/research_doc_words/mean:273.75 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:87.0 - rollout_extra/won_bare_rate/mean:0.90625 - rollout_extra/won_steered_rate/mean:0.921875 - rollout_extra/steer_arm_gap/mean:0.015625 - training/global_step:88 - training/epoch:5 - critic/score/mean:0.9140625 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.9140625 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.0014428768772631884 - critic/advantages/max:0.75 - critic/advantages/min:-0.875 - critic/returns/mean:-0.0014428768772631884 - critic/returns/max:0.75 - critic/returns/min:-0.875 - response_length/mean:2259.9765625 - response_length/max:3153.0 - response_length/min:930.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:2259.9765625 - response_length_non_aborted/max:3153.0 - response_length_non_aborted/min:930.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:371.25 - prompt_length/max:384.0 - prompt_length/min:362.0 - prompt_length/clip_ratio:0.0625 - timing_s/feed:0.02326240763068199 - timing_s/gen:215.61701130121946 - timing_s/old_log_prob:34.97507492080331 - timing_s/adv:0.1272025629878044 - timing_s/update_actor:103.182138312608 - timing_s/update_weights:5.783753890544176 - timing_s/step:359.76786936819553 - timing_per_token_ms/adv:0.00037768318300876913 - timing_per_token_ms/update_actor:0.3063629970356268 - timing_per_token_ms/gen:0.7453652080919654 - perf/total_num_tokens:336797 - perf/time_per_step:359.76786936819553 - perf/throughput:468.0754295699951 - training/num_turns/mean:np.float64(12.375) - training/num_turns/max:np.int64(17) - training/num_turns/min:np.int64(7) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m ",
+    "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:89 - global_seqlen/min:380543.0 - global_seqlen/max:380543.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:380543.0 - global_seqlen/balanced_max:380543.0 - global_seqlen/mean:380543.0 - actor/entropy:0.04148431494832039 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:1.7023396492004395 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:80.12730026245117 - perf/mfu/actor:0.12628519624179982 - rollout_extra/won/mean:0.734375 - rollout_extra/score/mean:0.8956011002886002 - rollout_extra/env_steps/mean:5.359375 - rollout_extra/invalid_format/mean:0.0 - rollout_extra/truncated/mean:0.0 - rollout_extra/generated_token_count/mean:79.9921875 - rollout_extra/accepted_generated_token_count/mean:79.9921875 - rollout_extra/invalid_action_count/mean:0.140625 - rollout_extra/repeated_action_observation_count/mean:0.2265625 - rollout_extra/max_consecutive_action_observation/mean:1.1015625 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:3.089453125 - rollout_extra/student_attempt_generated_tokens/mean:79.9921875 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:2.0880006376244333 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:3.2109375 - rollout_extra/steer_record_rows/mean:3.3828125 - rollout_extra/steer_reject_count/mean:0.125 - rollout_extra/steer_n_draft_discarded/mean:1.1640625 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:21.1328125 - rollout_extra/steer_d_mean/mean:0.05844365630586927 - rollout_extra/steer_n_candidates/mean:21.1328125 - rollout_extra/steer_n_base_open/mean:3.3828125 - rollout_extra/steer_n_probe_flipped/mean:0.171875 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:18.9375 - rollout_extra/steer_n_pt_window_miss/mean:34.2578125 - rollout_extra/steer_ell_count/mean:1566.84375 - rollout_extra/steer_ent_count/mean:40.0703125 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.24291677135037398 - rollout_extra/steer_entropy_mean/mean:0.0404062768701261 - rollout_extra/steer_gate_open_rate/mean:0.08378546764698674 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.74389171781994 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:1.625 - rollout_extra/research_episodes/mean:3.75 - rollout_extra/research_turns/mean:3.0 - rollout_extra/research_final_success/mean:0.75 - rollout_extra/research_doc_words/mean:271.625 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:88.0 - rollout_extra/won_bare_rate/mean:0.734375 - rollout_extra/won_steered_rate/mean:0.734375 - rollout_extra/steer_arm_gap/mean:0.0 - training/global_step:89 - training/epoch:5 - critic/score/mean:0.734375 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.734375 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.0003540384932421148 - critic/advantages/max:0.125 - critic/advantages/min:-0.875 - critic/returns/mean:-0.0003540384932421148 - critic/returns/max:0.125 - critic/returns/min:-0.875 - response_length/mean:2599.2421875 - response_length/max:3888.0 - response_length/min:1536.0 - response_length/clip_ratio:0.0234375 - response_length_non_aborted/mean:2599.2421875 - response_length_non_aborted/max:3888.0 - response_length_non_aborted/min:1536.0 - response_length_non_aborted/clip_ratio:0.0234375 - response/aborted_ratio:0.0 - prompt_length/mean:373.75 - prompt_length/max:388.0 - prompt_length/min:360.0 - prompt_length/clip_ratio:0.0625 - timing_s/feed:0.030580952763557434 - timing_s/gen:255.4052203707397 - timing_s/old_log_prob:36.73074346035719 - timing_s/adv:0.09890102222561836 - timing_s/update_actor:112.91057190671563 - timing_s/update_weights:5.955968964844942 - timing_s/step:411.1744267269969 - timing_per_token_ms/adv:0.0002598944724396937 - timing_per_token_ms/update_actor:0.2967091022741599 - timing_per_token_ms/gen:0.7676673200143662 - perf/total_num_tokens:380543 - perf/time_per_step:411.1744267269969 - perf/throughput:462.7512987969277 - training/num_turns/mean:np.float64(11.71875) - training/num_turns/max:np.int64(17) - training/num_turns/min:np.int64(9) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m ",
+    "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:90 - global_seqlen/min:321737.0 - global_seqlen/max:321737.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:321737.0 - global_seqlen/balanced_max:321737.0 - global_seqlen/mean:321737.0 - actor/entropy:0.03726327419281006 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.4282514452934265 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:80.17337417602539 - perf/mfu/actor:0.1245306143872715 - rollout_extra/won/mean:0.7109375 - rollout_extra/score/mean:0.8689647591991342 - rollout_extra/env_steps/mean:5.3984375 - rollout_extra/invalid_format/mean:0.0 - rollout_extra/truncated/mean:0.0 - rollout_extra/generated_token_count/mean:74.296875 - rollout_extra/accepted_generated_token_count/mean:74.296875 - rollout_extra/invalid_action_count/mean:0.15625 - rollout_extra/repeated_action_observation_count/mean:0.1484375 - rollout_extra/max_consecutive_action_observation/mean:1.109375 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:2.85546875 - rollout_extra/student_attempt_generated_tokens/mean:74.296875 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:1.6927140461965922 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:2.4453125 - rollout_extra/steer_record_rows/mean:2.578125 - rollout_extra/steer_reject_count/mean:0.1953125 - rollout_extra/steer_n_draft_discarded/mean:1.6640625 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:17.5859375 - rollout_extra/steer_d_mean/mean:0.06458654932221224 - rollout_extra/steer_n_candidates/mean:17.5859375 - rollout_extra/steer_n_base_open/mean:2.578125 - rollout_extra/steer_n_probe_flipped/mean:0.1328125 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:19.7734375 - rollout_extra/steer_n_pt_window_miss/mean:22.1328125 - rollout_extra/steer_ell_count/mean:1316.671875 - rollout_extra/steer_ent_count/mean:37.359375 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.26926864726392097 - rollout_extra/steer_entropy_mean/mean:0.035083322690752976 - rollout_extra/steer_gate_open_rate/mean:0.07330327637059772 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.74389171781994 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:2.0 - rollout_extra/research_episodes/mean:4.0625 - rollout_extra/research_turns/mean:3.5625 - rollout_extra/research_final_success/mean:0.75 - rollout_extra/research_doc_words/mean:271.1875 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:89.0 - rollout_extra/won_bare_rate/mean:0.734375 - rollout_extra/won_steered_rate/mean:0.6875 - rollout_extra/steer_arm_gap/mean:-0.046875 - training/global_step:90 - training/epoch:5 - critic/score/mean:0.7109375 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.7109375 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.008806519210338593 - critic/advantages/max:0.5 - critic/advantages/min:-0.875 - critic/returns/mean:-0.008806519210338593 - critic/returns/max:0.5 - critic/returns/min:-0.875 - response_length/mean:2143.2578125 - response_length/max:3660.0 - response_length/min:997.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:2143.2578125 - response_length_non_aborted/max:3660.0 - response_length_non_aborted/min:997.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:370.3125 - prompt_length/max:384.0 - prompt_length/min:360.0 - prompt_length/clip_ratio:0.0625 - timing_s/feed:0.019809529185295105 - timing_s/gen:553.9316723160446 - timing_s/old_log_prob:32.60359123721719 - timing_s/adv:0.11125042662024498 - timing_s/update_actor:97.01548545435071 - timing_s/update_weights:5.725419506430626 - timing_s/step:689.4514024294913 - timing_per_token_ms/adv:0.0003457806426374492 - timing_per_token_ms/update_actor:0.3015366136140721 - timing_per_token_ms/gen:2.0191650135273207 - perf/total_num_tokens:321737 - perf/time_per_step:689.4514024294913 - perf/throughput:233.32826568070064 - training/num_turns/mean:np.float64(11.796875) - training/num_turns/max:np.int64(17) - training/num_turns/min:np.int64(7) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m ",
+    "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:91 - global_seqlen/min:321934.0 - global_seqlen/max:321934.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:321934.0 - global_seqlen/balanced_max:321934.0 - global_seqlen/mean:321934.0 - actor/entropy:0.04175840690732002 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.5660458207130432 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:80.15031814575195 - perf/mfu/actor:0.12456159306733888 - rollout_extra/won/mean:0.7421875 - rollout_extra/score/mean:0.852139136904762 - rollout_extra/env_steps/mean:5.1640625 - rollout_extra/invalid_format/mean:0.0 - rollout_extra/truncated/mean:0.0 - rollout_extra/generated_token_count/mean:72.796875 - rollout_extra/accepted_generated_token_count/mean:72.796875 - rollout_extra/invalid_action_count/mean:0.234375 - rollout_extra/repeated_action_observation_count/mean:0.25 - rollout_extra/max_consecutive_action_observation/mean:1.078125 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:2.74890625 - rollout_extra/student_attempt_generated_tokens/mean:72.796875 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:1.7403671332649902 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:2.59375 - rollout_extra/steer_record_rows/mean:2.6796875 - rollout_extra/steer_reject_count/mean:0.09375 - rollout_extra/steer_n_draft_discarded/mean:0.7265625 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:18.21875 - rollout_extra/steer_d_mean/mean:0.06829177586013126 - rollout_extra/steer_n_candidates/mean:18.21875 - rollout_extra/steer_n_base_open/mean:2.6796875 - rollout_extra/steer_n_probe_flipped/mean:0.0859375 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:17.921875 - rollout_extra/steer_n_pt_window_miss/mean:28.7265625 - rollout_extra/steer_ell_count/mean:1351.34375 - rollout_extra/steer_ent_count/mean:36.140625 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.2547215106354281 - rollout_extra/steer_entropy_mean/mean:0.039751518185542345 - rollout_extra/steer_gate_open_rate/mean:0.0752700060502989 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.7438917178199402 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:1.875 - rollout_extra/research_episodes/mean:4.0625 - rollout_extra/research_turns/mean:3.25 - rollout_extra/research_final_success/mean:0.71875 - rollout_extra/research_doc_words/mean:271.8125 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:90.0 - rollout_extra/won_bare_rate/mean:0.765625 - rollout_extra/won_steered_rate/mean:0.71875 - rollout_extra/steer_arm_gap/mean:-0.046875 - training/global_step:91 - training/epoch:5 - critic/score/mean:0.7421875 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.7421875 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:0.0013280747225508094 - critic/advantages/max:0.875 - critic/advantages/min:-0.875 - critic/returns/mean:0.0013280747225508094 - critic/returns/max:0.875 - critic/returns/min:-0.875 - response_length/mean:2145.359375 - response_length/max:3747.0 - response_length/min:906.0 - response_length/clip_ratio:0.046875 - response_length_non_aborted/mean:2145.359375 - response_length_non_aborted/max:3747.0 - response_length_non_aborted/min:906.0 - response_length_non_aborted/clip_ratio:0.046875 - response/aborted_ratio:0.0 - prompt_length/mean:369.75 - prompt_length/max:383.0 - prompt_length/min:357.0 - prompt_length/clip_ratio:0.0625 - timing_s/feed:0.0281110517680645 - timing_s/gen:321.51777409017086 - timing_s/old_log_prob:32.47160417959094 - timing_s/adv:0.11081169545650482 - timing_s/update_actor:97.36889004707336 - timing_s/update_weights:5.953573893755674 - timing_s/step:457.4950395151973 - timing_per_token_ms/adv:0.000344206251767458 - timing_per_token_ms/update_actor:0.3024498501154689 - timing_per_token_ms/gen:1.170833026555031 - perf/total_num_tokens:321934 - perf/time_per_step:457.4950395151973 - perf/throughput:351.8442520613449 - training/num_turns/mean:np.float64(11.328125) - training/num_turns/max:np.int64(17) - training/num_turns/min:np.int64(7) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m "
+  ]
+}

@@ -1,0 +1,46 @@
+# Qwen3.5-9B 终端域基线能力探针(CD-011)。
+# 架构:A800 起 sglang 服务 + 162 环境池(docker socket 经 ssh 转发)。
+# 只做 bare 臂 greedy —— 量训练前的起点能力,不引入任何特权信号。
+run:
+  name: term_9b_probe
+  runs_root: /fs/fast/u2021000902/wushang/workspace/TRACE-OPD-TERM/runs
+  tape: false
+
+research:
+  enabled: false
+  backend: external
+  tool_protocol: fncall
+
+environment:
+  name: terminal            # 环境注册表选路(默认 alfworld)
+
+steering:
+  enabled: false          # bare 臂:零特权信号,与 GRPO 底座逐字节一致
+  doc_source: static
+
+episode:
+  max_env_steps: 30          # TMax 官方 agent.timeout 语境下的步预算(与训练同)
+  max_assistant_turns: 40
+  session_token_budget: 0
+  max_tokens_per_turn: 2048
+
+train:
+  model_path: /fs/fast/u2021000902/wushang/model/Qwen/Qwen3.5-9B
+  response_length: 16384
+
+terminal:
+  protocol: fncall
+  backend: docker            # 162 环境池
+  docker_host: unix:///tmp/docker162.sock
+  snapshot_root: /data4/wushang/tmax-snap        # 宿主侧路径(bind-mount 由宿主解析)
+  snapshot_index: ${TERMINAL_SNAPSHOT_INDEX}     # 客户端可见的清单
+  task_data_root: ${TERMINAL_TASK_DATA}
+  image: ${TERMINAL_IMAGE}
+  pod_cpu: "1"
+  pod_memory: "2g"          # docker 单位(K8s 的 2Gi 写法 docker 不认)
+  spawn_concurrency: 64
+  create_timeout_s: 300.0
+  setup_timeout_s: 600.0
+  test_timeout_s: 600.0      # TMax _MIN_TEST_TIMEOUT_S 下限
+  test_grace_s: 300.0        # 外层墙钟须显著大于沙箱内判分 timeout
+  command_timeout_s: 120.0

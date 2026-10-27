@@ -1,0 +1,210 @@
+{
+  "source_packet_sha256": "e94b1664b8cddb8b1b623f98cf44510483d79e41fe6ad6aa40a5d971093926d3",
+  "reward_from_score": false,
+  "norm_adv_by_std": false,
+  "formula": "task reward advantage = binary success - task group mean",
+  "scope": "Offline recomputation of task-reward advantages; not an audit of all loss terms, optimizer gradients, or live model parameters.",
+  "groups": [
+    {
+      "run": "pgs_effect_smoke",
+      "step": 1,
+      "task_id": "webshop_00510",
+      "n": 8,
+      "wins": 0,
+      "environment_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3,
+        0.8
+      ],
+      "task_reward_advantages": [
+        0.0
+      ],
+      "zero_task_reward_advantage": true
+    },
+    {
+      "run": "pgs_effect_smoke",
+      "step": 1,
+      "task_id": "webshop_00512",
+      "n": 8,
+      "wins": 0,
+      "environment_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.2,
+        0.6,
+        0.6
+      ],
+      "task_reward_advantages": [
+        0.0
+      ],
+      "zero_task_reward_advantage": true
+    },
+    {
+      "run": "pgs_effect_smoke",
+      "step": 2,
+      "task_id": "webshop_00510",
+      "n": 8,
+      "wins": 0,
+      "environment_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3,
+        0.8,
+        0.8
+      ],
+      "task_reward_advantages": [
+        0.0
+      ],
+      "zero_task_reward_advantage": true
+    },
+    {
+      "run": "pgs_effect_smoke",
+      "step": 2,
+      "task_id": "webshop_00512",
+      "n": 8,
+      "wins": 0,
+      "environment_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.6,
+        0.6,
+        0.6
+      ],
+      "task_reward_advantages": [
+        0.0
+      ],
+      "zero_task_reward_advantage": true
+    },
+    {
+      "run": "pgs_mixed_smoke",
+      "step": 1,
+      "task_id": "webshop_00510",
+      "n": 8,
+      "wins": 0,
+      "environment_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.7,
+        0.8,
+        0.9
+      ],
+      "task_reward_advantages": [
+        0.0
+      ],
+      "zero_task_reward_advantage": true
+    },
+    {
+      "run": "pgs_mixed_smoke",
+      "step": 1,
+      "task_id": "webshop_00512",
+      "n": 8,
+      "wins": 2,
+      "environment_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.6,
+        1.0,
+        1.0
+      ],
+      "task_reward_advantages": [
+        -0.25,
+        0.75
+      ],
+      "zero_task_reward_advantage": false
+    },
+    {
+      "run": "pgs_mixed_smoke",
+      "step": 2,
+      "task_id": "webshop_00510",
+      "n": 8,
+      "wins": 0,
+      "environment_scores": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8,
+        0.9
+      ],
+      "task_reward_advantages": [
+        0.0
+      ],
+      "zero_task_reward_advantage": true
+    },
+    {
+      "run": "pgs_mixed_smoke",
+      "step": 2,
+      "task_id": "webshop_00512",
+      "n": 8,
+      "wins": 0,
+      "environment_scores": [
+        0.0,
+        0.2,
+        0.6,
+        0.6,
+        0.6,
+        0.6,
+        0.8,
+        0.8
+      ],
+      "task_reward_advantages": [
+        0.0
+      ],
+      "zero_task_reward_advantage": true
+    }
+  ],
+  "cleaned_skills": [
+    {
+      "task_id": "00510",
+      "word_count": 199,
+      "sha256": "274fd65d0611658baf6d563add3ce64d72e81a8bbd8d4ef0fcf53872eb31d0ee",
+      "literal_provenance_check": {
+        "version": "literal-provenance-v1",
+        "mode": "reject_unobserved_locators",
+        "doc_sha256": "274fd65d0611658baf6d563add3ce64d72e81a8bbd8d4ef0fcf53872eb31d0ee",
+        "unobserved_locators": [],
+        "blocked": false,
+        "scope": "literal exposure only; no semantic safety certification"
+      },
+      "manual_review": "No concrete product IDs, target attribute values, success scores, or solved action paths retained; procedural content is based on public schema and observable actions. This is not a semantic safety certification or a performance result."
+    },
+    {
+      "task_id": "00512",
+      "word_count": 193,
+      "sha256": "866c682ffddea209bd547e14d095c9cf6f6e39c309c1f47d32fd62bdb840d1cf",
+      "literal_provenance_check": {
+        "version": "literal-provenance-v1",
+        "mode": "reject_unobserved_locators",
+        "doc_sha256": "866c682ffddea209bd547e14d095c9cf6f6e39c309c1f47d32fd62bdb840d1cf",
+        "unobserved_locators": [],
+        "blocked": false,
+        "scope": "literal exposure only; no semantic safety certification"
+      },
+      "manual_review": "No concrete product IDs, target attribute values, success scores, or solved action paths retained; procedural content is based on public schema and observable actions. This is not a semantic safety certification or a performance result."
+    }
+  ],
+  "training_modified": false,
+  "cleaned_skill_evaluated": false
+}

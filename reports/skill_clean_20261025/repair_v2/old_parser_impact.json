@@ -1,0 +1,338 @@
+{
+  "train": {
+    "count": 15,
+    "examples": [
+      {
+        "task_id": "webshop_04240",
+        "old": {
+          "color": "plus, and style: dash"
+        },
+        "expected": {
+          "color": "plus",
+          "style": "dash"
+        }
+      },
+      {
+        "task_id": "webshop_02487",
+        "old": {
+          "color": "basil suede",
+          "size": "queen, and style: contemporary"
+        },
+        "expected": {
+          "color": "basil suede",
+          "size": "queen",
+          "style": "contemporary"
+        }
+      },
+      {
+        "task_id": "webshop_02582",
+        "old": {},
+        "expected": {
+          "scent": "acne face & body wash"
+        }
+      },
+      {
+        "task_id": "webshop_04233",
+        "old": {
+          "color": "blue | gray, and item shape: round",
+          "size": "7 ft 9 in x 10 ft 8 in"
+        },
+        "expected": {
+          "color": "blue | gray",
+          "item shape": "round",
+          "size": "7 ft 9 in x 10 ft 8 in"
+        }
+      },
+      {
+        "task_id": "webshop_06664",
+        "old": {
+          "size": "3 pack"
+        },
+        "expected": {
+          "flavor": "three meat",
+          "size": "3 pack"
+        }
+      },
+      {
+        "task_id": "webshop_03659",
+        "old": {
+          "color": "black | gray, and item shape: round",
+          "size": "9 ft 2 in x 12 ft 5 in"
+        },
+        "expected": {
+          "color": "black | gray",
+          "item shape": "round",
+          "size": "9 ft 2 in x 12 ft 5 in"
+        }
+      },
+      {
+        "task_id": "webshop_05762",
+        "old": {
+          "color": "taupe, and item shape: rectangular",
+          "size": "7 ft 8 in"
+        },
+        "expected": {
+          "color": "taupe",
+          "item shape": "rectangular",
+          "size": "7 ft 8 in"
+        }
+      },
+      {
+        "task_id": "webshop_04056",
+        "old": {
+          "color": "black-gray, and item shape: rectangular",
+          "size": "1 ft 9 in x 7 ft 2 in"
+        },
+        "expected": {
+          "color": "black-gray",
+          "item shape": "rectangular",
+          "size": "1 ft 9 in x 7 ft 2 in"
+        }
+      },
+      {
+        "task_id": "webshop_06866",
+        "old": {
+          "color": "brown | beige, and item shape: round",
+          "size": "21 in x 35 in"
+        },
+        "expected": {
+          "color": "brown | beige",
+          "item shape": "round",
+          "size": "21 in x 35 in"
+        }
+      },
+      {
+        "task_id": "webshop_04325",
+        "old": {
+          "color": "taupe, and item shape: rectangular",
+          "size": "9 ft 2 in x 12 ft 5 in"
+        },
+        "expected": {
+          "color": "taupe",
+          "item shape": "rectangular",
+          "size": "9 ft 2 in x 12 ft 5 in"
+        }
+      },
+      {
+        "task_id": "webshop_04941",
+        "old": {},
+        "expected": {
+          "style": "mattriess+pad bundle"
+        }
+      },
+      {
+        "task_id": "webshop_00836",
+        "old": {
+          "color": "blue",
+          "size": "queen, and style: casual"
+        },
+        "expected": {
+          "color": "blue",
+          "size": "queen",
+          "style": "casual"
+        }
+      },
+      {
+        "task_id": "webshop_06791",
+        "old": {
+          "size": "4.25 ounce (pack of 12)"
+        },
+        "expected": {
+          "flavor name": "pecan",
+          "size": "4.25 ounce (pack of 12)"
+        }
+      },
+      {
+        "task_id": "webshop_05011",
+        "old": {
+          "color": "taupe | orange, and item shape: runner",
+          "size": "21 in x 35 in"
+        },
+        "expected": {
+          "color": "taupe | orange",
+          "item shape": "runner",
+          "size": "21 in x 35 in"
+        }
+      },
+      {
+        "task_id": "webshop_05201",
+        "old": {
+          "color": "navy | red, and item shape: rectangular",
+          "size": "7 ft 9 in x 10 ft 8 in"
+        },
+        "expected": {
+          "color": "navy | red",
+          "item shape": "rectangular",
+          "size": "7 ft 9 in x 10 ft 8 in"
+        }
+      }
+    ]
+  },
+  "dev": {
+    "count": 14,
+    "examples": [
+      {
+        "task_id": "webshop_04243",
+        "old": {
+          "color": "icey blue",
+          "size": "queen, and style: contemporary"
+        },
+        "expected": {
+          "color": "icey blue",
+          "size": "queen",
+          "style": "contemporary"
+        }
+      },
+      {
+        "task_id": "webshop_06223",
+        "old": {
+          "color": "taupe | orange, and item shape: runner",
+          "size": "5 ft 2 in x 7 ft 4 in"
+        },
+        "expected": {
+          "color": "taupe | orange",
+          "item shape": "runner",
+          "size": "5 ft 2 in x 7 ft 4 in"
+        }
+      },
+      {
+        "task_id": "webshop_02151",
+        "old": {
+          "size": "4.25 ounce (pack of 6)"
+        },
+        "expected": {
+          "flavor name": "pecan",
+          "size": "4.25 ounce (pack of 6)"
+        }
+      },
+      {
+        "task_id": "webshop_01705",
+        "old": {
+          "color": "navy-multi, and item shape: runner",
+          "size": "7 ft 8 in x 10 ft 7 in"
+        },
+        "expected": {
+          "color": "navy-multi",
+          "item shape": "runner",
+          "size": "7 ft 8 in x 10 ft 7 in"
+        }
+      },
+      {
+        "task_id": "webshop_06543",
+        "old": {
+          "color": "blue, and item shape: round",
+          "size": "3 ft 7 in x 5 ft 2 in"
+        },
+        "expected": {
+          "color": "blue",
+          "item shape": "round",
+          "size": "3 ft 7 in x 5 ft 2 in"
+        }
+      },
+      {
+        "task_id": "webshop_03087",
+        "old": {
+          "color": "light grey, and style: pu leather"
+        },
+        "expected": {
+          "color": "light grey",
+          "style": "pu leather"
+        }
+      },
+      {
+        "task_id": "webshop_02558",
+        "old": {
+          "color": "taupe | orange, and item shape: runner",
+          "size": "7 ft 9 in x 10 ft 8 in"
+        },
+        "expected": {
+          "color": "taupe | orange",
+          "item shape": "runner",
+          "size": "7 ft 9 in x 10 ft 8 in"
+        }
+      },
+      {
+        "task_id": "webshop_05873",
+        "old": {
+          "color": "blue, and item shape: round",
+          "size": "9 ft 2 in x 12 ft 5 in"
+        },
+        "expected": {
+          "color": "blue",
+          "item shape": "round",
+          "size": "9 ft 2 in x 12 ft 5 in"
+        }
+      },
+      {
+        "task_id": "webshop_06667",
+        "old": {
+          "color": "brown | beige, and item shape: rectangular",
+          "size": "21 in x 35 in"
+        },
+        "expected": {
+          "color": "brown | beige",
+          "item shape": "rectangular",
+          "size": "21 in x 35 in"
+        }
+      },
+      {
+        "task_id": "webshop_03359",
+        "old": {
+          "color": "navy | red, and item shape: rectangular",
+          "size": "7 ft 8 in x 10 ft 7 in"
+        },
+        "expected": {
+          "color": "navy | red",
+          "item shape": "rectangular",
+          "size": "7 ft 8 in x 10 ft 7 in"
+        }
+      },
+      {
+        "task_id": "webshop_04378",
+        "old": {
+          "size": "0.8 ounce (pack of 20)"
+        },
+        "expected": {
+          "flavor": "3-flavor variety",
+          "size": "0.8 ounce (pack of 20)"
+        }
+      },
+      {
+        "task_id": "webshop_00767",
+        "old": {
+          "color": "taupe, and item shape: rectangular",
+          "size": "7 ft 8 in x 10 ft 7 in"
+        },
+        "expected": {
+          "color": "taupe",
+          "item shape": "rectangular",
+          "size": "7 ft 8 in x 10 ft 7 in"
+        }
+      },
+      {
+        "task_id": "webshop_02060",
+        "old": {
+          "color": "taupe | orange, and item shape: runner",
+          "size": "7 ft 8 in x 10 ft 7 in"
+        },
+        "expected": {
+          "color": "taupe | orange",
+          "item shape": "runner",
+          "size": "7 ft 8 in x 10 ft 7 in"
+        }
+      },
+      {
+        "task_id": "webshop_06703",
+        "old": {
+          "color": "taupe, and item shape: round",
+          "size": "7 ft 8 in"
+        },
+        "expected": {
+          "color": "taupe",
+          "item shape": "round",
+          "size": "7 ft 8 in"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,394 @@
+{
+  "checked_at": "2026-10-25T18:42:17.678745+08:00",
+  "configs": {
+    "clean": {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/configs/clean_skill.yaml",
+      "train": {
+        "adv_estimator": "grpo",
+        "norm_adv_by_std": false,
+        "seed": 42,
+        "train_batch_size": 16,
+        "rollout_n": 8,
+        "rollout_temperature": 1,
+        "total_training_steps": 100,
+        "model_path": "/root/trace-webshop-arm-ratio/models/Qwen2.5-3B-Instruct",
+        "reward_from_score": null,
+        "test_freq": 20,
+        "lr": 0.000001
+      },
+      "eval": {
+        "n": 5,
+        "temperature": 0.6
+      },
+      "steering": {
+        "enabled": true,
+        "doc_source": "researcher",
+        "task_gate_path": null,
+        "steered_fraction": 0.5,
+        "steered_adv_decay_steps": 0,
+        "w_beh_mode": "off"
+      },
+      "research": {
+        "request_token_limit": 3072,
+        "n_exp": 3,
+        "k_default": 2,
+        "max_turns": 16
+      }
+    },
+    "selective": {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/configs/selective_skill.yaml",
+      "train": {
+        "adv_estimator": "grpo",
+        "norm_adv_by_std": false,
+        "seed": 42,
+        "train_batch_size": 16,
+        "rollout_n": 8,
+        "rollout_temperature": 1,
+        "total_training_steps": 100,
+        "model_path": "/root/trace-webshop-arm-ratio/models/Qwen2.5-3B-Instruct",
+        "reward_from_score": null,
+        "test_freq": 20,
+        "lr": 0.000001
+      },
+      "eval": {
+        "n": 5,
+        "temperature": 0.6
+      },
+      "steering": {
+        "enabled": true,
+        "doc_source": "researcher",
+        "task_gate_path": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/pass5_gate.json",
+        "steered_fraction": 0.5,
+        "steered_adv_decay_steps": 0,
+        "w_beh_mode": "off"
+      },
+      "research": {
+        "request_token_limit": 3072,
+        "n_exp": 3,
+        "k_default": 2,
+        "max_turns": 16
+      }
+    },
+    "grpo": {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/configs/grpo.yaml",
+      "train": {
+        "adv_estimator": "grpo",
+        "norm_adv_by_std": false,
+        "seed": 42,
+        "train_batch_size": 16,
+        "rollout_n": 8,
+        "rollout_temperature": 1,
+        "total_training_steps": 100,
+        "model_path": "/root/trace-webshop-arm-ratio/models/Qwen2.5-3B-Instruct",
+        "reward_from_score": null,
+        "test_freq": 20,
+        "lr": 0.000001
+      },
+      "eval": {
+        "n": 5,
+        "temperature": 0.6
+      },
+      "steering": {
+        "enabled": false,
+        "doc_source": null,
+        "task_gate_path": null,
+        "steered_fraction": null,
+        "steered_adv_decay_steps": null,
+        "w_beh_mode": null
+      },
+      "research": {
+        "request_token_limit": null,
+        "n_exp": 3,
+        "k_default": 2,
+        "max_turns": 16
+      }
+    }
+  },
+  "clean_actual_launch": [
+    "algorithm.adv_estimator=grpo",
+    "algorithm.norm_adv_by_std_in_grpo=False",
+    "+algorithm.steered_adv_weight=1.0",
+    "+algorithm.steered_adv_decay_steps=0",
+    "+algorithm.steered_adv_cap=0.0",
+    "data.train_batch_size=16",
+    "data.seed=42",
+    "actor_rollout_ref.rollout.seed=42",
+    "actor_rollout_ref.actor.data_loader_seed=42",
+    "actor_rollout_ref.rollout.n=8",
+    "actor_rollout_ref.rollout.val_kwargs.temperature=0.6",
+    "actor_rollout_ref.rollout.val_kwargs.top_p=1.0",
+    "actor_rollout_ref.rollout.val_kwargs.top_k=-1",
+    "actor_rollout_ref.rollout.val_kwargs.n=5",
+    "actor_rollout_ref.rollout.val_kwargs.do_sample=True",
+    "trainer.total_training_steps=100"
+  ],
+  "candidate_records": [
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543428.jsonl",
+      "line": 381,
+      "ts": 1792923551.4498475,
+      "ctx": "research:webshop_03575:turn02",
+      "finish_reason": "stop",
+      "latency_s": 20.371,
+      "usage": {
+        "prompt_tokens": 2214,
+        "completion_tokens": 233
+      },
+      "error": null,
+      "tools": [],
+      "parameter_headers": [
+        "<parameter=guiding",
+        "<parameter=k>"
+      ],
+      "function_names": [
+        "run_experiment"
+      ]
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543425.jsonl",
+      "line": 413,
+      "ts": 1792923554.0798686,
+      "ctx": "research:webshop_01856:turn02",
+      "finish_reason": "tool_calls",
+      "latency_s": 25.991,
+      "usage": {
+        "prompt_tokens": 1940,
+        "completion_tokens": 293
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    }
+  ],
+  "followup": [
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543428.jsonl",
+      "line": 380,
+      "ts": 1792923525.111108,
+      "ctx": "research:webshop_03575:turn01",
+      "finish_reason": "tool_calls",
+      "latency_s": 10.899,
+      "usage": {
+        "prompt_tokens": 935,
+        "completion_tokens": 114
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543428.jsonl",
+      "line": 381,
+      "ts": 1792923551.4498475,
+      "ctx": "research:webshop_03575:turn02",
+      "finish_reason": "stop",
+      "latency_s": 20.371,
+      "usage": {
+        "prompt_tokens": 2214,
+        "completion_tokens": 233
+      },
+      "error": null,
+      "tools": [],
+      "parameter_headers": [
+        "<parameter=guiding",
+        "<parameter=k>"
+      ],
+      "function_names": [
+        "run_experiment"
+      ]
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543428.jsonl",
+      "line": 382,
+      "ts": 1792923587.2317293,
+      "ctx": "research:webshop_03575:turn03",
+      "finish_reason": "tool_calls",
+      "latency_s": 35.759,
+      "usage": {
+        "prompt_tokens": 1719,
+        "completion_tokens": 423
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543428.jsonl",
+      "line": 383,
+      "ts": 1792923604.1241837,
+      "ctx": "research:webshop_03575:turn04",
+      "finish_reason": "tool_calls",
+      "latency_s": 12.634,
+      "usage": {
+        "prompt_tokens": 2091,
+        "completion_tokens": 146
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543428.jsonl",
+      "line": 384,
+      "ts": 1792923681.1736476,
+      "ctx": "research:webshop_03575:turn05",
+      "finish_reason": "tool_calls",
+      "latency_s": 73.292,
+      "usage": {
+        "prompt_tokens": 2326,
+        "completion_tokens": 856
+      },
+      "error": null,
+      "tools": [
+        "finalize"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    }
+  ],
+  "metadata": [
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/research/webshop_03575--eb006e1ab0/20261025_182121_v97/meta.json",
+      "task_id": "webshop_03575",
+      "policy_version": 97,
+      "global_step": 98,
+      "finalized": true,
+      "no_finalize": false,
+      "turns_used": 5,
+      "experiments_used": 3,
+      "doc_words": 294,
+      "self_assessment": "{\"version\": \"webshop_clean_skill_v2\", \"origin\": \"researcher_finalized\", \"required_options\": {\"color\": \"#2 black\", \"size\": \"32\"}, \"source\": \"public_task_and_mechanical_episode_evidence\", \"successes\": 8, \"invalid_actions\": 6, \"repeated_pairs\": 3, \"candidate_query\": \"men's shorts #2 black 32\", \"free_form_prose_forwarded\": false, \"words\": 294}",
+      "flags": [
+        "clean_skill_v2",
+        "researcher_finalized"
+      ]
+    }
+  ],
+  "sequence": {
+    "phase": "running",
+    "pid": 2536102,
+    "time": 1792870442.7809832,
+    "input_limit": 3072,
+    "server_concurrency": 16,
+    "order": [
+      "clean_skill"
+    ],
+    "job": "clean_skill",
+    "run": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42",
+    "owner_pid": 2536911,
+    "owner_state": "/tmp/p5compact3072-clean25v2",
+    "researcher_owner_pid": 2536409,
+    "next_job": null
+  },
+  "final_eval_rows": 1280,
+  "baseline_reviews": {
+    "20": {
+      "step": 20,
+      "time": 1792886804.296033,
+      "new": {
+        "tasks": 256,
+        "attempts": 1280,
+        "successes": 296,
+        "solved": 147
+      },
+      "grpo": {
+        "tasks": 256,
+        "attempts": 1280,
+        "successes": 265,
+        "solved": 130
+      },
+      "below_baseline": false,
+      "criterion": "stop if either bare pass@1 estimate or pass@5 is below same-step GRPO",
+      "audit": "complete single-launch 256 x 5 bare evaluation; no infrastructure error"
+    },
+    "40": {
+      "step": 40,
+      "time": 1792897472.705952,
+      "new": {
+        "tasks": 256,
+        "attempts": 1280,
+        "successes": 885,
+        "solved": 205
+      },
+      "grpo": {
+        "tasks": 256,
+        "attempts": 1280,
+        "successes": 710,
+        "solved": 195
+      },
+      "below_baseline": false,
+      "criterion": "stop if either bare pass@1 estimate or pass@5 is below same-step GRPO",
+      "audit": "complete single-launch 256 x 5 bare evaluation; no infrastructure error"
+    },
+    "60": {
+      "step": 60,
+      "time": 1792906397.6478686,
+      "new": {
+        "tasks": 256,
+        "attempts": 1280,
+        "successes": 957,
+        "solved": 212
+      },
+      "grpo": {
+        "tasks": 256,
+        "attempts": 1280,
+        "successes": 852,
+        "solved": 202
+      },
+      "below_baseline": false,
+      "criterion": "stop if either bare pass@1 estimate or pass@5 is below same-step GRPO",
+      "audit": "complete single-launch 256 x 5 bare evaluation; no infrastructure error"
+    },
+    "80": {
+      "step": 80,
+      "time": 1792915945.0966837,
+      "new": {
+        "tasks": 256,
+        "attempts": 1280,
+        "successes": 996,
+        "solved": 211
+      },
+      "grpo": {
+        "tasks": 256,
+        "attempts": 1280,
+        "successes": 932,
+        "solved": 206
+      },
+      "below_baseline": false,
+      "criterion": "stop if either bare pass@1 estimate or pass@5 is below same-step GRPO",
+      "audit": "complete single-launch 256 x 5 bare evaluation; no infrastructure error"
+    },
+    "100": {
+      "step": 100,
+      "time": 1792924841.005316,
+      "new": {
+        "tasks": 256,
+        "attempts": 1280,
+        "successes": 1019,
+        "solved": 214
+      },
+      "grpo": {
+        "tasks": 256,
+        "attempts": 1280,
+        "successes": 937,
+        "solved": 205
+      },
+      "below_baseline": false,
+      "criterion": "stop if either bare pass@1 estimate or pass@5 is below same-step GRPO",
+      "audit": "complete single-launch 256 x 5 bare evaluation; no infrastructure error"
+    }
+  },
+  "completion_audit": null
+}

@@ -1,0 +1,200 @@
+{
+  "snapshot": {
+    "checked_at": "2026-10-25T03:53:48.912605+08:00",
+    "sequence": {
+      "phase": "running",
+      "pid": 2536102,
+      "time": 1792870442.7809832,
+      "input_limit": 3072,
+      "server_concurrency": 16,
+      "order": [
+        "clean_skill"
+      ],
+      "job": "clean_skill",
+      "run": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42",
+      "owner_pid": 2536911,
+      "owner_state": "/tmp/p5compact3072-clean25v2",
+      "researcher_owner_pid": 2536409,
+      "next_job": null
+    },
+    "webshop": {
+      "8321": {
+        "active": 96,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 4227,
+          "queue_seconds": 898.3631240464747,
+          "backend_seconds": 134.62658171355724,
+          "max_queue_seconds": 2.5816646479070187,
+          "max_backend_seconds": 0.5022425092756748
+        },
+        "http_statuses": {
+          "200": 4227
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8322": {
+        "active": 77,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 3788,
+          "queue_seconds": 707.0593988336623,
+          "backend_seconds": 119.9916967600584,
+          "max_queue_seconds": 1.8556537441909313,
+          "max_backend_seconds": 0.49447331577539444
+        },
+        "http_statuses": {
+          "200": 3788
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8323": {
+        "active": 60,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 3393,
+          "queue_seconds": 351.37243730574846,
+          "backend_seconds": 108.50911031290889,
+          "max_queue_seconds": 1.9743936136364937,
+          "max_backend_seconds": 0.40762273594737053
+        },
+        "http_statuses": {
+          "200": 3393
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8324": {
+        "active": 127,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 5231,
+          "queue_seconds": 2022.8665187098086,
+          "backend_seconds": 167.07724879682064,
+          "max_queue_seconds": 4.1333818435668945,
+          "max_backend_seconds": 0.5654539912939072
+        },
+        "http_statuses": {
+          "200": 5231
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      }
+    },
+    "rollout_rows": {
+      "step_00000_val": 920
+    },
+    "error_mentions": {
+      "webshop service unreachable": 0,
+      "webshop HTTP 409": 0,
+      "student episode infra error": 0,
+      "OutOfMemoryError": 0,
+      "ReplayBuffer:": 0
+    },
+    "training_tail": [
+      "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 03:53:11,925:pending: 0, running: 201, finished: 55, failure: 0",
+      "\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m 2026-10-25 03:52:40,834 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_be406cb7: [Performance] Total success requests: 37, Total req/min: 7.37, Total avg process time: 0.0027s; ",
+      "\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m Time range: last 5.02 minutes; ",
+      "\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m Per-operation statistics: PUT_DATA: req_count=37, req/min=7.37, avg_time=0.002666s, max_time=0.004561s, min_time=0.002133s"
+    ],
+    "completed_steps": [],
+    "timing_rows": [],
+    "researcher_inputs": {
+      "calls": 0,
+      "mean": null,
+      "max": null,
+      "above_3072": 0
+    },
+    "experiment_root": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2",
+    "gpu": "index, utilization.gpu [%], memory.used [MiB]\n0, 0 %, 39027 MiB\n1, 100 %, 24817 MiB\n2, 100 %, 24791 MiB\n3, 0 %, 39027 MiB\n",
+    "gpu_processes": "pid, used_gpu_memory [MiB]\n1790979, 39020 MiB\n1798620, 656 MiB\n1801825, 24138 MiB\n1798621, 656 MiB\n1801747, 24112 MiB\n1790980, 39020 MiB\n",
+    "process_identity": {
+      "sequence": {
+        "pid": 2536102,
+        "alive": true,
+        "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python -u /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/run_sequence.py "
+      },
+      "student_owner": {
+        "pid": 2536911,
+        "alive": true,
+        "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/scripts/cloud/run_owned_job.py --state-dir /tmp/p5compact3072-clean25v2 --gpus 1,2 --no-deadline --abort-file /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/ABORT --cwd /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code -- /root/trace-webshop-arm-ratio/.venvs/train/bin/python -u scripts/launch_train.py --config /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/configs/clean_skill.yaml "
+      },
+      "researcher_owner": {
+        "pid": 2536409,
+        "alive": true,
+        "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/scripts/cloud/run_owned_job.py --state-dir /tmp/p5compact3072-research25clean2 --gpus 0,3 --no-deadline --abort-file /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/ABORT --cwd /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code -- /root/trace-webshop-arm-ratio/.venvs/researcher/bin/vllm serve /root/trace-webshop-arm-ratio/models/Qwen3.6-35B-A3B --served-model-name qwen3.6-35b-a3b --host 127.0.0.1 --port 18881 --api-key loopback-only --tensor-parallel-size 2 --dtype bfloat16 --max-model-len 7168 --max-num-seqs 16 --max-num-batched-tokens 4096 --gpu-memory-utilization 0.95 --enforce-eager --language-model-only --enable-auto-tool-choice --tool-call-parser qwen3_coder --reasoning-parser qwen3 "
+      }
+    },
+    "skill_compiler": {
+      "sessions": 0,
+      "missing_docs": 0,
+      "over_500_words": 0,
+      "origins": {},
+      "max_words": null,
+      "research_errors": 0,
+      "mean_turns": null
+    },
+    "training_diagnostics": {
+      "complete_groups": 0,
+      "score_heterogeneous_complete_groups": 0,
+      "advantage_proxy_only": true,
+      "guided_assigned_rows": 0,
+      "positive_steering_rows": 0
+    },
+    "baseline_reviews": null,
+    "baseline_stop": null,
+    "cpu_validation": {
+      "passed": true,
+      "tests": 21,
+      "inference_calls": 0,
+      "new_rollouts": 0,
+      "configuration_equal_except_name": true,
+      "src_diffs": [
+        "trace_opd/research/clean_skill.py"
+      ],
+      "public_spec_cases": 512,
+      "independent_spec_issues": 0,
+      "offline_replayed_groups": 576,
+      "max_doc_words": 326
+    },
+    "last_progress_mtime": 1792871629.4329762,
+    "preflight_note": "researcher_inputs contains role=researcher only; startup tokenize and researcher-preflight excluded. Zero calls means no actual formal-input samples.",
+    "independent_spec_audit": {
+      "checked": 0,
+      "issues": []
+    },
+    "steering_by_step": {}
+  },
+  "sequence_pid_file": "2536102\n",
+  "sequence_log": "starting_webshop {}\nwebshop_ready {'ports': [8321, 8322, 8323, 8324], 'pids': [2536152, 2536153, 2536154, 2536155], 'semantic_equivalence': True}\nstarting_researcher {}\n[config] budget: executor 流预算=16384(episode.session_token_budget),轮×单轮乘积=15360(轮×单轮乘积先到);padding 维度=train.response_length=16384,CPU 内存 ∝ 行数×维度。\nresearcher_ready {'researcher_owner_pid': 2536409, 'tokenization_only_count': 701}\n[config] budget: executor 流预算=16384(episode.session_token_budget),轮×单轮乘积=15360(轮×单轮乘积先到);padding 维度=train.response_length=16384,CPU 内存 ∝ 行数×维度。\nrunning {'job': 'clean_skill', 'run': '/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42', 'owner_pid': 2536911, 'owner_state': '/tmp/p5compact3072-clean25v2', 'researcher_owner_pid': 2536409, 'next_job': None}\n",
+  "exported_at": "2026-10-25T03:53:50.885276+08:00",
+  "frozen_changed": [],
+  "p5compact3072-clean25v2_tail": "[0m Time range: last 5.12 minutes; \u001b[32m [repeated 4x across cluster]\u001b[0m\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 03:40:09,430:pending: 0, running: 249, finished: 7, failure: 0\n\u001b[36m(SimpleStorageUnit pid=2541299)\u001b[0m Per-operation statistics: PUT_DATA: req_count=46, req/min=8.96, avg_time=0.002383s, max_time=0.003917s, min_time=0.002105s\u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(SimpleStorageUnit pid=2541299)\u001b[0m 2026-10-25 03:39:45,254 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_65ec1812: [Performance] Total success requests: 46, Total req/min: 8.96, Total avg process time: 0.0024s; \u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(SimpleStorageUnit pid=2541299)\u001b[0m Time range: last 5.13 minutes; \u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 03:41:09,621:pending: 0, running: 249, finished: 7, failure: 0\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 03:42:09,806:pending: 0, running: 249, finished: 7, failure: 0\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 03:43:09,995:pending: 0, running: 249, finished: 7, failure: 0\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 03:44:10,172:pending: 0, running: 249, finished: 7, failure: 0\n\u001b[36m(TransferQueueController pid=2541009)\u001b[0m 2026-10-25 03:44:34,245 - INFO - transfer_queue.utils.perf_utils - TQ_CONTROLLER_79c282b8: [Performance] Total success requests: 297, Total req/min: 59.22, Total avg process time: 0.0002s; \n\u001b[36m(TransferQueueController pid=2541009)\u001b[0m Time range: last 5.02 minutes; \n\u001b[36m(TransferQueueController pid=2541009)\u001b[0m Per-operation statistics: KV_RETRIEVE_META: req_count=49, req/min=9.77, avg_time=0.000415s, max_time=0.000711s, min_time=0.000242s; NOTIFY_DATA_UPDATE: req_count=49, req/min=9.77, avg_time=0.000177s, max_time=0.000285s, min_time=0.000096s; SET_CUSTOM_META: req_count=49, req/min=9.77, avg_time=0.000019s, max_time=0.000073s, min_time=0.000012s; KV_LIST: req_count=150, req/min=29.91, avg_time=0.000215s, max_time=0.000529s, min_time=0.000183s\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 03:45:10,350:pending: 0, running: 249, finished: 7, failure: 0\n\u001b[36m(SimpleStorageUnit pid=2541299)\u001b[0m 2026-10-25 03:45:44,188 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_65ec1812: [Performance] Total success requests: 5, Total req/min: 0.84, Total avg process time: 0.0026s; \n\u001b[36m(SimpleStorageUnit pid=2541299)\u001b[0m Time range: last 5.98 minutes; \n\u001b[36m(SimpleStorageUnit pid=2541299)\u001b[0m Per-operation statistics: PUT_DATA: req_count=5, req/min=0.84, avg_time=0.002579s, max_time=0.003274s, min_time=0.002277s\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 03:46:10,531:pending: 0, running: 249, finished: 7, failure: 0\n\u001b[36m(SimpleStorageUnit pid=2541301)\u001b[0m 2026-10-25 03:46:13,179 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_111107db: [Performance] Total success requests: 6, Total req/min: 0.91, Total avg process time: 0.0022s; \n\u001b[36m(SimpleStorageUnit pid=2541301)\u001b[0m Time range: last 6.59 minutes; \n\u001b[36m(SimpleStorageUnit pid=2541301)\u001b[0m Per-operation statistics: PUT_DATA: req_count=6, req/min=0.91, avg_time=0.002163s, max_time=0.002225s, min_time=0.002097s\n\u001b[36m(SimpleStorageUnit pid=2541300)\u001b[0m 2026-10-25 03:46:20,450 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_c8893cc9: [Performance] Total success requests: 6, Total req/min: 0.90, Total avg process time: 0.0022s; \n\u001b[36m(SimpleStorageUnit pid=2541300)\u001b[0m Time range: last 6.69 minutes; \n\u001b[36m(SimpleStorageUnit pid=2541300)\u001b[0m Per-operation statistics: PUT_DATA: req_count=6, req/min=0.90, avg_time=0.002197s, max_time=0.002257s, min_time=0.002131s\n\u001b[36m(SimpleStorageUnit pid=2541302)\u001b[0m 2026-10-25 03:46:33,570 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_726c1803: [Performance] Total success requests: 6, Total req/min: 0.87, Total avg process time: 0.0023s; \n\u001b[36m(SimpleStorageUnit pid=2541302)\u001b[0m Time range: last 6.90 minutes; \n\u001b[36m(SimpleStorageUnit pid=2541302)\u001b[0m Per-operation statistics: PUT_DATA: req_count=6, req/min=0.87, avg_time=0.002285s, max_time=0.002676s, min_time=0.002137s\n\u001b[36m(SimpleStorageUnit pid=2541303)\u001b[0m 2026-10-25 03:47:10,447 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_9d26bd0a: [Performance] Total success requests: 6, Total req/min: 0.80, Total avg process time: 0.0023s; \n\u001b[36m(SimpleStorageUnit pid=2541303)\u001b[0m Time range: last 7.50 minutes; \n\u001b[36m(SimpleStorageUnit pid=2541303)\u001b[0m Per-operation statistics: PUT_DATA: req_count=6, req/min=0.80, avg_time=0.002311s, max_time=0.002443s, min_time=0.002157s\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 03:47:10,712:pending: 0, running: 248, finished: 8, failure: 0\n\u001b[36m(SimpleStorageUnit pid=2541304)\u001b[0m 2026-10-25 03:47:32,654 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_22f75476: [Performance] Total success requests: 6, Total req/min: 0.76, Total avg process time: 0.0024s; \n\u001b[36m(SimpleStorageUnit pid=2541304)\u001b[0m Time range: last 7.86 minutes; \n\u001b[36m(SimpleStorageUnit pid=2541304)\u001b[0m Per-operation statistics: PUT_DATA: req_count=6, req/min=0.76, avg_time=0.002354s, max_time=0.002425s, min_time=0.002291s\n\u001b[36m(SimpleStorageUnit pid=2541305)\u001b[0m 2026-10-25 03:47:39,568 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_d407e947: [Performance] Total success requests: 6, Total req/min: 0.76, Total avg process time: 0.0025s; \n\u001b[36m(SimpleStorageUnit pid=2541305)\u001b[0m Time range: last 7.92 minutes; \n\u001b[36m(SimpleStorageUnit pid=2541305)\u001b[0m Per-operation statistics: PUT_DATA: req_count=6, req/min=0.76, avg_time=0.002517s, max_time=0.003448s, min_time=0.002162s\n\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m 2026-10-25 03:47:39,657 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_be406cb7: [Performance] Total success requests: 6, Total req/min: 0.76, Total avg process time: 0.0026s; \n\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m Time range: last 7.91 minutes; \n\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m Per-operation statistics: PUT_DATA: req_count=6, req/min=0.76, avg_time=0.002585s, max_time=0.003330s, min_time=0.002320s\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 03:48:10,895:pending: 0, running: 247, finished: 9, failure: 0\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 03:49:11,080:pending: 0, running: 247, finished: 9, failure: 0\n\u001b[36m(TransferQueueController pid=2541009)\u001b[0m 2026-10-25 03:49:35,157 - INFO - transfer_queue.utils.perf_utils - TQ_CONTROLLER_79c282b8: [Performance] Total success requests: 246, Total req/min: 49.05, Total avg process time: 0.0002s; \n\u001b[36m(TransferQueueController pid=2541009)\u001b[0m Time range: last 5.02 minutes; \n\u001b[36m(TransferQueueController pid=2541009)\u001b[0m Per-operation statistics: KV_LIST: req_count=150, req/min=29.91, avg_time=0.000212s, max_time=0.000334s, min_time=0.000195s; KV_RETRIEVE_META: req_count=33, req/min=6.58, avg_time=0.000444s, max_time=0.000680s, min_time=0.000233s; NOTIFY_DATA_UPDATE: req_count=30, req/min=5.98, avg_time=0.000187s, max_time=0.000240s, min_time=0.000158s; SET_CUSTOM_META: req_count=33, req/min=6.58, avg_time=0.000019s, max_time=0.000031s, min_time=0.000015s\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 03:50:11,266:pending: 0, running: 245, finished: 11, failure: 0\n\u001b[36m(SimpleStorageUnit pid=2541299)\u001b[0m 2026-10-25 03:50:44,491 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_65ec1812: [Performance] Total success requests: 10, Total req/min: 2.00, Total avg process time: 0.0025s; \n\u001b[36m(SimpleStorageUnit pid=2541299)\u001b[0m Time range: last 5.01 minutes; \n\u001b[36m(SimpleStorageUnit pid=2541299)\u001b[0m Per-operation statistics: PUT_DATA: req_count=10, req/min=2.00, avg_time=0.002519s, max_time=0.003598s, min_time=0.002303s\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 03:51:11,460:pending: 0, running: 239, finished: 17, failure: 0\n\u001b[36m(SimpleStorageUnit pid=2541301)\u001b[0m 2026-10-25 03:51:20,634 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_111107db: [Performance] Total success requests: 16, Total req/min: 3.12, Total avg process time: 0.0023s; \n\u001b[36m(SimpleStorageUnit pid=2541301)\u001b[0m Time range: last 5.12 minutes; \n\u001b[36m(SimpleStorageUnit pid=2541301)\u001b[0m Per-operation statistics: PUT_DATA: req_count=16, req/min=3.12, avg_time=0.002268s, max_time=0.003103s, min_time=0.002108s\n\u001b[36m(SimpleStorageUnit pid=2541302)\u001b[0m 2026-10-25 03:51:33,900 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_726c1803: [Performance] Total success requests: 19, Total req/min: 3.80, Total avg process time: 0.0022s; \u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(SimpleStorageUnit pid=2541302)\u001b[0m Time range: last 5.01 minutes; \u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(SimpleStorageUnit pid=2541302)\u001b[0m Per-operation statistics: PUT_DATA: req_count=19, req/min=3.80, avg_time=0.002191s, max_time=0.002453s, min_time=0.002080s\u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 03:52:11,677:pending: 0, running: 225, finished: 31, failure: 0\n\u001b[36m(SimpleStorageUnit pid=2541303)\u001b[0m 2026-10-25 03:52:12,703 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_9d26bd0a: [Performance] Total success requests: 28, Total req/min: 5.56, Total avg process time: 0.0031s; \n\u001b[36m(SimpleStorageUnit pid=2541303)\u001b[0m Time range: last 5.04 minutes; \n\u001b[36m(SimpleStorageUnit pid=2541303)\u001b[0m Per-operation statistics: PUT_DATA: req_count=28, req/min=5.56, avg_time=0.003075s, max_time=0.005641s, min_time=0.002296s\n\u001b[36m(SimpleStorageUnit pid=2541304)\u001b[0m 2026-10-25 03:52:35,155 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_22f75476: [Performance] Total success requests: 35, Total req/min: 6.94, Total avg process time: 0.0027s; \n\u001b[36m(SimpleStorageUnit pid=2541304)\u001b[0m Time range: last 5.04 minutes; \n\u001b[36m(SimpleStorageUnit pid=2541304)\u001b[0m Per-operation statistics: PUT_DATA: req_count=35, req/min=6.94, avg_time=0.002652s, max_time=0.003723s, min_time=0.002171s\n\u001b[36m(SimpleStorageUnit pid=2541305)\u001b[0m 2026-10-25 03:52:40,823 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_d407e947: [Performance] Total success requests: 37, Total req/min: 7.37, Total avg process time: 0.0022s; \n\u001b[36m(SimpleStorageUnit pid=2541305)\u001b[0m Time range: last 5.02 minutes; \n\u001b[36m(SimpleStorageUnit pid=2541305)\u001b[0m Per-operation statistics: PUT_DATA: req_count=37, req/min=7.37, avg_time=0.002179s, max_time=0.002461s, min_time=0.002098s\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 03:53:11,925:pending: 0, running: 201, finished: 55, failure: 0\n\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m 2026-10-25 03:52:40,834 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_be406cb7: [Performance] Total success requests: 37, Total req/min: 7.37, Total avg process time: 0.0027s; \n\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m Time range: last 5.02 minutes; \n\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m Per-operation statistics: PUT_DATA: req_count=37, req/min=7.37, avg_time=0.002666s, max_time=0.004561s, min_time=0.002133s\n",
+  "p5compact3072-clean25v2_errors": {
+    "CUDA out of memory": 0,
+    "OutOfMemoryError": 0,
+    "is preempted|preempted by": 0,
+    "ReadTimeout|ConnectTimeout": 0,
+    "Traceback": 0,
+    "HTTP/1.1. 500": 0
+  },
+  "p5compact3072-clean25v2_mtime": 1792871592.0252433,
+  "update_metric_lines": [],
+  "p5compact3072-research25clean2_tail": "xt-only mode.\n(Worker pid=2536627) INFO 10-25 03:33:25 [parallel_state.py:1400] world_size=2 rank=1 local_rank=1 distributed_init_method=tcp://127.0.0.1:45847 backend=nccl\n(Worker pid=2536626) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.\n(Worker pid=2536626) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.\n(Worker pid=2536626) INFO 10-25 03:33:26 [pynccl.py:111] vLLM is using nccl==2.27.5\n(Worker pid=2536627) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.\n(Worker pid=2536627) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.\n(Worker pid=2536626) WARNING 10-25 03:33:26 [symm_mem.py:66] SymmMemCommunicator: Device capability 8.0 not supported, communicator is not available.\n(Worker pid=2536627) WARNING 10-25 03:33:26 [symm_mem.py:66] SymmMemCommunicator: Device capability 8.0 not supported, communicator is not available.\n(Worker pid=2536626) INFO 10-25 03:33:26 [parallel_state.py:1716] rank 0 in world size 2 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank 0, EPLB rank N/A\n(Worker_TP0 pid=2536626) INFO 10-25 03:33:27 [gpu_model_runner.py:4735] Starting to load model /root/trace-webshop-arm-ratio/models/Qwen3.6-35B-A3B...\n(Worker_TP0 pid=2536626) INFO 10-25 03:33:27 [cuda.py:390] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention\n(Worker_TP0 pid=2536626) INFO 10-25 03:33:27 [mm_encoder_attention.py:230] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.\n(Worker_TP0 pid=2536626) INFO 10-25 03:33:27 [gdn_linear_attn.py:147] Using Triton/FLA GDN prefill kernel\n(Worker_TP0 pid=2536626) INFO 10-25 03:33:27 [unquantized.py:186] Using TRITON backend for Unquantized MoE\n(Worker_TP0 pid=2536626) INFO 10-25 03:33:27 [cuda.py:334] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].\n(Worker_TP0 pid=2536626) INFO 10-25 03:33:27 [flash_attn.py:596] Using FlashAttention version 2\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:   0% Completed | 0/26 [00:00<?, ?it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:   4% Completed | 1/26 [00:00<00:19,  1.25it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:   8% Completed | 2/26 [00:01<00:11,  2.06it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  12% Completed | 3/26 [00:01<00:15,  1.53it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  15% Completed | 4/26 [00:02<00:16,  1.32it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  19% Completed | 5/26 [00:03<00:17,  1.20it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  23% Completed | 6/26 [00:04<00:18,  1.09it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  27% Completed | 7/26 [00:05<00:13,  1.39it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  31% Completed | 8/26 [00:06<00:13,  1.29it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  35% Completed | 9/26 [00:06<00:11,  1.52it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  38% Completed | 10/26 [00:07<00:11,  1.36it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  42% Completed | 11/26 [00:07<00:09,  1.57it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  46% Completed | 12/26 [00:08<00:09,  1.42it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  50% Completed | 13/26 [00:09<00:08,  1.58it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  54% Completed | 14/26 [00:10<00:08,  1.41it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  58% Completed | 15/26 [00:10<00:06,  1.59it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  62% Completed | 16/26 [00:11<00:07,  1.33it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  65% Completed | 17/26 [00:11<00:05,  1.61it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  69% Completed | 18/26 [00:12<00:05,  1.41it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  73% Completed | 19/26 [00:13<00:04,  1.60it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  77% Completed | 20/26 [00:14<00:04,  1.42it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  81% Completed | 21/26 [00:14<00:03,  1.59it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  85% Completed | 22/26 [00:15<00:02,  1.47it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  88% Completed | 23/26 [00:16<00:02,  1.35it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  92% Completed | 24/26 [00:17<00:01,  1.26it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards:  96% Completed | 25/26 [00:17<00:00,  1.32it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards: 100% Completed | 26/26 [00:18<00:00,  1.56it/s]\n(Worker_TP0 pid=2536626) \nLoading safetensors checkpoint shards: 100% Completed | 26/26 [00:18<00:00,  1.43it/s]\n(Worker_TP0 pid=2536626) \n(Worker_TP0 pid=2536626) INFO 10-25 03:33:46 [default_loader.py:384] Loading weights took 18.17 seconds\n(Worker_TP0 pid=2536626) INFO 10-25 03:33:46 [gpu_model_runner.py:4820] Model loading took 32.43 GiB memory and 18.475512 seconds\n(Worker_TP0 pid=2536626) WARNING 10-25 03:33:48 [fused_moe.py:1090] Using default MoE config. Performance might be sub-optimal! Config file not found at /root/trace-webshop-arm-ratio/.venvs/researcher/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/configs/E=256,N=256,device_name=NVIDIA_A100-PCIE-40GB.json\n(Worker_TP0 pid=2536626) INFO 10-25 03:33:50 [gpu_worker.py:436] Available KV cache memory: 4.6 GiB\n(EngineCore pid=2536522) INFO 10-25 03:33:50 [kv_cache_utils.py:1319] GPU KV cache size: 120,384 tokens\n(EngineCore pid=2536522) INFO 10-25 03:33:50 [kv_cache_utils.py:1324] Maximum concurrency for 7,168 tokens per request: 45.60x\n(EngineCore pid=2536522) INFO 10-25 03:33:51 [core.py:283] init engine (profile, create kv cache, warmup model) took 4.36 seconds\n(EngineCore pid=2536522) [transformers] `Qwen2VLImageProcessorFast` is deprecated. The `Fast` suffix for image processors has been removed; use `Qwen2VLImageProcessor` instead.\n(EngineCore pid=2536522) INFO 10-25 03:33:52 [registry.py:126] All limits of multimodal modalities supported by the model are set to 0, running in text-only mode.\n(EngineCore pid=2536522) INFO 10-25 03:33:52 [vllm.py:790] Asynchronous scheduling is enabled.\n(EngineCore pid=2536522) WARNING 10-25 03:33:52 [vllm.py:848] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\n(EngineCore pid=2536522) WARNING 10-25 03:33:52 [vllm.py:859] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\n(EngineCore pid=2536522) INFO 10-25 03:33:52 [vllm.py:1025] Cudagraph is disabled under eager mode\n(EngineCore pid=2536522) INFO 10-25 03:33:52 [compilation.py:292] Enabled custom fusions: norm_quant, act_quant\n(APIServer pid=2536414) INFO 10-25 03:33:52 [api_server.py:592] Supported tasks: ['generate']\n(APIServer pid=2536414) INFO 10-25 03:33:52 [parser_manager.py:202] \"auto\" tool choice has been enabled.\n(APIServer pid=2536414) WARNING 10-25 03:33:52 [model.py:1435] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 1.0, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`.\n(APIServer pid=2536414) INFO 10-25 03:33:53 [hf.py:314] Detected the chat template content format to be 'string'. You can set `--chat-template-content-format` to override this.\n(APIServer pid=2536414) [transformers] The `use_fast` parameter is deprecated and will be removed in a future version. Use `backend=\"torchvision\"` instead of `use_fast=True`, or `backend=\"pil\"` instead of `use_fast=False`.\n(APIServer pid=2536414) [transformers] Qwen3VL video processing does not apply the per-frame pixel cap the reference implementation (qwen-vl-utils) applies, so some videos cost far more tokens than they would there. In v5.22 the capped behavior will become the default and `cap_pixels_per_frame` will be removed. Pass `cap_pixels_per_frame=True` to adopt the reference behavior now, or `False` to keep the current behavior and silence this warning.\n(APIServer pid=2536414) INFO 10-25 03:34:01 [base.py:231] Multi-modal warmup completed in 7.772s\n(APIServer pid=2536414) INFO 10-25 03:34:01 [api_server.py:596] Starting vLLM server on http://127.0.0.1:18881\n(APIServer pid=2536414) INFO 10-25 03:34:01 [launcher.py:37] Available routes are:\n(APIServer pid=2536414) INFO 10-25 03:34:01 [launcher.py:46] Route: /openapi.json, Methods: HEAD, GET\n(APIServer pid=2536414) INFO 10-25 03:34:01 [launcher.py:46] Route: /docs, Methods: HEAD, GET\n(APIServer pid=2536414) INFO 10-25 03:34:01 [launcher.py:46] Route: /docs/oauth2-redirect, Methods: HEAD, GET\n(APIServer pid=2536414) INFO 10-25 03:34:01 [launcher.py:46] Route: /redoc, Methods: HEAD, GET\n(APIServer pid=2536414) INFO 10-25 03:34:01 [launcher.py:46] Route: /metrics, Methods: GET\n(APIServer pid=2536414) INFO:     Started server process [2536414]\n(APIServer pid=2536414) INFO:     Waiting for application startup.\n(APIServer pid=2536414) INFO:     Application startup complete.\n(APIServer pid=2536414) INFO:     127.0.0.1:34012 - \"GET /v1/models HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:34016 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:46264 - \"GET /v1/models HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:46272 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:46272 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 03:34:11 [loggers.py:259] Engine 000: Avg prompt throughput: 38.0 tokens/s, Avg generation throughput: 2.2 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO 10-25 03:34:21 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%\n",
+  "p5compact3072-research25clean2_errors": {
+    "CUDA out of memory": 0,
+    "OutOfMemoryError": 0,
+    "is preempted|preempted by": 0,
+    "ReadTimeout|ConnectTimeout": 0,
+    "Traceback": 0,
+    "HTTP/1.1. 500": 0
+  },
+  "p5compact3072-research25clean2_mtime": 1792870461.4732966,
+  "initial_eval": null
+}

@@ -1,0 +1,29 @@
+{
+  "label": "exact enumeration of a synthetic two-action MDP; NOT benchmark training",
+  "student_p": 0.2,
+  "behavior_b": 0.6,
+  "terminal_reward": "1 iff both actions equal 1",
+  "true_on_policy_logit_gradient": [
+    0.03200000000000001,
+    0.03200000000000001
+  ],
+  "estimated_expected_gradients": {
+    "off": [
+      0.288,
+      0.288
+    ],
+    "per_token": [
+      0.09600000286102295,
+      0.09600000286102295
+    ],
+    "per_decision": [
+      0.09600000286102295,
+      0.03200000023841858
+    ],
+    "full_trajectory": [
+      0.032,
+      0.032
+    ]
+  },
+  "conclusion": "Token-local or prefix-only ratios do not in general correct the future terminal reward distribution. Full-trajectory IS is exact here, but may have severe variance in long trajectories."
+}

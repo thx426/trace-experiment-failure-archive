@@ -1,0 +1,8 @@
+{
+  "src/trace_opd/research/tools.py": "17e4493144b1b45bc2f5f0643512266eb4a86657735ae0cec25248ac77bba7df",
+  "src/trace_opd/research/session.py": "a4d7a48c59052b1707aab80d768d699650482b1b644b45c5f0c0d2bb3f38343d",
+  "src/trace_opd/research/compact.py": "75e76ee0b3c0000e6b5bb05fdec04aca76818a1e14d6a3dd6799490a8bb56c35",
+  "src/trace_opd/common/config.py": "286c02d15c1bcce26a298fed64cab02f8d8d98fcafe5dfb350cd369d52e372f5",
+  "src/trace_opd/common/llm.py": "abccd8aea6bbf8a41949ccf2db81e277b2f28274515d19574829795d95b11889",
+  "src/trace_opd/train/agent_loop.py": "f990297e9bd62566cafcf3b820c5ee5152d9fa423ebbedc56f8410e6d0a6bbe4"
+}

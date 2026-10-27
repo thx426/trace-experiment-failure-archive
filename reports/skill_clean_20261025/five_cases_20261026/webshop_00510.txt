@@ -1,0 +1,1055 @@
+webshop_00510 完整证据对照
+
+训练步：6；八条训练rollout的学生policy版本：5
+
+选取性质：机制案例，非随机样本，非最终DEV评测。
+
+公开任务原文：
+
+Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars
+
+
+
+证据结论：
+
+原稿推测 youth 或尺码可能不可得。指导组 sid0 实际已进入商品页，却发出无效的 click[size small]，随后购买。页面提供的是 small。score=0.9 仍不算成功。编译器保留精确选项及单项点击规则，但学生未遵守。研究员没有探索成功，也没有候选搜索词进入最终文档。
+
+
+
+一、研究员最终原始 Skill（finalize.experience_doc 原文）
+
+Six attempts to purchase men's dress shirts with specific attributes (color: heather grey, fit type: youth, size: small, material: cotton heather/polyester, fit: classic) under $30 failed to achieve a perfect score. Previous strategies included using overly verbose search queries, navigating pagination, and attempting to click specific product identifiers. One attempt (ep005) reached a product page and scored 0.7 but failed to secure a 1.0 match, likely due to missing the specific 'youth' fit type or exact size availability on the product page. Common failures involved invalid click targets like "next>" instead of "next >" or "back to search", and searching for constraints that might not be filterable in the initial search bar, such as specific material blends combined with fit types. The executor struggled to navigate from search results to a product page that strictly matched all criteria, particularly the 'youth' fit type which is distinct from 'men's' or 'classic'.
+
+
+
+二、研究员每次探索提交的原始指导（原文）
+
+session.jsonl 第3行，run_experiment 参数：
+
+{
+  "guidance": "Find a youth, classic fit dress shirt. It must be machine washable, made of cotton heather or polyester heather in heather grey. Size: small. Price under $30.00. Prioritize 'youth' and 'classic fit' over 'men's'.",
+  "k": 2
+}
+
+session.jsonl 第5行，run_experiment 参数：
+
+{
+  "guidance": "# Task constraints and completion procedure\n\nExact required option values: color=heather grey, fit type=youth, size=small.\nAlso: price < $30.\n\nProcedure:\n1. search[men's dress shirts youth heather grey small]\n2. If results appear, click on the first product tile that looks like a dress shirt.\n3. On the product page, verify the options (color, fit type, size) match the required values.\n4. If options match, click[Buy Now].\n5. If options do not match, go back to search with a refined query.\nDo NOT click next > multiple times without checking product details.",
+  "k": 2
+}
+
+session.jsonl 第7行，run_experiment 参数：
+
+{
+  "guidance": "Search for \"dress shirts youth heather grey small\". If results appear, click the first product. If not, try \"dress shirts heather grey youth\".",
+  "k": 2
+}
+
+
+
+三、最终编译 Skill（doc.md 原文）
+
+# Task constraints and completion procedure
+
+Exact required option values from your instruction: {"color": "heather grey", "fit type": "youth", "size": "small"}.
+
+Preserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.
+
+WHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.
+
+WHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.
+
+WHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.
+
+Track successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.
+
+WHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.
+
+WHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.
+
+# Evidence and recovery
+
+No checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.
+
+Invalid actions occurred in exploration: copy a single target exactly from current clickables; if unavailable, reconsider the page before acting.
+
+Repeated action/observation pairs occurred in exploration: use your action history to choose the next unmet requirement instead of repeating an unchanged action.
+
+No successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.
+
+
+
+编译审计：
+
+{
+  "version": "webshop_clean_skill_v2",
+  "origin": "researcher_finalized",
+  "required_options": {
+    "color": "heather grey",
+    "fit type": "youth",
+    "size": "small"
+  },
+  "source": "public_task_and_mechanical_episode_evidence",
+  "successes": 0,
+  "invalid_actions": 15,
+  "repeated_pairs": 26,
+  "candidate_query": null,
+  "free_form_prose_forwarded": false,
+  "words": 317
+}
+
+CPU复核：保存的原稿、公开任务和探索记录可精确重现doc.md；只删除最终原稿，仍得到完全相同的文档。此操作保留了研究员先前安排的全部探索，因此不能视为去研究员的训练消融。
+
+
+
+四、研究员探索的学生动作（全部探索轨迹）
+
+episode=ep001 guidance_hash=57b49c68f3dd won=False score=0.0 outcome=FAILED
+  01. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit heather grey youth small]  [valid=True, acted=True]
+  02. click[next >]  [valid=True, acted=True]
+  03. click[next >]  [valid=True, acted=True]
+  04. click[next >]  [valid=True, acted=True]
+  05. click[next >]  [valid=True, acted=True]
+  06. click[next >]  [valid=True, acted=True]
+  07. click[back to search]  [valid=True, acted=True]
+  08. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit heather grey youth small price <30]  [valid=True, acted=True]
+  09. click[next >]  [valid=True, acted=True]
+  10. click[next >]  [valid=True, acted=True]
+  11. click[next >]  [valid=True, acted=True]
+  12. click[next >]  [valid=True, acted=True]
+  13. click[next >]  [valid=True, acted=True]
+  14. click[back to search]  [valid=True, acted=True]
+  15. search[dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit youth small price <30]  [valid=True, acted=True]
+
+
+
+episode=ep002 guidance_hash=57b49c68f3dd won=False score=0.0 outcome=FAILED
+  01. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit color heather grey fit type youth size small price <30]  [valid=True, acted=True]
+  02. click[b07jvvdj6l]  [valid=True, acted=True]
+  03. click[< prev]  [valid=True, acted=True]
+  04. click[b07dkgjr74]  [valid=True, acted=True]
+  05. click[< prev]  [valid=True, acted=True]
+  06. click[next >]  [valid=True, acted=True]
+  07. click[< prev]  [valid=True, acted=True]
+  08. click[b09q8rd8yn]  [valid=True, acted=True]
+  09. click[back to search]  [valid=True, acted=True]
+  10. search[men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit color heather grey fit type youth size small price <30]  [valid=True, acted=True]
+  11. click[next >]  [valid=True, acted=True]
+  12. click[next >]  [valid=True, acted=True]
+  13. click["< prev"]  [valid=False, acted=True]
+  14. click["back to search"]  [valid=False, acted=True]
+  15. click["< prev"]  [valid=False, acted=True]
+
+
+
+episode=ep003 guidance_hash=7a8fb5ddc82f won=False score=0.0 outcome=FAILED
+  01. search[men's dress shirts polyester heather cotton small youth heathergrey classic fit]  [valid=True, acted=True]
+  02. click[next>  [valid=False, acted=True]
+  03. click[next>  [valid=False, acted=True]
+  04. click[next>  [valid=False, acted=True]
+  05. click[next>  [valid=False, acted=True]
+  06. click[next>  [valid=False, acted=True]
+  07. click[next>  [valid=False, acted=True]
+  08. click[next>  [valid=False, acted=True]
+  09. click[next>  [valid=False, acted=True]
+  10. click[back to search]  [valid=True, acted=True]
+  11. search[men's dress shirts polyester heather cotton heather needle sleeve classic fit color: heather grey fit type: youth size: small price: <30]  [valid=True, acted=True]
+  12. click[next>  [valid=False, acted=True]
+  13. click[next>  [valid=False, acted=True]
+  14. click[next>  [valid=False, acted=True]
+  15. click[next>  [valid=False, acted=True]
+
+
+
+episode=ep004 guidance_hash=7a8fb5ddc82f won=False score=0.0 outcome=FAILED
+  01. search[men's dress shirts youth heather grey small]  [valid=True, acted=True]
+  02. click[next >]  [valid=True, acted=True]
+  03. click[next >]  [valid=True, acted=True]
+  04. click[next >]  [valid=True, acted=True]
+  05. click[next >]  [valid=True, acted=True]
+  06. click[next >]  [valid=True, acted=True]
+  07. click[next >]  [valid=True, acted=True]
+  08. click[back to search]  [valid=True, acted=True]
+  09. search[men's polyester dress shirt heather small]  [valid=True, acted=True]
+  10. click[next >]  [valid=True, acted=True]
+  11. click[b07hrfsnl4]  [valid=True, acted=True]
+  12. click[back to search]  [valid=True, acted=True]
+  13. search[men's polyester dress shirt heather grey youth small]  [valid=True, acted=True]
+  14. click[next >]  [valid=True, acted=True]
+  15. click[b07hrfsnl4]  [valid=True, acted=True]
+
+
+
+episode=ep005 guidance_hash=775916f9f9d1 won=False score=0.7 outcome=FAILED
+  01. search[machine wash men's dress shirts polyester heather heather cotton cotton heather needle sleeve classic fit heather grey youth small price <30]  [valid=True, acted=True]
+  02. click[b07jvvdj6l]  [valid=True, acted=True]
+  03. click[< prev]  [valid=True, acted=True]
+  04. click[b07dkgjr74]  [valid=True, acted=True]
+  05. click[< prev]  [valid=True, acted=True]
+  06. click[b07jvvdj6l]  [valid=True, acted=True]
+  07. click[< prev]  [valid=True, acted=True]
+  08. click[b07t3vmgdg]  [valid=True, acted=True]
+  09. click[< prev]  [valid=True, acted=True]
+  10. click[b07jvvdj6l]  [valid=True, acted=True]
+  11. click[buy now]  [valid=True, acted=True]
+
+
+
+episode=ep006 guidance_hash=775916f9f9d1 won=False score=0.0 outcome=FAILED
+  01. search[machine wash men's dress shirts polyester heather cotton heather cotton needle sleeve classic fit heather grey youth small price < 30]  [valid=True, acted=True]
+  02. click[next >]  [valid=True, acted=True]
+  03. click[next >]  [valid=True, acted=True]
+  04. click[next >]  [valid=True, acted=True]
+  05. click[next >]  [valid=True, acted=True]
+  06. click[next >]  [valid=True, acted=True]
+  07. click[back to search]  [valid=True, acted=True]
+  08. search[machine wash men's dress shirts polyester heather cotton heathers cotton needle sleeve classic fit youth small <30]  [valid=True, acted=True]
+  09. click[next >]  [valid=True, acted=True]
+  10. click[next >]  [valid=True, acted=True]
+  11. click[next >]  [valid=True, acted=True]
+  12. click[next >]  [valid=True, acted=True]
+  13. click[next >]  [valid=True, acted=True]
+  14. click[back to search]  [valid=True, acted=True]
+  15. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit youth small price < 30]  [valid=True, acted=True]
+
+
+
+五、正式训练的八条学生动作（全部）
+
+sid0 指导组，steer_count=253，won=False，score=0.9
+
+episode=student guidance_hash=bare won=False score=0.9 outcome=FAILED
+  01. search[men's dress shirts polyester heather heather grey cotton heather needle sleeve classic fit youth small under 30]  [valid=True, acted=True]
+  02. click[b07jvvdj6l]  [valid=True, acted=True]
+  03. click[youth]  [valid=True, acted=True]
+  04. click[heather grey]  [valid=True, acted=True]
+  05. click[youth]  [valid=True, acted=True]
+  06. click[heather grey]  [valid=True, acted=True]
+  07. click[size small]  [valid=False, acted=True]
+  08. click[buy now]  [valid=True, acted=True]
+
+
+
+sid1 指导组，steer_count=387，won=False，score=0.0
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit color heather grey size small price less than 30]  [valid=True, acted=True]
+  02. click[b07jvvdj6l]  [valid=True, acted=True]
+  03. click[back to search]  [valid=True, acted=True]
+  04. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit color heather grey size small price less than 30]  [valid=True, acted=True]
+  05. click[b07jvvdj6l]  [valid=True, acted=True]
+  06. click[back to search]  [valid=True, acted=True]
+  07. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit color heather grey size small price less than 30]  [valid=True, acted=True]
+  08. click[next >]  [valid=True, acted=True]
+  09. click[next >]  [valid=True, acted=True]
+  10. click[< prev]  [valid=True, acted=True]
+  11. click[back to search]  [valid=True, acted=True]
+  12. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit color heather grey size small price less than 30]  [valid=True, acted=True]
+  13. click[next >]  [valid=True, acted=True]
+  14. click[back to search]  [valid=True, acted=True]
+  15. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit color heather grey fit youth size small price less than 30]  [valid=True, acted=True]
+
+
+
+sid2 指导组，steer_count=739，won=False，score=0.0
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[machine wash men's dress shirts polyester heathers cotton heather needle sleeve classic fit heather grey youth small price <30]  [valid=True, acted=True]
+  02. click[b07jvvdj6l]  [valid=True, acted=True]
+  03. click[b07hrfsnl4]  [valid=False, acted=True]
+  04. click[< prev]  [valid=True, acted=True]
+  05. click[next >]  [valid=True, acted=True]
+  06. click[next >]  [valid=True, acted=True]
+  07. click[< prev]  [valid=True, acted=True]
+  08. click[< prev]  [valid=True, acted=True]
+  09. click[back to search]  [valid=True, acted=True]
+  10. search[men's machine wash dress shirts polyester heathers cotton heather needle sleeve classic fit yarn dyes heather grey youth fit small size <30]  [valid=True, acted=True]
+  11. click[next >]  [valid=True, acted=True]
+  12. click[back to search]  [valid=True, acted=True]
+  13. search[men's machine wash dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit heather grey youth fit small size <30]  [valid=True, acted=True]
+  14. click[next >]  [valid=True, acted=True]
+  15. click[< prev]  [valid=True, acted=True]
+
+
+
+sid3 指导组，steer_count=98，won=False，score=0.7
+
+episode=student guidance_hash=bare won=False score=0.7 outcome=FAILED
+  01. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit heather grey small youth]  [valid=True, acted=True]
+  02. click[b07jvvdj6l]  [valid=True, acted=True]
+  03. click[buy now]  [valid=True, acted=True]
+
+
+
+sid4 无指导组，steer_count=0，won=False，score=0.7
+
+episode=student guidance_hash=bare won=False score=0.7 outcome=FAILED
+  01. search[men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit heather grey youth small]  [valid=True, acted=True]
+  02. click[b07jvvdj6l]  [valid=True, acted=True]
+  03. click[youth]  [valid=True, acted=True]
+  04. click[youth]  [valid=True, acted=True]
+  05. click[youth]  [valid=True, acted=True]
+  06. search[youth heather grey cotton heather needle sleeve classic fit]  [valid=False, acted=True]
+  07. search[youth heather grey cotton heather needle sleeve classic fit]  [valid=False, acted=True]
+  08. click[features]  [valid=False, acted=True]
+  09. search[polyester heathers heathers cotton cotton heather needle sleeve classic fit youth small heather grey]  [valid=False, acted=True]
+  10. search[polyster heathers heathers cotton cotton heather needle sleeve classic fit youth small heather grey]  [valid=False, acted=True]
+  11. click[b07jvvdj6l]  [valid=True, acted=True]
+  12. click[b07jvvdj6l]  [valid=False, acted=True]
+  13. click[buy now]  [valid=True, acted=True]
+
+
+
+sid5 无指导组，steer_count=0，won=False，score=0.0
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[men's dress shirts polyester heather cotton heather grey size small youth fit classic heather knit sleeve]  [valid=True, acted=True]
+  02. click[b07jvvdj6l]  [valid=True, acted=True]
+  03. click[back to search]  [valid=True, acted=True]
+  04. search[men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit heather grey youth small]  [valid=True, acted=True]
+  05. click[b07jvvdj6l]  [valid=True, acted=True]
+  06. click[< prev]  [valid=True, acted=True]
+  07. click[b07jvvdj6l]  [valid=True, acted=True]
+  08. click[< prev]  [valid=True, acted=True]
+  09. click[next >  [valid=False, acted=True]
+  10. click[next >  [valid=False, acted=True]
+  11. click[b07dkgjr74]  [valid=True, acted=True]
+  12. click[< prev]  [valid=True, acted=True]
+  13. click[next >  [valid=False, acted=True]
+  14. click[b07hrfsnl4]  [valid=True, acted=True]
+  15. click[b07hrfsnl4]  [valid=False, acted=True]
+
+
+
+sid6 无指导组，steer_count=0，won=False，score=0.9
+
+episode=student guidance_hash=bare won=False score=0.9 outcome=FAILED
+  01. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit heather grey youth small price < 30.00]  [valid=True, acted=True]
+  02. click[b07jvvdj6l]  [valid=True, acted=True]
+  03. click<your_action>  [valid=False, acted=True]
+  04. click[men]  [valid=True, acted=True]
+  05. click[men]  [valid=True, acted=True]
+  06. click[youth]  [valid=True, acted=True]
+  07. click[youth]  [valid=True, acted=True]
+  08. click[heather grey]  [valid=True, acted=True]
+  09. click[youth]  [valid=True, acted=True]
+  10. click[buy now]  [valid=True, acted=True]
+
+
+
+sid7 无指导组，steer_count=0，won=False，score=0.0
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit color heather grey fit youth size small]  [valid=True, acted=True]
+  02. click[next >]  [valid=True, acted=True]
+  03. click[next >]  [valid=True, acted=True]
+  04. click[next >]  [valid=True, acted=True]
+  05. click[next >]  [valid=True, acted=True]
+  06. click[next >]  [valid=True, acted=True]
+  07. search[men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit youth small heather grey fit]  [valid=False, acted=True]
+  08. click[next >]  [valid=True, acted=True]
+  09. search[men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve youth heather grey classic fit small price < 30]  [valid=False, acted=True]
+  10. search[men's dress shirts polyester cotton heather heathers cotton heather classic fit youth small heather grey price < 30]  [valid=False, acted=True]
+  11. search[men's dress shirts polyester heathers cotton heather needle sleeve classic fit youth small heather grey price < 30]  [valid=False, acted=True]
+  12. search[men's dress shirt polyester heathers cotton heather needle sleeve classic fit youth small heather grey price < 30]  [valid=False, acted=True]
+  13. search[men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve youth small heather grey classic fit price < 30]  [valid=False, acted=True]
+  14. search[men's dress shirts polyester heathers heathers cotton cotton heather needle classic fit youth small heather grey fit price < 30]  [valid=False, acted=True]
+  15. search[men's dress shirts heather grey classic fit youth small polyester heathers heathers cotton cotton heather needle sleeve price < 30]  [valid=False, acted=True]
+
+
+
+六、探索时实际使用的指导（非空原稿也经过编译；以下为guidance_log原文）
+
+experiment_idx=1 k=2 guidance_hash=57b49c68f3dd episodes_before=0
+
+# Task constraints and completion procedure
+
+Exact required option values from your instruction: {"color": "heather grey", "fit type": "youth", "size": "small"}.
+
+Preserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.
+
+WHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.
+
+WHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.
+
+WHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.
+
+Track successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.
+
+WHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.
+
+WHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.
+
+# Evidence and recovery
+
+No checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.
+
+No successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.
+
+
+
+experiment_idx=2 k=2 guidance_hash=7a8fb5ddc82f episodes_before=2
+
+# Task constraints and completion procedure
+
+Exact required option values from your instruction: {"color": "heather grey", "fit type": "youth", "size": "small"}.
+
+Preserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.
+
+WHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.
+
+WHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.
+
+WHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.
+
+Track successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.
+
+WHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.
+
+WHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.
+
+# Evidence and recovery
+
+Candidate search query: "men's dress shirts youth heather grey small". Untested retrieval suggestion; verify current results.
+
+Invalid actions occurred in exploration: copy a single target exactly from current clickables; if unavailable, reconsider the page before acting.
+
+Repeated action/observation pairs occurred in exploration: use your action history to choose the next unmet requirement instead of repeating an unchanged action.
+
+No successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.
+
+
+
+experiment_idx=3 k=2 guidance_hash=775916f9f9d1 episodes_before=4
+
+# Task constraints and completion procedure
+
+Exact required option values from your instruction: {"color": "heather grey", "fit type": "youth", "size": "small"}.
+
+Preserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.
+
+WHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.
+
+WHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.
+
+WHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.
+
+Track successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.
+
+WHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.
+
+WHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.
+
+# Evidence and recovery
+
+No checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.
+
+Invalid actions occurred in exploration: copy a single target exactly from current clickables; if unavailable, reconsider the page before acting.
+
+Repeated action/observation pairs occurred in exploration: use your action history to choose the next unmet requirement instead of repeating an unchanged action.
+
+No successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.
+
+
+
+七、正式训练动作后的页面观察（用于检查可用目标、选择是否有效）
+
+sid0 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.9 outcome=FAILED
+  01. search[men's dress shirts polyester heather heather grey cotton heather needle sleeve classic fit youth small under 30]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99 [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b08hf132pn", "b09p39qn2w", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b07hrfsnl4", "b09p7h5yk7", "b09gl561xh", "b0969g2dh8"]
+  02. click[b07jvvdj6l]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  03. click[youth]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  04. click[heather grey]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  05. click[youth]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  06. click[heather grey]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  07. click[size small]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  08. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+sid1 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit color heather grey size small price less than 30]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b07dkgjr74", "b07t3vmgdg", "b09p39qn2w", "b09rvf4jp1", "b09p7h5yk7", "b08hf132pn", "b07hrfsnl4", "b09q8rd8yn", "b08226ndzw"]
+  02. click[b07jvvdj6l]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  03. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  04. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit color heather grey size small price less than 30]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b07dkgjr74", "b07t3vmgdg", "b09p39qn2w", "b09rvf4jp1", "b09p7h5yk7", "b08hf132pn", "b07hrfsnl4", "b09q8rd8yn", "b08226ndzw"]
+  05. click[b07jvvdj6l]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  06. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  07. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit color heather grey size small price less than 30]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b07dkgjr74", "b07t3vmgdg", "b09p39qn2w", "b09rvf4jp1", "b09p7h5yk7", "b08hf132pn", "b07hrfsnl4", "b09q8rd8yn", "b08226ndzw"]
+  08. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99 [SEP] B07YDHNZ6B [SEP] Daily Ritual Women's Cozy Knit Puff-Shoulder Dress [SEP] $13.06 to $29.2 [SEP] B01HQTWL6S [SEP] Expression Tees Pug Life Funny Thug Life Unisex Adult Hoodie [SEP] $36.99 to $48.99 [SEP] B07XPR3R7N [SEP] Marvel Avengers: Endgame Captain America America's Language T-Shirt [SEP] $22.99 [SEP] B09QQP3356 [SEP] HAUKLIE Men's Sports Waffle Ribbed Polo Shirts Summer Short Sleeve Cotton Muscle Quarter-Zip Henley T-Shirt Tunics Tops [SEP] $10.99 [SEP] B09HX5CD2D [SEP] CSU Cleveland State University Vikings Property Fleece Drawstring Shorts Heather Charcoal [SEP] $39.95 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99 [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B00V6AB796 [SEP] Star Vixen Women's Cold-Shoulder Top [SEP] $9.38 to $30.32
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b07q48jvt8", "b07ydhnz6b", "b01hqtwl6s", "b07xpr3r7n", "b09qqp3356", "b09hx5cd2d", "b09gl561xh", "b0969g2dh8", "b00o30jldk", "b00v6ab796"]
+  09. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 3 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B085WQKRRJ [SEP] CLANMILUMS Men's Classic Comfort Soft Regular Fit Short Sleeve Henley T-Shirt Tee [SEP] $17.99 to $19.99 [SEP] B079PH6955 [SEP] Need Some Hank & A Drank Country Music T Shirt for Rednecks [SEP] $15.49 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09HGFV91W [SEP] ZHDD Tops for Mens, Men's Knight Punk Vintage Style Long Sleeve Asymmetric Hem Cowl Neck Teen Boys Gothic Pullover [SEP] $4.98 to $7.99 [SEP] B01MG1LTMS [SEP] Got Snow? Funny Snowmobile Snowboard Skiing Cold Weather Winter Sports Unisex Hooded Sweatshirt [SEP] $24.99 to $29.99 [SEP] B09PBPZ24Z [SEP] myhehthw Women's High Waisted Jeans for Women Distressed Ripped Jeans Slim Fit Butt Lifting Skinny Stretch Jeans Trousers [SEP] $22.99 to $25.99 [SEP] B09R9YCM6R [SEP] XXBR Summer T-shirts for Mens, Soldier Short Sleeve 3D Street Vintage Printed Shirt Slim Fit Muscle Casual Tee Tops [SEP] $8.98 to $11.99 [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B099231V35 [SEP] Mens Casual Cargo Pants Hi Vis Viz Reflective Overalls High Visibility Safe Work Pants Outdoor Hiking Trousers Big and Tall [SEP] $16.79 [SEP] B07F2G93BJ [SEP] Amazon Essentials Men's Slim-fit Long-Sleeve Solid Pocket Oxford Shirt [SEP] $18.5
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b085wqkrrj", "b079ph6955", "b09nd9dp7j", "b09hgfv91w", "b01mg1ltms", "b09pbpz24z", "b09r9ycm6r", "b09nd8p2qr", "b099231v35", "b07f2g93bj"]
+  10. click[< prev]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99 [SEP] B07YDHNZ6B [SEP] Daily Ritual Women's Cozy Knit Puff-Shoulder Dress [SEP] $13.06 to $29.2 [SEP] B01HQTWL6S [SEP] Expression Tees Pug Life Funny Thug Life Unisex Adult Hoodie [SEP] $36.99 to $48.99 [SEP] B07XPR3R7N [SEP] Marvel Avengers: Endgame Captain America America's Language T-Shirt [SEP] $22.99 [SEP] B09QQP3356 [SEP] HAUKLIE Men's Sports Waffle Ribbed Polo Shirts Summer Short Sleeve Cotton Muscle Quarter-Zip Henley T-Shirt Tunics Tops [SEP] $10.99 [SEP] B09HX5CD2D [SEP] CSU Cleveland State University Vikings Property Fleece Drawstring Shorts Heather Charcoal [SEP] $39.95 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99 [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B00V6AB796 [SEP] Star Vixen Women's Cold-Shoulder Top [SEP] $9.38 to $30.32
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b07q48jvt8", "b07ydhnz6b", "b01hqtwl6s", "b07xpr3r7n", "b09qqp3356", "b09hx5cd2d", "b09gl561xh", "b0969g2dh8", "b00o30jldk", "b00v6ab796"]
+  11. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  12. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit color heather grey size small price less than 30]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b07dkgjr74", "b07t3vmgdg", "b09p39qn2w", "b09rvf4jp1", "b09p7h5yk7", "b08hf132pn", "b07hrfsnl4", "b09q8rd8yn", "b08226ndzw"]
+  13. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99 [SEP] B07YDHNZ6B [SEP] Daily Ritual Women's Cozy Knit Puff-Shoulder Dress [SEP] $13.06 to $29.2 [SEP] B01HQTWL6S [SEP] Expression Tees Pug Life Funny Thug Life Unisex Adult Hoodie [SEP] $36.99 to $48.99 [SEP] B07XPR3R7N [SEP] Marvel Avengers: Endgame Captain America America's Language T-Shirt [SEP] $22.99 [SEP] B09QQP3356 [SEP] HAUKLIE Men's Sports Waffle Ribbed Polo Shirts Summer Short Sleeve Cotton Muscle Quarter-Zip Henley T-Shirt Tunics Tops [SEP] $10.99 [SEP] B09HX5CD2D [SEP] CSU Cleveland State University Vikings Property Fleece Drawstring Shorts Heather Charcoal [SEP] $39.95 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99 [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B00V6AB796 [SEP] Star Vixen Women's Cold-Shoulder Top [SEP] $9.38 to $30.32
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b07q48jvt8", "b07ydhnz6b", "b01hqtwl6s", "b07xpr3r7n", "b09qqp3356", "b09hx5cd2d", "b09gl561xh", "b0969g2dh8", "b00o30jldk", "b00v6ab796"]
+  14. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  15. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit color heather grey fit youth size small price less than 30]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b09p7h5yk7", "b09q8rd8yn", "b07hrfsnl4", "b08226ndzw"]
+
+
+
+sid2 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[machine wash men's dress shirts polyester heathers cotton heather needle sleeve classic fit heather grey youth small price <30]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b08hf132pn", "b09p39qn2w", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b07hrfsnl4", "b09p7h5yk7", "b09q8rd8yn", "b09gl561xh"]
+  02. click[b07jvvdj6l]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  03. click[b07hrfsnl4]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  04. click[< prev]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b08hf132pn", "b09p39qn2w", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b07hrfsnl4", "b09p7h5yk7", "b09q8rd8yn", "b09gl561xh"]
+  05. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07YDHNZ6B [SEP] Daily Ritual Women's Cozy Knit Puff-Shoulder Dress [SEP] $13.06 to $29.2 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99 [SEP] B09QQP3356 [SEP] HAUKLIE Men's Sports Waffle Ribbed Polo Shirts Summer Short Sleeve Cotton Muscle Quarter-Zip Henley T-Shirt Tunics Tops [SEP] $10.99 [SEP] B07XPR3R7N [SEP] Marvel Avengers: Endgame Captain America America's Language T-Shirt [SEP] $22.99 [SEP] B01HQTWL6S [SEP] Expression Tees Pug Life Funny Thug Life Unisex Adult Hoodie [SEP] $36.99 to $48.99 [SEP] B00V6AB796 [SEP] Star Vixen Women's Cold-Shoulder Top [SEP] $9.38 to $30.32 [SEP] B09HX5CD2D [SEP] CSU Cleveland State University Vikings Property Fleece Drawstring Shorts Heather Charcoal [SEP] $39.95 [SEP] B085WQKRRJ [SEP] CLANMILUMS Men's Classic Comfort Soft Regular Fit Short Sleeve Henley T-Shirt Tee [SEP] $17.99 to $19.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b0969g2dh8", "b08226ndzw", "b07ydhnz6b", "b07q48jvt8", "b09qqp3356", "b07xpr3r7n", "b01hqtwl6s", "b00v6ab796", "b09hx5cd2d", "b085wqkrrj"]
+  06. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 3 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B07F2G93BJ [SEP] Amazon Essentials Men's Slim-fit Long-Sleeve Solid Pocket Oxford Shirt [SEP] $18.5 [SEP] B079PH6955 [SEP] Need Some Hank & A Drank Country Music T Shirt for Rednecks [SEP] $15.49 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09KLQLLT2 [SEP] Long Sleeve Superhero T Shirt Tank Top Mens Compression Shirt Men Workout Fitness Gym Shirt [SEP] $19.99 [SEP] B01MG1LTMS [SEP] Got Snow? Funny Snowmobile Snowboard Skiing Cold Weather Winter Sports Unisex Hooded Sweatshirt [SEP] $24.99 to $29.99 [SEP] B099231V35 [SEP] Mens Casual Cargo Pants Hi Vis Viz Reflective Overalls High Visibility Safe Work Pants Outdoor Hiking Trousers Big and Tall [SEP] $16.79 [SEP] B09R9YCM6R [SEP] XXBR Summer T-shirts for Mens, Soldier Short Sleeve 3D Street Vintage Printed Shirt Slim Fit Muscle Casual Tee Tops [SEP] $8.98 to $11.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b09nd9dp7j", "b00o30jldk", "b09nd8p2qr", "b07f2g93bj", "b079ph6955", "b09s3bn15c", "b09klqllt2", "b01mg1ltms", "b099231v35", "b09r9ycm6r"]
+  07. click[< prev]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07YDHNZ6B [SEP] Daily Ritual Women's Cozy Knit Puff-Shoulder Dress [SEP] $13.06 to $29.2 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99 [SEP] B09QQP3356 [SEP] HAUKLIE Men's Sports Waffle Ribbed Polo Shirts Summer Short Sleeve Cotton Muscle Quarter-Zip Henley T-Shirt Tunics Tops [SEP] $10.99 [SEP] B07XPR3R7N [SEP] Marvel Avengers: Endgame Captain America America's Language T-Shirt [SEP] $22.99 [SEP] B01HQTWL6S [SEP] Expression Tees Pug Life Funny Thug Life Unisex Adult Hoodie [SEP] $36.99 to $48.99 [SEP] B00V6AB796 [SEP] Star Vixen Women's Cold-Shoulder Top [SEP] $9.38 to $30.32 [SEP] B09HX5CD2D [SEP] CSU Cleveland State University Vikings Property Fleece Drawstring Shorts Heather Charcoal [SEP] $39.95 [SEP] B085WQKRRJ [SEP] CLANMILUMS Men's Classic Comfort Soft Regular Fit Short Sleeve Henley T-Shirt Tee [SEP] $17.99 to $19.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b0969g2dh8", "b08226ndzw", "b07ydhnz6b", "b07q48jvt8", "b09qqp3356", "b07xpr3r7n", "b01hqtwl6s", "b00v6ab796", "b09hx5cd2d", "b085wqkrrj"]
+  08. click[< prev]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b08hf132pn", "b09p39qn2w", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b07hrfsnl4", "b09p7h5yk7", "b09q8rd8yn", "b09gl561xh"]
+  09. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  10. search[men's machine wash dress shirts polyester heathers cotton heather needle sleeve classic fit yarn dyes heather grey youth fit small size <30]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09QQP3356 [SEP] HAUKLIE Men's Sports Waffle Ribbed Polo Shirts Summer Short Sleeve Cotton Muscle Quarter-Zip Henley T-Shirt Tunics Tops [SEP] $10.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b07dkgjr74", "b09rvf4jp1", "b07t3vmgdg", "b09p7h5yk7", "b09q8rd8yn", "b07hrfsnl4", "b09qqp3356"]
+  11. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99 [SEP] B07YDHNZ6B [SEP] Daily Ritual Women's Cozy Knit Puff-Shoulder Dress [SEP] $13.06 to $29.2 [SEP] B07XPR3R7N [SEP] Marvel Avengers: Endgame Captain America America's Language T-Shirt [SEP] $22.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99 [SEP] B09HX5CD2D [SEP] CSU Cleveland State University Vikings Property Fleece Drawstring Shorts Heather Charcoal [SEP] $39.95 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B085WQKRRJ [SEP] CLANMILUMS Men's Classic Comfort Soft Regular Fit Short Sleeve Henley T-Shirt Tee [SEP] $17.99 to $19.99 [SEP] B01HQTWL6S [SEP] Expression Tees Pug Life Funny Thug Life Unisex Adult Hoodie [SEP] $36.99 to $48.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b09gl561xh", "b08226ndzw", "b0969g2dh8", "b07ydhnz6b", "b07xpr3r7n", "b07q48jvt8", "b09hx5cd2d", "b09nd9dp7j", "b085wqkrrj", "b01hqtwl6s"]
+  12. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  13. search[men's machine wash dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit heather grey youth fit small size <30]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b09p7h5yk7", "b07hrfsnl4", "b09q8rd8yn", "b08226ndzw"]
+  14. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99 [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99 [SEP] B07YDHNZ6B [SEP] Daily Ritual Women's Cozy Knit Puff-Shoulder Dress [SEP] $13.06 to $29.2 [SEP] B07XPR3R7N [SEP] Marvel Avengers: Endgame Captain America America's Language T-Shirt [SEP] $22.99 [SEP] B01HQTWL6S [SEP] Expression Tees Pug Life Funny Thug Life Unisex Adult Hoodie [SEP] $36.99 to $48.99 [SEP] B09QQP3356 [SEP] HAUKLIE Men's Sports Waffle Ribbed Polo Shirts Summer Short Sleeve Cotton Muscle Quarter-Zip Henley T-Shirt Tunics Tops [SEP] $10.99 [SEP] B09HX5CD2D [SEP] CSU Cleveland State University Vikings Property Fleece Drawstring Shorts Heather Charcoal [SEP] $39.95 [SEP] B085WQKRRJ [SEP] CLANMILUMS Men's Classic Comfort Soft Regular Fit Short Sleeve Henley T-Shirt Tee [SEP] $17.99 to $19.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b07q48jvt8", "b09gl561xh", "b0969g2dh8", "b07ydhnz6b", "b07xpr3r7n", "b01hqtwl6s", "b09qqp3356", "b09hx5cd2d", "b085wqkrrj", "b00o30jldk"]
+  15. click[< prev]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b09p7h5yk7", "b07hrfsnl4", "b09q8rd8yn", "b08226ndzw"]
+
+
+
+sid3 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.7 outcome=FAILED
+  01. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit heather grey small youth]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b09p7h5yk7", "b07hrfsnl4", "b09q8rd8yn", "b08226ndzw"]
+  02. click[b07jvvdj6l]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  03. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+sid4 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.7 outcome=FAILED
+  01. search[men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit heather grey youth small]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b09p7h5yk7", "b07hrfsnl4", "b08226ndzw", "b07q48jvt8"]
+  02. click[b07jvvdj6l]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  03. click[youth]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  04. click[youth]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  05. click[youth]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  06. search[youth heather grey cotton heather needle sleeve classic fit]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b07dkgjr74", "b08hf132pn", "b09p39qn2w", "b07t3vmgdg", "b09rvf4jp1", "b07hrfsnl4", "b09gl561xh", "b09p7h5yk7", "b0969g2dh8"]
+  07. search[youth heather grey cotton heather needle sleeve classic fit]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b07dkgjr74", "b08hf132pn", "b09p39qn2w", "b07t3vmgdg", "b09rvf4jp1", "b07hrfsnl4", "b09gl561xh", "b09p7h5yk7", "b0969g2dh8"]
+  08. click[features]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b07dkgjr74", "b08hf132pn", "b09p39qn2w", "b07t3vmgdg", "b09rvf4jp1", "b07hrfsnl4", "b09gl561xh", "b09p7h5yk7", "b0969g2dh8"]
+  09. search[polyester heathers heathers cotton cotton heather needle sleeve classic fit youth small heather grey]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b07t3vmgdg", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b09p7h5yk7", "b07hrfsnl4", "b08226ndzw", "b07q48jvt8"]
+  10. search[polyster heathers heathers cotton cotton heather needle sleeve classic fit youth small heather grey]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b07t3vmgdg", "b07dkgjr74", "b08hf132pn", "b09rvf4jp1", "b07hrfsnl4", "b09p7h5yk7", "b08226ndzw", "b07q48jvt8"]
+  11. click[b07jvvdj6l]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  12. click[b07jvvdj6l]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  13. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+sid5 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[men's dress shirts polyester heather cotton heather grey size small youth fit classic heather knit sleeve]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07YDHNZ6B [SEP] Daily Ritual Women's Cozy Knit Puff-Shoulder Dress [SEP] $13.06 to $29.2 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b07dkgjr74", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07t3vmgdg", "b07hrfsnl4", "b09p7h5yk7", "b07ydhnz6b", "b09q8rd8yn"]
+  02. click[b07jvvdj6l]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  03. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  04. search[men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit heather grey youth small]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b09p7h5yk7", "b07hrfsnl4", "b08226ndzw", "b07q48jvt8"]
+  05. click[b07jvvdj6l]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  06. click[< prev]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b09p7h5yk7", "b07hrfsnl4", "b08226ndzw", "b07q48jvt8"]
+  07. click[b07jvvdj6l]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  08. click[< prev]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b09p7h5yk7", "b07hrfsnl4", "b08226ndzw", "b07q48jvt8"]
+  09. click[next >  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b09p7h5yk7", "b07hrfsnl4", "b08226ndzw", "b07q48jvt8"]
+  10. click[next >  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b09p7h5yk7", "b07hrfsnl4", "b08226ndzw", "b07q48jvt8"]
+  11. click[b07dkgjr74]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] x-small [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] black [SEP] burgundy [SEP] charcoal heather [SEP] light heather grey [SEP] lilac [SEP] navy [SEP] oatmeal heather [SEP] olive [SEP] white [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] Price: $20.66 to $29.2 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "x-small", "small", "medium", "large", "x-large", "xx-large", "black", "burgundy", "charcoal heather", "light heather grey", "lilac", "navy", "oatmeal heather", "olive", "white"]
+  12. click[< prev]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b09p7h5yk7", "b07hrfsnl4", "b08226ndzw", "b07q48jvt8"]
+  13. click[next >  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b09p7h5yk7", "b07hrfsnl4", "b08226ndzw", "b07q48jvt8"]
+  14. click[b07hrfsnl4]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] x-small [SEP] small [SEP] medium [SEP] large [SEP] large tall [SEP] x-large [SEP] x-large tall [SEP] xx-large [SEP] xx-large tall [SEP] 3x-large tall [SEP] 4x-large tall [SEP] 5x-large tall [SEP] 1x [SEP] 2x [SEP] 3x [SEP] 4x [SEP] 5x [SEP] 6x [SEP] color [SEP] navy [SEP] noon blue [SEP] grey heather [SEP] nautica red [SEP] bright white [SEP] true black [SEP] pale coral [SEP] cradle pink [SEP] bright aqua [SEP] mint spring [SEP] monaco blue [SEP] charcoal heather (dark) [SEP] barolo [SEP] tidal green [SEP] charcoal heather (light) [SEP] estate blue [SEP] patina green [SEP] black [SEP] bright aqua blue [SEP] bright cobalt [SEP] coral sands [SEP] deep anchor heather [SEP] hawaiian ocean [SEP] melon berry [SEP] pine forest green [SEP] shipwreck burgundy [SEP] white [SEP] zest [SEP] deep atlantic [SEP] delft [SEP] pale coral red [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] Price: $16.05 to $40.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "x-small", "small", "medium", "large", "large tall", "x-large", "x-large tall", "xx-large", "xx-large tall", "3x-large tall", "4x-large tall", "5x-large tall", "1x", "2x", "3x", "4x", "5x", "6x", "navy", "noon blue", "grey heather", "nautica red", "bright white", "true black", "pale coral", "cradle pink", "bright aqua", "mint spring", "monaco blue", "charcoal heather (dark)", "barolo", "tidal green", "charcoal heather (light)", "estate blue", "patina green", "black", "bright aqua blue", "bright cobalt", "coral sands", "deep anchor heather", "hawaiian ocean", "melon berry", "pine forest green", "shipwreck burgundy", "white", "zest", "deep atlantic", "delft", "pale coral red"]
+  15. click[b07hrfsnl4]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] x-small [SEP] small [SEP] medium [SEP] large [SEP] large tall [SEP] x-large [SEP] x-large tall [SEP] xx-large [SEP] xx-large tall [SEP] 3x-large tall [SEP] 4x-large tall [SEP] 5x-large tall [SEP] 1x [SEP] 2x [SEP] 3x [SEP] 4x [SEP] 5x [SEP] 6x [SEP] color [SEP] navy [SEP] noon blue [SEP] grey heather [SEP] nautica red [SEP] bright white [SEP] true black [SEP] pale coral [SEP] cradle pink [SEP] bright aqua [SEP] mint spring [SEP] monaco blue [SEP] charcoal heather (dark) [SEP] barolo [SEP] tidal green [SEP] charcoal heather (light) [SEP] estate blue [SEP] patina green [SEP] black [SEP] bright aqua blue [SEP] bright cobalt [SEP] coral sands [SEP] deep anchor heather [SEP] hawaiian ocean [SEP] melon berry [SEP] pine forest green [SEP] shipwreck burgundy [SEP] white [SEP] zest [SEP] deep atlantic [SEP] delft [SEP] pale coral red [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] Price: $16.05 to $40.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "x-small", "small", "medium", "large", "large tall", "x-large", "x-large tall", "xx-large", "xx-large tall", "3x-large tall", "4x-large tall", "5x-large tall", "1x", "2x", "3x", "4x", "5x", "6x", "navy", "noon blue", "grey heather", "nautica red", "bright white", "true black", "pale coral", "cradle pink", "bright aqua", "mint spring", "monaco blue", "charcoal heather (dark)", "barolo", "tidal green", "charcoal heather (light)", "estate blue", "patina green", "black", "bright aqua blue", "bright cobalt", "coral sands", "deep anchor heather", "hawaiian ocean", "melon berry", "pine forest green", "shipwreck burgundy", "white", "zest", "deep atlantic", "delft", "pale coral red"]
+
+
+
+sid6 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.9 outcome=FAILED
+  01. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit heather grey youth small price < 30.00]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b09p7h5yk7", "b07hrfsnl4", "b09q8rd8yn", "b08226ndzw"]
+  02. click[b07jvvdj6l]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  03. click<your_action>  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  04. click[men]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  05. click[men]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  06. click[youth]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  07. click[youth]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  08. click[heather grey]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  09. click[youth]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "men", "women", "youth", "royal blue", "baby blue", "heather grey", "heather blue", "small", "medium", "large", "x-large", "xx-large", "3x-large", "2t", "3t", "4t", "x-small"]
+  10. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+sid7 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit color heather grey fit youth size small]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b09p7h5yk7", "b09q8rd8yn", "b07hrfsnl4", "b08226ndzw"]
+  02. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99 [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99 [SEP] B07YDHNZ6B [SEP] Daily Ritual Women's Cozy Knit Puff-Shoulder Dress [SEP] $13.06 to $29.2 [SEP] B01HQTWL6S [SEP] Expression Tees Pug Life Funny Thug Life Unisex Adult Hoodie [SEP] $36.99 to $48.99 [SEP] B07XPR3R7N [SEP] Marvel Avengers: Endgame Captain America America's Language T-Shirt [SEP] $22.99 [SEP] B09HX5CD2D [SEP] CSU Cleveland State University Vikings Property Fleece Drawstring Shorts Heather Charcoal [SEP] $39.95 [SEP] B09QQP3356 [SEP] HAUKLIE Men's Sports Waffle Ribbed Polo Shirts Summer Short Sleeve Cotton Muscle Quarter-Zip Henley T-Shirt Tunics Tops [SEP] $10.99 [SEP] B085WQKRRJ [SEP] CLANMILUMS Men's Classic Comfort Soft Regular Fit Short Sleeve Henley T-Shirt Tee [SEP] $17.99 to $19.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b07q48jvt8", "b09gl561xh", "b0969g2dh8", "b07ydhnz6b", "b01hqtwl6s", "b07xpr3r7n", "b09hx5cd2d", "b09qqp3356", "b085wqkrrj", "b00o30jldk"]
+  03. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 3 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B00V6AB796 [SEP] Star Vixen Women's Cold-Shoulder Top [SEP] $9.38 to $30.32 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B079PH6955 [SEP] Need Some Hank & A Drank Country Music T Shirt for Rednecks [SEP] $15.49 [SEP] B01MG1LTMS [SEP] Got Snow? Funny Snowmobile Snowboard Skiing Cold Weather Winter Sports Unisex Hooded Sweatshirt [SEP] $24.99 to $29.99 [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B099231V35 [SEP] Mens Casual Cargo Pants Hi Vis Viz Reflective Overalls High Visibility Safe Work Pants Outdoor Hiking Trousers Big and Tall [SEP] $16.79 [SEP] B07F2G93BJ [SEP] Amazon Essentials Men's Slim-fit Long-Sleeve Solid Pocket Oxford Shirt [SEP] $18.5 [SEP] B09R9YCM6R [SEP] XXBR Summer T-shirts for Mens, Soldier Short Sleeve 3D Street Vintage Printed Shirt Slim Fit Muscle Casual Tee Tops [SEP] $8.98 to $11.99 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99 [SEP] B09HGFV91W [SEP] ZHDD Tops for Mens, Men's Knight Punk Vintage Style Long Sleeve Asymmetric Hem Cowl Neck Teen Boys Gothic Pullover [SEP] $4.98 to $7.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b00v6ab796", "b09nd9dp7j", "b079ph6955", "b01mg1ltms", "b09nd8p2qr", "b099231v35", "b07f2g93bj", "b09r9ycm6r", "b09nnmv9ln", "b09hgfv91w"]
+  04. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 4 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09KLQLLT2 [SEP] Long Sleeve Superhero T Shirt Tank Top Mens Compression Shirt Men Workout Fitness Gym Shirt [SEP] $19.99 [SEP] B08KGWLWFN [SEP] Raising Arrows Sweatshirt, Psalm 127 3-5 Sweater, Bible Quote Cool Unisex Sweatshirt, Girl Quote, Christian Mom Gift. White [SEP] $32.99 [SEP] B09PBPZ24Z [SEP] myhehthw Women's High Waisted Jeans for Women Distressed Ripped Jeans Slim Fit Butt Lifting Skinny Stretch Jeans Trousers [SEP] $22.99 to $25.99 [SEP] B07FD13LP1 [SEP] The Establishment Men's Organic Cotton Fleece Short with Pocket(S to XXL) [SEP] $24.99 [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B08X4GMMZV [SEP] Michael Kors Mix Media Full Zip [SEP] $68.23 [SEP] B074Z315KK [SEP] Novia's Choice Men Shiny Metallic Shirt Blouse T-Shirt Tee for Nightclub [SEP] $18.99 to $25.43 [SEP] B09QGK5XHZ [SEP] WENKOMG1 Men's Long Sleeve Undershirt with Mask Turtleneck Hooded T-Shirt Solid Color Workout Tops Zipper Side Slit Shirts Slim Fit Sweatshirt Spring/Summer Tee Shirts(Gray,) [SEP] $8.39 [SEP] B07N7TDKXQ [SEP] SOCKS'NBULK Mens Cotton Crew Neck Short Sleeve T-Shirts Mix Colors Bulk [SEP] $38.79 to $172.8
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b09s3bn15c", "b09klqllt2", "b08kgwlwfn", "b09pbpz24z", "b07fd13lp1", "b09q67h373", "b08x4gmmzv", "b074z315kk", "b09qgk5xhz", "b07n7tdkxq"]
+  05. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 5 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09M63B87V [SEP] YALFJV Women Long Sleeve Crew Neck Side Button T Shirts Tunic Dress Loose Asymmetric Hem Tunic Pullover to Wear with Leggings [SEP] $10.71 to $18.34 [SEP] B09JC3K6R6 [SEP] 5 Pairs Skin Color No Show Socks Women Lace Low Cut Liner Socks Non Slip Flat Boat Crew Socks (2.39/pair) [SEP] $11.99 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09QQJJ3KM [SEP] One Lucky Teacher St Patrick Day Shamrock Tee Teachers Custom Personalized Unisex T-Shirts Long Sleeve Hoodie Sweatshirt Gifts [SEP] $100.0 [SEP] B09KXCHWGD [SEP] Custom Polo Shirts for Men Design Your Own Personalized Logo Text Photo Polo Shirt Customize Classic Polo Shirt [SEP] $5.99 [SEP] B09QCVCYVY [SEP] Burband Womens High Waist Bike Shorts Tummy Control Workout Yoga Pants Running Exercise Running Shorts with Side Pockets [SEP] $6.82 [SEP] B00ED8OH2C [SEP] Propper Men's Pack 3 t-Shirt [SEP] $13.37 to $47.74 [SEP] B07GYWW3NY [SEP] J. Crew - Men's - Sutton Straight-Fit Flex Chino (Multiple Size/Color Options) [SEP] $59.5 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09GLVMLMS [SEP] Anniou Electric Heated Jacket Adjustable Temp USB Heated Coat Winter Hooded Jacket Men Women [SEP] $64.99 to $114.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b09m63b87v", "b09jc3k6r6", "b09q5zhrvm", "b09qqjj3km", "b09kxchwgd", "b09qcvcyvy", "b00ed8oh2c", "b07gyww3ny", "b09nds8f4v", "b09glvmlms"]
+  06. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 6 (Total results: 50) [SEP] < Prev [SEP] Next >
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >"]
+  07. search[men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit youth small heather grey fit]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b09p7h5yk7", "b07hrfsnl4", "b08226ndzw", "b09q8rd8yn"]
+  08. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99 [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99 [SEP] B07YDHNZ6B [SEP] Daily Ritual Women's Cozy Knit Puff-Shoulder Dress [SEP] $13.06 to $29.2 [SEP] B07XPR3R7N [SEP] Marvel Avengers: Endgame Captain America America's Language T-Shirt [SEP] $22.99 [SEP] B09HX5CD2D [SEP] CSU Cleveland State University Vikings Property Fleece Drawstring Shorts Heather Charcoal [SEP] $39.95 [SEP] B085WQKRRJ [SEP] CLANMILUMS Men's Classic Comfort Soft Regular Fit Short Sleeve Henley T-Shirt Tee [SEP] $17.99 to $19.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B00V6AB796 [SEP] Star Vixen Women's Cold-Shoulder Top [SEP] $9.38 to $30.32 [SEP] B01HQTWL6S [SEP] Expression Tees Pug Life Funny Thug Life Unisex Adult Hoodie [SEP] $36.99 to $48.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b07q48jvt8", "b09gl561xh", "b0969g2dh8", "b07ydhnz6b", "b07xpr3r7n", "b09hx5cd2d", "b085wqkrrj", "b00o30jldk", "b00v6ab796", "b01hqtwl6s"]
+  09. search[men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve youth heather grey classic fit small price < 30]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b09p7h5yk7", "b07hrfsnl4", "b08226ndzw", "b07q48jvt8"]
+  10. search[men's dress shirts polyester cotton heather heathers cotton heather classic fit youth small heather grey price < 30]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b09p7h5yk7", "b07t3vmgdg", "b07hrfsnl4", "b08226ndzw", "b07q48jvt8"]
+  11. search[men's dress shirts polyester heathers cotton heather needle sleeve classic fit youth small heather grey price < 30]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99 [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b08hf132pn", "b09p39qn2w", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b07hrfsnl4", "b09p7h5yk7", "b09gl561xh", "b0969g2dh8"]
+  12. search[men's dress shirt polyester heathers cotton heather needle sleeve classic fit youth small heather grey price < 30]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99 [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b08hf132pn", "b09p39qn2w", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b07hrfsnl4", "b09p7h5yk7", "b09gl561xh", "b0969g2dh8"]
+  13. search[men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve youth small heather grey classic fit price < 30]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b09p7h5yk7", "b07hrfsnl4", "b08226ndzw", "b07q48jvt8"]
+  14. search[men's dress shirts polyester heathers heathers cotton cotton heather needle classic fit youth small heather grey fit price < 30]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b09p7h5yk7", "b07t3vmgdg", "b07hrfsnl4", "b08226ndzw", "b07q48jvt8"]
+  15. search[men's dress shirts heather grey classic fit youth small polyester heathers heathers cotton cotton heather needle sleeve price < 30]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b07jvvdj6l", "b09p39qn2w", "b08hf132pn", "b09rvf4jp1", "b07dkgjr74", "b07t3vmgdg", "b09p7h5yk7", "b07hrfsnl4", "b08226ndzw", "b07q48jvt8"]
+
+
+
+八、来源
+
+远端会话目录：/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/research/webshop_00510--fe0e1fc08f/20261025_050352_v5
+
+原始文件SHA256：
+
+{
+  "meta.json": "f279f078e2fa7bda1efa28c850f0a8bad646e6a36bed5d797a695b4a04ea220f",
+  "session.jsonl": "1398e51819e14b3710f553cc0ca1a7ecef392fa9a85feba79b23109497fc7358",
+  "doc.md": "aad2a6949327cd5b4c0b08d4eb7c4b8b94ba2bb9a9779ad327678e5f7b4081ea",
+  "episodes.jsonl": "1f7659be440413d5a137f64a44d28ae86cfd2221f199158d7706bc40ee434198"
+}
+
+训练rollout来源及SHA256：
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00006/webshop_00510_7b92f69b.json
+d3d6034ce75383b2c9257e7d21ad6c54758e25487cdc570450f481739f82ce89
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00006/webshop_00510_5d26046b.json
+1eeb2f61b98eb99971cbc214c0c6fcedbb883f4d940c981a2b8818d8fc6ced16
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00006/webshop_00510_fc344bb4.json
+d83e6ad5520aa53457d1348ed8999af835923f1c5fed32fd388e44e3f273654d
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00006/webshop_00510_7115214c.json
+bac76a5bec9a21c00bbc14d243c2f20ef20ba1ba9045fca6650d89886cd541b8
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00006/webshop_00510_8e6133cc.json
+f5966e8c1a2822384e7aba622ec83e5915d4d6a21d362af3f2bc49134b22a57d
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00006/webshop_00510_0184c4ca.json
+f9fbd73345a6c72e3899cafb4c33f44d7d8a2b4aef54dfb732368b877945814e
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00006/webshop_00510_7db56b95.json
+9d4bd2bd059bd0233cc12c8bcd968317b9b99756196c1a17b12693ff752616cb
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00006/webshop_00510_a36825eb.json
+c805fd4be34c876c97e1429ec349f67c002be6da2bef0cd3390f74074245dd3c

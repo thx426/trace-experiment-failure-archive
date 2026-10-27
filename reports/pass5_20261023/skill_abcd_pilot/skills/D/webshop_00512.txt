@@ -1,0 +1,8 @@
+Follow the procedure below. Verify decisions against the user's request, current observation, and this episode's accepted actions.
+
+1. Extract the required material, size, color or pattern, and price limit from the request. Keep them as separate checks.
+2. Search only when the search bar is available. Search listings may omit variant options; inspect a plausible candidate from the current clickables before concluding that a required option is absent.
+3. On a product page, select the exact requested size and color or pattern directly from the current clickables. Do not click section headings unless they are explicitly listed as clickable controls.
+4. Track accepted selections for the current product. If the visible page text remains unchanged, do not repeat an accepted selection solely for that reason. Select the remaining requirement.
+5. Buy only after the required options are selected and the visible price meets the limit. If an option is missing, inspect another candidate rather than buying an unchecked variant.
+6. After an invalid action, re-read the current observation. Do not repeat it unchanged. Stop navigation that makes no progress and choose a different available action based on the unmet requirement.

@@ -1,0 +1,289 @@
+{
+  "snapshot": {
+    "checked_at": "2026-10-24T09:54:10.760465+08:00",
+    "sequence": {
+      "phase": "running",
+      "pid": 2014347,
+      "time": 1792801923.9596894,
+      "input_limit": 3072,
+      "server_concurrency": 16,
+      "order": [
+        "all_skill",
+        "selective_skill"
+      ],
+      "job": "all_skill",
+      "run": "/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/code/runs/pass5_compact3072_all_skill_s42",
+      "owner_pid": 2015098,
+      "owner_state": "/tmp/p5compact3072-all24r3",
+      "researcher_owner_pid": 2014656,
+      "next_job": "selective_skill"
+    },
+    "webshop": {
+      "8321": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 8714,
+          "queue_seconds": 1102.3589201048017,
+          "backend_seconds": 280.92945901304483,
+          "max_queue_seconds": 3.555290099233389,
+          "max_backend_seconds": 0.7339263670146465
+        },
+        "http_statuses": {
+          "200": 8714
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8322": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 8637,
+          "queue_seconds": 759.8932048901916,
+          "backend_seconds": 261.7267869524658,
+          "max_queue_seconds": 2.1518811732530594,
+          "max_backend_seconds": 0.5971399322152138
+        },
+        "http_statuses": {
+          "200": 8637
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8323": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 7241,
+          "queue_seconds": 328.3794265240431,
+          "backend_seconds": 231.27670666202903,
+          "max_queue_seconds": 1.1953264325857162,
+          "max_backend_seconds": 0.45766666159033775
+        },
+        "http_statuses": {
+          "200": 7241
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8324": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 8487,
+          "queue_seconds": 2134.72660664469,
+          "backend_seconds": 267.13214825466275,
+          "max_queue_seconds": 4.360935088247061,
+          "max_backend_seconds": 0.6597558408975601
+        },
+        "http_statuses": {
+          "200": 8487
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      }
+    },
+    "rollout_rows": {
+      "step_00000_val": 1280,
+      "step_00001": 128,
+      "step_00002": 128,
+      "step_00003": 128,
+      "step_00004": 128,
+      "step_00005": 112
+    },
+    "error_mentions": {
+      "webshop service unreachable": 0,
+      "webshop HTTP 409": 0,
+      "student episode infra error": 0,
+      "OutOfMemoryError": 0,
+      "ReplayBuffer:": 0
+    },
+    "training_tail": [
+      "\u001b[36m(TaskRunnerV1 pid=2018898)\u001b[0m INFO:2026-10-24 09:53:11,333:pending: 0, running: 6, finished: 10, failure: 0",
+      "\u001b[36m(SimpleStorageUnit pid=2019331)\u001b[0m 2026-10-24 09:52:13,801 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_93098276: [Performance] Total success requests: 11, Total req/min: 2.17, Total avg process time: 0.0029s; \u001b[32m [repeated 8x across cluster]\u001b[0m",
+      "\u001b[36m(SimpleStorageUnit pid=2019331)\u001b[0m Time range: last 5.08 minutes; \u001b[32m [repeated 8x across cluster]\u001b[0m",
+      "\u001b[36m(SimpleStorageUnit pid=2019331)\u001b[0m Per-operation statistics: GET_DATA: req_count=1, req/min=0.20, avg_time=0.003383s, max_time=0.003383s, min_time=0.003383s; CLEAR_DATA: req_count=1, req/min=0.20, avg_time=0.006006s, max_time=0.006006s, min_time=0.006006s; PUT_DATA: req_count=9, req/min=1.77, avg_time=0.002518s, max_time=0.003748s, min_time=0.002170s\u001b[32m [repeated 7x across cluster]\u001b[0m"
+    ],
+    "completed_steps": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "timing_rows": [
+      {
+        "timing_s/feed": 0.2151353806257248,
+        "timing_s/gen": 473.55641608685255,
+        "timing_s/old_log_prob": 85.97509347647429,
+        "timing_s/adv": 0.13161682710051537,
+        "timing_s/update_actor": 250.2363826520741,
+        "timing_s/update_weights": 5.530635349452496,
+        "timing_s/step": 815.6960954256356
+      },
+      {
+        "timing_s/feed": 0.027740567922592163,
+        "timing_s/gen": 425.54103569313884,
+        "timing_s/old_log_prob": 67.23549339547753,
+        "timing_s/adv": 0.13567079231142998,
+        "timing_s/update_actor": 218.97190622240305,
+        "timing_s/update_weights": 5.9906383864581585,
+        "timing_s/step": 717.946874152869
+      },
+      {
+        "timing_s/feed": 0.022758640348911285,
+        "timing_s/gen": 535.6954695247114,
+        "timing_s/old_log_prob": 69.90931911394,
+        "timing_s/adv": 0.13885973766446114,
+        "timing_s/update_actor": 225.89863968640566,
+        "timing_s/update_weights": 6.017422549426556,
+        "timing_s/step": 837.7563876919448
+      },
+      {
+        "timing_s/feed": 0.022685129195451736,
+        "timing_s/gen": 417.5568194054067,
+        "timing_s/old_log_prob": 71.4221829995513,
+        "timing_s/adv": 0.13478486612439156,
+        "timing_s/update_actor": 226.88820894807577,
+        "timing_s/update_weights": 6.079733721911907,
+        "timing_s/step": 722.148379612714
+      }
+    ],
+    "researcher_inputs": {
+      "calls": 1003,
+      "mean": 2163.4007976071784,
+      "max": 2500,
+      "above_3072": 0
+    }
+  },
+  "audited_at": "2026-10-24T09:54:10.945332+08:00",
+  "processes": {
+    "sequence": {
+      "pid": 2014347,
+      "exists": true,
+      "identity_matches": true,
+      "process_state": "S"
+    },
+    "all_skill_owner": {
+      "pid": 2015098,
+      "exists": true,
+      "identity_matches": true,
+      "process_state": "S"
+    },
+    "researcher_owner": {
+      "pid": 2014656,
+      "exists": true,
+      "identity_matches": true,
+      "process_state": "R"
+    },
+    "webshop_8321": {
+      "pid": 2014398,
+      "exists": true,
+      "identity_matches": true,
+      "process_state": "S"
+    },
+    "webshop_8322": {
+      "pid": 2014399,
+      "exists": true,
+      "identity_matches": true,
+      "process_state": "S"
+    },
+    "webshop_8323": {
+      "pid": 2014400,
+      "exists": true,
+      "identity_matches": true,
+      "process_state": "S"
+    },
+    "webshop_8324": {
+      "pid": 2014401,
+      "exists": true,
+      "identity_matches": true,
+      "process_state": "S"
+    }
+  },
+  "owners": {
+    "all": {
+      "result_status": "INCOMPLETE",
+      "returncode": null,
+      "ended_at": null,
+      "stop_reason": null,
+      "gpu_release_verified": false
+    },
+    "research": {
+      "result_status": "INCOMPLETE",
+      "returncode": null,
+      "ended_at": null,
+      "stop_reason": null,
+      "gpu_release_verified": false
+    }
+  },
+  "researcher_service": {
+    "oom_mentions": 0,
+    "preemption_mentions": 0,
+    "log_mtime": "2026-10-24T09:54:10.892897+08:00"
+  },
+  "gpu": "index, utilization.gpu [%], memory.used [MiB], memory.total [MiB]\n0, 24 %, 39405 MiB, 40960 MiB\n1, 0 %, 25819 MiB, 40960 MiB\n2, 0 %, 25679 MiB, 40960 MiB\n3, 100 %, 39405 MiB, 40960 MiB\n",
+  "abort": null,
+  "frozen_manifest_mismatches": [],
+  "launch_count": 1,
+  "initial_eval_audit": {
+    "passed": true,
+    "tasks": 256,
+    "attempts": 1280,
+    "successes": 79
+  },
+  "latest_artifact": {
+    "path": "/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/code/runs/pass5_compact3072_all_skill_s42/rollouts/step_00005/webshop_04076_2dfa62b7.json",
+    "mtime": "2026-10-24T09:54:03.088953+08:00"
+  },
+  "update_metrics": [
+    {
+      "step": 1,
+      "metrics": {
+        "actor/pg_loss": 0,
+        "actor/grad_norm": 0.28236234188079834,
+        "actor/lr": 0.000001,
+        "rollout_extra/won/mean": 0.046875
+      }
+    },
+    {
+      "step": 2,
+      "metrics": {
+        "actor/pg_loss": 0,
+        "actor/grad_norm": 0.3033212721347809,
+        "actor/lr": 0.000001,
+        "rollout_extra/won/mean": 0.0625
+      }
+    },
+    {
+      "step": 3,
+      "metrics": {
+        "actor/pg_loss": 0,
+        "actor/grad_norm": 0.2518451511859894,
+        "actor/lr": 0.000001,
+        "rollout_extra/won/mean": 0.0859375
+      }
+    },
+    {
+      "step": 4,
+      "metrics": {
+        "actor/pg_loss": 0,
+        "actor/grad_norm": 0.24708710610866547,
+        "actor/lr": 0.000001,
+        "rollout_extra/won/mean": 0.0546875
+      }
+    }
+  ],
+  "training_exception_counts": {
+    "Traceback \\(most recent call last\\)": 0,
+    "webshop HTTP (409|500)": 0,
+    "(?:ReadTimeout|ConnectTimeout|RemoteProtocolError|ConnectError)": 0,
+    "CUDA out of memory": 0,
+    "prompt.{0,30}(?:exceed|over.{0,5}3072)": 0
+  },
+  "selective_started": false
+}

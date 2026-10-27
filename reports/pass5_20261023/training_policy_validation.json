@@ -1,0 +1,31 @@
+{
+  "recorded_at": "2026-10-23T03:31:04.968228+00:00",
+  "command": "python3 -W ignore -m unittest discover -s tests -p 'test_pass5_*policy.py'",
+  "tests_passed": 7,
+  "source_sha256": {
+    "<PROJECT_ROOT>/scripts/classic/audit_pass5_training_policy.py": "1f002e0ee1b16118be915e6ec0e65d2c43632c2334f662e494b5c0d22697dddf",
+    "<PROJECT_ROOT>/tests/test_pass5_training_policy.py": "70336d409bdcb9a51f259c1274680b26d79dc5276f3c82bbcf94b95d287851b8"
+  },
+  "cloud_script": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/audit_training_policy.py",
+  "cloud_source_sha256": "1f002e0ee1b16118be915e6ec0e65d2c43632c2334f662e494b5c0d22697dddf",
+  "real_checks": [
+    {
+      "run": "pass5_grpo_s42",
+      "complete": false,
+      "updates": 6,
+      "rows": 768,
+      "passed": true,
+      "artifact": "code/runs/pass5_grpo_s42/training_policy_audit_through_6.json"
+    },
+    {
+      "run": "pass5_selective_effect_s42",
+      "complete": true,
+      "updates": 2,
+      "rows": 32,
+      "passed": true,
+      "artifact": "code/runs/pass5_selective_effect_s42/training_policy_audit.json"
+    }
+  ],
+  "scope": "Recorded rollout policy versions only; does not inspect tensors or prove superiority. Completed formal100step checks still pending.",
+  "proof_screenshot": "<PROJECT_ROOT>/reports/pass5_20261023/cloud-policy-audit-1129.png"
+}

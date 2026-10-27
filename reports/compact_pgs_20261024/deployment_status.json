@@ -1,0 +1,30 @@
+{
+  "phase": "stopped_on_error_superseded",
+  "reason": "R2 initial bare evaluation failed on WebShop timeout/409 at 2026-10-24 01:09:32 +08:00; zero updates",
+  "remote_root": "/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r2",
+  "deployment_sha256": "da5118d38e378952b58e88017aae92524c7308240f17dd7f4372db9325cbbeb2",
+  "remote_deployed_files": 11,
+  "user_approval": "3072 hard input cap, concurrency16, All-Skill then Selective-Skill, no pilot",
+  "next": [
+    "prepare_remote.py",
+    "validate_remote.py",
+    "detach run_sequence.py",
+    "verify formal launch and actual prompt usage"
+  ],
+  "sequence_pid": 1969791,
+  "cpu_validation_passed": true,
+  "server_config_verified": {
+    "max_num_seqs": 16,
+    "max_model_len": 7168
+  },
+  "previous_sequence_pid": 1963042,
+  "previous_result": "student startup CUDA runtime mismatch; zero rollouts and updates",
+  "all_skill_owner_pid": 1970281,
+  "researcher_owner_pid": 1969840,
+  "cuda_import_verified": "2.9.1+cu128",
+  "input_limit": 3072,
+  "concurrency": 16,
+  "next_job": "selective_skill",
+  "superseded_by": "/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3",
+  "current_status_report": "../webshop_repair_20261024/runtime_snapshot.json"
+}

@@ -1,0 +1,13 @@
+{
+  "created_at": "2026-10-23T07:15:34.441244+00:00",
+  "packet_sha256": "e94b1664b8cddb8b1b623f98cf44510483d79e41fe6ad6aa40a5d971093926d3",
+  "episodes": 128,
+  "tasks": 12,
+  "thoughts_exported": false,
+  "annotations_applied_to_training": false,
+  "files": {
+    "review.html": "5e99af64f19ed4103e991f434c67dae10a1595ee19fb527f353788d9656e42f4",
+    "task_review.csv": "9b7edb337a4f075cb1a0163de5de0a6b8861cb753bb7b78db4ba633502491b23",
+    "grpo_dev_per_task.csv": "dd50acec55a5acef584d1a3699cbd7c18c3e23a862d34aaff2a121bc7fcc4947"
+  }
+}

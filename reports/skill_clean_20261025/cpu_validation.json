@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "inference_calls": 0,
+  "new_rollouts": 0,
+  "configuration_equal_except_name": true,
+  "offline_replayed_groups": 320,
+  "old_missing_covered": 170,
+  "max_doc_words": 330
+}

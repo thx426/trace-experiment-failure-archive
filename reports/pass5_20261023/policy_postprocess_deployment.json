@@ -1,0 +1,14 @@
+{
+  "recorded_at": "2026-10-23T03:37:09.154801+00:00",
+  "local_source": "<PROJECT_ROOT>/scripts/classic/finish_pass5_policy_audits.py",
+  "sha256": "1a3f15ded54689a17e57386b2049997b95b40fd1b44dd1fd5b7c5c435837c8cd",
+  "remote_source": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/finish_policy_audits.py",
+  "pid": 1155814,
+  "sequence_pid": 1040229,
+  "sequence_start_ticks": "2054169668",
+  "verified_live": true,
+  "verified_phase": "waiting_for_sequence",
+  "syntax_check": "python3 -m py_compile scripts/classic/finish_pass5_policy_audits.py passed",
+  "frozen_files_verified_unchanged": 28,
+  "proof_screenshot": "<PROJECT_ROOT>/reports/pass5_20261023/cloud-postprocess-1135.png"
+}

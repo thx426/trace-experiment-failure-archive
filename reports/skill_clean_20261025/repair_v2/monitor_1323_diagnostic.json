@@ -1,0 +1,247 @@
+{
+  "checked_at": "2026-10-25T13:26:17.844408+08:00",
+  "error_time": "2026-10-25T13:06:26+08:00",
+  "candidate_records": [
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543427.jsonl",
+      "line": 274,
+      "ts": 1792904786.6941168,
+      "ctx": "research:webshop_05056:turn03",
+      "finish_reason": "stop",
+      "latency_s": 31.16,
+      "usage": {
+        "prompt_tokens": 2347,
+        "completion_tokens": 386
+      },
+      "error": null,
+      "tools": [],
+      "parameter_headers": [
+        "<parameter=guiding"
+      ],
+      "function_names": [
+        "run_experiment"
+      ]
+    }
+  ],
+  "followup": [
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543427.jsonl",
+      "line": 272,
+      "ts": 1792904715.2828615,
+      "ctx": "research:webshop_05056:turn01",
+      "finish_reason": "tool_calls",
+      "latency_s": 10.054,
+      "usage": {
+        "prompt_tokens": 944,
+        "completion_tokens": 105
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543427.jsonl",
+      "line": 273,
+      "ts": 1792904750.7473876,
+      "ctx": "research:webshop_05056:turn02",
+      "finish_reason": "tool_calls",
+      "latency_s": 31.758,
+      "usage": {
+        "prompt_tokens": 1964,
+        "completion_tokens": 344
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543427.jsonl",
+      "line": 274,
+      "ts": 1792904786.6941168,
+      "ctx": "research:webshop_05056:turn03",
+      "finish_reason": "stop",
+      "latency_s": 31.16,
+      "usage": {
+        "prompt_tokens": 2347,
+        "completion_tokens": 386
+      },
+      "error": null,
+      "tools": [],
+      "parameter_headers": [
+        "<parameter=guiding"
+      ],
+      "function_names": [
+        "run_experiment"
+      ]
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543427.jsonl",
+      "line": 275,
+      "ts": 1792904802.098148,
+      "ctx": "research:webshop_05056:turn04",
+      "finish_reason": "tool_calls",
+      "latency_s": 15.383,
+      "usage": {
+        "prompt_tokens": 1852,
+        "completion_tokens": 189
+      },
+      "error": null,
+      "tools": [
+        "fetch_raw"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543427.jsonl",
+      "line": 276,
+      "ts": 1792904833.034778,
+      "ctx": "research:webshop_05056:turn05",
+      "finish_reason": "tool_calls",
+      "latency_s": 30.906,
+      "usage": {
+        "prompt_tokens": 2287,
+        "completion_tokens": 358
+      },
+      "error": null,
+      "tools": [
+        "run_experiment"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543427.jsonl",
+      "line": 277,
+      "ts": 1792904897.5374439,
+      "ctx": "research:webshop_05056:turn06",
+      "finish_reason": "tool_calls",
+      "latency_s": 60.778,
+      "usage": {
+        "prompt_tokens": 2258,
+        "completion_tokens": 741
+      },
+      "error": null,
+      "tools": [
+        "finalize"
+      ],
+      "parameter_headers": [],
+      "function_names": []
+    }
+  ],
+  "metadata": [
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/research/webshop_05056--071a63efc1/20261025_130817_v56/meta.json",
+      "task_id": "webshop_05056",
+      "global_step": 57,
+      "turns_used": 6,
+      "experiments_used": 3,
+      "doc_words": 252,
+      "self_assessment": "{\"version\": \"webshop_clean_skill_v2\", \"origin\": \"researcher_finalized\", \"required_options\": {\"color\": \"228r.brown\", \"size\": \"8\"}, \"source\": \"public_task_and_mechanical_episode_evidence\", \"successes\": 2, \"invalid_actions\": 0, \"repeated_pairs\": 0, \"candidate_query\": \"slip resistant men's loafers 228r.brown 8\", \"free_form_prose_forwarded\": false, \"words\": 252}",
+      "research_wall_s": 192.39947164058685,
+      "error": null
+    }
+  ],
+  "rollouts": [
+    {
+      "global_step": 57,
+      "task_id": "webshop_05056",
+      "session_id": 7,
+      "won": true,
+      "score": 1,
+      "outcome": "SUCCESS",
+      "steer_count": 0,
+      "doc_missing": 0,
+      "research_error": 0
+    },
+    {
+      "global_step": 57,
+      "task_id": "webshop_05056",
+      "session_id": 6,
+      "won": true,
+      "score": 1,
+      "outcome": "SUCCESS",
+      "steer_count": 0,
+      "doc_missing": 0,
+      "research_error": 0
+    },
+    {
+      "global_step": 57,
+      "task_id": "webshop_05056",
+      "session_id": 5,
+      "won": true,
+      "score": 1,
+      "outcome": "SUCCESS",
+      "steer_count": 0,
+      "doc_missing": 0,
+      "research_error": 0
+    },
+    {
+      "global_step": 57,
+      "task_id": "webshop_05056",
+      "session_id": 4,
+      "won": false,
+      "score": 0.7142857142857143,
+      "outcome": "FAILED",
+      "steer_count": 0,
+      "doc_missing": 0,
+      "research_error": 0
+    },
+    {
+      "global_step": 57,
+      "task_id": "webshop_05056",
+      "session_id": 2,
+      "won": true,
+      "score": 1,
+      "outcome": "SUCCESS",
+      "steer_count": 6,
+      "doc_missing": 0,
+      "research_error": 0
+    },
+    {
+      "global_step": 57,
+      "task_id": "webshop_05056",
+      "session_id": 1,
+      "won": true,
+      "score": 1,
+      "outcome": "SUCCESS",
+      "steer_count": 7,
+      "doc_missing": 0,
+      "research_error": 0
+    },
+    {
+      "global_step": 57,
+      "task_id": "webshop_05056",
+      "session_id": 0,
+      "won": true,
+      "score": 1,
+      "outcome": "SUCCESS",
+      "steer_count": 9,
+      "doc_missing": 0,
+      "research_error": 0
+    },
+    {
+      "global_step": 57,
+      "task_id": "webshop_05056",
+      "session_id": 3,
+      "won": true,
+      "score": 1,
+      "outcome": "SUCCESS",
+      "steer_count": 8,
+      "doc_missing": 0,
+      "research_error": 0
+    }
+  ],
+  "parser_context": "        # If there's no \">\" character, this is not a valid xml function call\n        if end_index == -1:\n            return None\n        function_name = function_call_str[:end_index]\n        param_config = self._get_arguments_config(function_name, tools)\n        parameters = function_call_str[end_index + 1 :]\n        param_dict = {}\n        for match_text in self.tool_call_parameter_regex.findall(parameters):\n            idx = match_text.index(\">\")\n            param_name = match_text[:idx]\n            param_value = str(match_text[idx + 1 :])\n            # Remove prefix and trailing \\n\n            if param_value.startswith(\"\\n\"):\n                param_value = param_value[1:]\n            )\n\n        except Exception:\n            logger.exception(\"Error in extracting tool call from response.\")\n            return ExtractedToolCallInformation(\n                tools_called=False, tool_calls=[], content=model_output\n            )\n\n    def extract_tool_calls_streaming(\n        self,",
+  "latest_update_lines": [
+    "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:57 - global_seqlen/min:360094.0 - global_seqlen/max:360094.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:360094.0 - global_seqlen/balanced_max:360094.0 - global_seqlen/mean:360094.0 - actor/entropy:0.047445688396692276 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.4969640374183655 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:79.2291259765625 - perf/mfu/actor:0.12819111769090627 - rollout_extra/won/mean:0.890625 - rollout_extra/score/mean:0.9650483630952381 - rollout_extra/env_steps/mean:5.359375 - rollout_extra/invalid_format/mean:0.0 - rollout_extra/truncated/mean:0.0 - rollout_extra/generated_token_count/mean:79.0859375 - rollout_extra/accepted_generated_token_count/mean:79.0859375 - rollout_extra/invalid_action_count/mean:0.0078125 - rollout_extra/repeated_action_observation_count/mean:0.1484375 - rollout_extra/max_consecutive_action_observation/mean:1.0546875 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:2.933984375 - rollout_extra/student_attempt_generated_tokens/mean:79.0859375 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:2.4186683481079836 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:3.28125 - rollout_extra/steer_record_rows/mean:3.421875 - rollout_extra/steer_reject_count/mean:0.203125 - rollout_extra/steer_n_draft_discarded/mean:2.1171875 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:19.5078125 - rollout_extra/steer_d_mean/mean:0.08769937933929384 - rollout_extra/steer_n_candidates/mean:19.5078125 - rollout_extra/steer_n_base_open/mean:3.421875 - rollout_extra/steer_n_probe_flipped/mean:0.140625 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:20.3203125 - rollout_extra/steer_n_pt_window_miss/mean:33.3828125 - rollout_extra/steer_ell_count/mean:1462.71875 - rollout_extra/steer_ent_count/mean:39.828125 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.26269048906315895 - rollout_extra/steer_entropy_mean/mean:0.045518911033365375 - rollout_extra/steer_gate_open_rate/mean:0.09125651460388252 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.74389171781994 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:1.5625 - rollout_extra/research_episodes/mean:3.375 - rollout_extra/research_turns/mean:2.8125 - rollout_extra/research_final_success/mean:0.90625 - rollout_extra/research_doc_words/mean:265.75 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:56.0 - rollout_extra/won_bare_rate/mean:0.890625 - rollout_extra/won_steered_rate/mean:0.890625 - rollout_extra/steer_arm_gap/mean:0.0 - training/global_step:57 - training/epoch:3 - critic/score/mean:0.890625 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.890625 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.008643683046102524 - critic/advantages/max:0.375 - critic/advantages/min:-0.875 - critic/returns/mean:-0.008643683046102524 - critic/returns/max:0.375 - critic/returns/min:-0.875 - response_length/mean:2441.984375 - response_length/max:4182.0 - response_length/min:1540.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:2441.984375 - response_length_non_aborted/max:4182.0 - response_length_non_aborted/min:1540.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:371.25 - prompt_length/max:382.0 - prompt_length/min:362.0 - prompt_length/clip_ratio:0.0625 - timing_s/feed:0.020758073776960373 - timing_s/gen:199.2785870730877 - timing_s/old_log_prob:34.13202313706279 - timing_s/adv:0.09541099891066551 - timing_s/update_actor:104.98808558285236 - timing_s/update_weights:5.580774217844009 - timing_s/step:344.13957619294524 - timing_per_token_ms/adv:0.0002649613681723814 - timing_per_token_ms/update_actor:0.29155744217579954 - timing_per_token_ms/gen:0.6375405090413396 - perf/total_num_tokens:360094 - perf/time_per_step:344.13957619294524 - perf/throughput:523.1801642571178 - training/num_turns/mean:np.float64(11.71875) - training/num_turns/max:np.int64(31) - training/num_turns/min:np.int64(11) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m ",
+    "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:58 - global_seqlen/min:302985.0 - global_seqlen/max:302985.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:302985.0 - global_seqlen/balanced_max:302985.0 - global_seqlen/mean:302985.0 - actor/entropy:0.0568789541721344 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.8699325323104858 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:79.24106979370117 - perf/mfu/actor:0.126934383768594 - rollout_extra/won/mean:0.7890625 - rollout_extra/score/mean:0.8817708333333334 - rollout_extra/env_steps/mean:5.34375 - rollout_extra/invalid_format/mean:0.0 - rollout_extra/truncated/mean:0.0 - rollout_extra/generated_token_count/mean:75.2734375 - rollout_extra/accepted_generated_token_count/mean:75.2734375 - rollout_extra/invalid_action_count/mean:0.1875 - rollout_extra/repeated_action_observation_count/mean:0.421875 - rollout_extra/max_consecutive_action_observation/mean:1.1953125 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:2.634765625 - rollout_extra/student_attempt_generated_tokens/mean:75.2734375 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:2.7638264672322825 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:3.84375 - rollout_extra/steer_record_rows/mean:4.0234375 - rollout_extra/steer_reject_count/mean:0.1953125 - rollout_extra/steer_n_draft_discarded/mean:1.7265625 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:20.546875 - rollout_extra/steer_d_mean/mean:0.08017178331238231 - rollout_extra/steer_n_candidates/mean:20.546875 - rollout_extra/steer_n_base_open/mean:4.0234375 - rollout_extra/steer_n_probe_flipped/mean:0.1796875 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:16.296875 - rollout_extra/steer_n_pt_window_miss/mean:34.328125 - rollout_extra/steer_ell_count/mean:1529.6015625 - rollout_extra/steer_ent_count/mean:36.84375 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.2701979658994686 - rollout_extra/steer_entropy_mean/mean:0.05720407350509915 - rollout_extra/steer_gate_open_rate/mean:0.10181496983854557 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.7438917178199402 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:1.9375 - rollout_extra/research_episodes/mean:4.125 - rollout_extra/research_turns/mean:3.375 - rollout_extra/research_final_success/mean:0.84375 - rollout_extra/research_doc_words/mean:274.375 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:57.0 - rollout_extra/won_bare_rate/mean:0.8125 - rollout_extra/won_steered_rate/mean:0.765625 - rollout_extra/steer_arm_gap/mean:-0.046875 - training/global_step:58 - training/epoch:3 - critic/score/mean:0.7890625 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.7890625 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.004229371901601553 - critic/advantages/max:0.75 - critic/advantages/min:-0.875 - critic/returns/mean:-0.004229371901601553 - critic/returns/max:0.75 - critic/returns/min:-0.875 - response_length/mean:1998.0078125 - response_length/max:3933.0 - response_length/min:942.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:1998.0078125 - response_length_non_aborted/max:3933.0 - response_length_non_aborted/min:942.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:369.0625 - prompt_length/max:385.0 - prompt_length/min:350.0 - prompt_length/clip_ratio:0.0625 - timing_s/feed:0.0269911028444767 - timing_s/gen:253.35074645653367 - timing_s/old_log_prob:30.57075461000204 - timing_s/adv:0.09317409992218018 - timing_s/update_actor:89.36643923819065 - timing_s/update_weights:5.610110424458981 - timing_s/step:379.06259537115693 - timing_per_token_ms/adv:0.00030752050405855134 - timing_per_token_ms/update_actor:0.2949533450111083 - timing_per_token_ms/gen:0.9906381217874589 - perf/total_num_tokens:302985 - perf/time_per_step:379.06259537115693 - perf/throughput:399.65035287026143 - training/num_turns/mean:np.float64(11.6875) - training/num_turns/max:np.int64(31) - training/num_turns/min:np.int64(7) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m ",
+    "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:59 - global_seqlen/min:360803.0 - global_seqlen/max:360803.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:360803.0 - global_seqlen/balanced_max:360803.0 - global_seqlen/mean:360803.0 - actor/entropy:0.0530070997774601 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.35545629262924194 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:81.95844268798828 - perf/mfu/actor:0.1252105452500092 - rollout_extra/won/mean:0.640625 - rollout_extra/score/mean:0.8022280844155844 - rollout_extra/env_steps/mean:5.515625 - rollout_extra/invalid_format/mean:0.0 - rollout_extra/truncated/mean:0.0 - rollout_extra/generated_token_count/mean:78.9375 - rollout_extra/accepted_generated_token_count/mean:78.9375 - rollout_extra/invalid_action_count/mean:0.1171875 - rollout_extra/repeated_action_observation_count/mean:0.375 - rollout_extra/max_consecutive_action_observation/mean:1.1484375 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:3.09109375 - rollout_extra/student_attempt_generated_tokens/mean:78.9375 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:2.670880285693531 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:3.7109375 - rollout_extra/steer_record_rows/mean:3.9765625 - rollout_extra/steer_reject_count/mean:0.2734375 - rollout_extra/steer_n_draft_discarded/mean:2.921875 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:19.9296875 - rollout_extra/steer_d_mean/mean:0.08878732780780224 - rollout_extra/steer_n_candidates/mean:19.9296875 - rollout_extra/steer_n_base_open/mean:3.9765625 - rollout_extra/steer_n_probe_flipped/mean:0.265625 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:19.6640625 - rollout_extra/steer_n_pt_window_miss/mean:35.421875 - rollout_extra/steer_ell_count/mean:1485.9765625 - rollout_extra/steer_ent_count/mean:39.59375 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.26239175340884435 - rollout_extra/steer_entropy_mean/mean:0.053522341217300984 - rollout_extra/steer_gate_open_rate/mean:0.10396917643097964 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.74389171781994 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:2.0 - rollout_extra/research_episodes/mean:4.1875 - rollout_extra/research_turns/mean:3.875 - rollout_extra/research_final_success/mean:0.75 - rollout_extra/research_doc_words/mean:279.125 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:58.0 - rollout_extra/won_bare_rate/mean:0.625 - rollout_extra/won_steered_rate/mean:0.65625 - rollout_extra/steer_arm_gap/mean:0.03125 - training/global_step:59 - training/epoch:3 - critic/score/mean:0.640625 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.640625 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:0.0004948535352014005 - critic/advantages/max:0.75 - critic/advantages/min:-0.25 - critic/returns/mean:0.0004948535352014005 - critic/returns/max:0.75 - critic/returns/min:-0.25 - response_length/mean:2446.0859375 - response_length/max:4700.0 - response_length/min:899.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:2446.0859375 - response_length_non_aborted/max:4700.0 - response_length_non_aborted/min:899.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:372.6875 - prompt_length/max:388.0 - prompt_length/min:358.0 - prompt_length/clip_ratio:0.0625 - timing_s/feed:0.018682952970266342 - timing_s/gen:281.4015180878341 - timing_s/old_log_prob:36.351339891552925 - timing_s/adv:0.11666183546185493 - timing_s/update_actor:107.7860623896122 - timing_s/update_weights:5.911843441426754 - timing_s/step:431.6329793520272 - timing_per_token_ms/adv:0.00032333942750435816 - timing_per_token_ms/update_actor:0.29873937408949536 - timing_per_token_ms/gen:0.898762110667342 - perf/total_num_tokens:360803 - perf/time_per_step:431.6329793520272 - perf/throughput:417.95114977270964 - training/num_turns/mean:np.float64(12.03125) - training/num_turns/max:np.int64(19) - training/num_turns/min:np.int64(7) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m "
+  ]
+}

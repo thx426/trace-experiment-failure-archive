@@ -1,0 +1,17 @@
+REVIEW DRAFT — task webshop_00512; not applied to training.
+Evidence: existing successful episodes purchased b09dg3ythy after selecting 39x59in and thanksgivinggoo4573. Its observed price is $31.39, below $50. The shortened sequence below is a proposed simplification of successful histories, not a newly tested rollout.
+
+Action rules:
+1. When the search bar is available, search[eco friendly throw blankets fleece thanksgivinggoo4573 39x59in price under 50].
+2. When b09dg3ythy is in the results-page clickables, click[b09dg3ythy]. Inspect this candidate before pagination or another search.
+3. On its product page, directly click[39x59in], then click[thanksgivinggoo4573]. The words "size" and "color" are section headings, not clickable controls. Never issue click[size] or click[color] unless a future observation explicitly lists them as clickables.
+4. Track these successful selections for the current product. Do not repeat a selection merely because the displayed page text is unchanged.
+5. After both options are selected and price < $50 is verified, click[buy now]. Do not exit this matching product page or buy with missing options.
+6. Each action must match the current page and exact clickable label. After an invalid action, inspect the observation instead of repeating it.
+
+Proposed short path:
+search[eco friendly throw blankets fleece thanksgivinggoo4573 39x59in price under 50]
+click[b09dg3ythy]
+click[39x59in]
+click[thanksgivinggoo4573]
+click[buy now]

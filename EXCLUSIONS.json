@@ -1,0 +1,985 @@
+{
+  "scope": "files considered in selected roots; hidden directories were not traversed",
+  "files": [
+    {
+      "source_path": "configs/classic/._alfworld.yaml",
+      "reason": "hidden/cache/environment file"
+    },
+    {
+      "source_path": "configs/classic/._math.yaml",
+      "reason": "hidden/cache/environment file"
+    },
+    {
+      "source_path": "configs/classic/._searchqa.yaml",
+      "reason": "hidden/cache/environment file"
+    },
+    {
+      "source_path": "configs/classic/._webshop.yaml",
+      "reason": "hidden/cache/environment file"
+    },
+    {
+      "source_path": "outputs/2026-08-12/01-50-34/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-12/02-00-40/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-12/02-22-18/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/00-29-22/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/00-29-23/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/00-34-45/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/00-34-48/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/00-40-25/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/00-40-44/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/01-11-03/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/01-11-23/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/01-26-47/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/01-26-56/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/01-40-19/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/01-40-38/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/12-22-55/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/12-33-13/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/12-33-32/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/12-41-03/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/12-41-21/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/12-54-22/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/12-54-41/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/13-05-15/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/13-05-34/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/13-12-41/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/13-14-41/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/13-15-00/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/13-28-53/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/13-29-11/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/13-39-23/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/13-39-41/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/14-10-49/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/14-11-05/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/14-38-10/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/15-13-32/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/15-13-49/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/15-33-16/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/15-33-35/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/16-53-42/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/16-53-56/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/18-25-33/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-13/18-25-36/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-14/14-17-49/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-14/14-22-39/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-14/14-23-04/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-14/14-41-48/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-14/14-42-09/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-14/14-53-25/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-14/14-55-41/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-14/15-15-27/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-16/15-06-42/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-16/19-35-12/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-16/23-45-13/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-16/23-50-59/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-17/00-23-24/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-17/00-23-32/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-17/00-29-17/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-17/00-29-24/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-17/21-46-56/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-17/21-51-47/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-17/22-18-26/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-17/23-27-37/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-18/00-12-51/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-18/04-13-00/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-18/10-56-45/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-18/11-21-17/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-20/03-18-18/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-27/11-11-28/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-27/21-50-50/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-28/13-19-13/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "outputs/2026-08-29/23-35-45/main_ppo.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "probe/val_scan_err.log",
+      "reason": "empty file; no experimental evidence"
+    },
+    {
+      "source_path": "reports/.DS_Store",
+      "reason": "hidden/cache/environment file"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/deployment.b64",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/formal_all_skill_running.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/frozen/audit_run.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/frozen/audit_training_policy.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/frozen/code/src/trace_opd/common/config.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/frozen/code/src/trace_opd/common/llm.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/frozen/code/src/trace_opd/research/prompts.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/frozen/code/src/trace_opd/research/session.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/frozen/code/src/trace_opd/research/toolproto.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/frozen/code/src/trace_opd/research/tools.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/frozen/code/src/trace_opd/train/agent_loop.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/frozen/code/src/trace_opd/train/backends.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/frozen/configs/all_skill.yaml",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/frozen/configs/grpo.yaml",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/frozen/configs/selective_skill.yaml",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/frozen/researcher_deployment_context32k.json",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/frozen/run_trial_sequence_v6.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/frozen/training_contract.json",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/frozen/vllm/entrypoints/serve/tokenize/protocol.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/frozen_source.b64",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/frozen_source2.b64",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/patch/src/trace_opd/common/config.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/patch/src/trace_opd/common/llm.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/patch/src/trace_opd/research/compact.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/patch/src/trace_opd/research/session.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/patch/src/trace_opd/research/tools.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/compact_pgs_20261024/patch/src/trace_opd/train/agent_loop.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/grpo_mechanism_20261023/replay/row_controls.jsonl.gz",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/grpo_mechanism_20261023/skill-info-compact-20261023.json.gz",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/grpo_mechanism_20261023/source_before/src/trace_opd/analysis/training_audit.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/grpo_mechanism_20261023/source_before/src/trace_opd/common/config.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/grpo_mechanism_20261023/source_before/src/trace_opd/steering/arms.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/grpo_mechanism_20261023/source_before/src/trace_opd/train/agent_loop.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/grpo_mechanism_20261023/source_before/verl/verl/trainer/ppo/v1/agent_loop_tq.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/grpo_mechanism_20261023/source_before/verl/verl/trainer/ppo/v1/trainer_base.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261023/__pycache__/demo.cpython-312.pyc",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261023/results/seed0_base.pt",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261023/results/seed0_endpoint.pt",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261023/results/seed0_intermediate.pt",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261023/results/seed1_base.pt",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261023/results/seed1_endpoint.pt",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261023/results/seed1_intermediate.pt",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261023/results/seed2_base.pt",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261023/results/seed2_endpoint.pt",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261023/results/seed2_intermediate.pt",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261023/results_tied/seed0_base.pt",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261023/results_tied/seed0_endpoint.pt",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261023/results_tied/seed0_intermediate.pt",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261023/results_tied/seed1_base.pt",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261023/results_tied/seed1_endpoint.pt",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261023/results_tied/seed1_intermediate.pt",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261023/results_tied/seed2_base.pt",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261023/results_tied/seed2_endpoint.pt",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261023/results_tied/seed2_intermediate.pt",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261026_feishu/part1.html",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261026_feishu/part2.html",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261026_feishu/render_map.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261026_feishu/report.html",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261026_feishu/research_map.png",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261026_feishu/research_map.svg",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/loop_transformer_20261026_feishu/sources.json",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/pass5_20261023/cloud-live-monitor-1149.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/pass5_20261023/cloud-policy-audit-1129.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/pass5_20261023/cloud-postprocess-1135.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/pass5_20261023/cloud-progress-0906.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/pass5_20261023/cloud-progress-0932.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/pass5_20261023/cloud-progress-0958.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/pass5_20261023/cloud-progress-1023.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/pass5_20261023/cloud-progress-1054.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/pass5_20261023/cloud-progress-1112.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/pass5_20261023/cloud-progress.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/pass5_20261023/grpo_final_review/all_skill_timing_transfer.txt",
+      "reason": "chat/manuscript/encoded-transfer/private publishing artifact"
+    },
+    {
+      "source_path": "reports/pass5_20261023/grpo_final_review/grpo_baseline.pdf",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/pass5_20261023/grpo_final_review/grpo_baseline.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/pass5_20261023/grpo_final_review/hard_source_transfer.txt",
+      "reason": "chat/manuscript/encoded-transfer/private publishing artifact"
+    },
+    {
+      "source_path": "reports/pass5_20261023/grpo_final_review/hard_transfer.txt",
+      "reason": "chat/manuscript/encoded-transfer/private publishing artifact"
+    },
+    {
+      "source_path": "reports/pass5_20261023/grpo_final_review/stop_verified_20261024.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/pass5_20261023/grpo_final_review/transfer_00.txt",
+      "reason": "chat/manuscript/encoded-transfer/private publishing artifact"
+    },
+    {
+      "source_path": "reports/pass5_20261023/human_review/focus-00510-proof.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/pass5_20261023/human_review/review-overview.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/pass5_20261023/human_review/review-replay.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/pass5_20261023/pass5-code.tar.gz",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/pass5_20261023/session_history_through_0932.json",
+      "reason": "chat/manuscript/encoded-transfer/private publishing artifact"
+    },
+    {
+      "source_path": "reports/pass5_20261023/session_history_through_0958.json",
+      "reason": "chat/manuscript/encoded-transfer/private publishing artifact"
+    },
+    {
+      "source_path": "reports/pass5_20261023/session_history_through_1023.json",
+      "reason": "chat/manuscript/encoded-transfer/private publishing artifact"
+    },
+    {
+      "source_path": "reports/pass5_20261023/session_history_through_1054.json",
+      "reason": "chat/manuscript/encoded-transfer/private publishing artifact"
+    },
+    {
+      "source_path": "reports/pass5_20261023/session_history_through_1112.json",
+      "reason": "chat/manuscript/encoded-transfer/private publishing artifact"
+    },
+    {
+      "source_path": "reports/pass5_20261023/session_history_through_1129.json",
+      "reason": "chat/manuscript/encoded-transfer/private publishing artifact"
+    },
+    {
+      "source_path": "reports/pass5_20261023/session_history_through_1135.json",
+      "reason": "chat/manuscript/encoded-transfer/private publishing artifact"
+    },
+    {
+      "source_path": "reports/pass5_20261023/session_history_through_1149.json",
+      "reason": "chat/manuscript/encoded-transfer/private publishing artifact"
+    },
+    {
+      "source_path": "reports/pass5_20261023/skill_abcd_pilot/queued_status.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/deployment.b64",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/deployment.json",
+      "reason": "source or transformed JSON is invalid"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/five_cases_20261026/evidence.json.gz.b64",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/formal_start_verified.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/frozen/audit_run.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/frozen/experiment_contract.json",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/frozen/inspect_runtime.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/frozen/prepare_repair.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/frozen/run_sequence.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/frozen/scripts/launch_train.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/frozen/src/trace_opd/common/llm.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/frozen/src/trace_opd/docstore/archive.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/frozen/src/trace_opd/research/compact.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/frozen/src/trace_opd/research/session.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/frozen/src/trace_opd/research/tools.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/frozen/src/trace_opd/train/agent_loop.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/frozen/validate_remote.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/patch/src/trace_opd/research/clean_skill.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/patch/src/trace_opd/research/compact.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/patch/src/trace_opd/research/session.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/patch/src/trace_opd/research/tools.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/patch/src/trace_opd/train/agent_loop.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/repair_v2/restart_verified.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/step100_comparison/source_verified/clean__scripts__launch_train.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/step100_comparison/source_verified/clean__src__trace_opd__steering__arms.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/step100_comparison/source_verified/clean__src__trace_opd__train__agent_loop.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/step100_comparison/source_verified/grpo__scripts__launch_train.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/step100_comparison/source_verified/grpo__src__trace_opd__steering__arms.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/step100_comparison/source_verified/grpo__src__trace_opd__train__agent_loop.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_clean_20261025/step40_comparison/live_guard_1208.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/skill_information_20261022/source_snapshot/agent_loop.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_information_20261022/source_snapshot/config.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/skill_information_20261022/source_snapshot/tools.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/current_source_snapshot/scripts/launch_train.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/current_source_snapshot/src/trace_opd/common/config.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/current_source_snapshot/src/trace_opd/core/episode.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/current_source_snapshot/src/trace_opd/envs/alfworld/adapter.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/current_source_snapshot/src/trace_opd/envs/searchqa/adapter.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/current_source_snapshot/src/trace_opd/envs/webshop/adapter.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/current_source_snapshot/src/trace_opd/steering/arms.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/current_source_snapshot/src/trace_opd/steering/hook.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/current_source_snapshot/src/trace_opd/steering/kernel.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/current_source_snapshot/src/trace_opd/steering/sps.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/current_source_snapshot/src/trace_opd/train/agent_loop.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/current_source_snapshot/verl/verl/experimental/agent_loop/agent_loop.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/current_source_snapshot/verl/verl/trainer/config/actor/actor.yaml",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/current_source_snapshot/verl/verl/trainer/ppo/core_algos.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/current_source_snapshot/verl/verl/trainer/ppo/v1/agent_loop_tq.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/current_source_snapshot/verl/verl/trainer/ppo/v1/trainer_base.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/current_source_snapshot/verl/verl/workers/utils/losses.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/legacy_4bc0da93/configs/experiments/a800-1p7b-a0-pure.yaml",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/legacy_4bc0da93/configs/experiments/a800-1p7b-a1-rl.yaml",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/legacy_4bc0da93/docs/mixed-objective-design.md",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/legacy_4bc0da93/docs/mixed-objective-runbook.md",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/legacy_4bc0da93/scripts/launch_train.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/legacy_4bc0da93/src/trace_opd/common/config.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/legacy_4bc0da93/src/trace_opd/train/agent_loop.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/legacy_4bc0da93/verl/verl/trainer/distillation/fsdp/losses.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/legacy_4bc0da93/verl/verl/trainer/distillation/losses.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/legacy_4bc0da93/verl/verl/trainer/distillation/teacher_topk_fsdp.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/legacy_4bc0da93/verl/verl/trainer/ppo/v1/trainer_base.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/legacy_4bc0da93/verl/verl/workers/config/distillation.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/legacy_4bc0da93/verl/verl/workers/engine/fsdp/transformer_impl.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/legacy_4bc0da93/verl/verl/workers/engine_workers.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/legacy_4bc0da93/verl/verl/workers/utils/losses.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/legacy_5beecec5/docs/teacher-grounding-design.md",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/legacy_5beecec5/scripts/launch_train.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/legacy_5beecec5/verl/verl/trainer/distillation/fsdp/losses.py",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/original_research_note.md",
+      "reason": "chat/manuscript/encoded-transfer/private publishing artifact"
+    },
+    {
+      "source_path": "reports/training_objective_20261023/research-note.patch",
+      "reason": "chat/manuscript/encoded-transfer/private publishing artifact"
+    },
+    {
+      "source_path": "reports/webshop_repair_20261024/deployment.b64",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/webshop_repair_20261024/formal_restart_verified.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/webshop_repair_20261024/pause_verified_20261024_1632.png",
+      "reason": "binary/opaque payload/model/screenshot; not included in text archive"
+    },
+    {
+      "source_path": "reports/weekly_20261026/feishu_append_proof.png",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/weekly_20261026/weekly_append.html",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "reports/weekly_20261026/write_receipt.json",
+      "reason": "vendored/source/deployment snapshot or private collaboration export"
+    },
+    {
+      "source_path": "runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260814_140602.json",
+      "reason": "empty file; no experimental evidence"
+    }
+  ]
+}

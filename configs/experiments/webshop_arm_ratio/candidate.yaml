@@ -1,0 +1,142 @@
+# Frozen from runs/classic_ws3b_pgs/effective_config.yaml.
+# Scientific control: T=133, epsilon=0.05; only arm fraction differs.
+# Both arms use the same seed-42 train/dev split and 60-step budget.
+# Test data is never a training or checkpoint-selection input.
+run:
+  name: webshop_arm_ratio_candidate
+environment:
+  name: webshop
+episode:
+  max_env_steps: 15
+  max_assistant_turns: 15
+  max_tokens_per_turn: 1024
+  session_token_budget: 16384
+webshop:
+  protocol: text
+  fix_option_matching: true
+  service_url: ${TRACE_WEBSHOP_URLS}
+  request_concurrency: 512
+  obs_max_chars: 3500
+  reset_timeout_s: 60.0
+  step_timeout_s: 30.0
+  max_retries: 4
+  retry_backoff_s: 1.0
+  retry_backoff_max_s: 8.0
+  preflight: true
+eval:
+  response_budget: 16384
+  temperature: 0.6
+  n: 3
+train:
+  model_path: ${TRACE_MODELS}/Qwen2.5-3B-Instruct
+  train_file: ${TRACE_WEBSHOP_ARM_DATA}/train.parquet
+  val_files:
+  - ${TRACE_WEBSHOP_ARM_DATA}/dev.parquet
+  experiment_name: webshop_arm_ratio_candidate
+  project_name: trace_opd
+  n_gpus: 4
+  rollout_tp: 1
+  train_batch_size: 32
+  rollout_n: 16
+  agent_num_workers: 32
+  ppo_mini_batch_size: 32
+  lr: 1.0e-06
+  lr_scheduler_type: constant
+  lr_warmup_steps_ratio: 0.0
+  adv_estimator: pgs_asym_grpo
+  norm_adv_by_std: false
+  max_prompt_length: 4096
+  response_length: 16384
+  max_token_len_per_gpu: 20480
+  ppo_max_token_len_per_gpu: 8192
+  log_prob_max_token_len_per_gpu: 8192
+  ulysses_sp: 2
+  use_fused_kernels: false
+  rollout_max_model_len: 20480
+  rollout_max_num_batched_tokens: 8192
+  rollout_backend: sglang
+  rollout_attention_backend: flashinfer
+  rollout_gpu_mem: 0.55
+  rollout_max_num_seqs: 256
+  rollout_temperature: 1.0
+  loss_agg_mode: seq-mean-token-mean
+  vllm_rpc_timeout_ms: 300000
+  agent_task_timeout_s: 5400
+  total_epochs: 1
+  test_freq: 20
+  save_freq: 20
+  max_ckpt_to_keep: 1
+  val_before_train: true
+  resume_mode: disable
+  loggers:
+  - console
+  - swanlab
+  fsdp_strategy: fsdp2
+  param_offload: true
+  reshard_after_forward: true
+  seed: 42
+  total_training_steps: 60
+  training_audit: true
+steering:
+  enabled: true
+  doc_source: researcher
+  doc_table: ''
+  eta_max: 0.5
+  c: 2.5
+  b_max: .inf
+  topk: 64
+  obs_topk: 256
+  theta_d: 0.0
+  gate_mode: entropy
+  gate_adaptive: true
+  gate_target_rate: 0.1
+  gate_ema_beta: 0.1
+  epsilon: 0.05
+  gate_rate_bounds:
+  - 0.05
+  - 0.25
+  r_max: 0
+  w_beh_mode: 'off'
+  adv_mode: asym
+  steered_adv_weight: 1.0
+  steered_adv_decay_steps: 133
+  steered_adv_decay_mode: cosine_steps
+  steered_adv_cap: 0.0
+  entropy_target_rate: 0.05
+  entropy_theta_init: 0.0
+  entropy_theta_ratchet: true
+  entropy_floor: 0.0
+  intensity_w_min: 0.05
+  steered_fraction: 0.25
+research:
+  enabled: true
+  backend: external
+  tool_protocol: fncall
+  n_exp: 6
+  k_default: 2
+  k_max: 4
+  max_turns: 24
+  wrapup_buffer: 2
+  doc_max_words: 500
+  researcher_max_tokens: 4096
+  session_timeout_s: 2400
+  session_token_budget: 50000
+  max_prompt_tokens: 8000
+narration:
+  backend: engine
+  max_words: 600
+  temperature: 0.3
+  max_prompt_tokens: 12000
+roles:
+  researcher:
+    endpoint: ${TRACE_RESEARCHER_URLS}
+    model: qwen3.6-35b-a3b
+    mode: external_pool
+    api_key_env: TRACE_35B_KEY
+    max_concurrency: 64
+    temperature: 1.0
+    max_tokens: 4096
+    timeout_s: 600
+    extra_body:
+      chat_template_kwargs:
+        enable_thinking: false

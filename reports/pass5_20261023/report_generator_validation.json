@@ -1,0 +1,25 @@
+{
+  "recorded_at": "2026-10-23T03:31:04.967849+00:00",
+  "command": "python3 -W ignore -m unittest discover -s tests -p test_pass5_report.py",
+  "tests_passed": 12,
+  "source_sha256": {
+    "<PROJECT_ROOT>/scripts/classic/report_pass5_trial.py": "b44e00c84a63c4faae2834fbdf5192caf9aef6fe6f8020a9444577528e6cfdc9",
+    "<PROJECT_ROOT>/tests/test_pass5_report.py": "094fffe7b54f5b5daef8854fec455fcba5bb3cef9db44bc1daf88fcc3fa051c5"
+  },
+  "visual_check": {
+    "passed": true,
+    "figures": [
+      "success_rate.png",
+      "stratum_gain.png"
+    ],
+    "data": "synthetic fixtures only, visibly watermarked; not experiment results",
+    "directory": "/tmp/pass5-synthetic-render-check"
+  },
+  "formal_report_generated": false,
+  "required_inputs": [
+    "comparison.json",
+    "trial_cost_comparison.json",
+    "training_policy_audits.json"
+  ],
+  "notes": "12 report tests passed. A complete independent policy audit matching each formal run/launch is now required. Plot/HTML layout unchanged from prior visual check. No frozen cloud code/config changed."
+}

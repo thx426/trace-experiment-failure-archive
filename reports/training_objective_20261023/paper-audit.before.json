@@ -1,0 +1,666 @@
+{
+  "schema_version": 2,
+  "venue": {
+    "name": "ACL 2027 (provisional; author year confirmation pending)",
+    "type": "conference",
+    "ccf_rank": "A",
+    "ccf_list_version": "7th edition; formal release 2026-03-31, correction 2026-04-09. Rank verified in official AI category text; formal PDF not read.",
+    "ccf_list_url": "https://www.ccf.org.cn/Academic_Evaluation/AI/",
+    "official_author_guide_url": "https://2027.aclweb.org/calls/main/",
+    "verified_on": "2026-10-15"
+  },
+  "manuscript": "",
+  "base_models": [],
+  "baselines": [
+    {
+      "name": "MENTOR",
+      "release_date": "2025-10-05",
+      "paper_url": "https://arxiv.org/abs/2510.04140",
+      "implementation": "https://github.com/Jiangzs1028/MENTOR",
+      "result_source": "https://arxiv.org/html/2510.04140v2",
+      "protocol_note": "Published reference only; no matched agentic replication or formal table cell in this audit. Adaptation must be explicitly labelled."
+    },
+    {
+      "name": "SEED",
+      "release_date": "2026-07-16",
+      "paper_url": "https://arxiv.org/abs/2607.14777",
+      "implementation": "https://github.com/jinyangwu/SEED",
+      "result_source": "https://arxiv.org/html/2607.14777v1",
+      "protocol_note": "Published reference only; distinct SFT, RL budget, evaluation tasks and temperature. Not a fair ranking comparison."
+    }
+  ],
+  "figures": {
+    "pipeline": {
+      "source": "",
+      "output": ""
+    },
+    "intro": {
+      "source": "",
+      "output": ""
+    }
+  },
+  "reproducibility": {
+    "readme": "",
+    "environment": "",
+    "configs": "<PROJECT_ROOT>/configs/classic",
+    "run_ledger": "launch-inventory.json",
+    "raw_results": "",
+    "table_generation": "recompute_audit.py",
+    "run_commands": "<PROJECT_ROOT>/scripts/launch_train.py",
+    "evaluation_script": "<PROJECT_ROOT>/src/trace_opd/evalm/run_eval.py",
+    "compute_log": ""
+  },
+  "runs": [],
+  "table_cells": [],
+  "claims": [],
+  "author_signoff": {
+    "name": "",
+    "date": "",
+    "statement": "",
+    "manuscript_sha256": "",
+    "package_fingerprint": ""
+  },
+  "checks": {
+    "R01": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "ACL 官方征稿可读；已从 CCF 官方分类正文核对 ACL 属 A 类，并核对第七版正式发布日期与范围。年份和全部作者要求待作者核签。",
+      "next_action": "作者确认目标周期，完成正式作者指南与稿件类型核签；保留官方目录 PDF 尚未读取的来源限制。",
+      "owner": "作者与审校者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "ACL 官方征稿可读；已从 CCF 官方分类正文核对 ACL 属 A 类，并核对第七版正式发布日期与范围。年份和全部作者要求待作者核签。"
+        },
+        {
+          "path": "source-register.json",
+          "locator": "venue",
+          "observation": "官方 AI 分类文本核查 ACL 为 A 类；第七版正式公告已核对，PDF 未读。作者周期仍待确认。"
+        }
+      ]
+    },
+    "R02": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "研究问题候选 C1–C5 已整理；缺作者确认的中心论点及英文摘要/正文位置。",
+      "next_action": "作者选择核心主张，提供摘要或研究计划确认版。",
+      "owner": "作者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "研究问题候选 C1–C5 已整理；缺作者确认的中心论点及英文摘要/正文位置。"
+        }
+      ]
+    },
+    "R03": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "代码可推导训练/部署接口，但尚无论文正式任务定义。",
+      "next_action": "写明输入输出、特权信息、split、约束、成功判据和假设。",
+      "owner": "作者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "代码可推导训练/部署接口，但尚无论文正式任务定义。"
+        }
+      ]
+    },
+    "R04": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "邻近任务与六篇文献已区分；同条件区分实验尚未获得。",
+      "next_action": "执行同文档下蒸馏/采样和部署有无记忆的判别实验。",
+      "owner": "作者与实验负责人",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "邻近任务与六篇文献已区分；同条件区分实验尚未获得。"
+        }
+      ]
+    },
+    "R05": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "第二轮已建立六篇文献的日期/版本/原文结构化登记，并修正 MENTOR 比较矩阵；尚待作者人工核验及纳入 Related Work。",
+      "next_action": "作者核验 source-register.json 与矩阵，并确认近期文献覆盖。",
+      "owner": "作者与文献审阅者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "第二轮已建立六篇文献的日期/版本/原文结构化登记，并修正 MENTOR 比较矩阵；尚待作者人工核验及纳入 Related Work。"
+        },
+        {
+          "path": "source-register.json",
+          "locator": "papers",
+          "observation": "六篇原文链接、版本和发布日期均已登记；MENTOR token 级机制已更正。"
+        }
+      ]
+    },
+    "R06": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "已登记 MENTOR/SEED 原始来源，但无同协议复现结果；不能用引用结果当本地已执行 baseline。",
+      "next_action": "完成至少两项相关近期基线的公平复现及逐格证据。",
+      "owner": "实验负责人",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "已登记 MENTOR/SEED 原始来源，但无同协议复现结果；不能用引用结果当本地已执行 baseline。"
+        }
+      ]
+    },
+    "R07": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "现有核心配置均为 Qwen2.5 Instruct 同一家族；没有两个 2025/2026 原始 base 家族的实验证据。",
+      "next_action": "冻结两家族 base checkpoint 并完成训练对照；派生 SFT 起点单独登记。",
+      "owner": "作者与实验负责人",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "现有核心配置均为 Qwen2.5 Instruct 同一家族；没有两个 2025/2026 原始 base 家族的实验证据。"
+        }
+      ]
+    },
+    "R08": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "第二轮已登记两家族候选的官方模型卡、家族发布日期和许可证；实际模型选择与 revision 需预算和兼容性确认。",
+      "next_action": "按可用 GPU 选择实际 checkpoint、冻结 revision 并验证格式遵循/引擎兼容性。",
+      "owner": "作者与实验负责人",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "第二轮已登记两家族候选的官方模型卡、家族发布日期和许可证；实际模型选择与 revision 需预算和兼容性确认。"
+        },
+        {
+          "path": "source-register.json",
+          "locator": "model_candidates",
+          "observation": "两家族候选模型卡及许可证已记录，revision=null 且 executed=false。"
+        }
+      ]
+    },
+    "R09": {
+      "status": "fail",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "旧跨论文对拍存在预算等差异；第三轮发现本地 PGS/GRPO 优势估计混杂，SearchQA 历史与最新配对均有评估温度/重复数差异，最新版另有验证集和 epoch 差异。",
+      "next_action": "按最小判别协议冻结同条件比较，加入假引导优势控制；分开 published 与 reproduced 数字，统一协议与总成本。",
+      "owner": "实验负责人",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "旧跨论文对拍存在预算等差异；第三轮发现本地 PGS/GRPO 优势估计混杂，SearchQA 历史与最新配对均有评估温度/重复数差异，最新版另有验证集和 epoch 差异。"
+        },
+        {
+          "path": "summary-recomputed.json",
+          "locator": "budget_examples",
+          "observation": "WS 学生 RL episode 预算比为 5.3333，SQA 计划比为 8.8333；不包含额外成本。"
+        },
+        {
+          "path": "paired-config-differences.json",
+          "locator": "pairs",
+          "observation": "五组配对完整配置差异及源文件哈希；仅为配置证据，不推断运行完成。"
+        }
+      ]
+    },
+    "R11": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "保尾核、研究文档、熵门、分臂 advantage 的独立贡献尚未受控验证。",
+      "next_action": "完成核心组件对照，删去无必要性证据的创新承诺。",
+      "owner": "作者与实验负责人",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "保尾核、研究文档、熵门、分臂 advantage 的独立贡献尚未受控验证。"
+        },
+        {
+          "path": "最小判别实验协议_待作者定稿.md",
+          "locator": "第2、6节",
+          "observation": "新增假引导优势控制及条件化判读；待作者定稿，无新增实验结果。"
+        }
+      ]
+    },
+    "R12": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "已核对 α 是优势权重而非采样强度退火；实现的 top-16 截断熵与完整熵的排序存在合成反例。真实状态校准与因果判别尚缺。",
+      "next_action": "按待定稿协议记录完整熵、质量与日程，固定文档与模型做机制消融。",
+      "owner": "实验负责人",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "已核对 α 是优势权重而非采样强度退火；实现的 top-16 截断熵与完整熵的排序存在合成反例。真实状态校准与因果判别尚缺。"
+        },
+        {
+          "path": "entropy-signal-check.json",
+          "locator": "cases",
+          "observation": "执行原函数提取的合成反例，证明截断熵排序不保证与完整熵一致；不代表真实分布已失效。"
+        }
+      ]
+    },
+    "R13": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "尚未提供可审计的英文论文第一页。",
+      "next_action": "作者提供标题、摘要、引言首稿，再定位问题/方法/结论。",
+      "owner": "作者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "尚未提供可审计的英文论文第一页。"
+        }
+      ]
+    },
+    "R14": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "已恢复并逐字节核对七条早期 4B OPD 精选原始轨迹，支持具体动机案例；缺完整分母、正式主实验和论文定位。",
+      "next_action": "作者选择与核心论点一致的真实动机案例，再用完整公平实验验证覆盖率。",
+      "owner": "作者与实验负责人",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "已恢复并逐字节核对七条早期 4B OPD 精选原始轨迹，支持具体动机案例；缺完整分母、正式主实验和论文定位。"
+        },
+        {
+          "path": "legacy-trajectory-audit.json",
+          "locator": "rows and limits",
+          "observation": "Seven selected historical OPD dumps match pinned Git blobs; thought lengths and outcome consistency recomputed. Selection and missing-document confounds remain explicit."
+        }
+      ]
+    },
+    "R15": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "无完整英文稿件，尚不能完成引言承诺到全文映射。",
+      "next_action": "稿件形成后逐项建立 claim map。",
+      "owner": "作者与审校者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "无完整英文稿件，尚不能完成引言承诺到全文映射。"
+        }
+      ]
+    },
+    "R16": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "现有材料为周报和设计笔记，尚无独立论文 Related Work。",
+      "next_action": "作者提供分开的 Introduction 与 Related Work。",
+      "owner": "作者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "现有材料为周报和设计笔记，尚无独立论文 Related Work。"
+        }
+      ]
+    },
+    "R17": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "代码流程可读，但无定稿方法正文与主图对应。",
+      "next_action": "按实际启用配置写明研究员、教师、学生三个角色及数据流。",
+      "owner": "作者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "代码流程可读，但无定稿方法正文与主图对应。"
+        }
+      ]
+    },
+    "R18": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "核心实现已定位；论文伪代码尚未提供。",
+      "next_action": "编写与实际 kernel/advantage/retirement 一致的算法并人工核对。",
+      "owner": "作者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "核心实现已定位；论文伪代码尚未提供。"
+        }
+      ]
+    },
+    "R19": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "生成的探索汇总图不是已插入稿件的独立引言动机图。",
+      "next_action": "以真实案例或统计设计并引用矢量动机图。",
+      "owner": "作者与制图者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "生成的探索汇总图不是已插入稿件的独立引言动机图。"
+        }
+      ]
+    },
+    "R20": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "没有可定位于论文 Figure 1 的矢量主流程图。",
+      "next_action": "主张冻结后制作可编辑主流程图，区别于动机图。",
+      "owner": "作者与制图者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "没有可定位于论文 Figure 1 的矢量主流程图。"
+        }
+      ]
+    },
+    "R21": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "论文两张主图未完成，不能完成缩写/符号核签。",
+      "next_action": "对正式图逐项写清符号和图文一致性。",
+      "owner": "作者与审校者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "论文两张主图未完成，不能完成缩写/符号核签。"
+        }
+      ]
+    },
+    "R22": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "11 个本地 run 缺 rollouts/research/checkpoints；71 个 main_ppo.log 为空，只有汇总及部分其他日志。",
+      "next_action": "恢复原始运行并绑定模型版本、代码、seed、配置、表格生成链。",
+      "owner": "作者提供原始入口，实验负责人核算",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "11 个本地 run 缺 rollouts/research/checkpoints；71 个 main_ppo.log 为空，只有汇总及部分其他日志。"
+        },
+        {
+          "path": "summary-recomputed.json",
+          "locator": "local_artifacts",
+          "observation": "本地没有 run 级原始轨迹、研究会话与 checkpoint，无法复算正式主表。"
+        }
+      ]
+    },
+    "R23": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "第二轮已形成来源登记、汇总单元 CSV、文件哈希、代码对照、启动清单和复算脚本；缺原始结果与稿件位置的连接。",
+      "next_action": "获得原始实验和稿件后，补全正文 claim 到主结果证据链。",
+      "owner": "作者与审校者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "第二轮已形成来源登记、汇总单元 CSV、文件哈希、代码对照、启动清单和复算脚本；缺原始结果与稿件位置的连接。"
+        },
+        {
+          "path": "aggregate-cells.csv",
+          "locator": "所有数据行",
+          "observation": "每个旧版 ALF 汇总数字带来源、locator、步数与证据级别。"
+        }
+      ]
+    },
+    "R24": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "探索结果解释已形成，正式可比较主表未形成。",
+      "next_action": "主表复算后给出正负结果与异常解释，区分假设。",
+      "owner": "作者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "探索结果解释已形成，正式可比较主表未形成。"
+        }
+      ]
+    },
+    "R25": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "前 24 步均值实际仅 10 个抽样点；缺逐题指标、稳健性与干预率分母。",
+      "next_action": "恢复全步数据，定义样本单位、机制指标和稳健性分析。",
+      "owner": "实验负责人",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "前 24 步均值实际仅 10 个抽样点；缺逐题指标、稳健性与干预率分母。"
+        },
+        {
+          "path": "summary-recomputed.json",
+          "locator": "arm_diagnostics",
+          "observation": "明确列出仅有 10 个前期抽样点，未伪称全步统计。"
+        },
+        {
+          "path": "最小判别实验协议_待作者定稿.md",
+          "locator": "第4节",
+          "observation": "预期任务分母、训练种子与解码重复分层、恢复会话去重的建议协议。"
+        }
+      ]
+    },
+    "R26": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "已核对历史精选成功/失败轨迹，发现成功可伴随无效动作和格式失败；两条极端训练样本缺文档，不能直接因果归于蒸馏。无当前方法同任务配对样例。",
+      "next_action": "恢复当前主实验同任务配对轨迹，按预定四象限选例并纳入反例。",
+      "owner": "作者与实验负责人",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "已核对历史精选成功/失败轨迹，发现成功可伴随无效动作和格式失败；两条极端训练样本缺文档，不能直接因果归于蒸馏。无当前方法同任务配对样例。"
+        },
+        {
+          "path": "legacy-trajectory-audit.json",
+          "locator": "rows and limits",
+          "observation": "Seven selected historical OPD dumps match pinned Git blobs; thought lengths and outcome consistency recomputed. Selection and missing-document confounds remain explicit."
+        }
+      ]
+    },
+    "R27": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "存在计划消融和配置；无完整核心消融结果与主文/附录定位。",
+      "next_action": "执行关键消融，正文保留决定性结果，附录完整登记设置。",
+      "owner": "实验负责人",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "存在计划消融和配置；无完整核心消融结果与主文/附录定位。"
+        }
+      ]
+    },
+    "R28": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "单 token 核性质可数值检查，但无正文命题，实际 w_beh off、b_max inf 的限制未写入稿件。",
+      "next_action": "区分采样分布性质和有偏优化目标，明确条件与证明范围。",
+      "owner": "作者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "单 token 核性质可数值检查，但无正文命题，实际 w_beh off、b_max inf 的限制未写入稿件。"
+        },
+        {
+          "path": "kernel-check.json",
+          "locator": "checks and limits",
+          "observation": "合成数值检查通过，明确不代表学习效果或整轨迹无偏。"
+        }
+      ]
+    },
+    "R29": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "审计已有 C/E 编号，论文贡献与实验组织尚未定稿。",
+      "next_action": "在正式稿件建立一致的贡献、方法和研究问题编号。",
+      "owner": "作者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "审计已有 C/E 编号，论文贡献与实验组织尚未定稿。"
+        }
+      ]
+    },
+    "R30": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "代码有数学符号，但无论文 notation ledger 与首次使用位置。",
+      "next_action": "稿件形成后登记并核对符号。",
+      "owner": "作者与审校者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "代码有数学符号，但无论文 notation ledger 与首次使用位置。"
+        }
+      ]
+    },
+    "R31": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "缺英文稿件，无法逐一核对公式变量。",
+      "next_action": "对正式公式审查简洁性与歧义。",
+      "owner": "作者与审校者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "缺英文稿件，无法逐一核对公式变量。"
+        }
+      ]
+    },
+    "R32": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "更新步数和学生 episode 可计数；缺完整 researcher/teacher/retrieval/GPU 小时日志。",
+      "next_action": "计算全流程成本与 profile，报告预算匹配 Pareto 曲线。",
+      "owner": "实验负责人",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "更新步数和学生 episode 可计数；缺完整 researcher/teacher/retrieval/GPU 小时日志。"
+        },
+        {
+          "path": "summary-recomputed.json",
+          "locator": "budget_examples.caution",
+          "observation": "已区分学生采样预算与总成本；核心全成本仍需原始日志。"
+        }
+      ]
+    },
+    "R33": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "有研究价值候选和探索曲线，尚无可定位的引言难度/重要性证据。",
+      "next_action": "作者选择真实动机案例并对应论点。",
+      "owner": "作者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "有研究价值候选和探索曲线，尚无可定位的引言难度/重要性证据。"
+        }
+      ]
+    },
+    "R34": {
+      "status": "blocked",
+      "reviewed_by": "Codex preliminary audit; not human author signoff",
+      "reviewed_on": "2026-10-15",
+      "note": "本轮创建 33 项证据账本，存在实验和稿件依赖；作者尚未核签。",
+      "next_action": "按每项依赖推进并重跑审计，真实作者检查证据后签核。",
+      "owner": "作者与审校者",
+      "evidence": [
+        {
+          "path": "研究回顾与ACL改进路线.md",
+          "locator": "对应主题的第 2–9 节及 E01–E34 清单",
+          "observation": "本轮创建 33 项证据账本，存在实验和稿件依赖；作者尚未核签。"
+        }
+      ]
+    }
+  },
+  "audit_scope_note": "Pre-submission diagnostic only. Aggregate arithmetic and source-code checks do not validate raw GPU results. No human signoff, fabricated runs, or planned models recorded as completed evidence.",
+  "round_history": [
+    {
+      "round": 1,
+      "report": "audit-round-01.json",
+      "state": "NOT_READY",
+      "gates": {
+        "blocked": 29,
+        "fail": 4
+      },
+      "work_remaining": "source register, evidence index, raw results, experiments, manuscript, human signoff"
+    },
+    {
+      "round": 2,
+      "report": "audit-round-02.json",
+      "state": "NOT_READY",
+      "changes": "Added structured six-paper and candidate-model sources; added precise evidence locators, aggregate table lineage and inspected vector plot; R05/R08/R23 now await author/data dependencies, no gate marked pass."
+    },
+    {
+      "round": 3,
+      "report": "audit-round-03.json",
+      "state": "NOT_READY",
+      "changes": "Verified official CCF ACL category and formal release dates; compared five archived launch pairs; checked truncated-entropy counterexample; drafted five-arm discriminating protocol. No GPU runs, manuscript or human signoff added."
+    },
+    {
+      "round": 4,
+      "report": "audit-round-04.json",
+      "state": "NOT_READY",
+      "changes": "Recovered seven historical OPD case dumps and source index, verified byte-level provenance and per-turn metrics, documented success/quality mismatch and missing-document confound. Complete runs and matched current-method evidence still unavailable."
+    }
+  ]
+}

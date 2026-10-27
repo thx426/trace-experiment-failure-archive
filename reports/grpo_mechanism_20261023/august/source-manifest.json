@@ -1,0 +1,172 @@
+[
+  {
+    "path": "runs/classic_alf3b_grpo/launch_manifest_20260816_193434.json",
+    "bytes": 7289,
+    "sha256": "9201cc805c5d49a6c3db7141bc14224d1612653c0bd8481c18231424a56bb3ff"
+  },
+  {
+    "path": "runs/classic_alf3b_pgs/launch_manifest_20260816_150608.json",
+    "bytes": 9295,
+    "sha256": "7c0f86a25c71fc3ef357a05ad69c8f7dc8c4837c5401add4800ea17efa4b89ce"
+  },
+  {
+    "path": "runs/classic_alf7b_grpo/launch_manifest_20260813_014030.json",
+    "bytes": 7267,
+    "sha256": "a08786c0b71bb97703744d33ed02b183d81a62af02a37023f3b65f734263ad62"
+  },
+  {
+    "path": "runs/classic_alf7b_pgs/launch_manifest_20260813_014011.json",
+    "bytes": 9296,
+    "sha256": "962cba82e2df9b8777dc78f70f7399b4db07165ddad6d16ced3eb0ec06960f43"
+  },
+  {
+    "path": "runs/classic_math7b_pgs/launch_manifest_20260814_142255.json",
+    "bytes": 9341,
+    "sha256": "73c9f6aa02bacd42b1f8be1a284885c78be37588a9f13be175fd68547f0bed20"
+  },
+  {
+    "path": "runs/classic_math7b_pgs/launch_manifest_20260814_144200.json",
+    "bytes": 9340,
+    "sha256": "8f5b8ece45abf7f6875b618ba1fbd837f6da93acdb2134fb6a42c631932c8a86"
+  },
+  {
+    "path": "runs/classic_math7b_pgs/launch_manifest_20260814_151511.json",
+    "bytes": 9340,
+    "sha256": "2b5343bf096bf22ea63a0c2ffb5e27fc0db900d681fbd0696428160f80a9910f"
+  },
+  {
+    "path": "runs/classic_sqa7b_grpo/launch_manifest_20260813_182525.json",
+    "bytes": 7092,
+    "sha256": "353e524b0a5c515238c868452d95ed4335c999f3e12d36baf033533a4e454a07"
+  },
+  {
+    "path": "runs/classic_sqa7b_grpo/launch_manifest_20260814_141731.json",
+    "bytes": 7092,
+    "sha256": "dd9718b434bc0d4334106e122bd305f01c662b347c7336cc2f87bb0c65f0f368"
+  },
+  {
+    "path": "runs/classic_sqa7b_pgs/launch_manifest_20260827_215024.json",
+    "bytes": 9696,
+    "sha256": "95b6b91f721cc77886c0e398cc276b0db217542dce45ec428e0b4b5d9b892048"
+  },
+  {
+    "path": "runs/classic_sqa7b_pgs/launch_manifest_20260828_131848.json",
+    "bytes": 9696,
+    "sha256": "1bcab022a44b959a0643084015a47d459fd0ca1bc2a614066aaf92b31c23945e"
+  },
+  {
+    "path": "runs/classic_sqa7b_pgs/launch_manifest_20260829_233519.json",
+    "bytes": 9696,
+    "sha256": "23a15946c335b86d383e3d1a037b32de32d47fbfb50ed1b4e8afab3a9ef00554"
+  },
+  {
+    "path": "runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260813_182507.json",
+    "bytes": 9578,
+    "sha256": "846b2146cd2221e17cc236bba21bc14ebb392f93ea3081137c84da275743d534"
+  },
+  {
+    "path": "runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260814_140602.json",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260814_141712.json",
+    "bytes": 9578,
+    "sha256": "6e11a22dcaabf875bccd0f6704bf60500ff9dfbbbecea7da0e62e4c24bdd4020"
+  },
+  {
+    "path": "runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260814_142230.json",
+    "bytes": 9578,
+    "sha256": "b14c115667093abfce781fd665cadb7e52547c3a24ff4965585067b97a3727ca"
+  },
+  {
+    "path": "runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260814_144137.json",
+    "bytes": 9577,
+    "sha256": "bb7e59ecf4616e27b4399084ca99262f914bbef9a4cfd3101c44ba1d2039c069"
+  },
+  {
+    "path": "runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260814_145315.json",
+    "bytes": 9577,
+    "sha256": "7c292be274cc28b9cd3142b06f3078a0f88620cb1ab0da0e7ff210d476257a54"
+  },
+  {
+    "path": "runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260814_145532.json",
+    "bytes": 9577,
+    "sha256": "5cdd927af46de3e382d654bcded4478e546a5699d9a582c7b15dd3d828b038bf"
+  },
+  {
+    "path": "runs/classic_ssb3b_pgs/launch_manifest_20260818_112108.json",
+    "bytes": 9736,
+    "sha256": "e3824363ba9cf760b26b75ff554ec19f15300f09c22315cb75bcd7db471d0a6f"
+  },
+  {
+    "path": "runs/classic_ssb3b_pgs/launch_manifest_20260820_031753.json",
+    "bytes": 9736,
+    "sha256": "f0c33c7abe15125db96cd77d318e2c5c89a521e42f8006ae3837d3eaf9054048"
+  },
+  {
+    "path": "runs/classic_ws3b_grpo/launch_manifest_20260817_002916.json",
+    "bytes": 7924,
+    "sha256": "4e650ea9fe052f260f0785b77c70cbe3181acd49e7b186c1e7e517e55df15c41"
+  },
+  {
+    "path": "runs/classic_ws3b_pgs/launch_manifest_20260817_002909.json",
+    "bytes": 9983,
+    "sha256": "9b550077e74e4c755f5a92032b52a3949752cea109577ad3aa96adec54ae070d"
+  },
+  {
+    "path": "probe/val_scan_out.csv",
+    "bytes": 8220,
+    "sha256": "d719b26cc12604eaad97aa5a8aa56502da366c1a859c776ca0498c4addae5f25"
+  },
+  {
+    "path": "runs/classic_ssb3b_pgs/launch.log",
+    "bytes": 6696518,
+    "sha256": "ed970a30e9d447504a804da734f5835bd91e181fd528da34a099a79918963816"
+  },
+  {
+    "path": "verl/verl/trainer/ppo/core_algos.py",
+    "bytes": 112090,
+    "sha256": "49144d6e2e4ec92f64657532601b3a076d5675cdae2b5134e78d5815faa28333"
+  },
+  {
+    "path": "scripts/classic/audit_august_grpo.py",
+    "bytes": 10970,
+    "sha256": "ecd2865d9aada53be03320663b83ad3b660e47a138cb22af5f9a823aec4c58d2"
+  },
+  {
+    "path": "scripts/classic/replay_grpo_mechanism.py",
+    "bytes": 10994,
+    "sha256": "3bf4244e51cd23d2fe6943030fa37709e8f1c5193db1fed0149390c2dd973611"
+  },
+  {
+    "path": "scripts/classic/check_grpo_estimators.py",
+    "bytes": 2365,
+    "sha256": "6a6bda535b660fbc362581e1b40b6e071de65ce8b4532ab0e995035752e8ebb7"
+  },
+  {
+    "path": "verl/verl/trainer/ppo/steering_weights.py",
+    "bytes": 6560,
+    "sha256": "2c8eb453faffd6ffa65cb173de43f4a8fffc6f2f7fc46dff852024af0a2bca5a"
+  },
+  {
+    "path": "probe/val_avg3.py",
+    "bytes": 3618,
+    "sha256": "59a3b7f8ed2dc5048d353eec1ab573c5684e19a135cea7982406efa9ba821e64"
+  },
+  {
+    "path": "arm_series.py",
+    "bytes": 2881,
+    "sha256": "6edd8d7cecb46af9b8e0c9bbdf032387aa795f59d58f250fa9f3fa1ba19b6589"
+  },
+  {
+    "path": "arm_series_all.json",
+    "bytes": 8922,
+    "sha256": "7cfdac59896eb53e63461150713e19381f4bd044fec2449efed78d6f56652754"
+  },
+  {
+    "path": "serve_35b_a800.sh",
+    "bytes": 2071,
+    "sha256": "ed34660cd97421ef9678d9f02c3d104af2e3176d43662dce14904c19b90818ae"
+  }
+]

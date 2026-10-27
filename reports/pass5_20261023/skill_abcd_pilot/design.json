@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "scope": "posthoc diagnostic on two previously inspected training failures; not representative, not training",
+  "checkpoint": "/root/trace-webshop-arm-ratio/models/Qwen2.5-3B-Instruct",
+  "reward": "int(trajectory.won); binary, no score shaping",
+  "advantage": "reward - same_task_group_mean; no std normalization",
+  "nonzero_group": "0 < wins < 8, complete groups only",
+  "arms": {
+    "A": "8 bare",
+    "B": "4 raw-Skill SPS + 4 bare",
+    "C": "4 corrected-procedure + privileged-hint SPS + 4 bare",
+    "D": "4 same corrected-procedure without privileged hint SPS + 4 bare"
+  },
+  "tasks": [
+    "webshop_00510",
+    "webshop_00512"
+  ],
+  "groups_per_task": 4,
+  "group_size": 8,
+  "primary_episodes": 256,
+  "calibration_bare_episodes": 8,
+  "seed": 20261023,
+  "sampler": {
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": -1,
+    "SPS": "frozen original Python hook and SGLang converters, draft_horizon=0",
+    "entropy_threshold": "pooled top16 entropy 95th percentile on 8 independent bare calibration episodes, frozen for all B/C/D",
+    "weight_updates": false
+  },
+  "pairing": "same task/group/sample RNG seed across arms; bare rows are correlated paired controls, not independent observations",
+  "arm_order": "seeded random order each replicate group",
+  "confounds": [
+    "B-C combines correction, concision, wording and changed privileged hints",
+    "C-D differs in hint presence and length; no length-matched placebo",
+    "two cases previously examined; no generalization or GRPO learning claim"
+  ],
+  "original_sequence_status": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/sequence_status_v6.json",
+  "resource_policy": "wait until original sequence completed_analysis AND GPU1 empty with >=35000MiB free for three checks; no job preemption",
+  "wait_limit_hours": 48,
+  "runtime_limit_hours": 12,
+  "researcher": "existing archived Qwen3.6-35B-A3B docs; no new teacher requests"
+}

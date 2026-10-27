@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-10-25T21:07:59.623975+08:00",
+  "experiment_root": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2",
+  "phase": "completed",
+  "completed_update_count": 100,
+  "last_update": 100,
+  "completed_at": "2026-10-25T18:42:30.434525+08:00",
+  "sequence_alive": false,
+  "matching_task_processes": [],
+  "gpu_compute_processes": [],
+  "gpu_utilization_percent": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "step100_bare_eval_complete": true,
+  "step100_below_baseline": false,
+  "action": "read_only_user_status_check",
+  "verification": "Executed inspect_runtime.py in training venv via Chrome Jupyter terminal; separately read /proc task processes and nvidia-smi. Default conda Python lacked httpx; corrected interpreter without installing or changing anything."
+}

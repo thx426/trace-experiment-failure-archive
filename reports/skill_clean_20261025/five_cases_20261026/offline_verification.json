@@ -1,0 +1,96 @@
+{
+  "evidence_sha256": "d6e183265192d7ec3f7aaedc465e2e9384db714172c591152f5081089475c17c",
+  "global_doc_count": 1600,
+  "global_fixed_paragraphs": 9,
+  "fixed_words_per_doc": 224,
+  "total_doc_words": 458376,
+  "constant_paragraph_word_share": 0.7818908494336527,
+  "query_sources": {
+    "no_candidate_query": 486,
+    "success_trajectory": 1089,
+    "raw_proposal_untested": 25
+  },
+  "origins": {
+    "researcher_finalized": 1598,
+    "task_checklist_fallback": 2
+  },
+  "all_free_form_prose_forwarded_false": true,
+  "scope": "CPU text compilation only. Removing final proposal retains all prior research choices and exploration records. Not a training ablation.",
+  "cases": [
+    {
+      "task_id": "webshop_00510",
+      "step": 6,
+      "policy_version": 5,
+      "research_episodes": 6,
+      "research_successes": 0,
+      "raw_finalize_exists": true,
+      "origin": "researcher_finalized",
+      "compiled_reproduced": true,
+      "without_final_proposal_identical": true,
+      "guided_successes": 0,
+      "bare_successes": 0,
+      "candidate_query": null,
+      "research_wall_s": 276.10556387528777
+    },
+    {
+      "task_id": "webshop_00512",
+      "step": 16,
+      "policy_version": 15,
+      "research_episodes": 6,
+      "research_successes": 1,
+      "raw_finalize_exists": true,
+      "origin": "researcher_finalized",
+      "compiled_reproduced": true,
+      "without_final_proposal_identical": true,
+      "guided_successes": 0,
+      "bare_successes": 2,
+      "candidate_query": "eco friendly fleece throw 39x59in color thanksgivinggoo4573 price less than 50",
+      "research_wall_s": 183.20714651420712
+    },
+    {
+      "task_id": "webshop_05104",
+      "step": 2,
+      "policy_version": 1,
+      "research_episodes": 10,
+      "research_successes": 1,
+      "raw_finalize_exists": true,
+      "origin": "researcher_finalized",
+      "compiled_reproduced": true,
+      "without_final_proposal_identical": true,
+      "guided_successes": 2,
+      "bare_successes": 0,
+      "candidate_query": "men's sleep & lounge long sleeve elastic waistband multi 9 xx-large 70.00",
+      "research_wall_s": 211.10209333896637
+    },
+    {
+      "task_id": "webshop_06866",
+      "step": 36,
+      "policy_version": 35,
+      "research_episodes": 6,
+      "research_successes": 3,
+      "raw_finalize_exists": true,
+      "origin": "researcher_finalized",
+      "compiled_reproduced": true,
+      "without_final_proposal_identical": true,
+      "guided_successes": 2,
+      "bare_successes": 3,
+      "candidate_query": "home office furniture brown beige round 21 in x 35 in",
+      "research_wall_s": 177.55686442553997
+    },
+    {
+      "task_id": "webshop_01418",
+      "step": 5,
+      "policy_version": 4,
+      "research_episodes": 6,
+      "research_successes": 0,
+      "raw_finalize_exists": false,
+      "origin": "task_checklist_fallback",
+      "compiled_reproduced": true,
+      "without_final_proposal_identical": true,
+      "guided_successes": 0,
+      "bare_successes": 0,
+      "candidate_query": null,
+      "research_wall_s": 520.33917818591
+    }
+  ]
+}

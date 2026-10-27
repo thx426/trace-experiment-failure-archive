@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-10-25T02:45:46.772365+08:00",
+  "groups": 320,
+  "missing": 170,
+  "research_error_in_missing": 0,
+  "classification": {
+    "never_called_finalize": 146,
+    "revised_doc_rejected_over500words": 15,
+    "first_finalize_not_repaired_before_turn16": 9
+  },
+  "never_finalize_details": {
+    "turn16_exhaustion": 144,
+    "output_truncated_length4096": 2
+  },
+  "missing_groups_fetch_raw_calls": 1866,
+  "mechanism": [
+    "bounded-context build ignores WRAPUP_REMINDER appended only to full messages",
+    "fetch_raw remains available until request budget/turn budget; no hard reserve for finalize",
+    "second overlength document is rejected without safe task-grounded fallback"
+  ],
+  "old_training_processes": [
+    "  25710   22727 /root/trace-webshop-arm-ratio/environment/webshop-v2/venv/bin/python /root/trace-webshop-arm-ratio/code/scripts/cloud/webshop_service.py "
+  ],
+  "gpu_before_new_run": "index, utilization.gpu [%], memory.used [MiB]\n0, 0 %, 0 MiB\n1, 0 %, 0 MiB\n2, 0 %, 0 MiB\n3, 0 %, 0 MiB\n",
+  "new_variant": "Clean-Skill GRPO v1",
+  "unchanged": "initial checkpoint, reward, data split, seed, optimizer, 8 rollouts/task, 0.5 steered allocation, bare n5 eval",
+  "method_changes": "bounded finalization, ta[REDACTED_TOKEN] Skill compiler for exploration/final doc, labelled checklist fallback, baseline stop rule",
+  "early_end_tape_evidence": "startup_review.json: early_no_finalize_tape"
+}

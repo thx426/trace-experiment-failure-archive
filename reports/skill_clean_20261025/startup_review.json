@@ -1,0 +1,471 @@
+{
+  "exported_at": "2026-10-25T02:53:51.430010+08:00",
+  "runtime_snapshot.json": {
+    "checked_at": "2026-10-25T02:53:51.081426+08:00",
+    "sequence": {
+      "phase": "running",
+      "pid": 2475494,
+      "time": 1792867982.2478464,
+      "input_limit": 3072,
+      "server_concurrency": 16,
+      "order": [
+        "clean_skill"
+      ],
+      "job": "clean_skill",
+      "run": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42",
+      "owner_pid": 2476238,
+      "owner_state": "/tmp/p5compact3072-clean25v1",
+      "researcher_owner_pid": 2475801,
+      "next_job": null
+    },
+    "webshop": {
+      "8321": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 0,
+          "queue_seconds": 0,
+          "backend_seconds": 0,
+          "max_queue_seconds": 0,
+          "max_backend_seconds": 0
+        },
+        "http_statuses": {},
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8322": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 0,
+          "queue_seconds": 0,
+          "backend_seconds": 0,
+          "max_queue_seconds": 0,
+          "max_backend_seconds": 0
+        },
+        "http_statuses": {},
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8323": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 0,
+          "queue_seconds": 0,
+          "backend_seconds": 0,
+          "max_queue_seconds": 0,
+          "max_backend_seconds": 0
+        },
+        "http_statuses": {},
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8324": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 0,
+          "queue_seconds": 0,
+          "backend_seconds": 0,
+          "max_queue_seconds": 0,
+          "max_backend_seconds": 0
+        },
+        "http_statuses": {},
+        "disconnects": 0,
+        "tracebacks": 0
+      }
+    },
+    "rollout_rows": {},
+    "error_mentions": {
+      "webshop service unreachable": 0,
+      "webshop HTTP 409": 0,
+      "student episode infra error": 0,
+      "OutOfMemoryError": 0,
+      "ReplayBuffer:": 0
+    },
+    "training_tail": [
+      "\u001b[36m(WorkerDict pid=2481039)\u001b[0m Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen2ForCausalLM is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained(\"openai/whisper-tiny\", attn_implementation=\"flash_attention_2\", dtype=torch.float16)`",
+      "\u001b[36m(WorkerDict pid=2481039)\u001b[0m Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen2Model is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained(\"openai/whisper-tiny\", attn_implementation=\"flash_attention_2\", dtype=torch.float16)`",
+      "\u001b[36m(WorkerDict pid=2481039)\u001b[0m ",
+      "Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]"
+    ],
+    "completed_steps": [],
+    "timing_rows": [],
+    "researcher_inputs": {
+      "calls": 0,
+      "mean": null,
+      "max": null,
+      "above_3072": 0
+    },
+    "experiment_root": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1",
+    "gpu": "index, utilization.gpu [%], memory.used [MiB]\n0, 0 %, 39027 MiB\n1, 0 %, 4 MiB\n2, 0 %, 4 MiB\n3, 0 %, 39027 MiB\n",
+    "gpu_processes": "pid, used_gpu_memory [MiB]\n1648301, 39020 MiB\n1648302, 39020 MiB\n",
+    "process_identity": {
+      "sequence": {
+        "pid": 2475494,
+        "alive": true,
+        "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python -u /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/run_sequence.py "
+      },
+      "student_owner": {
+        "pid": 2476238,
+        "alive": true,
+        "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/scripts/cloud/run_owned_job.py --state-dir /tmp/p5compact3072-clean25v1 --gpus 1,2 --no-deadline --abort-file /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/ABORT --cwd /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code -- /root/trace-webshop-arm-ratio/.venvs/train/bin/python -u scripts/launch_train.py --config /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/configs/clean_skill.yaml "
+      },
+      "researcher_owner": {
+        "pid": 2475801,
+        "alive": true,
+        "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/scripts/cloud/run_owned_job.py --state-dir /tmp/p5compact3072-research25clean1 --gpus 0,3 --no-deadline --abort-file /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/ABORT --cwd /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code -- /root/trace-webshop-arm-ratio/.venvs/researcher/bin/vllm serve /root/trace-webshop-arm-ratio/models/Qwen3.6-35B-A3B --served-model-name qwen3.6-35b-a3b --host 127.0.0.1 --port 18881 --api-key loopback-only --tensor-parallel-size 2 --dtype bfloat16 --max-model-len 7168 --max-num-seqs 16 --max-num-batched-tokens 4096 --gpu-memory-utilization 0.95 --enforce-eager --language-model-only --enable-auto-tool-choice --tool-call-parser qwen3_coder --reasoning-parser qwen3 "
+      }
+    },
+    "skill_compiler": {
+      "sessions": 0,
+      "missing_docs": 0,
+      "over_500_words": 0,
+      "origins": {},
+      "max_words": null,
+      "research_errors": 0,
+      "mean_turns": null
+    },
+    "training_diagnostics": {
+      "complete_groups": 0,
+      "score_heterogeneous_complete_groups": 0,
+      "advantage_proxy_only": true,
+      "guided_assigned_rows": 0,
+      "positive_steering_rows": 0
+    },
+    "baseline_reviews": null,
+    "baseline_stop": null,
+    "cpu_validation": {
+      "passed": true,
+      "inference_calls": 0,
+      "new_rollouts": 0,
+      "configuration_equal_except_name": true,
+      "offline_replayed_groups": 320,
+      "old_missing_covered": 170,
+      "max_doc_words": 330
+    },
+    "last_progress_mtime": null,
+    "preflight_note": "researcher_inputs contains role=researcher only; startup tokenize and researcher-preflight excluded. Zero calls means no actual formal-input samples."
+  },
+  "cpu_validation.json": {
+    "passed": true,
+    "inference_calls": 0,
+    "new_rollouts": 0,
+    "configuration_equal_except_name": true,
+    "offline_replayed_groups": 320,
+    "old_missing_covered": 170,
+    "max_doc_words": 330
+  },
+  "experiment_contract.json": {
+    "version": "clean_skill_v1",
+    "original_root": "/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3",
+    "order": [
+      "clean_skill"
+    ],
+    "steps": 100,
+    "student_checkpoint": "/root/trace-webshop-arm-ratio/models/Qwen2.5-3B-Instruct",
+    "researcher": "Qwen3.6-35B-A3B",
+    "input_limit": 3072,
+    "concurrency": 16,
+    "unchanged": [
+      "reward",
+      "student initial checkpoint",
+      "data splits",
+      "seed42",
+      "optimizer",
+      "GRPO objective",
+      "8 rollouts/task",
+      "0.5 guided fraction",
+      "bare eval n5 temperature0.6"
+    ],
+    "changes": [
+      "mechanical evidence instead of narrative excerpt",
+      "reserve finalization turns",
+      "at most two fetch calls after experiment budget exhaustion",
+      "compile exploratory/final Skill from exact public specifications and checked evidence",
+      "label fallback checklist when normal session exhausts without finalize",
+      "abort on missing Skill or infrastructure failure",
+      "stop at complete same-step bare eval if pass1 or pass5 below GRPO"
+    ],
+    "comparability": "New guidance variant, not pure infrastructure fix; compare to archived original PGS/GRPO, count all researcher cost. No claims that this isolates each component.",
+    "evaluation": "Existing dev protocol is retained for stop decisions; not a new independent final test.",
+    "fallback": "No new inference; task checklist only, explicitly labelled and never counted as exploration success.",
+    "approval": "2026-10-25 user authorized stopping both old arms, minimum Skill clean-up, one new guided experiment and 30-minute review/repair.",
+    "resume": "Disabled. On confirmed unrecoverable implementation fault, keep failed directory and restart in a new directory only after diagnosis and CPU contract checks; never auto-restart a below-baseline stop."
+  },
+  "sequence_status.json": {
+    "phase": "running",
+    "pid": 2475494,
+    "time": 1792867982.2478464,
+    "input_limit": 3072,
+    "server_concurrency": 16,
+    "order": [
+      "clean_skill"
+    ],
+    "job": "clean_skill",
+    "run": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42",
+    "owner_pid": 2476238,
+    "owner_state": "/tmp/p5compact3072-clean25v1",
+    "researcher_owner_pid": 2475801,
+    "next_job": null
+  },
+  "sequence_log": "starting_webshop {}\nwebshop_ready {'ports': [8321, 8322, 8323, 8324], 'pids': [2475544, 2475545, 2475546, 2475547], 'semantic_equivalence': True}\nstarting_researcher {}\n[config] budget: executor 流预算=16384(episode.session_token_budget),轮×单轮乘积=15360(轮×单轮乘积先到);padding 维度=train.response_length=16384,CPU 内存 ∝ 行数×维度。\nresearcher_ready {'researcher_owner_pid': 2475801, 'tokenization_only_count': 701}\n[config] budget: executor 流预算=16384(episode.session_token_budget),轮×单轮乘积=15360(轮×单轮乘积先到);padding 维度=train.response_length=16384,CPU 内存 ∝ 行数×维度。\nrunning {'job': 'clean_skill', 'run': '/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42', 'owner_pid': 2476238, 'owner_state': '/tmp/p5compact3072-clean25v1', 'researcher_owner_pid': 2475801, 'next_job': None}\n",
+  "/tmp/p5compact3072-clean25v1": {
+    "schema_version": 1,
+    "owner_pid": 2476238,
+    "owner_start_ticks": 2068904393,
+    "deadline": null,
+    "deadline_enforced": false,
+    "gpus": [
+      "GPU-898848ff-113b-983d-6d3b-89d4240710ba",
+      "GPU-cdbf6827-dda0-1a50-8b17-1decc354048b"
+    ],
+    "cuda_visible_devices": "1,2",
+    "ray_address": "local",
+    "result_status": "INCOMPLETE",
+    "ray_tmpdir": "/tmp/p5compact3072-clean25v1/ray",
+    "reason": "launch_failed",
+    "returncode": null,
+    "gpu_release_verified": false,
+    "signals": [],
+    "cleanup_errors": []
+  },
+  "/tmp/p5compact3072-clean25v1_log_tail": "\u001b[0m           'rollout': {'action': 'cache',\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m                       'dump_dir': '~/.verl/rollout_dump',\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m                       'enable': False,\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m                       'steps': []},\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m           'rollout_tq': {'action': 'cache',\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m                          'dump_dir': '~/.verl/rollout_dump',\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m                          'enable': False,\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m                          'steps': []}},\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m  'trainer': {'balance_batch': True,\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'critic_warmup': 0,\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'default_hdfs_dir': None,\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'default_local_dir': '/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42/checkpoints',\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'del_local_ckpt_after_load': False,\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'device': 'cuda',\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'esi_redundant_time': 0,\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'experiment_name': 'pass5_clean_skill_s42',\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'log_val_generations': 0,\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'logger': ['console'],\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'max_actor_ckpt_to_keep': 3,\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'max_critic_ckpt_to_keep': None,\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'n_gpus_per_node': 2,\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'nnodes': 1,\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'project_name': 'trace_opd',\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'ray_wait_register_center_timeout': 300,\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'resume_from_path': None,\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'resume_mode': 'disable',\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'rollout_data_dir': None,\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'save_freq': 20,\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'test_freq': 20,\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m              'total_epochs': 7,\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/verl/verl/trainer/ppo/v1/trainer_base.py:149: UserWarning: Disabled critic as algorithm.adv_estimator != gae. If it is not intended, please set critic.enable=True\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m   self.use_critic = need_critic(self.config)\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m INFO:2026-10-25 02:53:38,301:train and validate dataloader initialized, train dataset size: 256, val dataset size: 256\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m INFO:2026-10-25 02:53:38,301:Total training steps: 100\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/verl/verl/trainer/ppo/v1/trainer_base.py:691: UserWarning: Disabled critic as algorithm.adv_estimator != gae. If it is not intended, please set critic.enable=True\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m   if need_critic(config):\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m INFO:2026-10-25 02:53:38,304:worker group kwargs: {'device_name': 'cuda'}\n\u001b[36m(TaskRunnerV1 pid=2480062)\u001b[0m INFO:2026-10-25 02:53:38,359:create worker group dict_keys(['actor_rollout'])\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/verl/verl/workers/engine/mindspeed/transformer_impl.py:24: UserWarning: NPU not support router replay for now.\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m   from verl.utils.megatron.router_replay_patch import RouterReplay\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m `torch_dtype` is deprecated! Use `dtype` instead!\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen2ForCausalLM is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained(\"openai/whisper-tiny\", attn_implementation=\"flash_attention_2\", dtype=torch.float16)`\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m Flash Attention 2 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen2Model is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `dtype` argument. Example: `model = AutoModel.from_pretrained(\"openai/whisper-tiny\", attn_implementation=\"flash_attention_2\", dtype=torch.float16)`\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m \nLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\n",
+  "/tmp/p5compact3072-research25clean1": {
+    "schema_version": 1,
+    "owner_pid": 2475801,
+    "owner_start_ticks": 2068897872,
+    "deadline": null,
+    "deadline_enforced": false,
+    "gpus": [
+      "GPU-704a22f6-0065-1169-012c-ad8becde82b7",
+      "GPU-ffc2ca94-dcb4-83f4-b80a-867d69515be0"
+    ],
+    "cuda_visible_devices": "0,3",
+    "ray_address": "local",
+    "result_status": "INCOMPLETE",
+    "ray_tmpdir": "/tmp/p5compact3072-research25clean1/ray",
+    "reason": "launch_failed",
+    "returncode": null,
+    "gpu_release_verified": false,
+    "signals": [],
+    "cleanup_errors": []
+  },
+  "/tmp/p5compact3072-research25clean1_log_tail": "ult MoE config. Performance might be sub-optimal! Config file not found at /root/trace-webshop-arm-ratio/.venvs/researcher/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/configs/E=256,N=256,device_name=NVIDIA_A100-PCIE-40GB.json\n(Worker_TP0 pid=2476017) INFO 10-25 02:52:49 [gpu_worker.py:436] Available KV cache memory: 4.6 GiB\n(EngineCore pid=2475914) INFO 10-25 02:52:49 [kv_cache_utils.py:1319] GPU KV cache size: 120,384 tokens\n(EngineCore pid=2475914) INFO 10-25 02:52:49 [kv_cache_utils.py:1324] Maximum concurrency for 7,168 tokens per request: 45.60x\n(EngineCore pid=2475914) INFO 10-25 02:52:49 [core.py:283] init engine (profile, create kv cache, warmup model) took 4.42 seconds\n(EngineCore pid=2475914) [transformers] `Qwen2VLImageProcessorFast` is deprecated. The `Fast` suffix for image processors has been removed; use `Qwen2VLImageProcessor` instead.\n(EngineCore pid=2475914) INFO 10-25 02:52:50 [registry.py:126] All limits of multimodal modalities supported by the model are set to 0, running in text-only mode.\n(EngineCore pid=2475914) INFO 10-25 02:52:50 [vllm.py:790] Asynchronous scheduling is enabled.\n(EngineCore pid=2475914) WARNING 10-25 02:52:50 [vllm.py:848] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\n(EngineCore pid=2475914) WARNING 10-25 02:52:50 [vllm.py:859] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\n(EngineCore pid=2475914) INFO 10-25 02:52:50 [vllm.py:1025] Cudagraph is disabled under eager mode\n(EngineCore pid=2475914) INFO 10-25 02:52:50 [compilation.py:292] Enabled custom fusions: norm_quant, act_quant\n(APIServer pid=2475806) INFO 10-25 02:52:50 [api_server.py:592] Supported tasks: ['generate']\n(APIServer pid=2475806) INFO 10-25 02:52:51 [parser_manager.py:202] \"auto\" tool choice has been enabled.\n(APIServer pid=2475806) WARNING 10-25 02:52:51 [model.py:1435] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 1.0, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`.\n(APIServer pid=2475806) INFO 10-25 02:52:51 [hf.py:314] Detected the chat template content format to be 'string'. You can set `--chat-template-content-format` to override this.\n(APIServer pid=2475806) [transformers] The `use_fast` parameter is deprecated and will be removed in a future version. Use `backend=\"torchvision\"` instead of `use_fast=True`, or `backend=\"pil\"` instead of `use_fast=False`.\n(APIServer pid=2475806) [transformers] Qwen3VL video processing does not apply the per-frame pixel cap the reference implementation (qwen-vl-utils) applies, so some videos cost far more tokens than they would there. In v5.22 the capped behavior will become the default and `cap_pixels_per_frame` will be removed. Pass `cap_pixels_per_frame=True` to adopt the reference behavior now, or `False` to keep the current behavior and silence this warning.\n(APIServer pid=2475806) INFO 10-25 02:52:59 [base.py:231] Multi-modal warmup completed in 7.861s\n(APIServer pid=2475806) INFO 10-25 02:52:59 [api_server.py:596] Starting vLLM server on http://127.0.0.1:18881\n(APIServer pid=2475806) INFO 10-25 02:52:59 [launcher.py:37] Available routes are:\n(APIServer pid=2475806) INFO 10-25 02:52:59 [launcher.py:46] Route: /openapi.json, Methods: HEAD, GET\n(APIServer pid=2475806) INFO 10-25 02:52:59 [launcher.py:46] Route: /docs, Methods: HEAD, GET\n(APIServer pid=2475806) INFO 10-25 02:52:59 [launcher.py:46] Route: /docs/oauth2-redirect, Methods: HEAD, GET\n(APIServer pid=2475806) INFO 10-25 02:52:59 [launcher.py:46] Route: /redoc, Methods: HEAD, GET\n(APIServer pid=2475806) INFO 10-25 02:52:59 [launcher.py:46] Route: /metrics, Methods: GET\n(APIServer pid=2475806) INFO:     Started server process [2475806]\n(APIServer pid=2475806) INFO:     Waiting for application startup.\n(APIServer pid=2475806) INFO:     Application startup complete.\n(APIServer pid=2475806) INFO:     127.0.0.1:37276 - \"GET /v1/models HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:37288 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:37304 - \"GET /v1/models HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:37306 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:37306 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 02:53:10 [loggers.py:259] Engine 000: Avg prompt throughput: 37.8 tokens/s, Avg generation throughput: 2.2 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO 10-25 02:53:20 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%\n",
+  "early_no_finalize_tape": [
+    {
+      "step": 8,
+      "task_id": "webshop_04278",
+      "ctx": "research:webshop_04278:turn01",
+      "finish_reason": "tool_calls",
+      "usage": {
+        "prompt_tokens": 971,
+        "completion_tokens": 356
+      },
+      "ts": 1792808922.34387
+    },
+    {
+      "step": 8,
+      "task_id": "webshop_04278",
+      "ctx": "research:webshop_04278:turn02",
+      "finish_reason": "tool_calls",
+      "usage": {
+        "prompt_tokens": 1970,
+        "completion_tokens": 114
+      },
+      "ts": 1792808945.6960938
+    },
+    {
+      "step": 8,
+      "task_id": "webshop_04278",
+      "ctx": "research:webshop_04278:turn03",
+      "finish_reason": "tool_calls",
+      "usage": {
+        "prompt_tokens": 2342,
+        "completion_tokens": 883
+      },
+      "ts": 1792809037.5931118
+    },
+    {
+      "step": 8,
+      "task_id": "webshop_04278",
+      "ctx": "research:webshop_04278:turn04",
+      "finish_reason": "tool_calls",
+      "usage": {
+        "prompt_tokens": 2387,
+        "completion_tokens": 49
+      },
+      "ts": 1792809066.613131
+    },
+    {
+      "step": 8,
+      "task_id": "webshop_04278",
+      "ctx": "research:webshop_04278:turn05",
+      "finish_reason": "tool_calls",
+      "usage": {
+        "prompt_tokens": 2327,
+        "completion_tokens": 63
+      },
+      "ts": 1792809072.1461937
+    },
+    {
+      "step": 8,
+      "task_id": "webshop_04278",
+      "ctx": "research:webshop_04278:turn06",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 2329,
+        "completion_tokens": 10
+      },
+      "ts": 1792809073.260043
+    },
+    {
+      "step": 8,
+      "task_id": "webshop_04278",
+      "ctx": "research:webshop_04278:turn07",
+      "finish_reason": "tool_calls",
+      "usage": {
+        "prompt_tokens": 2142,
+        "completion_tokens": 794
+      },
+      "ts": 1792809138.0399716
+    },
+    {
+      "step": 8,
+      "task_id": "webshop_04278",
+      "ctx": "research:webshop_04278:turn08",
+      "finish_reason": "tool_calls",
+      "usage": {
+        "prompt_tokens": 2327,
+        "completion_tokens": 63
+      },
+      "ts": 1792809143.356577
+    },
+    {
+      "step": 8,
+      "task_id": "webshop_04278",
+      "ctx": "research:webshop_04278:turn09",
+      "finish_reason": "tool_calls",
+      "usage": {
+        "prompt_tokens": 2328,
+        "completion_tokens": 68
+      },
+      "ts": 1792809149.023142
+    },
+    {
+      "step": 8,
+      "task_id": "webshop_04278",
+      "ctx": "research:webshop_04278:turn10",
+      "finish_reason": "tool_calls",
+      "usage": {
+        "prompt_tokens": 2331,
+        "completion_tokens": 62
+      },
+      "ts": 1792809154.2663183
+    },
+    {
+      "step": 8,
+      "task_id": "webshop_04278",
+      "ctx": "research:webshop_04278:turn11",
+      "finish_reason": "length",
+      "usage": {
+        "prompt_tokens": 2328,
+        "completion_tokens": 4096
+      },
+      "ts": 1792809500.7380393
+    },
+    {
+      "step": 14,
+      "task_id": "webshop_02283",
+      "ctx": "research:webshop_02283:turn01",
+      "finish_reason": "tool_calls",
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 307
+      },
+      "ts": 1792813750.2299664
+    },
+    {
+      "step": 14,
+      "task_id": "webshop_02283",
+      "ctx": "research:webshop_02283:turn02",
+      "finish_reason": "tool_calls",
+      "usage": {
+        "prompt_tokens": 2144,
+        "completion_tokens": 166
+      },
+      "ts": 1792813779.997584
+    },
+    {
+      "step": 14,
+      "task_id": "webshop_02283",
+      "ctx": "research:webshop_02283:turn03",
+      "finish_reason": "tool_calls",
+      "usage": {
+        "prompt_tokens": 2411,
+        "completion_tokens": 439
+      },
+      "ts": 1792813831.5115392
+    },
+    {
+      "step": 14,
+      "task_id": "webshop_02283",
+      "ctx": "research:webshop_02283:turn04",
+      "finish_reason": "tool_calls",
+      "usage": {
+        "prompt_tokens": 2194,
+        "completion_tokens": 189
+      },
+      "ts": 1792813861.6772182
+    },
+    {
+      "step": 14,
+      "task_id": "webshop_02283",
+      "ctx": "research:webshop_02283:turn05",
+      "finish_reason": "tool_calls",
+      "usage": {
+        "prompt_tokens": 2194,
+        "completion_tokens": 62
+      },
+      "ts": 1792813867.301508
+    },
+    {
+      "step": 14,
+      "task_id": "webshop_02283",
+      "ctx": "research:webshop_02283:turn06",
+      "finish_reason": "tool_calls",
+      "usage": {
+        "prompt_tokens": 2194,
+        "completion_tokens": 64
+      },
+      "ts": 1792813873.2268426
+    },
+    {
+      "step": 14,
+      "task_id": "webshop_02283",
+      "ctx": "research:webshop_02283:turn07",
+      "finish_reason": "tool_calls",
+      "usage": {
+        "prompt_tokens": 2194,
+        "completion_tokens": 64
+      },
+      "ts": 1792813879.1139631
+    },
+    {
+      "step": 14,
+      "task_id": "webshop_02283",
+      "ctx": "research:webshop_02283:turn08",
+      "finish_reason": "length",
+      "usage": {
+        "prompt_tokens": 2194,
+        "completion_tokens": 4096
+      },
+      "ts": 1792814211.4956965
+    }
+  ]
+}

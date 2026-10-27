@@ -1,0 +1,132 @@
+--- <PROJECT_ROOT>/reports/training_objective_20261023/current_source_snapshot/src/trace_opd/common/config.py
++++ <PROJECT_ROOT>/src/trace_opd/common/config.py
+@@ -756,6 +756,9 @@
+     # Opt-in conservative ablation. Unknown initial-input locators reject the
+     # entire doc before SPS; off preserves historical sampling and fingerprints.
+     information_guard: str = "off"  # off | reject_unobserved_locators
++    # Frozen, pre-training no-Skill pass@5 table. High tasks skip research and
++    # all steering; absent preserves historical behavior.
++    task_gate_path: str = ""
+     gate_mode: str = "adaptive"    # 门控模式(v3.2 硬门档 + v3.3 软强度档,
+                                    # docs/pgs-v33-mixed-policy-design.md M4):
+                                    # adaptive = D 硬门 + ε 探针 + θ_D 率控自适应(历史行为);
+@@ -1070,6 +1073,8 @@
+     if t.rollout_n < 1:
+         raise ValueError("train.rollout_n must be >= 1")
+     st = cfg.steering
++    if st.task_gate_path and (not st.enabled or cfg.research_rl.enabled):
++        raise ValueError("task_gate_path requires executor steering, without research_rl")
+     from ..analysis.information_dependencies import MODES as INFORMATION_GUARD_MODES
+     if st.information_guard not in INFORMATION_GUARD_MODES:
+         raise ValueError(f"unknown steering.information_guard: {st.information_guard}")
+@@ -1627,6 +1632,10 @@
+     # 不改 material,既有 run 指纹逐字节不变。
+     if cfg.environment.name != "alfworld":
+         material += f"|environment={cfg.environment.name}"
++    if st.enabled and st.task_gate_path:
++        from ..analysis.pass5 import VERSION as TASK_GATE_VERSION, file_sha256
++        digest = file_sha256(st.task_gate_path) if Path(st.task_gate_path).is_file() else "absent"
++        material += f"|task_gate={TASK_GATE_VERSION}:{digest}"
+     if st.enabled and st.information_guard != "off":
+         from ..analysis.information_dependencies import VERSION as INFORMATION_GUARD_VERSION
+         material += f"|information_guard={st.information_guard}:{INFORMATION_GUARD_VERSION}"
+--- <PROJECT_ROOT>/reports/training_objective_20261023/current_source_snapshot/src/trace_opd/train/agent_loop.py
++++ <PROJECT_ROOT>/src/trace_opd/train/agent_loop.py
+@@ -77,6 +77,14 @@
+     "research_r_raw": 0.0, "research_warmup_active": 0,
+ }
+ 
++# The same fields as _research(); mixed eligible/ineligible batches must retain
++# rectangular reward/audit fields. Intentional skipping is not missing guidance.
++_SKIPPED_RESEARCH = {
++    "research_error": 0, "research_experiments": 0, "research_episodes": 0,
++    "research_turns": 0, "research_final_success": 0.0, "research_doc_words": 0,
++    "research_doc_missing": 0, "research_policy_version": -1, "research_archive": "",
++}
++
+ logger = logging.getLogger(__file__)
+ 
+ _STATE_LOCK = threading.Lock()
+@@ -151,6 +159,11 @@
+         protocol.configure_reasoning_tag(config.episode.reasoning_tag)
+         workers = int(os.environ.get("TRACE_AGENT_WORKERS", config.train.agent_num_workers))
+         doc_table: dict[str, str] = {}
++        task_gate: dict = {}
++        if config.steering.task_gate_path:
++            from ..analysis.pass5 import load_table
++            task_gate = load_table(config.steering.task_gate_path,
++                                   student=Path(config.train.model_path).name)
+         gate_tracker = None
+         ent_tracker = None
+         researcher_client = None
+@@ -300,6 +313,7 @@
+                 "delta": delta,
+                 "factory": make_env_factory(config, workers=workers),
+                 "doc_table": doc_table,
++                "task_gate": task_gate,
+                 "gate_tracker": gate_tracker,
+                 "ent_tracker": ent_tracker,
+                 "archive": ResearchArchive(run_dir),
+@@ -326,6 +340,7 @@
+         self.delta: TemplateDelta = state["delta"]
+         self.factory: EnvFactory = state["factory"]
+         self.doc_table: dict[str, str] = state["doc_table"]
++        self.task_gate: dict = state["task_gate"]
+         self.gate_tracker = state["gate_tracker"]
+         self.ent_tracker = state["ent_tracker"]
+         self.archive: ResearchArchive = state["archive"]
+@@ -770,6 +785,9 @@
+                 self.ent_tracker.maybe_step_update(global_step)
+         extra_info = dict(kwargs["extra_info"])
+         adapter = self.factory.adapter_from_item(extra_info)
++        from ..analysis.pass5 import training_decision
++        task_decision = training_decision(self.task_gate, adapter.task_id) if not validate else {}
++        task_skill_eligible = bool(task_decision.get("task_skill_eligible", 1))
+         response_length = self._episode_budget()
+         if (
+             self.cfg.steering.enabled
+@@ -854,13 +872,17 @@
+             # v3.3 M2:α 衰减到期后 steered 臂停产(教师=有限期脚手架),
+             # 全部副本转 bare;advantage 端同步公式给 α=0,两处独立同源。
+             steered_arm = (
+-                not self._steered_arm_retired(global_step)
++                task_skill_eligible and not self._steered_arm_retired(global_step)
+             ) and is_steered_arm(
+                 _as_int(kwargs.get("session_id")),
+                 self.cfg.train.rollout_n,
+                 self.cfg.steering.steered_fraction,
+             )
+-            if self.cfg.steering.doc_source == "researcher":
++            if not task_skill_eligible:
++                doc = ""
++                if self.cfg.steering.doc_source == "researcher":
++                    research_fields = dict(_SKIPPED_RESEARCH)
++            elif self.cfg.steering.doc_source == "researcher":
+                 # steered 臂:student 启动前 await 文档;同 step 的副本共享
+                 # 同一 producer(shared_task 按 (step,task) 去重)。
+                 # bare 臂:文档不注入,只需 research_fields 进账(IF-09 批内
+@@ -899,7 +921,7 @@
+                 # 语义(两臂同值),臂身份走独立字段;bare-first 路径下先以
+                 # 占位值 1 进 ctx,join 后回填真值(消费点全在 join 之后)。
+                 "doc": doc if steered_arm else "",
+-                "doc_missing": int(not doc),
++                "doc_missing": int(not doc) if task_skill_eligible else 0,
+                 "steered_arm": int(steered_arm),
+             }
+ 
+@@ -935,6 +957,7 @@
+             and self.cfg.steering.enabled
+             and self.cfg.steering.doc_source == "researcher"
+             and not validate
++            and task_skill_eligible
+             # M2 停产后 producer 被跳过,research_fields 恒空——没有版本
+             # 证据可核是设计而非缺陷;不排除会让退役期(如 v3.3 的
+             # step>=240)每一行都 raise(2026-08-08 审阅 P0)。
+@@ -959,6 +982,7 @@
+         if steer_ctx is not None:
+             from ..steering.ledger import SteeringLedger
+ 
++            steer_fields.update(task_decision)
+             steer_fields["doc_missing"] = steer_ctx["doc_missing"]
+             steer_fields["doc_overflow"] = steer_ctx.get("doc_overflow", 0)
+             info_audit = steer_ctx.get("information_audit", {})

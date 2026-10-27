@@ -1,0 +1,307 @@
+{
+  "snapshot": {
+    "checked_at": "2026-10-25T03:23:17.166766+08:00",
+    "sequence": {
+      "phase": "running",
+      "pid": 2475494,
+      "time": 1792867982.2478464,
+      "input_limit": 3072,
+      "server_concurrency": 16,
+      "order": [
+        "clean_skill"
+      ],
+      "job": "clean_skill",
+      "run": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42",
+      "owner_pid": 2476238,
+      "owner_state": "/tmp/p5compact3072-clean25v1",
+      "researcher_owner_pid": 2475801,
+      "next_job": null
+    },
+    "webshop": {
+      "8321": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 5380,
+          "queue_seconds": 688.3899640701711,
+          "backend_seconds": 166.68518205732107,
+          "max_queue_seconds": 2.672474544495344,
+          "max_backend_seconds": 0.47693464159965515
+        },
+        "http_statuses": {
+          "200": 5380
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8322": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 4931,
+          "queue_seconds": 261.82562958821654,
+          "backend_seconds": 152.91503522917628,
+          "max_queue_seconds": 1.3939007557928562,
+          "max_backend_seconds": 0.5835222639143467
+        },
+        "http_statuses": {
+          "200": 4931
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8323": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 4253,
+          "queue_seconds": 265.37032502517104,
+          "backend_seconds": 131.6801863834262,
+          "max_queue_seconds": 1.7735321335494518,
+          "max_backend_seconds": 0.4519883841276169
+        },
+        "http_statuses": {
+          "200": 4253
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8324": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 6201,
+          "queue_seconds": 1839.6645120419562,
+          "backend_seconds": 200.16187895089388,
+          "max_queue_seconds": 4.946343157440424,
+          "max_backend_seconds": 0.6878308355808258
+        },
+        "http_statuses": {
+          "200": 6201
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      }
+    },
+    "rollout_rows": {
+      "step_00000_val": 1280,
+      "step_00001": 128
+    },
+    "error_mentions": {
+      "webshop service unreachable": 0,
+      "webshop HTTP 409": 0,
+      "student episode infra error": 0,
+      "OutOfMemoryError": 0,
+      "ReplayBuffer:": 0
+    },
+    "training_tail": [
+      "\u001b[36m(WorkerDict pid=2481039)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1044: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. Starting in PyTorch 2.9, calling checkpoint without use_reentrant will raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.\u001b[32m [repeated 6x across cluster]\u001b[0m",
+      "\u001b[36m(WorkerDict pid=2481039)\u001b[0m   return fn(*args, **kwargs)\u001b[32m [repeated 6x across cluster]\u001b[0m",
+      "\u001b[36m(WorkerDict pid=2481039)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/utils/checkpoint.py:85: UserWarning: None of the inputs have requires_grad=True. Gradients will be None\u001b[32m [repeated 6x across cluster]\u001b[0m",
+      "\u001b[36m(WorkerDict pid=2481039)\u001b[0m   warnings.warn(\u001b[32m [repeated 6x across cluster]\u001b[0m"
+    ],
+    "completed_steps": [],
+    "timing_rows": [],
+    "researcher_inputs": {
+      "calls": 80,
+      "mean": 1956.1875,
+      "max": 2498,
+      "above_3072": 0
+    },
+    "experiment_root": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1",
+    "gpu": "index, utilization.gpu [%], memory.used [MiB]\n0, 0 %, 39403 MiB\n1, 96 %, 17379 MiB\n2, 96 %, 17377 MiB\n3, 0 %, 39403 MiB\n",
+    "gpu_processes": "pid, used_gpu_memory [MiB]\n1648301, 39396 MiB\n1655596, 16014 MiB\n1658193, 1342 MiB\n1655597, 16014 MiB\n1658186, 1340 MiB\n1648302, 39396 MiB\n",
+    "process_identity": {
+      "sequence": {
+        "pid": 2475494,
+        "alive": true,
+        "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python -u /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/run_sequence.py "
+      },
+      "student_owner": {
+        "pid": 2476238,
+        "alive": true,
+        "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/scripts/cloud/run_owned_job.py --state-dir /tmp/p5compact3072-clean25v1 --gpus 1,2 --no-deadline --abort-file /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/ABORT --cwd /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code -- /root/trace-webshop-arm-ratio/.venvs/train/bin/python -u scripts/launch_train.py --config /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/configs/clean_skill.yaml "
+      },
+      "researcher_owner": {
+        "pid": 2475801,
+        "alive": true,
+        "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/scripts/cloud/run_owned_job.py --state-dir /tmp/p5compact3072-research25clean1 --gpus 0,3 --no-deadline --abort-file /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/ABORT --cwd /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code -- /root/trace-webshop-arm-ratio/.venvs/researcher/bin/vllm serve /root/trace-webshop-arm-ratio/models/Qwen3.6-35B-A3B --served-model-name qwen3.6-35b-a3b --host 127.0.0.1 --port 18881 --api-key loopback-only --tensor-parallel-size 2 --dtype bfloat16 --max-model-len 7168 --max-num-seqs 16 --max-num-batched-tokens 4096 --gpu-memory-utilization 0.95 --enforce-eager --language-model-only --enable-auto-tool-choice --tool-call-parser qwen3_coder --reasoning-parser qwen3 "
+      }
+    },
+    "skill_compiler": {
+      "sessions": 16,
+      "missing_docs": 0,
+      "over_500_words": 0,
+      "origins": {
+        "researcher_finalized": 16
+      },
+      "max_words": 326,
+      "research_errors": 0,
+      "mean_turns": 5
+    },
+    "training_diagnostics": {
+      "complete_groups": 16,
+      "score_heterogeneous_complete_groups": 16,
+      "advantage_proxy_only": true,
+      "guided_assigned_rows": 64,
+      "positive_steering_rows": 0
+    },
+    "baseline_reviews": null,
+    "baseline_stop": null,
+    "cpu_validation": {
+      "passed": true,
+      "inference_calls": 0,
+      "new_rollouts": 0,
+      "configuration_equal_except_name": true,
+      "offline_replayed_groups": 320,
+      "old_missing_covered": 170,
+      "max_doc_words": 330
+    },
+    "last_progress_mtime": 1792869724.4825518,
+    "preflight_note": "researcher_inputs contains role=researcher only; startup tokenize and researcher-preflight excluded. Zero calls means no actual formal-input samples."
+  },
+  "sequence_pid_file": "2475494",
+  "sequence_log": "starting_webshop {}\nwebshop_ready {'ports': [8321, 8322, 8323, 8324], 'pids': [2475544, 2475545, 2475546, 2475547], 'semantic_equivalence': True}\nstarting_researcher {}\n[config] budget: executor 流预算=16384(episode.session_token_budget),轮×单轮乘积=15360(轮×单轮乘积先到);padding 维度=train.response_length=16384,CPU 内存 ∝ 行数×维度。\nresearcher_ready {'researcher_owner_pid': 2475801, 'tokenization_only_count': 701}\n[config] budget: executor 流预算=16384(episode.session_token_budget),轮×单轮乘积=15360(轮×单轮乘积先到);padding 维度=train.response_length=16384,CPU 内存 ∝ 行数×维度。\nrunning {'job': 'clean_skill', 'run': '/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42', 'owner_pid': 2476238, 'owner_state': '/tmp/p5compact3072-clean25v1', 'researcher_owner_pid': 2475801, 'next_job': None}\n",
+  "clean25v1": "pWorkerTQ pid=2482651)\u001b[0m [compact3072] task=webshop_01450 counted=1965 actual=1965\n\u001b[36m(AgentLoopWorkerTQ pid=2482657)\u001b[0m [compact3072] task=webshop_06600 counted=2090 actual=2090\n\u001b[36m(AgentLoopWorkerTQ pid=2482662)\u001b[0m [compact3072] task=webshop_02737 counted=1958 actual=1958\n\u001b[36m(AgentLoopWorkerTQ pid=2482658)\u001b[0m [compact3072] task=webshop_05117 counted=1962 actual=1962\n\u001b[36m(AgentLoopWorkerTQ pid=2482663)\u001b[0m [compact3072] task=webshop_00709 counted=2090 actual=2090\n\u001b[36m(AgentLoopWorkerTQ pid=2482660)\u001b[0m [compact3072] task=webshop_03934 counted=1945 actual=1945\n\u001b[36m(AgentLoopWorkerTQ pid=2482655)\u001b[0m [compact3072] task=webshop_01887 counted=1953 actual=1953\n\u001b[36m(AgentLoopWorkerTQ pid=2482649)\u001b[0m [compact3072] task=webshop_02896 counted=1971 actual=1971\n\u001b[36m(AgentLoopWorkerTQ pid=2482650)\u001b[0m [compact3072] task=webshop_01856 counted=1956 actual=1956\n\u001b[36m(AgentLoopWorkerTQ pid=2482653)\u001b[0m [compact3072] task=webshop_06866 counted=1964 actual=1964\n\u001b[36m(AgentLoopWorkerTQ pid=2482659)\u001b[0m [compact3072] task=webshop_00826 counted=1957 actual=1957\n\u001b[36m(AgentLoopWorkerTQ pid=2482654)\u001b[0m [compact3072] task=webshop_06536 counted=1972 actual=1972\n\u001b[36m(AgentLoopWorkerTQ pid=2482652)\u001b[0m [compact3072] task=webshop_02300 counted=1959 actual=1959\n\u001b[36m(AgentLoopWorkerTQ pid=2482656)\u001b[0m [compact3072] task=webshop_02827 counted=1961 actual=1961\n\u001b[36m(AgentLoopWorkerTQ pid=2482648)\u001b[0m [compact3072] task=webshop_02135 counted=1963 actual=1963\n\u001b[36m(AgentLoopWorkerTQ pid=2482661)\u001b[0m [compact3072] task=webshop_05625 counted=1953 actual=1953\n\u001b[36m(AgentLoopWorkerTQ pid=2482649)\u001b[0m [compact3072] task=webshop_02896 counted=2348 actual=2348\n\u001b[36m(AgentLoopWorkerTQ pid=2482657)\u001b[0m [compact3072] task=webshop_06600 counted=2341 actual=2341\n\u001b[36m(AgentLoopWorkerTQ pid=2482658)\u001b[0m [compact3072] task=webshop_05117 counted=2339 actual=2339\n\u001b[36m(AgentLoopWorkerTQ pid=2482663)\u001b[0m [compact3072] task=webshop_00709 counted=2359 actual=2359\n\u001b[36m(AgentLoopWorkerTQ pid=2482660)\u001b[0m [compact3072] task=webshop_03934 counted=2327 actual=2327\n\u001b[36m(AgentLoopWorkerTQ pid=2482655)\u001b[0m [compact3072] task=webshop_01887 counted=2338 actual=2338\n\u001b[36m(AgentLoopWorkerTQ pid=2482652)\u001b[0m [compact3072] task=webshop_02300 counted=2343 actual=2343\n\u001b[36m(AgentLoopWorkerTQ pid=2482659)\u001b[0m [compact3072] task=webshop_00826 counted=2341 actual=2341\n\u001b[36m(AgentLoopWorkerTQ pid=2482662)\u001b[0m [compact3072] task=webshop_02737 counted=2340 actual=2340\n\u001b[36m(AgentLoopWorkerTQ pid=2482648)\u001b[0m [compact3072] task=webshop_02135 counted=2229 actual=2229\n\u001b[36m(AgentLoopWorkerTQ pid=2482650)\u001b[0m [compact3072] task=webshop_01856 counted=2341 actual=2341\n\u001b[36m(AgentLoopWorkerTQ pid=2482663)\u001b[0m [compact3072] task=webshop_00709 counted=2145 actual=2145\n\u001b[36m(AgentLoopWorkerTQ pid=2482652)\u001b[0m [compact3072] task=webshop_02300 counted=2259 actual=2259\n\u001b[36m(AgentLoopWorkerTQ pid=2482654)\u001b[0m [compact3072] task=webshop_06536 counted=2352 actual=2352\n\u001b[36m(AgentLoopWorkerTQ pid=2482652)\u001b[0m [compact3072] task=webshop_02300 counted=2458 actual=2458\n\u001b[36m(AgentLoopWorkerTQ pid=2482656)\u001b[0m [compact3072] task=webshop_02827 counted=2339 actual=2339\n\u001b[36m(AgentLoopWorkerTQ pid=2482663)\u001b[0m [compact3072] task=webshop_00709 counted=2145 actual=2145\n\u001b[36m(AgentLoopWorkerTQ pid=2482651)\u001b[0m [compact3072] task=webshop_01450 counted=2343 actual=2343\n\u001b[36m(AgentLoopWorkerTQ pid=2482662)\u001b[0m [compact3072] task=webshop_02737 counted=2341 actual=2341\n\u001b[36m(AgentLoopWorkerTQ pid=2482661)\u001b[0m [compact3072] task=webshop_05625 counted=2333 actual=2333\n\u001b[36m(AgentLoopWorkerTQ pid=2482662)\u001b[0m [compact3072] task=webshop_02737 counted=2283 actual=2283\n\u001b[36m(AgentLoopWorkerTQ pid=2482648)\u001b[0m [compact3072] task=webshop_02135 counted=2390 actual=2390\n\u001b[36m(AgentLoopWorkerTQ pid=2482652)\u001b[0m [compact3072] task=webshop_02300 counted=2022 actual=2022\n\u001b[36m(AgentLoopWorkerTQ pid=2482659)\u001b[0m [compact3072] task=webshop_00826 counted=2346 actual=2346\n\u001b[36m(AgentLoopWorkerTQ pid=2482653)\u001b[0m [compact3072] task=webshop_06866 counted=2347 actual=2347\n\u001b[36m(AgentLoopWorkerTQ pid=2482648)\u001b[0m [compact3072] task=webshop_02135 counted=2330 actual=2330\n\u001b[36m(AgentLoopWorkerTQ pid=2482656)\u001b[0m [compact3072] task=webshop_02827 counted=2498 actual=2498\n\u001b[36m(AgentLoopWorkerTQ pid=2482656)\u001b[0m [compact3072] task=webshop_02827 counted=2438 actual=2438\n\u001b[36m(AgentLoopWorkerTQ pid=2482657)\u001b[0m [compact3072] task=webshop_06600 counted=2110 actual=2110\n\u001b[36m(AgentLoopWorkerTQ pid=2482649)\u001b[0m [compact3072] task=webshop_02896 counted=2348 actual=2348\n\u001b[36m(AgentLoopWorkerTQ pid=2482662)\u001b[0m [compact3072] task=webshop_02737 counted=2138 actual=2138\n\u001b[36m(AgentLoopWorkerTQ pid=2482658)\u001b[0m [compact3072] task=webshop_05117 counted=2259 actual=2259\n\u001b[36m(AgentLoopWorkerTQ pid=2482660)\u001b[0m [compact3072] task=webshop_03934 counted=2330 actual=2330\n\u001b[36m(AgentLoopWorkerTQ pid=2482655)\u001b[0m [compact3072] task=webshop_01887 counted=2342 actual=2342\n\u001b[36m(AgentLoopWorkerTQ pid=2482663)\u001b[0m [compact3072] task=webshop_00709 counted=2492 actual=2492\n\u001b[36m(AgentLoopWorkerTQ pid=2482656)\u001b[0m [compact3072] task=webshop_02827 counted=2003 actual=2003\n\u001b[36m(AgentLoopWorkerTQ pid=2482650)\u001b[0m [compact3072] task=webshop_01856 counted=2261 actual=2261\n\u001b[36m(AgentLoopWorkerTQ pid=2482653)\u001b[0m [compact3072] task=webshop_06866 counted=2347 actual=2347\n\u001b[36m(AgentLoopWorkerTQ pid=2482652)\u001b[0m [compact3072] task=webshop_02300 counted=2351 actual=2351\n\u001b[36m(AgentLoopWorkerTQ pid=2482662)\u001b[0m [compact3072] task=webshop_02737 counted=2466 actual=2466\n\u001b[36m(AgentLoopWorkerTQ pid=2482648)\u001b[0m [compact3072] task=webshop_02135 counted=2225 actual=2225\n\u001b[36m(AgentLoopWorkerTQ pid=2482656)\u001b[0m [compact3072] task=webshop_02827 counted=2331 actual=2331\n\u001b[36m(AgentLoopWorkerTQ pid=2482652)\u001b[0m [compact3072] task=webshop_02300 counted=1915 actual=1915\n\u001b[36m(AgentLoopWorkerTQ pid=2482661)\u001b[0m [compact3072] task=webshop_05625 counted=2251 actual=2251\n\u001b[36m(AgentLoopWorkerTQ pid=2482659)\u001b[0m [compact3072] task=webshop_00826 counted=2138 actual=2138\n\u001b[36m(AgentLoopWorkerTQ pid=2482656)\u001b[0m [compact3072] task=webshop_02827 counted=1896 actual=1896\n\u001b[36m(AgentLoopWorkerTQ pid=2482659)\u001b[0m [compact3072] task=webshop_00826 counted=2160 actual=2160\n\u001b[36m(AgentLoopWorkerTQ pid=2482659)\u001b[0m [compact3072] task=webshop_00826 counted=2466 actual=2466\u001b[36m(WorkerDict pid=2481039)\u001b[0m Using blocking ray.get inside async actor. This blocks the event loop. Please use `await` on object ref with asyncio.gather if you want to yield execution to the event loop instead.\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m WARNING:2026-10-25 03:22:09,343:max_token_len=8192 below longest sequence 13093 — 58 oversized sample(s) ride in their own micro-batch; packing budget stays at 8192 so the rest of the batch is not inflated\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m [rank1]:W1025 03:22:10.396000 2481039 torch/fx/_symbolic_trace.py:52] is_fx_tracing will return true for both fx.symbolic_trace and torch.export. Please use is_fx_tracing_symbolic_tracing() for specifically fx.symbolic_trace or torch.compiler.is_compiling() for specifically torch.export/compile.\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1044: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. Starting in PyTorch 2.9, calling checkpoint without use_reentrant will raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m   return fn(*args, **kwargs)\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/utils/checkpoint.py:85: UserWarning: None of the inputs have requires_grad=True. Gradients will be None\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m   warnings.warn(\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m Using blocking ray.get inside async actor. This blocks the event loop. Please use `await` on object ref with asyncio.gather if you want to yield execution to the event loop instead.\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/_inductor/lowering.py:7242: UserWarning: \n\u001b[36m(WorkerDict pid=2481039)\u001b[0m Online softmax is disabled on the fly since Inductor decides to\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m split the reduction. Cut an issue to PyTorch if this is an\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m important use case and you want to speed it up with online\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m softmax.\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m \n\u001b[36m(WorkerDict pid=2481038)\u001b[0m \n\u001b[36m(WorkerDict pid=2481038)\u001b[0m WARNING:2026-10-25 03:22:09,348:max_token_len=8192 below longest sequence 13093 — 58 oversized sample(s) ride in their own micro-batch; packing budget stays at 8192 so the rest of the batch is not inflated\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m [rank0]:W1025 03:22:10.401000 2481038 torch/fx/_symbolic_trace.py:52] is_fx_tracing will return true for both fx.symbolic_trace and torch.export. Please use is_fx_tracing_symbolic_tracing() for specifically fx.symbolic_trace or torch.compiler.is_compiling() for specifically torch.export/compile.\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m \n\u001b[36m(WorkerDict pid=2481038)\u001b[0m \n\u001b[36m(WorkerDict pid=2481039)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1044: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. Starting in PyTorch 2.9, calling checkpoint without use_reentrant will raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.\u001b[32m [repeated 4x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m   return fn(*args, **kwargs)\u001b[32m [repeated 4x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/utils/checkpoint.py:85: UserWarning: None of the inputs have requires_grad=True. Gradients will be None\u001b[32m [repeated 4x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m   warnings.warn(\u001b[32m [repeated 8x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m \n\u001b[36m(WorkerDict pid=2481038)\u001b[0m \n\u001b[36m(WorkerDict pid=2481038)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/_inductor/lowering.py:7242: UserWarning: \u001b[32m [repeated 5x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m Online softmax is disabled on the fly since Inductor decides to\u001b[32m [repeated 5x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m split the reduction. Cut an issue to PyTorch if this is an\u001b[32m [repeated 5x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m important use case and you want to speed it up with online\u001b[32m [repeated 5x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m softmax.\u001b[32m [repeated 5x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m \n\u001b[36m(WorkerDict pid=2481038)\u001b[0m \n\u001b[36m(WorkerDict pid=2481039)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1044: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. Starting in PyTorch 2.9, calling checkpoint without use_reentrant will raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.\u001b[32m [repeated 6x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m   return fn(*args, **kwargs)\u001b[32m [repeated 6x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/utils/checkpoint.py:85: UserWarning: None of the inputs have requires_grad=True. Gradients will be None\u001b[32m [repeated 6x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m   warnings.warn(\u001b[32m [repeated 10x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/_inductor/lowering.py:7242: UserWarning: \u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m Online softmax is disabled on the fly since Inductor decides to\u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m split the reduction. Cut an issue to PyTorch if this is an\u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m important use case and you want to speed it up with online\u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m softmax.\u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m [rank1]:W1025 03:22:27.957000 2481039 torch/_dynamo/convert_frame.py:1358] [0/8] torch._dynamo hit config.recompile_limit (8)\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m [rank1]:W1025 03:22:27.957000 2481039 torch/_dynamo/convert_frame.py:1358] [0/8]    function: 'entropy_from_logits_with_chunking' (/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/verl/verl/utils/torch_functional.py:241)\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m [rank1]:W1025 03:22:27.957000 2481039 torch/_dynamo/convert_frame.py:1358] [0/8]    last reason: 0/7: tensor 'logits' size mismatch at index 0. expected 2459, actual 2535\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m [rank1]:W1025 03:22:27.957000 2481039 torch/_dynamo/convert_frame.py:1358] [0/8] To log all recompilation reasons, use TORCH_LOGS=\"recompiles\".\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m [rank1]:W1025 03:22:27.957000 2481039 torch/_dynamo/convert_frame.py:1358] [0/8] To diagnose recompilation issues, see https://pytorch.org/docs/main/torch.compiler_troubleshooting.html\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1044: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. Starting in PyTorch 2.9, calling checkpoint without use_reentrant will raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.\u001b[32m [repeated 6x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m   return fn(*args, **kwargs)\u001b[32m [repeated 6x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/utils/checkpoint.py:85: UserWarning: None of the inputs have requires_grad=True. Gradients will be None\u001b[32m [repeated 6x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m   warnings.warn(\u001b[32m [repeated 6x across cluster]\u001b[0m\n\u001b[36m(SimpleStorageUnit pid=2480494)\u001b[0m 2026-10-25 03:23:35,628 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_fd1f5c87: [Performance] Total success requests: 18, Total req/min: 3.30, Total avg process time: 0.0026s; \n\u001b[36m(SimpleStorageUnit pid=2480494)\u001b[0m Time range: last 5.45 minutes; \n\u001b[36m(SimpleStorageUnit pid=2480494)\u001b[0m Per-operation statistics: PUT_DATA: req_count=15, req/min=2.75, avg_time=0.002451s, max_time=0.003986s, min_time=0.002163s; CLEAR_DATA: req_count=1, req/min=0.18, avg_time=0.004063s, max_time=0.004063s, min_time=0.004063s; GET_DATA: req_count=2, req/min=0.37, avg_time=0.003235s, max_time=0.003425s, min_time=0.003045s\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m [rank0]:W1025 03:22:27.958000 2481038 torch/_dynamo/convert_frame.py:1358] [0/8] torch._dynamo hit config.recompile_limit (8)\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m [rank0]:W1025 03:22:27.958000 2481038 torch/_dynamo/convert_frame.py:1358] [0/8]    function: 'entropy_from_logits_with_chunking' (/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/verl/verl/utils/torch_functional.py:241)\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m [rank0]:W1025 03:22:27.958000 2481038 torch/_dynamo/convert_frame.py:1358] [0/8]    last reason: 0/7: tensor 'logits' size mismatch at index 0. expected 2459, actual 2535\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m [rank0]:W1025 03:22:27.958000 2481038 torch/_dynamo/convert_frame.py:1358] [0/8] To log all recompilation reasons, use TORCH_LOGS=\"recompiles\".\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m [rank0]:W1025 03:22:27.958000 2481038 torch/_dynamo/convert_frame.py:1358] [0/8] To diagnose recompilation issues, see https://pytorch.org/docs/main/torch.compiler_troubleshooting.html\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1044: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. Starting in PyTorch 2.9, calling checkpoint without use_reentrant will raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m   return fn(*args, **kwargs)\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/utils/checkpoint.py:85: UserWarning: None of the inputs have requires_grad=True. Gradients will be None\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m   warnings.warn(\n\u001b[36m(SimpleStorageUnit pid=2480499)\u001b[0m Per-operation statistics: PUT_DATA: req_count=19, req/min=3.49, avg_time=0.002472s, max_time=0.003613s, min_time=0.002114s; GET_DATA: req_count=2, req/min=0.37, avg_time=0.005294s, max_time=0.005421s, min_time=0.005166s\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m WARNING:2026-10-25 03:23:38,501:max_token_len=8192 below longest sequence 13093 — 58 oversized sample(s) ride in their own micro-batch; packing budget stays at 8192 so the rest of the batch is not inflated\n",
+  "research25clean1": "/tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56446 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:35884 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:35884 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:35884 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:33962 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 03:17:40 [loggers.py:259] Engine 000: Avg prompt throughput: 468.7 tokens/s, Avg generation throughput: 143.7 tokens/s, Running: 11 reqs, Waiting: 0 reqs, GPU KV cache usage: 14.5%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO:     127.0.0.1:35894 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:35894 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:35894 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:35894 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56452 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56050 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56050 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56050 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56062 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56062 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56062 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56068 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56068 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56068 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56084 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56084 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56084 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56084 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 03:17:50 [loggers.py:259] Engine 000: Avg prompt throughput: 904.1 tokens/s, Avg generation throughput: 150.2 tokens/s, Running: 15 reqs, Waiting: 0 reqs, GPU KV cache usage: 19.8%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO:     127.0.0.1:49044 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:49614 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:49614 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:49614 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:33720 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:49042 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:35178 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 03:18:00 [loggers.py:259] Engine 000: Avg prompt throughput: 440.4 tokens/s, Avg generation throughput: 182.6 tokens/s, Running: 12 reqs, Waiting: 0 reqs, GPU KV cache usage: 16.0%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO:     127.0.0.1:56084 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56084 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56084 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56084 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56084 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:49614 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:49614 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:49614 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:33948 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57108 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57108 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57108 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57118 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57118 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57118 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:49614 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:49614 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:49614 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 03:18:10 [loggers.py:259] Engine 000: Avg prompt throughput: 694.9 tokens/s, Avg generation throughput: 143.7 tokens/s, Running: 12 reqs, Waiting: 0 reqs, GPU KV cache usage: 16.0%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO:     127.0.0.1:57134 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57134 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:35882 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57136 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57136 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57136 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56084 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56084 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56084 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56084 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 03:18:20 [loggers.py:259] Engine 000: Avg prompt throughput: 1150.6 tokens/s, Avg generation throughput: 164.8 tokens/s, Running: 14 reqs, Waiting: 0 reqs, GPU KV cache usage: 18.9%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO:     127.0.0.1:33694 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57118 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57118 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57118 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57118 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:46460 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:46460 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:35192 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57118 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57118 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57118 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57134 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57134 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57134 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:49614 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:49614 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:49614 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 03:18:30 [loggers.py:259] Engine 000: Avg prompt throughput: 1160.0 tokens/s, Avg generation throughput: 153.8 tokens/s, Running: 13 reqs, Waiting: 0 reqs, GPU KV cache usage: 17.4%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO:     127.0.0.1:57108 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57108 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57108 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:39100 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:39100 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:39100 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 03:18:40 [loggers.py:259] Engine 000: Avg prompt throughput: 438.9 tokens/s, Avg generation throughput: 161.3 tokens/s, Running: 14 reqs, Waiting: 0 reqs, GPU KV cache usage: 18.7%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO:     127.0.0.1:49048 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57134 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57134 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57134 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:46460 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:46460 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:46460 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:46460 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:46460 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:46460 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:35894 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 03:18:50 [loggers.py:259] Engine 000: Avg prompt throughput: 666.6 tokens/s, Avg generation throughput: 156.9 tokens/s, Running: 12 reqs, Waiting: 0 reqs, GPU KV cache usage: 15.8%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO:     127.0.0.1:41786 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:41786 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:41786 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:35884 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57118 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57118 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57118 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56050 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 03:19:00 [loggers.py:259] Engine 000: Avg prompt throughput: 481.3 tokens/s, Avg generation throughput: 136.1 tokens/s, Running: 11 reqs, Waiting: 0 reqs, GPU KV cache usage: 14.9%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO:     127.0.0.1:56062 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 03:19:10 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 134.4 tokens/s, Running: 10 reqs, Waiting: 0 reqs, GPU KV cache usage: 13.4%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO:     127.0.0.1:56068 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:56084 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:46460 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:46460 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:46460 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 03:19:20 [loggers.py:259] Engine 000: Avg prompt throughput: 233.1 tokens/s, Avg generation throughput: 98.4 tokens/s, Running: 8 reqs, Waiting: 0 reqs, GPU KV cache usage: 10.5%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO:     127.0.0.1:57136 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 03:19:30 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 93.6 tokens/s, Running: 7 reqs, Waiting: 0 reqs, GPU KV cache usage: 9.2%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO:     127.0.0.1:41786 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:49614 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:49614 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:49614 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 03:19:40 [loggers.py:259] Engine 000: Avg prompt throughput: 191.5 tokens/s, Avg generation throughput: 76.1 tokens/s, Running: 6 reqs, Waiting: 0 reqs, GPU KV cache usage: 7.7%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO:     127.0.0.1:57118 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57134 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 03:19:50 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 60.7 tokens/s, Running: 4 reqs, Waiting: 0 reqs, GPU KV cache usage: 5.3%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO:     127.0.0.1:46460 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:46460 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:46460 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 03:20:00 [loggers.py:259] Engine 000: Avg prompt throughput: 189.6 tokens/s, Avg generation throughput: 48.2 tokens/s, Running: 4 reqs, Waiting: 0 reqs, GPU KV cache usage: 5.5%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO:     127.0.0.1:49614 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:39100 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 03:20:10 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 34.8 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.9%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO 10-25 03:20:20 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 24.6 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.9%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO:     127.0.0.1:57108 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57108 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57108 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 03:20:30 [loggers.py:259] Engine 000: Avg prompt throughput: 216.0 tokens/s, Avg generation throughput: 22.0 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.6%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO 10-25 03:20:40 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 24.0 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.6%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO:     127.0.0.1:46460 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57108 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57108 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO:     127.0.0.1:57108 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 03:20:50 [loggers.py:259] Engine 000: Avg prompt throughput: 246.6 tokens/s, Avg generation throughput: 13.9 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO 10-25 03:21:00 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 13.2 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO 10-25 03:21:10 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 13.3 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO 10-25 03:21:20 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 13.4 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO 10-25 03:21:30 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 13.3 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO 10-25 03:21:40 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 13.3 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.5%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO 10-25 03:21:50 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 13.4 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.5%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO:     127.0.0.1:57108 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2475806) INFO 10-25 03:22:00 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 4.2 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%\n(APIServer pid=2475806) INFO 10-25 03:22:10 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%\n",
+  "research_samples": [
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42/research/webshop_06536--d1f2bb2992/20261025_031808_v0/meta.json",
+      "meta": {
+        "task_id": "webshop_06536",
+        "ts": 1792869488.6933076,
+        "policy_version": 0,
+        "global_step": 1,
+        "finalized": true,
+        "no_finalize": false,
+        "turns_used": 3,
+        "experiments_used": 2,
+        "episodes_consumed": 4,
+        "doc_words": 313,
+        "self_assessment": "{\"version\": \"webshop_clean_skill_v1\", \"origin\": \"researcher_finalized\", \"required_options\": {\"color\": \"a2-green\", \"size\": \"x-large\"}, \"source\": \"public_task_and_mechanical_episode_evidence\", \"successes\": 2, \"invalid_actions\": 19, \"repeated_pairs\": 11, \"candidate_query\": \"loose fit day comfort women tees blouses short sleeve polyester spandex for teen girls color a2-green size x-large price less than 40\", \"free_form_prose_forwarded\": false, \"words\": 313}",
+        "flags": [
+          "clean_skill_v1",
+          "researcher_finalized"
+        ],
+        "last_exp_successes": 2,
+        "last_exp_attempts": 2,
+        "guidance_log": [
+          {
+            "ts": 1792869350.4498303,
+            "experiment_idx": 1,
+            "guidance_hash": "e8099f3f25d9",
+            "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"a2-green\", \"size\": \"x-large\"}.\n\nPreserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.\n\nWHEN a search bar is available, search for the product type and discriminating task words. Search text does not select color, size or fit type. Never assume the first result matches.\n\nWHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.\n\nWHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.\n\nTrack successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.\n\nWHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.\n\nWHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.\n\n# Evidence and recovery\n\nNo checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.\n\nNo successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.",
+            "episodes_before": 0,
+            "k": 2,
+            "new_version": true
+          },
+          {
+            "ts": 1792869410.8073373,
+            "experiment_idx": 2,
+            "guidance_hash": "290d0195e874",
+            "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"a2-green\", \"size\": \"x-large\"}.\n\nPreserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.\n\nWHEN a search bar is available, search for the product type and discriminating task words. Search text does not select color, size or fit type. Never assume the first result matches.\n\nWHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.\n\nWHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.\n\nTrack successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.\n\nWHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.\n\nWHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.\n\n# Evidence and recovery\n\nNo checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.\n\nInvalid actions occurred in exploration: copy a single target exactly from current clickables; if unavailable, reconsider the page before acting.\n\nRepeated action/observation pairs occurred in exploration: use your action history to choose the next unmet requirement instead of repeating an unchanged action.\n\nNo successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.",
+            "episodes_before": 2,
+            "k": 2,
+            "new_version": true
+          }
+        ],
+        "session_error": null,
+        "researcher_prompt_tokens": 5272,
+        "researcher_completion_tokens": 1380,
+        "researcher_model": "qwen3.6-35b-a3b",
+        "tool_protocol": "fncall",
+        "narration_backend": "engine",
+        "gt": "off",
+        "gt_injected": false,
+        "research_wall_s": 150.46365153044462,
+        "error": null
+      },
+      "files": [
+        "session.jsonl",
+        "doc.md",
+        "episodes.jsonl",
+        "meta.json"
+      ]
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42/research/webshop_01450--1b422c4da4/20261025_031820_v0/meta.json",
+      "meta": {
+        "task_id": "webshop_01450",
+        "ts": 1792869500.2450657,
+        "policy_version": 0,
+        "global_step": 1,
+        "finalized": true,
+        "no_finalize": false,
+        "turns_used": 3,
+        "experiments_used": 2,
+        "episodes_consumed": 4,
+        "doc_words": 306,
+        "self_assessment": "{\"version\": \"webshop_clean_skill_v1\", \"origin\": \"researcher_finalized\", \"required_options\": {\"color\": \"floral yellow\", \"size\": \"medium\"}, \"source\": \"public_task_and_mechanical_episode_evidence\", \"successes\": 1, \"invalid_actions\": 21, \"repeated_pairs\": 21, \"candidate_query\": \"slim fit women jumpsuits rompers overalls short sleeve high waist polyester spandex floral yellow\", \"free_form_prose_forwarded\": false, \"words\": 306}",
+        "flags": [
+          "clean_skill_v1",
+          "researcher_finalized"
+        ],
+        "last_exp_successes": 0,
+        "last_exp_attempts": 2,
+        "guidance_log": [
+          {
+            "ts": 1792869351.6535137,
+            "experiment_idx": 1,
+            "guidance_hash": "9c95e6eef8b2",
+            "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"floral yellow\", \"size\": \"medium\"}.\n\nPreserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.\n\nWHEN a search bar is available, search for the product type and discriminating task words. Search text does not select color, size or fit type. Never assume the first result matches.\n\nWHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.\n\nWHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.\n\nTrack successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.\n\nWHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.\n\nWHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.\n\n# Evidence and recovery\n\nNo checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.\n\nNo successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.",
+            "episodes_before": 0,
+            "k": 2,
+            "new_version": true
+          },
+          {
+            "ts": 1792869395.8554354,
+            "experiment_idx": 2,
+            "guidance_hash": "f54a62706eed",
+            "guidance": "# Task constraints and completion procedure\n\nExact required option values from your instruction: {\"color\": \"floral yellow\", \"size\": \"medium\"}.\n\nPreserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.\n\nWHEN a search bar is available, search for the product type and discriminating task words. Search text does not select color, size or fit type. Never assume the first result matches.\n\nWHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.\n\nWHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.\n\nTrack successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.\n\nWHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.\n\nWHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.\n\n# Evidence and recovery\n\nCandidate search query: \"slim fit women jumpsuits rompers overalls short sleeve high waist polyester spandex floral yellow\". Observed in a successful attempt; verify current results.\n\nInvalid actions occurred in exploration: copy a single target exactly from current clickables; if unavailable, reconsider the page before acting.\n\nRepeated action/observation pairs occurred in exploration: use your action history to choose the next unmet requirement instead of repeating an unchanged action.",
+            "episodes_before": 2,
+            "k": 2,
+            "new_version": true
+          }
+        ],
+        "session_error": null,
+        "researcher_prompt_tokens": 5255,
+        "researcher_completion_tokens": 1537,
+        "researcher_model": "qwen3.6-35b-a3b",
+        "tool_protocol": "fncall",
+        "narration_backend": "engine",
+        "gt": "off",
+        "gt_injected": false,
+        "research_wall_s": 162.0298166796565,
+        "error": null
+      },
+      "files": [
+        "session.jsonl",
+        "doc.md",
+        "episodes.jsonl",
+        "meta.json"
+      ]
+    }
+  ],
+  "tape_paths": [
+    "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42/tape/researcher.2482660.jsonl",
+    "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42/tape/researcher.2482652.jsonl",
+    "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42/tape/researcher.2482655.jsonl",
+    "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42/tape/researcher.2482654.jsonl",
+    "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42/tape/researcher.2482662.jsonl",
+    "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42/tape/researcher.2482651.jsonl",
+    "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42/tape/researcher.2482663.jsonl",
+    "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42/tape/researcher.2482659.jsonl",
+    "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42/tape/researcher.2482648.jsonl",
+    "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42/tape/researcher.2482661.jsonl",
+    "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42/tape/researcher.2482650.jsonl",
+    "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42/tape/researcher.2482657.jsonl",
+    "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42/tape/researcher.2482656.jsonl",
+    "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42/tape/researcher.2482649.jsonl",
+    "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42/tape/researcher.2482658.jsonl",
+    "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42/tape/researcher.2482653.jsonl"
+  ]
+}

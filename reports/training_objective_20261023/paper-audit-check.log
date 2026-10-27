@@ -1,0 +1,56 @@
+BLOCKED       R01    目标刊物与规则: ACL 官方征稿可读；已从 CCF 官方分类正文核对 ACL 属 A 类，并核对第七版正式发布日期与范围。年份和全部作者要求待作者核签。 | owner=作者与审校者 | next=作者确认目标周期，完成正式作者指南与稿件类型核签；保留官方目录 PDF 尚未读取的来源限制。
+BLOCKED       R02    新问题与研究价值: 研究问题候选 C1–C5 已整理；缺作者确认的中心论点及英文摘要/正文位置。 | owner=作者 | next=作者选择核心主张，提供摘要或研究计划确认版。
+BLOCKED       R03    任务正式定义: 代码可推导训练/部署接口，但尚无论文正式任务定义。 | owner=作者 | next=写明输入输出、特权信息、split、约束、成功判据和假设。
+BLOCKED       R04    相邻任务区分与验证: 邻近任务与六篇文献已区分；同条件区分实验尚未获得。 | owner=作者与实验负责人 | next=执行同文档下蒸馏/采样和部署有无记忆的判别实验。
+BLOCKED       R05    前沿文献与既有结论: 第二轮已建立六篇文献的日期/版本/原文结构化登记，并修正 MENTOR 比较矩阵；尚待作者人工核验及纳入 Related Work。 | owner=作者与文献审阅者 | next=作者核验 source-register.json 与矩阵，并确认近期文献覆盖。
+BLOCKED       R06    近期基线方法: 已登记 MENTOR/SEED 原始来源，但无同协议复现结果；不能用引用结果当本地已执行 baseline。 | owner=实验负责人 | next=完成至少两项相关近期基线的公平复现及逐格证据。
+BLOCKED       R07    多个近期基座模型: 现有核心配置均为 Qwen2.5 Instruct 同一家族；没有两个 2025/2026 原始 base 家族的实验证据。 | owner=作者与实验负责人 | next=冻结两家族 base checkpoint 并完成训练对照；派生 SFT 起点单独登记。
+BLOCKED       R08    优先采用更新模型: 第二轮已登记两家族候选的官方模型卡、家族发布日期和许可证；实际模型选择与 revision 需预算和兼容性确认。 | owner=作者与实验负责人 | next=按可用 GPU 选择实际 checkpoint、冻结 revision 并验证格式遵循/引擎兼容性。
+FAIL          R09    公平的同期对照: 旧跨论文对拍存在预算等差异；第三轮发现本地 PGS/GRPO 优势估计混杂，SearchQA 历史与最新配对均有评估温度/重复数差异，最新版另有验证集和 epoch 差异。 | owner=实验负责人 | next=按最小判别协议冻结同条件比较，加入假引导优势控制；分开 published 与 reproduced 数字，统一协议与总成本。
+BLOCKED       R11    方法创新与简约性: 保尾核、研究文档、熵门、分臂 advantage 的独立贡献尚未受控验证。 | owner=作者与实验负责人 | next=完成核心组件对照，删去无必要性证据的创新承诺。
+BLOCKED       R12    可行性与工作机制: 已核对 α 是优势权重而非采样强度退火；实现的 top-16 截断熵与完整熵的排序存在合成反例。真实状态校准与因果判别尚缺。 2026-10-23：从源码和历史提交区分直接 OPD loss 与 PGS 采样指导；恢复 A0/A1 权重和直接相加路径。机制因果问题仍缺受控实验。 | owner=实验负责人 | next=按待定稿协议记录完整熵、质量与日程，固定文档与模型做机制消融。
+BLOCKED       R13    第一页三问: 尚未提供可审计的英文论文第一页。 | owner=作者 | next=作者提供标题、摘要、引言首稿，再定位问题/方法/结论。
+BLOCKED       R14    引言中的探索证据: 已恢复并逐字节核对七条早期 4B OPD 精选原始轨迹，支持具体动机案例；缺完整分母、正式主实验和论文定位。 | owner=作者与实验负责人 | next=作者选择与核心论点一致的真实动机案例，再用完整公平实验验证覆盖率。
+BLOCKED       R15    引言到全文的逻辑呼应: 无完整英文稿件，尚不能完成引言承诺到全文映射。 | owner=作者与审校者 | next=稿件形成后逐项建立 claim map。
+BLOCKED       R16    引言与相关工作分开: 现有材料为周报和设计笔记，尚无独立论文 Related Work。 | owner=作者 | next=作者提供分开的 Introduction 与 Related Work。
+BLOCKED       R17    框架与流程: 代码流程可读，但无定稿方法正文与主图对应。 2026-10-23：补充环境奖励→优势→policy loss 与学生轨迹→文档自教师→OPD 的分代数据流；未冒充英文稿件定稿。 | owner=作者 | next=按实际启用配置写明研究员、教师、学生三个角色及数据流。
+BLOCKED       R18    伪代码: 核心实现已定位；论文伪代码尚未提供。 2026-10-23：给出实际 bare-only LOO 与正超额优势公式、alpha 日程以及历史混合损失公式；正式论文算法仍待定位。 | owner=作者 | next=编写与实际 kernel/advantage/retirement 一致的算法并人工核对。
+BLOCKED       R19    引言矢量图: 生成的探索汇总图不是已插入稿件的独立引言动机图。 | owner=作者与制图者 | next=以真实案例或统计设计并引用矢量动机图。
+BLOCKED       R20    大幅主流程矢量图: 没有可定位于论文 Figure 1 的矢量主流程图。 | owner=作者与制图者 | next=主张冻结后制作可编辑主流程图，区别于动机图。
+BLOCKED       R21    图注中的缩写与符号: 论文两张主图未完成，不能完成缩写/符号核签。 | owner=作者与审校者 | next=对正式图逐项写清符号和图文一致性。
+BLOCKED       R22    真实结果与代码复现: 11 个本地 run 缺 rollouts/research/checkpoints；71 个 main_ppo.log 为空，只有汇总及部分其他日志。 2026-10-23：22 份有效 manifest/11 run、1 份空 manifest；71 个 main_ppo.log 为空。SSB 67 个 actor 更新步可核验，18 个历史源码文件与 Git blob 一致；其余运行证据缺口保留。 | owner=作者提供原始入口，实验负责人核算 | next=恢复原始运行并绑定模型版本、代码、seed、配置、表格生成链。
+BLOCKED       R23    降低审稿验证成本: 第二轮已形成来源登记、汇总单元 CSV、文件哈希、代码对照、启动清单和复算脚本；缺原始结果与稿件位置的连接。 2026-10-23：新增逐行源码定位、run-matrix.csv、带源行号 runtime-metrics.json、源码快照和 recheck.py。 | owner=作者与审校者 | next=获得原始实验和稿件后，补全正文 claim 到主结果证据链。
+BLOCKED       R24    实验解释性: 探索结果解释已形成，正式可比较主表未形成。 | owner=作者 | next=主表复算后给出正负结果与异常解释，区分假设。
+BLOCKED       R25    深层观察与相关性: 前 24 步均值实际仅 10 个抽样点；缺逐题指标、稳健性与干预率分母。 | owner=实验负责人 | next=恢复全步数据，定义样本单位、机制指标和稳健性分析。
+BLOCKED       R26    案例研究: 已核对历史精选成功/失败轨迹，发现成功可伴随无效动作和格式失败；两条极端训练样本缺文档，不能直接因果归于蒸馏。无当前方法同任务配对样例。 | owner=作者与实验负责人 | next=恢复当前主实验同任务配对轨迹，按预定四象限选例并纳入反例。
+BLOCKED       R27    超参与消融放置: 存在计划消融和配置；无完整核心消融结果与主文/附录定位。 | owner=实验负责人 | next=执行关键消融，正文保留决定性结果，附录完整登记设置。
+BLOCKED       R28    主文推理层级: 单 token 核性质可数值检查，但无正文命题，实际 w_beh off、b_max inf 的限制未写入稿件。 | owner=作者 | next=区分采样分布性质和有偏优化目标，明确条件与证明范围。
+BLOCKED       R29    编号组织: 审计已有 C/E 编号，论文贡献与实验组织尚未定稿。 | owner=作者 | next=在正式稿件建立一致的贡献、方法和研究问题编号。
+BLOCKED       R30    符号先定义后使用: 代码有数学符号，但无论文 notation ledger 与首次使用位置。 | owner=作者与审校者 | next=稿件形成后登记并核对符号。
+BLOCKED       R31    变量符号简洁: 缺英文稿件，无法逐一核对公式变量。 | owner=作者与审校者 | next=对正式公式审查简洁性与歧义。
+BLOCKED       R32    时间存储计算复杂度: 更新步数和学生 episode 可计数；缺完整 researcher/teacher/retrieval/GPU 小时日志。 | owner=实验负责人 | next=计算全流程成本与 profile，报告预算匹配 Pareto 曲线。
+BLOCKED       R33    直白呈现难度与重要性: 有研究价值候选和探索曲线，尚无可定位的引言难度/重要性证据。 | owner=作者 | next=作者选择真实动机案例并对应论点。
+BLOCKED       R34    逐句审校与多轮迭代: 本轮创建 33 项证据账本，存在实验和稿件依赖；作者尚未核签。 2026-10-23：修正中文研究说明的标准 GRPO、教师影响路径及优势权重日程；保留原稿与 diff，提供限定范围的英文替换段落。未新增正式结果或人工签核。 | owner=作者与审校者 | next=按每项依赖推进并重跑审计，真实作者检查证据后签核。
+NEED_EVIDENCE M02    manuscript file missing
+NEED_EVIDENCE M03    need two eligible 2025/26 base models from different families
+NEED_EVIDENCE M03    eligible base models need distinct checkpoint IDs; revisions do not count as separate models
+NEED_EVIDENCE M05    pipeline vector source missing or unsupported
+NEED_EVIDENCE M05    pipeline vector output missing or unsupported
+NEED_EVIDENCE M05    intro vector source missing or unsupported
+NEED_EVIDENCE M05    intro vector output missing or unsupported
+NEED_EVIDENCE M05    intro and pipeline figures require distinct vector sources
+NEED_EVIDENCE M05    intro and pipeline figures require distinct exports
+NEED_EVIDENCE M06    reproducibility.readme path missing
+NEED_EVIDENCE M06    reproducibility.environment path missing
+NEED_EVIDENCE M06    reproducibility.raw_results path missing
+NEED_EVIDENCE M06    reproducibility.compute_log path missing
+NEED_EVIDENCE M07    at least one real run with provenance is required
+NEED_EVIDENCE M07    table_cells must map every reported result to runs or a verified published source
+NEED_EVIDENCE M07    each registered baseline needs a displayed result
+NEED_EVIDENCE M08    record at least one central claim and its evidence
+NEED_EVIDENCE M09    author name/identifier missing
+NEED_EVIDENCE M09    author signoff date missing
+NEED_EVIDENCE M09    author must explicitly approve the inspected evidence
+NEED_EVIDENCE M09    author signoff is stale relative to ledger or local evidence files
+NOT_READY: 32 blocked, 1 failed, 21 need evidence
+RECHECK_REQUIRED: repair each hard-gate issue with real evidence, then run check again

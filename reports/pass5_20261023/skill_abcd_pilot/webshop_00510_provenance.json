@@ -1,0 +1,8 @@
+{
+  "raw_archive": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/code/runs/pass5_selective_effect_s42/research/webshop_00510--fe0e1fc08f/20261023_101953_v1",
+  "archive_sha256": "644e4506b7e6481e13cdbd8ce109fa9c7d397f45663521eb3c34d54c53fa7515",
+  "B_verbatim_final_guidance": true,
+  "C_human_corrected_with_prior_episode_information": true,
+  "D_excludes_known_instance_identifiers_answers_and_future_observations": true,
+  "not_a_formal_semantic_nonleakage_proof": true
+}

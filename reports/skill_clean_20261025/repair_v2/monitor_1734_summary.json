@@ -1,0 +1,285 @@
+{
+  "checked_at": "2026-10-25T17:34:26.311844+08:00",
+  "supplemental_checked_at": "2026-10-25T17:37:25.399348+08:00",
+  "experiment_root": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2",
+  "summary": {
+    "all_owned_processes_alive": true,
+    "webshop_all_http_200": true,
+    "max_webshop_queue_seconds": 9.139675851911306,
+    "mean_webshop_queue_seconds": 0.35589929865846104,
+    "new_failure": false,
+    "new_recoverable_parser_exception": true,
+    "new_method_warning": false,
+    "mutation": "none",
+    "formal_research_calls": 6089,
+    "spec_audit_has_samples": true,
+    "completed_optimizer_steps": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91
+    ],
+    "next_training_step": 92,
+    "current_stage": "Primary90 cycles, supplemental91 complete. Fourth caught tool-parser ValueError recovered at89. Second checklist fallback at90 after final researcher completion hit4096-token output cap; not input violation or infrastructure fault. Both affected groups complete, guided4/4, all8 binary failures. Step80 above GRPO; step100 not yet.",
+    "mean_completed_step_seconds": 523.4101658328794,
+    "mean_last5_step_seconds": 494.0107264563441,
+    "actual_optimizer_update_evidence": "91 optimizer cycles logged,89 with nonzero advantage extrema and gradient. Only61/84 zero and explained by homogeneous binary reward groups. Full batch contracts through90 pass;91 metric/rollout counts supplemental. No parameter delta measurement.",
+    "researcher_tracebacks_total": 4,
+    "researcher_tracebacks_new": 1,
+    "completed_update_groups": 1456,
+    "snapshot_complete_groups": 1456,
+    "binary_won_heterogeneous_completed_update_groups": 516,
+    "score_heterogeneous_completed_update_groups": 787,
+    "step40_comparison": {
+      "bare": true,
+      "temperature": 0.6,
+      "new": {
+        "pass1_estimate": 0.69140625,
+        "pass5": 0.80078125
+      },
+      "grpo": {
+        "pass1_estimate": 0.5546875,
+        "pass5": 0.76171875
+      },
+      "delta_percentage_points": {
+        "pass1": 13.671875,
+        "pass5": 3.90625
+      },
+      "below_baseline": false
+    },
+    "zero_logged_advantage_and_gradient_steps": [
+      61,
+      84
+    ],
+    "step60_comparison": {
+      "bare": true,
+      "temperature": 0.6,
+      "new": {
+        "pass1_estimate": 0.74765625,
+        "pass5": 0.828125
+      },
+      "grpo": {
+        "pass1_estimate": 0.665625,
+        "pass5": 0.7890625
+      },
+      "delta_percentage_points": {
+        "pass1": 8.203125,
+        "pass5": 3.90625
+      },
+      "below_baseline": false
+    },
+    "step80_comparison": {
+      "bare": true,
+      "temperature": 0.6,
+      "new": {
+        "pass1_estimate": 0.778125,
+        "pass5": 0.82421875
+      },
+      "grpo": {
+        "pass1_estimate": 0.728125,
+        "pass5": 0.8046875
+      },
+      "delta_percentage_points": {
+        "pass1": 4.999999999999993,
+        "pass5": 1.953125
+      },
+      "below_baseline": false
+    },
+    "group_heterogeneity_audited_through_step": 90
+  },
+  "researcher_inputs": {
+    "calls": 6089,
+    "mean": 1870.6836919034324,
+    "max": 2500,
+    "above_3072": 0
+  },
+  "skill_compiler": {
+    "sessions": 1456,
+    "missing_docs": 0,
+    "over_500_words": 0,
+    "origins": {
+      "researcher_finalized": 1454,
+      "task_checklist_fallback": 2
+    },
+    "max_words": 334,
+    "research_errors": 0,
+    "mean_turns": 4.1820054945054945
+  },
+  "independent_spec_audit": {
+    "checked": 1456,
+    "issues": []
+  },
+  "supplemental_progress": {
+    "checked_at": "2026-10-25T17:37:25.399348+08:00",
+    "metric_cycles_completed": 91,
+    "evidence": [
+      "repair_v2/monitor_1734.json",
+      "repair_v2/monitor_1737_diagnostic.json"
+    ],
+    "note": "Primary snapshot90 cycles; later raw log91. Step91 rollout128 with64 actually steered rows; full contract audit through90."
+  },
+  "new_parser_event": {
+    "at": "2026-10-25T17:12:32+08:00",
+    "type": "caught_qwen_tool_call_parse_exception_recurrence",
+    "task_id": "webshop_06496",
+    "global_step": 89,
+    "turn": 4,
+    "cause": "Generated <parameter=guiding omitted closing >; qwen3coder parser match_text.index raised ValueError; caught by existing parser, HTTP200.",
+    "handling": "Turn5 fetch_raw; turn6 finalize. No lost document/rollout/update. Same cause re-diagnosed from tape and metadata; no blanket restart.",
+    "failed_request_cost": {
+      "input_tokens": 2362,
+      "output_tokens": 232,
+      "latency_s": 19.323,
+      "note": "Malformed request only; not counterfactual total overhead."
+    },
+    "final_document": {
+      "origin": "researcher_finalized",
+      "words": 316,
+      "options": {
+        "color": "pink",
+        "fit type": "women",
+        "size": "3t"
+      },
+      "research_exploration_successes": 0
+    },
+    "training": {
+      "rows": 8,
+      "guided_rows_with_actual_steering": 4,
+      "bare_successes": 0,
+      "guided_successes": 0,
+      "research_error": 0,
+      "doc_missing": 0,
+      "update89_grad_norm": 1.7023396492004395
+    },
+    "evidence": "repair_v2/monitor_1737_diagnostic.json",
+    "action": "Read-only; no infrastructure repair or frozen-code mutation. Do not attribute unsuccessful task solely to parser event.",
+    "notification_sent": true
+  },
+  "new_fallback_event": {
+    "at": "2026-10-25T17:37:25.399348+08:00",
+    "type": "approved_checklist_fallback_after_output_exhaustion",
+    "task_id": "webshop_05016",
+    "global_step": 90,
+    "cause": "Researcher never emitted finalize;8 turns,3 experiments; final turn8 output4096 tokens, finish_reason length, latency327.945s. Compiler produced explicitly labelled checklist fallback. Independent of parser exception on06496.",
+    "cost": {
+      "research_wall_s": 549.9773757681251,
+      "final_request_input_tokens": 2332,
+      "final_request_output_tokens": 4096,
+      "final_request_latency_s": 327.945
+    },
+    "document": {
+      "origin": "task_checklist_fallback",
+      "words": 313,
+      "options": {
+        "color": "khaki",
+        "size": "medium"
+      },
+      "research_successes": 0,
+      "missing": false,
+      "independent_spec_audit_passed": true
+    },
+    "training": {
+      "rows": 8,
+      "guided_rows_with_actual_steering": 4,
+      "bare_successes": 0,
+      "guided_successes": 0,
+      "research_error": 0,
+      "doc_missing": 0,
+      "update90_grad_norm": 0.4282514452934265
+    },
+    "evidence": "repair_v2/monitor_1737_diagnostic.json",
+    "action": "Preserve approved fallback and all budgets; do not count as researcher finalize/exploration success. No runtime change.",
+    "notification_sent": true
+  },
+  "frozen_changed": [],
+  "ABORT": null,
+  "baseline_stop": null,
+  "mutation": "none"
+}

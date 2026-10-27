@@ -1,0 +1,619 @@
+{
+  "requested_at": "2026-10-24T16:31:11.877731+08:00",
+  "reason": "User explicitly requested pause: 先暂停 这个效果没必要做",
+  "snapshot": {
+    "checked_at": "2026-10-24T16:31:11.995623+08:00",
+    "sequence": {
+      "phase": "running",
+      "pid": 2014347,
+      "time": 1792801923.9596894,
+      "input_limit": 3072,
+      "server_concurrency": 16,
+      "order": [
+        "all_skill",
+        "selective_skill"
+      ],
+      "job": "all_skill",
+      "run": "/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/code/runs/pass5_compact3072_all_skill_s42",
+      "owner_pid": 2015098,
+      "owner_state": "/tmp/p5compact3072-all24r3",
+      "researcher_owner_pid": 2014656,
+      "next_job": "selective_skill"
+    },
+    "webshop": {
+      "8321": {
+        "active": 2,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 33257,
+          "queue_seconds": 3526.9348122142255,
+          "backend_seconds": 1029.3868786096573,
+          "max_queue_seconds": 5.283011469990015,
+          "max_backend_seconds": 0.7339263670146465
+        },
+        "http_statuses": {
+          "200": 33257
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8322": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 32645,
+          "queue_seconds": 2604.3159790337086,
+          "backend_seconds": 966.3253525309265,
+          "max_queue_seconds": 4.853617340326309,
+          "max_backend_seconds": 0.6913171857595444
+        },
+        "http_statuses": {
+          "200": 32645
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8323": {
+        "active": 1,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 31339,
+          "queue_seconds": 1695.3847927898169,
+          "backend_seconds": 962.7982928194106,
+          "max_queue_seconds": 4.698118790984154,
+          "max_backend_seconds": 0.5279521085321903
+        },
+        "http_statuses": {
+          "200": 31339
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8324": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 36958,
+          "queue_seconds": 5824.963230162859,
+          "backend_seconds": 1118.7342941910028,
+          "max_queue_seconds": 6.356884066015482,
+          "max_backend_seconds": 0.7003949955105782
+        },
+        "http_statuses": {
+          "200": 36958
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      }
+    },
+    "rollout_rows": {
+      "step_00000_val": 1280,
+      "step_00001": 128,
+      "step_00002": 128,
+      "step_00003": 128,
+      "step_00004": 128,
+      "step_00005": 128,
+      "step_00006": 128,
+      "step_00007": 128,
+      "step_00008": 128,
+      "step_00009": 128,
+      "step_00010": 128,
+      "step_00011": 128,
+      "step_00012": 128,
+      "step_00013": 128,
+      "step_00014": 128,
+      "step_00015": 128,
+      "step_00016": 128,
+      "step_00017": 128,
+      "step_00018": 128,
+      "step_00019": 128,
+      "step_00020": 128,
+      "step_00020_val": 1280,
+      "step_00021": 128,
+      "step_00022": 128,
+      "step_00023": 128,
+      "step_00024": 128,
+      "step_00025": 128,
+      "step_00026": 128,
+      "step_00027": 128,
+      "step_00028": 128,
+      "step_00029": 128,
+      "step_00030": 128,
+      "step_00031": 128,
+      "step_00032": 128,
+      "step_00033": 128,
+      "step_00034": 128,
+      "step_00035": 128
+    },
+    "error_mentions": {
+      "webshop service unreachable": 0,
+      "webshop HTTP 409": 0,
+      "student episode infra error": 0,
+      "OutOfMemoryError": 0,
+      "ReplayBuffer:": 0
+    },
+    "training_tail": [
+      "Training Progress:  35%|███▌      | 35/100 [7:34:33<12:06:01, 670.17s/it]",
+      "\u001b[36m(AgentLoopWorkerTQ pid=2021381)\u001b[0m WARNING:2026-10-24 16:30:06,954:gate tracker step 36: steering open-rate 0.392 above the pre-registered ceiling 0.25 (theta was lagging the distribution) — dosage overshoot, inspect before trusting this step's steered rows",
+      "\u001b[36m(TaskRunnerV1 pid=2018898)\u001b[0m INFO:2026-10-24 16:31:07,018:pending: 0, running: 16, finished: 0, failure: 0",
+      "\u001b[36m(AgentLoopWorkerTQ pid=2021394)\u001b[0m WARNING:2026-10-24 16:30:06,956:gate tracker step 36: steering open-rate 0.453 above the pre-registered ceiling 0.25 (theta was lagging the distribution) — dosage overshoot, inspect before trusting this step's steered rows\u001b[32m [repeated 11x across cluster]\u001b[0m"
+    ],
+    "completed_steps": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+    ],
+    "timing_rows": [
+      {
+        "timing_s/feed": 0.2151353806257248,
+        "timing_s/gen": 473.55641608685255,
+        "timing_s/old_log_prob": 85.97509347647429,
+        "timing_s/adv": 0.13161682710051537,
+        "timing_s/update_actor": 250.2363826520741,
+        "timing_s/update_weights": 5.530635349452496,
+        "timing_s/step": 815.6960954256356
+      },
+      {
+        "timing_s/feed": 0.027740567922592163,
+        "timing_s/gen": 425.54103569313884,
+        "timing_s/old_log_prob": 67.23549339547753,
+        "timing_s/adv": 0.13567079231142998,
+        "timing_s/update_actor": 218.97190622240305,
+        "timing_s/update_weights": 5.9906383864581585,
+        "timing_s/step": 717.946874152869
+      },
+      {
+        "timing_s/feed": 0.022758640348911285,
+        "timing_s/gen": 535.6954695247114,
+        "timing_s/old_log_prob": 69.90931911394,
+        "timing_s/adv": 0.13885973766446114,
+        "timing_s/update_actor": 225.89863968640566,
+        "timing_s/update_weights": 6.017422549426556,
+        "timing_s/step": 837.7563876919448
+      },
+      {
+        "timing_s/feed": 0.022685129195451736,
+        "timing_s/gen": 417.5568194054067,
+        "timing_s/old_log_prob": 71.4221829995513,
+        "timing_s/adv": 0.13478486612439156,
+        "timing_s/update_actor": 226.88820894807577,
+        "timing_s/update_weights": 6.079733721911907,
+        "timing_s/step": 722.148379612714
+      },
+      {
+        "timing_s/feed": 0.02239401265978813,
+        "timing_s/gen": 519.6810090877116,
+        "timing_s/old_log_prob": 80.0372968390584,
+        "timing_s/adv": 0.12881794199347496,
+        "timing_s/update_actor": 257.662407245487,
+        "timing_s/update_weights": 6.053240366280079,
+        "timing_s/step": 863.6280771940947
+      },
+      {
+        "timing_s/feed": 0.02490834891796112,
+        "timing_s/gen": 507.6901434659958,
+        "timing_s/old_log_prob": 74.17885369434953,
+        "timing_s/adv": 0.13277455046772957,
+        "timing_s/update_actor": 238.82239323109388,
+        "timing_s/update_weights": 6.126336477696896,
+        "timing_s/step": 827.0188485458493
+      },
+      {
+        "timing_s/feed": 0.02679789438843727,
+        "timing_s/gen": 455.5710612013936,
+        "timing_s/old_log_prob": 72.4629451520741,
+        "timing_s/adv": 0.11645402759313583,
+        "timing_s/update_actor": 232.4726877361536,
+        "timing_s/update_weights": 5.994204189628363,
+        "timing_s/step": 766.6881670244038
+      },
+      {
+        "timing_s/feed": 0.022608675062656403,
+        "timing_s/gen": 617.850034173578,
+        "timing_s/old_log_prob": 73.50248248502612,
+        "timing_s/adv": 0.1244809590280056,
+        "timing_s/update_actor": 235.34122441709042,
+        "timing_s/update_weights": 6.051848251372576,
+        "timing_s/step": 932.9667004309595
+      },
+      {
+        "timing_s/feed": 0.023821424692869186,
+        "timing_s/gen": 419.5608797073364,
+        "timing_s/old_log_prob": 77.37536671385169,
+        "timing_s/adv": 0.12099621817469597,
+        "timing_s/update_actor": 250.11863020807505,
+        "timing_s/update_weights": 6.170246761292219,
+        "timing_s/step": 753.4128605797887
+      },
+      {
+        "timing_s/feed": 0.02174888551235199,
+        "timing_s/gen": 429.54999627545476,
+        "timing_s/old_log_prob": 80.73519358411431,
+        "timing_s/adv": 0.12701062113046646,
+        "timing_s/update_actor": 261.7272539585829,
+        "timing_s/update_weights": 5.832511875778437,
+        "timing_s/step": 778.0374620705843
+      },
+      {
+        "timing_s/feed": 0.020638521760702133,
+        "timing_s/gen": 511.655420973897,
+        "timing_s/old_log_prob": 70.61671598255634,
+        "timing_s/adv": 0.11163764074444771,
+        "timing_s/update_actor": 222.6863992586732,
+        "timing_s/update_weights": 6.06430758908391,
+        "timing_s/step": 811.1962558813393
+      },
+      {
+        "timing_s/feed": 0.02219141647219658,
+        "timing_s/gen": 453.5816385820508,
+        "timing_s/old_log_prob": 71.4845970235765,
+        "timing_s/adv": 0.11865488067269325,
+        "timing_s/update_actor": 230.32269283011556,
+        "timing_s/update_weights": 6.494867503643036,
+        "timing_s/step": 762.0690133534372
+      },
+      {
+        "timing_s/feed": 0.020008817315101624,
+        "timing_s/gen": 493.6488307863474,
+        "timing_s/old_log_prob": 68.09507523477077,
+        "timing_s/adv": 0.1169351078569889,
+        "timing_s/update_actor": 216.84948915988207,
+        "timing_s/update_weights": 6.153917875140905,
+        "timing_s/step": 784.925184622407
+      },
+      {
+        "timing_s/feed": 0.023258276283740997,
+        "timing_s/gen": 595.7928639352322,
+        "timing_s/old_log_prob": 70.27656343579292,
+        "timing_s/adv": 0.11883939802646637,
+        "timing_s/update_actor": 226.07523318752646,
+        "timing_s/update_weights": 6.0278083719313145,
+        "timing_s/step": 898.3879762776196
+      },
+      {
+        "timing_s/feed": 0.02034119889140129,
+        "timing_s/gen": 461.64921621978283,
+        "timing_s/old_log_prob": 61.790787905454636,
+        "timing_s/adv": 0.11581652611494064,
+        "timing_s/update_actor": 197.38629354164004,
+        "timing_s/update_weights": 6.131265975534916,
+        "timing_s/step": 727.136184066534
+      },
+      {
+        "timing_s/feed": 0.021175015717744827,
+        "timing_s/gen": 491.65553306788206,
+        "timing_s/old_log_prob": 75.77155839651823,
+        "timing_s/adv": 0.11936495825648308,
+        "timing_s/update_actor": 243.61820862442255,
+        "timing_s/update_weights": 5.997178990393877,
+        "timing_s/step": 817.2261122055352
+      },
+      {
+        "timing_s/feed": 0.2740338444709778,
+        "timing_s/gen": 541.7202423922718,
+        "timing_s/old_log_prob": 69.29375603422523,
+        "timing_s/adv": 0.13890964537858963,
+        "timing_s/update_actor": 223.61526527628303,
+        "timing_s/update_weights": 5.894497353583574,
+        "timing_s/step": 840.9834216497838
+      },
+      {
+        "timing_s/feed": 0.025197844952344894,
+        "timing_s/gen": 357.4417941533029,
+        "timing_s/old_log_prob": 57.75681108981371,
+        "timing_s/adv": 0.11424143239855766,
+        "timing_s/update_actor": 184.43782851099968,
+        "timing_s/update_weights": 5.893060076981783,
+        "timing_s/step": 605.7130723595619
+      },
+      {
+        "timing_s/feed": 0.020092535763978958,
+        "timing_s/gen": 435.58042488992214,
+        "timing_s/old_log_prob": 63.5030102096498,
+        "timing_s/adv": 0.11504925414919853,
+        "timing_s/update_actor": 204.63354352489114,
+        "timing_s/update_weights": 5.986067358404398,
+        "timing_s/step": 709.8811649382114
+      },
+      {
+        "timing_s/feed": 0.01978691667318344,
+        "timing_s/gen": 357.4461068958044,
+        "timing_s/old_log_prob": 65.10759282112122,
+        "timing_s/adv": 0.11548378318548203,
+        "timing_s/update_actor": 209.58645322173834,
+        "timing_s/save_checkpoint": 24.13307063281536,
+        "timing_s/update_weights": 4.636069316416979,
+        "timing_s/step": 661.0855659246445,
+        "timing_s/testing": 956.475759100169
+      },
+      {
+        "timing_s/feed": 0.0179428793489933,
+        "timing_s/gen": 587.7680227048695,
+        "timing_s/old_log_prob": 64.22250806167722,
+        "timing_s/adv": 0.12328045815229416,
+        "timing_s/update_actor": 201.81489937007427,
+        "timing_s/update_weights": 5.895315822213888,
+        "timing_s/step": 859.8847658261657
+      },
+      {
+        "timing_s/feed": 0.02273564785718918,
+        "timing_s/gen": 433.55293959006667,
+        "timing_s/old_log_prob": 62.863661237061024,
+        "timing_s/adv": 0.11717069149017334,
+        "timing_s/update_actor": 198.17386458814144,
+        "timing_s/update_weights": 6.004997808486223,
+        "timing_s/step": 700.7782805152237
+      },
+      {
+        "timing_s/feed": 0.021409310400485992,
+        "timing_s/gen": 399.4958547502756,
+        "timing_s/old_log_prob": 62.95601313561201,
+        "timing_s/adv": 0.15264750644564629,
+        "timing_s/update_actor": 201.54120722040534,
+        "timing_s/update_weights": 5.9779770113527775,
+        "timing_s/step": 670.1880307421088
+      },
+      {
+        "timing_s/feed": 0.020086567848920822,
+        "timing_s/gen": 451.5846096687019,
+        "timing_s/old_log_prob": 64.70652283355594,
+        "timing_s/adv": 0.11326728761196136,
+        "timing_s/update_actor": 203.7499281987548,
+        "timing_s/update_weights": 5.897082053124905,
+        "timing_s/step": 726.1141559258103
+      },
+      {
+        "timing_s/feed": 0.02265677973628044,
+        "timing_s/gen": 485.66105479747057,
+        "timing_s/old_log_prob": 56.995138358324766,
+        "timing_s/adv": 0.11653829738497734,
+        "timing_s/update_actor": 181.98551454395056,
+        "timing_s/update_weights": 5.959329675883055,
+        "timing_s/step": 730.7867261134088
+      },
+      {
+        "timing_s/feed": 0.018857289105653763,
+        "timing_s/gen": 467.63627729192376,
+        "timing_s/old_log_prob": 60.74287521466613,
+        "timing_s/adv": 0.16136512160301208,
+        "timing_s/update_actor": 190.78442100808024,
+        "timing_s/update_weights": 5.8250829465687275,
+        "timing_s/step": 725.2193442359567
+      },
+      {
+        "timing_s/feed": 0.021346915513277054,
+        "timing_s/gen": 525.7326726727188,
+        "timing_s/old_log_prob": 63.28361269086599,
+        "timing_s/adv": 0.12709666043519974,
+        "timing_s/update_actor": 202.73857456073165,
+        "timing_s/update_weights": 6.051725599914789,
+        "timing_s/step": 798.0028954446316
+      },
+      {
+        "timing_s/feed": 0.023963265120983124,
+        "timing_s/gen": 577.75355970487,
+        "timing_s/old_log_prob": 54.22436961904168,
+        "timing_s/adv": 0.11623997241258621,
+        "timing_s/update_actor": 167.66325867176056,
+        "timing_s/update_weights": 5.730246759951115,
+        "timing_s/step": 805.5558155030012
+      },
+      {
+        "timing_s/feed": 0.021056443452835083,
+        "timing_s/gen": 473.6172359958291,
+        "timing_s/old_log_prob": 49.43806779384613,
+        "timing_s/adv": 0.1180458590388298,
+        "timing_s/update_actor": 154.94645603746176,
+        "timing_s/update_weights": 6.078157473355532,
+        "timing_s/step": 684.2627706602216
+      },
+      {
+        "timing_s/feed": 0.018926534801721573,
+        "timing_s/gen": 439.5583607777953,
+        "timing_s/old_log_prob": 65.23947051540017,
+        "timing_s/adv": 0.11839590221643448,
+        "timing_s/update_actor": 207.7215504385531,
+        "timing_s/update_weights": 6.274703063070774,
+        "timing_s/step": 718.9749121777713
+      },
+      {
+        "timing_s/feed": 0.019369814544916153,
+        "timing_s/gen": 439.56354904547334,
+        "timing_s/old_log_prob": 43.86043028905988,
+        "timing_s/adv": 0.11740875989198685,
+        "timing_s/update_actor": 135.13332694023848,
+        "timing_s/update_weights": 5.947793941944838,
+        "timing_s/step": 624.6852557174861
+      },
+      {
+        "timing_s/feed": 0.02091902121901512,
+        "timing_s/gen": 473.6739264577627,
+        "timing_s/old_log_prob": 42.50859810039401,
+        "timing_s/adv": 0.113734669983387,
+        "timing_s/update_actor": 130.79148879647255,
+        "timing_s/update_weights": 5.879600245505571,
+        "timing_s/step": 653.0303375534713
+      },
+      {
+        "timing_s/feed": 0.2967616878449917,
+        "timing_s/gen": 397.5837188847363,
+        "timing_s/old_log_prob": 48.38405926153064,
+        "timing_s/adv": 0.13983990252017975,
+        "timing_s/update_actor": 151.2601421289146,
+        "timing_s/update_weights": 5.930117920041084,
+        "timing_s/step": 603.6402245350182
+      },
+      {
+        "timing_s/feed": 0.018879681825637817,
+        "timing_s/gen": 461.61708603426814,
+        "timing_s/old_log_prob": 44.148427572101355,
+        "timing_s/adv": 0.11852924525737762,
+        "timing_s/update_actor": 136.28767589852214,
+        "timing_s/update_weights": 5.841317366808653,
+        "timing_s/step": 648.0767832323909
+      },
+      {
+        "timing_s/feed": 0.024684403091669083,
+        "timing_s/gen": 513.7253840602934,
+        "timing_s/old_log_prob": 42.06070110574365,
+        "timing_s/adv": 0.11929337307810783,
+        "timing_s/update_actor": 129.50979829579592,
+        "timing_s/update_weights": 5.888243924826384,
+        "timing_s/step": 691.3726404607296
+      }
+    ],
+    "researcher_inputs": {
+      "calls": 6806,
+      "mean": 2157.432559506318,
+      "max": 2500,
+      "above_3072": 0
+    }
+  },
+  "processes_before": {
+    "sequence": {
+      "pid": 2014347,
+      "exists": true,
+      "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python -u /root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/run_sequence.py ",
+      "state": "S"
+    },
+    "student_owner": {
+      "pid": 2015098,
+      "exists": true,
+      "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python /root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/code/scripts/cloud/run_owned_job.py --state-dir /tmp/p5compact3072-all24r3 --gpus 1,2 --no-deadline --abort-file /root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/ABORT --cwd /root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/code -- /root/trace-webshop-arm-ratio/.venvs/train/bin/python -u scripts/launch_train.py --config /root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/configs/all_skill.yaml ",
+      "state": "S"
+    },
+    "researcher_owner": {
+      "pid": 2014656,
+      "exists": true,
+      "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python /root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/code/scripts/cloud/run_owned_job.py --state-dir /tmp/p5compact3072-research24r3 --gpus 0,3 --no-deadline --abort-file /root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/ABORT --cwd /root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/code -- /root/trace-webshop-arm-ratio/.venvs/researcher/bin/vllm serve /root/trace-webshop-arm-ratio/models/Qwen3.6-35B-A3B --served-model-name qwen3.6-35b-a3b --host 127.0.0.1 --port 18881 --api-key loopback-only --tensor-parallel-size 2 --dtype bfloat16 --max-model-len 7168 --max-num-seqs 16 --max-num-batched-tokens 4096 --gpu-memory-utilization 0.95 --enforce-eager --language-model-only --enable-auto-tool-choice --tool-call-parser qwen3_coder --reasoning-parser qwen3 ",
+      "state": "S"
+    },
+    "webshop_8321": {
+      "pid": 2014398,
+      "exists": true,
+      "cmdline": "/root/trace-webshop-arm-ratio/environment/webshop-v2/venv/bin/python -u /root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/code/scripts/cloud/webshop_service.py --upstream /root/trace-webshop-arm-ratio/environment/webshop-v2/WebShop --port 8321 --pool-size 1024 --option-fix on --manifest /root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/webshop-8321.json ",
+      "state": "S"
+    },
+    "webshop_8322": {
+      "pid": 2014399,
+      "exists": true,
+      "cmdline": "/root/trace-webshop-arm-ratio/environment/webshop-v2/venv/bin/python -u /root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/code/scripts/cloud/webshop_service.py --upstream /root/trace-webshop-arm-ratio/environment/webshop-v2/WebShop --port 8322 --pool-size 1024 --option-fix on --manifest /root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/webshop-8322.json ",
+      "state": "S"
+    },
+    "webshop_8323": {
+      "pid": 2014400,
+      "exists": true,
+      "cmdline": "/root/trace-webshop-arm-ratio/environment/webshop-v2/venv/bin/python -u /root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/code/scripts/cloud/webshop_service.py --upstream /root/trace-webshop-arm-ratio/environment/webshop-v2/WebShop --port 8323 --pool-size 1024 --option-fix on --manifest /root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/webshop-8323.json ",
+      "state": "S"
+    },
+    "webshop_8324": {
+      "pid": 2014401,
+      "exists": true,
+      "cmdline": "/root/trace-webshop-arm-ratio/environment/webshop-v2/venv/bin/python -u /root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/code/scripts/cloud/webshop_service.py --upstream /root/trace-webshop-arm-ratio/environment/webshop-v2/WebShop --port 8324 --pool-size 1024 --option-fix on --manifest /root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/webshop-8324.json ",
+      "state": "S"
+    }
+  },
+  "selective_started": false,
+  "checkpoints": [
+    "global_step_20"
+  ],
+  "sequence_log_before": "starting_webshop {}\nwebshop_ready {'ports': [8321, 8322, 8323, 8324], 'pids': [2014398, 2014399, 2014400, 2014401], 'semantic_equivalence': True}\nstarting_researcher {}\n[config] budget: executor 流预算=16384(episode.session_token_budget),轮×单轮乘积=15360(轮×单轮乘积先到);padding 维度=train.response_length=16384,CPU 内存 ∝ 行数×维度。\nresearcher_ready {'researcher_owner_pid': 2014656, 'tokenization_only_count': 736}\n[config] budget: executor 流预算=16384(episode.session_token_budget),轮×单轮乘积=15360(轮×单轮乘积先到);padding 维度=train.response_length=16384,CPU 内存 ∝ 行数×维度。\nrunning {'job': 'all_skill', 'run': '/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/code/runs/pass5_compact3072_all_skill_s42', 'owner_pid': 2015098, 'owner_state': '/tmp/p5compact3072-all24r3', 'researcher_owner_pid': 2014656, 'next_job': 'selective_skill'}\n",
+  "gpu_before": "index, utilization.gpu [%], memory.used [MiB], memory.total [MiB]\n0, 21 %, 39413 MiB, 40960 MiB\n1, 98 %, 25487 MiB, 40960 MiB\n2, 100 %, 25541 MiB, 40960 MiB\n3, 100 %, 39415 MiB, 40960 MiB\n",
+  "gpu_processes_before": "pid, process_name, used_gpu_memory [MiB]\n3499654, [Not Found], 39406 MiB\n3505289, [Not Found], 1244 MiB\n3506785, [Not Found], 24186 MiB\n3505290, [Not Found], 1244 MiB\n3506739, [Not Found], 24240 MiB\n3499655, [Not Found], 39408 MiB\n",
+  "signal_target": 2014347,
+  "verified_at": "2026-10-24T16:32:17.492310+08:00",
+  "processes_after": {
+    "sequence": {
+      "pid": 2014347,
+      "exists": false
+    },
+    "student_owner": {
+      "pid": 2015098,
+      "exists": false
+    },
+    "researcher_owner": {
+      "pid": 2014656,
+      "exists": false
+    },
+    "webshop_8321": {
+      "pid": 2014398,
+      "exists": false
+    },
+    "webshop_8322": {
+      "pid": 2014399,
+      "exists": false
+    },
+    "webshop_8323": {
+      "pid": 2014400,
+      "exists": false
+    },
+    "webshop_8324": {
+      "pid": 2014401,
+      "exists": false
+    }
+  },
+  "sequence_status_after": {
+    "phase": "stopped_on_error",
+    "pid": 2014347,
+    "time": 1792830675.705503,
+    "input_limit": 3072,
+    "server_concurrency": 16,
+    "order": [
+      "all_skill",
+      "selective_skill"
+    ],
+    "error": "ValueError('abort requested; inspect ABORT')"
+  },
+  "sequence_log_after": "starting_webshop {}\nwebshop_ready {'ports': [8321, 8322, 8323, 8324], 'pids': [2014398, 2014399, 2014400, 2014401], 'semantic_equivalence': True}\nstarting_researcher {}\n[config] budget: executor 流预算=16384(episode.session_token_budget),轮×单轮乘积=15360(轮×单轮乘积先到);padding 维度=train.response_length=16384,CPU 内存 ∝ 行数×维度。\nresearcher_ready {'researcher_owner_pid': 2014656, 'tokenization_only_count': 736}\n[config] budget: executor 流预算=16384(episode.session_token_budget),轮×单轮乘积=15360(轮×单轮乘积先到);padding 维度=train.response_length=16384,CPU 内存 ∝ 行数×维度。\nrunning {'job': 'all_skill', 'run': '/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/code/runs/pass5_compact3072_all_skill_s42', 'owner_pid': 2015098, 'owner_state': '/tmp/p5compact3072-all24r3', 'researcher_owner_pid': 2014656, 'next_job': 'selective_skill'}\nstopped_on_error {'error': \"ValueError('abort requested; inspect ABORT')\"}\nTraceback (most recent call last):\n  File \"/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/run_sequence.py\", line 174, in <module>\n    require(not ABORT.exists(),'abort requested; inspect ABORT')\n  File \"/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/audit_run.py\", line 10, in require\n    if not ok:raise ValueError(message)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: abort requested; inspect ABORT\nTraceback (most recent call last):\n  File \"/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/run_sequence.py\", line 174, in <module>\n    require(not ABORT.exists(),'abort requested; inspect ABORT')\n  File \"/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/audit_run.py\", line 10, in require\n    if not ok:raise ValueError(message)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: abort requested; inspect ABORT\n",
+  "abort": "sequence received signal 15\n",
+  "gpu_after": "index, utilization.gpu [%], memory.used [MiB], memory.total [MiB]\n0, 0 %, 0 MiB, 40960 MiB\n1, 0 %, 0 MiB, 40960 MiB\n2, 0 %, 0 MiB, 40960 MiB\n3, 0 %, 0 MiB, 40960 MiB\n",
+  "gpu_processes_after": "pid, process_name, used_gpu_memory [MiB]\n",
+  "owner_files": {
+    "student": {
+      "status.json": "{\n  \"schema_version\": 1,\n  \"owner_pid\": 2015098,\n  \"owner_start_ticks\": 2062298565,\n  \"deadline\": null,\n  \"deadline_enforced\": false,\n  \"gpus\": [\n    \"GPU-898848ff-113b-983d-6d3b-89d4240710ba\",\n    \"GPU-cdbf6827-dda0-1a50-8b17-1decc354048b\"\n  ],\n  \"cuda_visible_devices\": \"1,2\",\n  \"ray_address\": \"local\",\n  \"result_status\": \"INCOMPLETE\",\n  \"ray_tmpdir\": \"/tmp/p5compact3072-all24r3/ray\",\n  \"reason\": \"abort_file\",\n  \"returncode\": -15,\n  \"gpu_release_verified\": true,\n  \"signals\": [\n    {\n      \"pid\": 2015103,\n      \"start_ticks\": 2062298594,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2015151,\n      \"start_ticks\": 2062298998,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2015253,\n      \"start_ticks\": 2062299713,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2015413,\n      \"start_ticks\": 2062299851,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2015415,\n      \"start_ticks\": 2062299884,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2015478,\n      \"start_ticks\": 2062299954,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2015479,\n      \"start_ticks\": 2062299954,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2015480,\n      \"start_ticks\": 2062299954,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2015481,\n      \"start_ticks\": 2062299954,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2015482,\n      \"start_ticks\": 2062299954,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2015483,\n      \"start_ticks\": 2062299954,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2015484,\n      \"start_ticks\": 2062299954,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2015485,\n      \"start_ticks\": 2062299954,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2015486,\n      \"start_ticks\": 2062299954,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2015487,\n      \"start_ticks\": 2062299954,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2015948,\n      \"start_ticks\": 2062300029,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2015949,\n      \"start_ticks\": 2062300032,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016017,\n      \"start_ticks\": 2062300036,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016019,\n      \"start_ticks\": 2062300037,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016181,\n      \"start_ticks\": 2062300346,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016182,\n      \"start_ticks\": 2062300347,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016183,\n      \"start_ticks\": 2062300347,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016184,\n      \"start_ticks\": 2062300347,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016185,\n      \"start_ticks\": 2062300348,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016186,\n      \"start_ticks\": 2062300348,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016187,\n      \"start_ticks\": 2062300348,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016188,\n      \"start_ticks\": 2062300348,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016189,\n      \"start_ticks\": 2062300349,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016190,\n      \"start_ticks\": 2062300349,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016191,\n      \"start_ticks\": 2062300349,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016192,\n      \"start_ticks\": 2062300349,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016193,\n      \"start_ticks\": 2062300350,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016194,\n      \"start_ticks\": 2062300350,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016195,\n      \"start_ticks\": 2062300350,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016196,\n      \"start_ticks\": 2062300354,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016197,\n      \"start_ticks\": 2062300355,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016198,\n      \"start_ticks\": 2062300355,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016199,\n      \"start_ticks\": 2062300355,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016200,\n      \"start_ticks\": 2062300356,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016201,\n      \"start_ticks\": 2062300356,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016202,\n      \"start_ticks\": 2062300356,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016203,\n      \"start_ticks\": 2062300357,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016204,\n      \"start_ticks\": 2062300357,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016206,\n      \"start_ticks\": 2062300357,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016207,\n      \"start_ticks\": 2062300358,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016209,\n      \"start_ticks\": 2062300358,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016210,\n      \"start_ticks\": 2062300359,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016211,\n      \"start_ticks\": 2062300359,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016212,\n      \"start_ticks\": 2062300359,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016213,\n      \"start_ticks\": 2062300360,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2016214,\n      \"start_ticks\": 2062300360,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2018898,\n      \"start_ticks\": 2062300420,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2019040,\n      \"start_ticks\": 2062301230,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2019260,\n      \"start_ticks\": 2062301536,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2019330,\n      \"start_ticks\": 2062301619,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2019331,\n      \"start_ticks\": 2062301620,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2019332,\n      \"start_ticks\": 2062301620,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2019333,\n      \"start_ticks\": 2062301621,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2019334,\n      \"start_ticks\": 2062301621,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2019335,\n      \"start_ticks\": 2062301621,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2019336,\n      \"start_ticks\": 2062301622,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2019337,\n      \"start_ticks\": 2062301622,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2019870,\n      \"start_ticks\": 2062302076,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2019871,\n      \"start_ticks\": 2062302076,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2020294,\n      \"start_ticks\": 2062305456,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2020295,\n      \"start_ticks\": 2062305457,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2020296,\n      \"start_ticks\": 2062305458,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2020297,\n      \"start_ticks\": 2062305458,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2020298,\n      \"start_ticks\": 2062305459,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2020299,\n      \"start_ticks\": 2062305460,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2020300,\n      \"start_ticks\": 2062305461,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2020301,\n      \"start_ticks\": 2062305461,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2020787,\n      \"start_ticks\": 2062305775,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2020788,\n      \"start_ticks\": 2062305779,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021039,\n      \"start_ticks\": 2062306928,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021040,\n      \"start_ticks\": 2062306928,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021041,\n      \"start_ticks\": 2062306928,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021055,\n      \"start_ticks\": 2062307029,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021056,\n      \"start_ticks\": 2062307029,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021057,\n      \"start_ticks\": 2062307030,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021238,\n      \"start_ticks\": 2062308140,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021380,\n      \"start_ticks\": 2062309156,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021381,\n      \"start_ticks\": 2062309158,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021382,\n      \"start_ticks\": 2062309159,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021383,\n      \"start_ticks\": 2062309160,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021384,\n      \"start_ticks\": 2062309162,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021385,\n      \"start_ticks\": 2062309163,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021386,\n      \"start_ticks\": 2062309165,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021387,\n      \"start_ticks\": 2062309166,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021388,\n      \"start_ticks\": 2062309168,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021389,\n      \"start_ticks\": 2062309169,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021390,\n      \"start_ticks\": 2062309171,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021391,\n      \"start_ticks\": 2062309172,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021392,\n      \"start_ticks\": 2062309174,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021393,\n      \"start_ticks\": 2062309175,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021394,\n      \"start_ticks\": 2062309177,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2021395,\n      \"start_ticks\": 2062309178,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2024180,\n      \"start_ticks\": 2062311034,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2024188,\n      \"start_ticks\": 2062311036,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2025812,\n      \"start_ticks\": 2062311412,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2025814,\n      \"start_ticks\": 2062311412,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2025817,\n      \"start_ticks\": 2062311413,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2025819,\n      \"start_ticks\": 2062311414,\n      \"signal\": 15,\n      \"outcom",
+      "processes.json": "{\n  \"owner_pid\": 2015098,\n  \"owner_start_ticks\": 2062298565,\n  \"processes\": [\n    {\n      \"pid\": 2015103,\n      \"start_ticks\": 2062298594,\n      \"ppid\": 2015098,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2015151,\n      \"start_ticks\": 2062298998,\n      \"ppid\": 2015098,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2015203,\n      \"start_ticks\": 2062299345,\n      \"ppid\": 2015151,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2015253,\n      \"start_ticks\": 2062299713,\n      \"ppid\": 2015098,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2015413,\n      \"start_ticks\": 2062299851,\n      \"ppid\": 2015098,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2015415,\n      \"start_ticks\": 2062299884,\n      \"ppid\": 2015098,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2015478,\n      \"start_ticks\": 2062299954,\n      \"ppid\": 2015098,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2015479,\n      \"start_ticks\": 2062299954,\n      \"ppid\": 2015098,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2015480,\n      \"start_ticks\": 2062299954,\n      \"ppid\": 2015098,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2015481,\n      \"start_ticks\": 2062299954,\n      \"ppid\": 2015098,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2015482,\n      \"start_ticks\": 2062299954,\n      \"ppid\": 2015098,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2015483,\n      \"start_ticks\": 2062299954,\n      \"ppid\": 2015098,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2015484,\n      \"start_ticks\": 2062299954,\n      \"ppid\": 2015098,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2015485,\n      \"start_ticks\": 2062299954,\n      \"ppid\": 2015098,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2015486,\n      \"start_ticks\": 2062299954,\n      \"ppid\": 2015098,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2015487,\n      \"start_ticks\": 2062299954,\n      \"ppid\": 2015098,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2015948,\n      \"start_ticks\": 2062300029,\n      \"ppid\": 2015098,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2015949,\n      \"start_ticks\": 2062300032,\n      \"ppid\": 2015098,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016017,\n      \"start_ticks\": 2062300036,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016019,\n      \"start_ticks\": 2062300037,\n      \"ppid\": 2015098,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016136,\n      \"start_ticks\": 2062300104,\n      \"ppid\": 2016017,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016181,\n      \"start_ticks\": 2062300346,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016182,\n      \"start_ticks\": 2062300347,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016183,\n      \"start_ticks\": 2062300347,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016184,\n      \"start_ticks\": 2062300347,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016185,\n      \"start_ticks\": 2062300348,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016186,\n      \"start_ticks\": 2062300348,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016187,\n      \"start_ticks\": 2062300348,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016188,\n      \"start_ticks\": 2062300348,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016189,\n      \"start_ticks\": 2062300349,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016190,\n      \"start_ticks\": 2062300349,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016191,\n      \"start_ticks\": 2062300349,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016192,\n      \"start_ticks\": 2062300349,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016193,\n      \"start_ticks\": 2062300350,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016194,\n      \"start_ticks\": 2062300350,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016195,\n      \"start_ticks\": 2062300350,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016196,\n      \"start_ticks\": 2062300354,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016197,\n      \"start_ticks\": 2062300355,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016198,\n      \"start_ticks\": 2062300355,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016199,\n      \"start_ticks\": 2062300355,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016200,\n      \"start_ticks\": 2062300356,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016201,\n      \"start_ticks\": 2062300356,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016202,\n      \"start_ticks\": 2062300356,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016203,\n      \"start_ticks\": 2062300357,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016204,\n      \"start_ticks\": 2062300357,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016205,\n      \"start_ticks\": 2062300357,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016206,\n      \"start_ticks\": 2062300357,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016207,\n      \"start_ticks\": 2062300358,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016208,\n      \"start_ticks\": 2062300358,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016209,\n      \"start_ticks\": 2062300358,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016210,\n      \"start_ticks\": 2062300359,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016211,\n      \"start_ticks\": 2062300359,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016212,\n      \"start_ticks\": 2062300359,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016213,\n      \"start_ticks\": 2062300360,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016214,\n      \"start_ticks\": 2062300360,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016215,\n      \"start_ticks\": 2062300360,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016216,\n      \"start_ticks\": 2062300360,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016217,\n      \"start_ticks\": 2062300361,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016218,\n      \"start_ticks\": 2062300361,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2016219,\n      \"start_ticks\": 2062300361,\n      \"ppid\": 2015949,\n      \"session\": 2015103,\n      \"pgrp\": 2015103,\n      \"proof\": \"verified_descendant_or_subreaper"
+    },
+    "researcher": {
+      "status.json": "{\n  \"schema_version\": 1,\n  \"owner_pid\": 2014656,\n  \"owner_start_ticks\": 2062292043,\n  \"deadline\": null,\n  \"deadline_enforced\": false,\n  \"gpus\": [\n    \"GPU-704a22f6-0065-1169-012c-ad8becde82b7\",\n    \"GPU-ffc2ca94-dcb4-83f4-b80a-867d69515be0\"\n  ],\n  \"cuda_visible_devices\": \"0,3\",\n  \"ray_address\": \"local\",\n  \"result_status\": \"INCOMPLETE\",\n  \"ray_tmpdir\": \"/tmp/p5compact3072-research24r3/ray\",\n  \"reason\": \"abort_file\",\n  \"returncode\": 0,\n  \"gpu_release_verified\": true,\n  \"signals\": [\n    {\n      \"pid\": 2014661,\n      \"start_ticks\": 2062292075,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2014769,\n      \"start_ticks\": 2062293114,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2014770,\n      \"start_ticks\": 2062293114,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2014874,\n      \"start_ticks\": 2062293828,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    },\n    {\n      \"pid\": 2014875,\n      \"start_ticks\": 2062293828,\n      \"signal\": 15,\n      \"outcome\": \"sent\"\n    }\n  ],\n  \"cleanup_errors\": [],\n  \"child_pid\": 2014661,\n  \"remaining_owned\": [],\n  \"remaining_owned_gpu_processes\": [],\n  \"foreign_gpu_processes_not_touched\": [],\n  \"ended_at\": \"2026-10-24T08:31:19.255934+00:00\",\n  \"finished_before_deadline\": null\n}\n",
+      "processes.json": "{\n  \"owner_pid\": 2014656,\n  \"owner_start_ticks\": 2062292043,\n  \"processes\": [\n    {\n      \"pid\": 2014661,\n      \"start_ticks\": 2062292075,\n      \"ppid\": 2014656,\n      \"session\": 2014661,\n      \"pgrp\": 2014661,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2014769,\n      \"start_ticks\": 2062293114,\n      \"ppid\": 2014661,\n      \"session\": 2014661,\n      \"pgrp\": 2014661,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2014770,\n      \"start_ticks\": 2062293114,\n      \"ppid\": 2014661,\n      \"session\": 2014661,\n      \"pgrp\": 2014661,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2014874,\n      \"start_ticks\": 2062293828,\n      \"ppid\": 2014656,\n      \"session\": 2014661,\n      \"pgrp\": 2014661,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2014875,\n      \"start_ticks\": 2062293828,\n      \"ppid\": 2014656,\n      \"session\": 2014661,\n      \"pgrp\": 2014661,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2014989,\n      \"start_ticks\": 2062294905,\n      \"ppid\": 2014874,\n      \"session\": 2014661,\n      \"pgrp\": 2014661,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2014993,\n      \"start_ticks\": 2062294915,\n      \"ppid\": 2014989,\n      \"session\": 2014661,\n      \"pgrp\": 2014661,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    },\n    {\n      \"pid\": 2014996,\n      \"start_ticks\": 2062294922,\n      \"ppid\": 2014989,\n      \"session\": 2014661,\n      \"pgrp\": 2014661,\n      \"proof\": \"verified_descendant_or_subreaper_adoption\"\n    }\n  ]\n}\n"
+    }
+  },
+  "selective_started_after": false,
+  "frozen_manifest_mismatches": []
+}

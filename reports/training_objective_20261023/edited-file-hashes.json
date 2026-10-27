@@ -1,0 +1,18 @@
+[
+  {
+    "path": "<PROJECT_ROOT>/docs/training-objective-audit-20261023.md",
+    "sha256": "0dc37352453ae3f8630956bb0c7fc9a66ea927d5f8dd282bd2110e477e67e781"
+  },
+  {
+    "path": "<PROJECT_ROOT>/scripts/launch_train.py",
+    "sha256": "4b211569165736cc7da2b62344cd69b25e3e9e6fd5fb76a001123247fbc43989"
+  },
+  {
+    "path": "/Users/REDACTED/Documents/Trace 这篇论文的进一步整理 目标ACL/Privileged Guidance RL (1).md",
+    "sha256": "d535737fa398d4e71bde3e43ed80e2fd5b70fbd292a72081b9b1528eb33a0983"
+  },
+  {
+    "path": "/Users/REDACTED/Documents/Trace 这篇论文的进一步整理 目标ACL/acl_audit_2026-10-15/paper-audit.json",
+    "sha256": "18a19e343c00848fc11efb43c884a37c7bc524d6baa77963af8ff12092bea8f2"
+  }
+]

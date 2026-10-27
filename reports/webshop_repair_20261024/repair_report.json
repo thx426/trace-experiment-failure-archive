@@ -1,0 +1,179 @@
+{
+  "task": "Repair WebShop transport failures and restart formal compact All-Skill then Selective-Skill",
+  "remote_root": "/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3",
+  "sequence_pid": 2014347,
+  "webshop_pids": [
+    2014398,
+    2014399,
+    2014400,
+    2014401
+  ],
+  "previous_run": {
+    "root": "/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r2",
+    "optimizer_updates": 0,
+    "partial_initial_eval_rows": 202,
+    "failure": "environment timeout/repeated HTTP 409; 3 validation prompt groups failed twice"
+  },
+  "confirmed_defects": [
+    "All backend reset/step/release operations share one global RLock while client permits aggregate 512 in-flight HTTP operations and initial validation runs 256 prompt groups.",
+    "ThreadingHTTPServer on Python 3.10 uses listen backlog 5; reconstructed service did not override it.",
+    "Client retried all exceptions and HTTP errors using non-idempotent mutations; server rejects any step after done with HTTP 409. A committed purchase with a lost response thus cannot recover.",
+    "BrokenPipe while writing a successful response was caught as an environment failure, then a second response was attempted on the broken socket.",
+    "Reset retries created new UUID sessions; release was one best-effort POST with no status check or retry."
+  ],
+  "historical_log_scope": "entire old shared service lifetime; counts are NOT exclusive to R2",
+  "historical_http_counts": {
+    "200": 745913,
+    "409": 566,
+    "500": 19412
+  },
+  "historical_broken_pipe_mentions": 58265,
+  "uncertainty": "Old service has no per-request timestamps or queue/backend timings; exact first slow call and its duration cannot be reconstructed. Queue overload is the architecture-supported explanation, not a measured historical latency decomposition.",
+  "repairs": [
+    "Reset UUID stable across retries; result cache plus release tombstones prevents duplicate allocation.",
+    "Per-episode monotonic action sequence with cached results preserves exactly-once successful mutation, including terminal purchase response recovery.",
+    "Conflicting/out-of-order requests fail immediately; backend exception poisons episode to prevent unsafe replay after partial mutation.",
+    "Retry only transport errors and 429/502/503/504; permanent 4xx and backend 500 fail loudly.",
+    "Release uses shared gate, bounded retries, and status validation; server still has idle TTL cleanup.",
+    "Suppress secondary writes on disconnected sockets; timestamp logs; separate queue and backend timing counters.",
+    "4 dedicated CPU service shards on loopback ports 8321-8324, each preserving serialized backend semantics, backlog1024, BLAS threads1."
+  ],
+  "tests": {
+    "service_contracts": 17,
+    "client_fault_injection": 2,
+    "compact_contracts": 6,
+    "gpu_pilot": false,
+    "cpu_config_equivalence": true
+  },
+  "controls": {
+    "research_input_hard_limit": 3072,
+    "research_server_max_sequences": 16,
+    "student": "/root/trace-webshop-arm-ratio/models/Qwen2.5-3B-Instruct",
+    "reward": "unchanged upstream with existing option_fix=true; binary training reward unchanged",
+    "steps_per_arm": 100,
+    "resume": false,
+    "new_grpo_run": false
+  },
+  "comparability": "Infrastructure changes affect throughput and timing-sensitive sampling order. Do not attribute wall-time improvement solely to researcher concurrency16 or algorithmic Skill changes. Reward/data/goals/runtime provenance compared at launch; reference baseline is preserved.",
+  "source_sha256": {
+    "scripts/cloud/webshop_service.py": "f7f7ecfe16efb890201af73633f5152112ab37b644c7b07e904cf89ae9f0efcd",
+    "src/trace_opd/envs/webshop/adapter.py": "60472bee3f4bfb77eb4e1e78cd768c6a520ae3819f758b64cee8f39ac3e8a457",
+    "tests/test_cloud_webshop_service.py": "ebfe18817bf25b3d12a352f6f4a9c537a88c55af1c8f4b0743573532be268ce4",
+    "tests/test_webshop_idempotent_transport.py": "a85217e0694cb4a8dabcf207cfc351b3c52cb1219999994660728210030945b2"
+  },
+  "verified_snapshot": {
+    "checked_at": "2026-10-24T08:41:52.561543+08:00",
+    "sequence": {
+      "phase": "running",
+      "pid": 2014347,
+      "time": 1792801923.9596894,
+      "input_limit": 3072,
+      "server_concurrency": 16,
+      "order": [
+        "all_skill",
+        "selective_skill"
+      ],
+      "job": "all_skill",
+      "run": "/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/code/runs/pass5_compact3072_all_skill_s42",
+      "owner_pid": 2015098,
+      "owner_state": "/tmp/p5compact3072-all24r3",
+      "researcher_owner_pid": 2014656,
+      "next_job": "selective_skill"
+    },
+    "webshop": {
+      "8321": {
+        "active": 233,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 2968,
+          "queue_seconds": 1053.1366909258068,
+          "backend_seconds": 100.80460366979241,
+          "max_queue_seconds": 3.555290099233389,
+          "max_backend_seconds": 0.7339263670146465
+        },
+        "http_statuses": {
+          "200": 2968
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8322": {
+        "active": 214,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 2766,
+          "queue_seconds": 692.9817081168294,
+          "backend_seconds": 89.44640046358109,
+          "max_queue_seconds": 2.1518811732530594,
+          "max_backend_seconds": 0.5971399322152138
+        },
+        "http_statuses": {
+          "200": 2766
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8323": {
+        "active": 171,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 2277,
+          "queue_seconds": 294.5570871755481,
+          "backend_seconds": 76.29587725549936,
+          "max_queue_seconds": 1.1953264325857162,
+          "max_backend_seconds": 0.45766666159033775
+        },
+        "http_statuses": {
+          "200": 2277
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8324": {
+        "active": 302,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 3595,
+          "queue_seconds": 2089.6405026726425,
+          "backend_seconds": 120.90739705786109,
+          "max_queue_seconds": 4.360935088247061,
+          "max_backend_seconds": 0.6597558408975601
+        },
+        "http_statuses": {
+          "200": 3595
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      }
+    },
+    "rollout_rows": {
+      "step_00000_val": 360
+    },
+    "error_mentions": {
+      "webshop service unreachable": 0,
+      "webshop HTTP 409": 0,
+      "student episode infra error": 0,
+      "OutOfMemoryError": 0,
+      "ReplayBuffer:": 0
+    },
+    "training_tail": [
+      "\u001b[36m(SimpleStorageUnit pid=2019337)\u001b[0m Time range: last 5.22 minutes; ",
+      "\u001b[36m(TaskRunnerV1 pid=2018898)\u001b[0m INFO:2026-10-24 08:39:09,323:pending: 0, running: 247, finished: 9, failure: 0",
+      "\u001b[36m(TaskRunnerV1 pid=2018898)\u001b[0m INFO:2026-10-24 08:40:09,490:pending: 0, running: 246, finished: 10, failure: 0",
+      "\u001b[36m(TaskRunnerV1 pid=2018898)\u001b[0m INFO:2026-10-24 08:41:09,654:pending: 0, running: 246, finished: 10, failure: 0"
+    ],
+    "completed_steps": [],
+    "timing_rows": [],
+    "researcher_inputs": {
+      "calls": 0,
+      "mean": null,
+      "max": null,
+      "above_3072": 0
+    }
+  },
+  "webshop_semantic_equivalence_verified": true
+}

@@ -1,0 +1,35 @@
+{
+  "checked_at": "2026-10-25T08:26:04.550020+08:00",
+  "baseline_path": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/code/runs/pass5_grpo_s42",
+  "step": 20,
+  "bare": true,
+  "n": 5,
+  "temperature": 0.6,
+  "audit_passed": true,
+  "counts": {
+    "tasks": 256,
+    "attempts": 1280,
+    "successes": 265,
+    "solved": 130
+  },
+  "matches_baseline_guard": true,
+  "current_review": {
+    "step": 20,
+    "time": 1792886804.296033,
+    "new": {
+      "tasks": 256,
+      "attempts": 1280,
+      "successes": 296,
+      "solved": 147
+    },
+    "grpo": {
+      "tasks": 256,
+      "attempts": 1280,
+      "successes": 265,
+      "solved": 130
+    },
+    "below_baseline": false,
+    "criterion": "stop if either bare pass@1 estimate or pass@5 is below same-step GRPO",
+    "audit": "complete single-launch 256 x 5 bare evaluation; no infrastructure error"
+  }
+}

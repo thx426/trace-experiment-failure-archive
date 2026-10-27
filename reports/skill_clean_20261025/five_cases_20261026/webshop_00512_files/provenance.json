@@ -1,0 +1,8 @@
+{
+  "remote_source": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/research/webshop_00512--ae6ae7a349/20261025_065726_v15/doc.md",
+  "doc_sha256": "301b071b44ca127e7e327c0e4a4112d29458582b38aefc6ebb4f7dc3ccfff235",
+  "training_step": 16,
+  "student_policy_version": 15,
+  "original_source": "session.jsonl:9 finalize.experience_doc",
+  "copy_only": true
+}

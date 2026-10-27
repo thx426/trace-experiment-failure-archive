@@ -1,0 +1,259 @@
+{
+  "checked_at": "2026-10-25T04:55:39.212546+08:00",
+  "traceback_context": "(APIServer pid=2536414) INFO:     127.0.0.1:57628 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) ERROR 10-25 04:46:37 [qwen3coder_tool_parser.py:344] Error in extracting tool call from response.\n(APIServer pid=2536414) ERROR 10-25 04:46:37 [qwen3coder_tool_parser.py:344] Traceback (most recent call last):\n(APIServer pid=2536414) ERROR 10-25 04:46:37 [qwen3coder_tool_parser.py:344]   File \"/root/trace-webshop-arm-ratio/.venvs/researcher/lib/python3.12/site-packages/vllm/tool_parsers/qwen3coder_tool_parser.py\", line 317, in extract_tool_calls\n(APIServer pid=2536414) ERROR 10-25 04:46:37 [qwen3coder_tool_parser.py:344]     self._parse_xml_function_call(function_call_str, request.tools)\n(APIServer pid=2536414) ERROR 10-25 04:46:37 [qwen3coder_tool_parser.py:344]   File \"/root/trace-webshop-arm-ratio/.venvs/researcher/lib/python3.12/site-packages/vllm/tool_parsers/qwen3coder_tool_parser.py\", line 259, in _parse_xml_function_call\n(APIServer pid=2536414) ERROR 10-25 04:46:37 [qwen3coder_tool_parser.py:344]     idx = match_text.index(\">\")\n(APIServer pid=2536414) ERROR 10-25 04:46:37 [qwen3coder_tool_parser.py:344]           ^^^^^^^^^^^^^^^^^^^^^\n(APIServer pid=2536414) ERROR 10-25 04:46:37 [qwen3coder_tool_parser.py:344] ValueError: substring not found\n(APIServer pid=2536414) INFO:     127.0.0.1:43998 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:57628 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:43998 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:43998 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:57630 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:57630 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:57630 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:57644 - \"POST /tokenize HTTP/1.1\" 200 OK",
+  "parser_exception_handling": "        return function_calls\n\n    def extract_tool_calls(\n        self,\n        model_output: str,\n        request: ChatCompletionRequest,\n    ) -> ExtractedToolCallInformation:\n        # Quick check to avoid unnecessary processing\n        if self.tool_call_prefix not in model_output:\n            return ExtractedToolCallInformation(\n                tools_called=False, tool_calls=[], content=model_output\n            )\n\n        try:\n            function_calls = self._get_function_calls(model_output)\n            if len(function_calls) == 0:\n                return ExtractedToolCallInformation(\n                    tools_called=False, tool_calls=[], content=model_output\n                )\n\n            tool_calls = [\n                self._parse_xml_function_call(function_call_str, request.tools)\n                for function_call_str in function_calls\n            ]\n            # Populate prev_tool_call_arr for serving layer to set finish_reason\n            self.prev_tool_call_arr.clear()  # Clear previous calls\n            for tool_call in tool_calls:\n                if tool_call:\n                    self.prev_tool_call_arr.append(\n                        {\n                            \"name\": tool_call.function.name,\n                            \"arguments\": tool_call.function.arguments,\n                        }\n                    )\n\n            # Extract content before tool calls\n            content_index = model_output.find(self.tool_call_start_token)\n            idx = model_output.find(self.tool_call_prefix)\n            content_index = content_index if content_index >= 0 else idx\n            content = model_output[:content_index]  # .rstrip()\n            valid_tool_calls = [tc for tc in tool_calls if tc is not None]\n            return ExtractedToolCallInformation(\n                tools_called=(len(valid_tool_calls) > 0),\n                tool_calls=valid_tool_calls,\n                content=content if content else None,\n            )\n\n        except Exception:\n            logger.exception(\"Error in extracting tool call from response.\")\n            return ExtractedToolCallInformation(\n                tools_called=False, tool_calls=[], content=model_output\n            )\n\n    def extract_tool_calls_streaming(\n        self,\n        previous_text: str,\n        current_text: str,\n        delta_text: str,\n        previous_token_ids: Sequence[int],\n        current_token_ids: Sequence[int],",
+  "followup_snapshot": {
+    "checked_at": "2026-10-25T04:55:39.325617+08:00",
+    "sequence": {
+      "phase": "running",
+      "pid": 2536102,
+      "time": 1792870442.7809832,
+      "input_limit": 3072,
+      "server_concurrency": 16,
+      "order": [
+        "clean_skill"
+      ],
+      "job": "clean_skill",
+      "run": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42",
+      "owner_pid": 2536911,
+      "owner_state": "/tmp/p5compact3072-clean25v2",
+      "researcher_owner_pid": 2536409,
+      "next_job": null
+    },
+    "webshop": {
+      "8321": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 8732,
+          "queue_seconds": 935.9984365850687,
+          "backend_seconds": 268.1734904721379,
+          "max_queue_seconds": 2.5816646479070187,
+          "max_backend_seconds": 0.5022425092756748
+        },
+        "http_statuses": {
+          "200": 8732
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8322": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 8495,
+          "queue_seconds": 761.648377109319,
+          "backend_seconds": 262.51145355403423,
+          "max_queue_seconds": 1.8556537441909313,
+          "max_backend_seconds": 0.49447331577539444
+        },
+        "http_statuses": {
+          "200": 8495
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8323": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 7312,
+          "queue_seconds": 382.36326187849045,
+          "backend_seconds": 230.29767122864723,
+          "max_queue_seconds": 1.9743936136364937,
+          "max_backend_seconds": 0.40762273594737053
+        },
+        "http_statuses": {
+          "200": 7312
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8324": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 8421,
+          "queue_seconds": 2042.237179711461,
+          "backend_seconds": 253.52898602560163,
+          "max_queue_seconds": 4.1333818435668945,
+          "max_backend_seconds": 0.5654539912939072
+        },
+        "http_statuses": {
+          "200": 8421
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      }
+    },
+    "rollout_rows": {
+      "step_00000_val": 1280,
+      "step_00001": 128,
+      "step_00002": 128,
+      "step_00003": 128,
+      "step_00004": 128,
+      "step_00005": 128
+    },
+    "error_mentions": {
+      "webshop service unreachable": 0,
+      "webshop HTTP 409": 0,
+      "student episode infra error": 0,
+      "OutOfMemoryError": 0,
+      "ReplayBuffer:": 0
+    },
+    "training_tail": [
+      "\u001b[36m(WorkerDict pid=2541845)\u001b[0m WARNING:2026-10-25 04:55:04,997:max_token_len=8192 below longest sequence 13069 — 52 oversized sample(s) ride in their own micro-batch; packing budget stays at 8192 so the rest of the batch is not inflated",
+      "\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m 2026-10-25 04:54:58,216 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_be406cb7: [Performance] Total success requests: 7, Total req/min: 1.34, Total avg process time: 0.0036s; \u001b[32m [repeated 5x across cluster]\u001b[0m",
+      "\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m Time range: last 5.23 minutes; \u001b[32m [repeated 5x across cluster]\u001b[0m",
+      "\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m Per-operation statistics: PUT_DATA: req_count=4, req/min=0.76, avg_time=0.002868s, max_time=0.004370s, min_time=0.002289s; CLEAR_DATA: req_count=1, req/min=0.19, avg_time=0.004842s, max_time=0.004842s, min_time=0.004842s; GET_DATA: req_count=2, req/min=0.38, avg_time=0.004521s, max_time=0.005053s, min_time=0.003990s\u001b[32m [repeated 4x across cluster]\u001b[0m"
+    ],
+    "completed_steps": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "timing_rows": [
+      {
+        "timing_s/feed": 0.18632498010993004,
+        "timing_s/gen": 375.49421141296625,
+        "timing_s/old_log_prob": 90.19691566005349,
+        "timing_s/adv": 0.13816054165363312,
+        "timing_s/update_actor": 259.4332137145102,
+        "timing_s/update_weights": 4.991514749825001,
+        "timing_s/step": 730.4946755208075
+      },
+      {
+        "timing_s/feed": 0.024835582822561264,
+        "timing_s/gen": 421.5668651945889,
+        "timing_s/old_log_prob": 69.68175910785794,
+        "timing_s/adv": 0.13754279538989067,
+        "timing_s/update_actor": 220.8480596728623,
+        "timing_s/update_weights": 5.978600420057774,
+        "timing_s/step": 718.2829031683505
+      },
+      {
+        "timing_s/feed": 0.023895975202322006,
+        "timing_s/gen": 403.5385713279247,
+        "timing_s/old_log_prob": 71.33842008933425,
+        "timing_s/adv": 0.13236573338508606,
+        "timing_s/update_actor": 223.97361071407795,
+        "timing_s/update_weights": 5.7027622647583485,
+        "timing_s/step": 704.7537227571011
+      },
+      {
+        "timing_s/feed": 0.026720724999904633,
+        "timing_s/gen": 371.4823270961642,
+        "timing_s/old_log_prob": 75.69641346484423,
+        "timing_s/adv": 0.1123897098004818,
+        "timing_s/update_actor": 239.05090810358524,
+        "timing_s/update_weights": 5.772786270827055,
+        "timing_s/step": 692.1866372190416
+      }
+    ],
+    "researcher_inputs": {
+      "calls": 449,
+      "mean": 1982.708240534521,
+      "max": 2498,
+      "above_3072": 0
+    },
+    "experiment_root": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2",
+    "gpu": "index, utilization.gpu [%], memory.used [MiB]\n0, 0 %, 39443 MiB\n1, 96 %, 31399 MiB\n2, 100 %, 31399 MiB\n3, 0 %, 39443 MiB\n",
+    "gpu_processes": "pid, used_gpu_memory [MiB]\n1790979, 39436 MiB\n1798620, 29988 MiB\n1801825, 1354 MiB\n1798621, 29988 MiB\n1801747, 1354 MiB\n1790980, 39436 MiB\n",
+    "process_identity": {
+      "sequence": {
+        "pid": 2536102,
+        "alive": true,
+        "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python -u /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/run_sequence.py "
+      },
+      "student_owner": {
+        "pid": 2536911,
+        "alive": true,
+        "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/scripts/cloud/run_owned_job.py --state-dir /tmp/p5compact3072-clean25v2 --gpus 1,2 --no-deadline --abort-file /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/ABORT --cwd /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code -- /root/trace-webshop-arm-ratio/.venvs/train/bin/python -u scripts/launch_train.py --config /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/configs/clean_skill.yaml "
+      },
+      "researcher_owner": {
+        "pid": 2536409,
+        "alive": true,
+        "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/scripts/cloud/run_owned_job.py --state-dir /tmp/p5compact3072-research25clean2 --gpus 0,3 --no-deadline --abort-file /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/ABORT --cwd /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code -- /root/trace-webshop-arm-ratio/.venvs/researcher/bin/vllm serve /root/trace-webshop-arm-ratio/models/Qwen3.6-35B-A3B --served-model-name qwen3.6-35b-a3b --host 127.0.0.1 --port 18881 --api-key loopback-only --tensor-parallel-size 2 --dtype bfloat16 --max-model-len 7168 --max-num-seqs 16 --max-num-batched-tokens 4096 --gpu-memory-utilization 0.95 --enforce-eager --language-model-only --enable-auto-tool-choice --tool-call-parser qwen3_coder --reasoning-parser qwen3 "
+      }
+    },
+    "skill_compiler": {
+      "sessions": 80,
+      "missing_docs": 0,
+      "over_500_words": 0,
+      "origins": {
+        "researcher_finalized": 79,
+        "task_checklist_fallback": 1
+      },
+      "max_words": 326,
+      "research_errors": 0,
+      "mean_turns": 5.6125
+    },
+    "training_diagnostics": {
+      "complete_groups": 80,
+      "score_heterogeneous_complete_groups": 69,
+      "advantage_proxy_only": true,
+      "guided_assigned_rows": 320,
+      "positive_steering_rows": 256
+    },
+    "baseline_reviews": null,
+    "baseline_stop": null,
+    "cpu_validation": {
+      "passed": true,
+      "tests": 21,
+      "inference_calls": 0,
+      "new_rollouts": 0,
+      "configuration_equal_except_name": true,
+      "src_diffs": [
+        "trace_opd/research/clean_skill.py"
+      ],
+      "public_spec_cases": 512,
+      "independent_spec_issues": 0,
+      "offline_replayed_groups": 576,
+      "max_doc_words": 326
+    },
+    "last_progress_mtime": 1792875218.1033106,
+    "preflight_note": "researcher_inputs contains role=researcher only; startup tokenize and researcher-preflight excluded. Zero calls means no actual formal-input samples.",
+    "independent_spec_audit": {
+      "checked": 80,
+      "issues": []
+    },
+    "steering_by_step": {
+      "1": {
+        "guided_rows": 64,
+        "warmup_rows": 64,
+        "positive_steering_rows": 0,
+        "steer_count_total": 0
+      },
+      "2": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 20389
+      },
+      "3": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 20887
+      },
+      "4": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 20981
+      },
+      "5": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 25416
+      }
+    }
+  },
+  "researcher_tail": "(APIServer pid=2536414) INFO 10-25 04:52:11 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 25.0 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 3.3%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO 10-25 04:52:21 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 25.0 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 3.3%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO 10-25 04:52:31 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 25.0 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 3.3%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO 10-25 04:52:41 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 25.0 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 3.3%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO 10-25 04:52:51 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 25.0 tokens/s, Running: 2 reqs, Waiting: 0 reqs, GPU KV cache usage: 3.3%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:40540 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 04:53:01 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 18.0 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.0%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO 10-25 04:53:11 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 12.9 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.2%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO 10-25 04:53:21 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 12.9 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 2.2%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:56028 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 04:53:31 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.8 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO 10-25 04:53:41 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%"
+}

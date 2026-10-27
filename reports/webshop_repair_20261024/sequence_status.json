@@ -1,0 +1,17 @@
+{
+  "phase": "running",
+  "pid": 2014347,
+  "time": 1792801923.9596894,
+  "input_limit": 3072,
+  "server_concurrency": 16,
+  "order": [
+    "all_skill",
+    "selective_skill"
+  ],
+  "job": "all_skill",
+  "run": "/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/code/runs/pass5_compact3072_all_skill_s42",
+  "owner_pid": 2015098,
+  "owner_state": "/tmp/p5compact3072-all24r3",
+  "researcher_owner_pid": 2014656,
+  "next_job": "selective_skill"
+}

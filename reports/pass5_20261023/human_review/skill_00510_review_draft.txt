@@ -1,0 +1,18 @@
+REVIEW DRAFT — task webshop_00510; not applied to training.
+Evidence: a recorded no-Skill baseline episode achieved score 1.0 using B07JVVDJ6L with youth, heather grey, and small. Do not infer that this benchmark goal is impossible from the product title containing "T-Shirt".
+
+Action rules:
+1. Execute search[...] only when the observation says the search bar is available. A successful search[...] already returns results; do not add click[search].
+2. On a results page, if b07jvvdj6l is in clickables, use click[b07jvvdj6l].
+3. On that product page, verify price < $30 and the exact options youth, heather grey, small are available. Select each missing option once: click[youth], click[heather grey], click[small]. Track successful selections in action history for the current product; unchanged page text does not mean the click failed.
+4. Execute click[buy now] only after all three options have been selected. If an option is absent or a click is invalid, inspect the current observation instead of purchasing.
+5. Copy exact labels from clickables, including spaces. The back label is "< prev", not "<prev". Do not re-search from a product/results page; first use click[back to search] if a new search is necessary.
+6. Never repeat an invalid action unchanged. If a valid action repeats without progress, inspect state and choose an unfulfilled requirement. Do not globally ban pagination: valid click[next >] can change result pages.
+
+Historical successful actions:
+search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit heather grey youth small price <30]
+click[b07jvvdj6l]
+click[youth]
+click[heather grey]
+click[small]
+click[buy now]

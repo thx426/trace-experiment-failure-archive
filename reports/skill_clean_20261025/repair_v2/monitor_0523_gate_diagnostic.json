@@ -1,0 +1,130 @@
+{
+  "checked_at": "2026-10-25T05:25:50.205286+08:00",
+  "steering_config": {
+    "enabled": true,
+    "doc_source": "researcher",
+    "doc_table": "",
+    "eta_max": 0.5,
+    "c": 2.5,
+    "b_max": "Infinity",
+    "topk": 64,
+    "obs_topk": 256,
+    "theta_d": 0,
+    "gate_mode": "entropy",
+    "gate_adaptive": true,
+    "gate_target_rate": 0.1,
+    "gate_ema_beta": 0.1,
+    "epsilon": 0.05,
+    "gate_rate_bounds": [
+      0.05,
+      0.25
+    ],
+    "r_max": 0,
+    "w_beh_mode": "off",
+    "adv_mode": "legacy_shared",
+    "steered_adv_weight": 1,
+    "steered_adv_decay_steps": 0,
+    "steered_adv_decay_mode": "cosine_steps",
+    "steered_adv_cap": 0,
+    "entropy_target_rate": 0.05,
+    "entropy_theta_init": 0,
+    "entropy_theta_ratchet": true,
+    "entropy_floor": 0,
+    "intensity_w_min": 0.05,
+    "steered_fraction": 0.5
+  },
+  "warning_lines": [
+    "\u001b[36m(AgentLoopWorkerTQ pid=2543412)\u001b[0m WARNING:2026-10-25 04:21:19,875:gate tracker step 3: steering open-rate 0.516 above the pre-registered ceiling 0.25 (theta was lagging the distribution) — dosage overshoot, inspect before trusting this step's steered rows",
+    "\u001b[36m(AgentLoopWorkerTQ pid=2543428)\u001b[0m WARNING:2026-10-25 04:21:19,882:gate tracker step 3: steering open-rate 0.538 above the pre-registered ceiling 0.25 (theta was lagging the distribution) — dosage overshoot, inspect before trusting this step's steered rows\u001b[32m [repeated 15x across cluster]\u001b[0m",
+    "\u001b[36m(AgentLoopWorkerTQ pid=2543412)\u001b[0m WARNING:2026-10-25 04:33:07,387:gate tracker step 4: steering open-rate 0.377 above the pre-registered ceiling 0.25 (theta was lagging the distribution) — dosage overshoot, inspect before trusting this step's steered rows",
+    "\u001b[36m(AgentLoopWorkerTQ pid=2543428)\u001b[0m WARNING:2026-10-25 04:33:07,394:gate tracker step 4: steering open-rate 0.529 above the pre-registered ceiling 0.25 (theta was lagging the distribution) — dosage overshoot, inspect before trusting this step's steered rows\u001b[32m [repeated 15x across cluster]\u001b[0m",
+    "\u001b[36m(AgentLoopWorkerTQ pid=2543412)\u001b[0m WARNING:2026-10-25 04:44:41,851:gate tracker step 5: steering open-rate 0.494 above the pre-registered ceiling 0.25 (theta was lagging the distribution) — dosage overshoot, inspect before trusting this step's steered rows",
+    "\u001b[36m(AgentLoopWorkerTQ pid=2543428)\u001b[0m WARNING:2026-10-25 04:44:41,849:gate tracker step 5: steering open-rate 0.491 above the pre-registered ceiling 0.25 (theta was lagging the distribution) — dosage overshoot, inspect before trusting this step's steered rows\u001b[32m [repeated 15x across cluster]\u001b[0m",
+    "\u001b[36m(AgentLoopWorkerTQ pid=2543412)\u001b[0m WARNING:2026-10-25 04:59:15,904:gate tracker step 6: steering open-rate 0.441 above the pre-registered ceiling 0.25 (theta was lagging the distribution) — dosage overshoot, inspect before trusting this step's steered rows",
+    "\u001b[36m(AgentLoopWorkerTQ pid=2543428)\u001b[0m WARNING:2026-10-25 04:59:15,900:gate tracker step 6: steering open-rate 0.522 above the pre-registered ceiling 0.25 (theta was lagging the distribution) — dosage overshoot, inspect before trusting this step's steered rows\u001b[32m [repeated 15x across cluster]\u001b[0m",
+    "\u001b[36m(AgentLoopWorkerTQ pid=2543412)\u001b[0m WARNING:2026-10-25 05:10:05,035:gate tracker step 7: steering open-rate 0.447 above the pre-registered ceiling 0.25 (theta was lagging the distribution) — dosage overshoot, inspect before trusting this step's steered rows",
+    "\u001b[36m(AgentLoopWorkerTQ pid=2543428)\u001b[0m WARNING:2026-10-25 05:10:05,037:gate tracker step 7: steering open-rate 0.510 above the pre-registered ceiling 0.25 (theta was lagging the distribution) — dosage overshoot, inspect before trusting this step's steered rows\u001b[32m [repeated 15x across cluster]\u001b[0m",
+    "\u001b[36m(AgentLoopWorkerTQ pid=2543412)\u001b[0m WARNING:2026-10-25 05:21:26,041:gate tracker step 8: steering open-rate 0.560 above the pre-registered ceiling 0.25 (theta was lagging the distribution) — dosage overshoot, inspect before trusting this step's steered rows",
+    "\u001b[36m(AgentLoopWorkerTQ pid=2543419)\u001b[0m WARNING:2026-10-25 05:21:26,054:gate tracker step 8: steering open-rate 0.513 above the pre-registered ceiling 0.25 (theta was lagging the distribution) — dosage overshoot, inspect before trusting this step's steered rows\u001b[32m [repeated 15x across cluster]\u001b[0m"
+  ],
+  "sources": {
+    "steering/gate.py:120-143": "      d_var      G-D 软化:w = min(1, D/θ_D);\n      soft_or    G-SOR:w = 1 − (1−w_E)(1−w_D)(两盲区互补)。\n\n    软强度档(entropy/d_var/soft_or)的 ε 探针是**单向置零**(base_w>0 的\n    位置以 ε 概率 w→0;连续强度下「翻开」无定义),propensity = 1−ε\n    (base_w>0)/ 0(base_w=0)。硬门档保留 v3.0 双向翻转语义。\n    阈值(θ_D / H_q)一条轨迹内冻结(因果性;自适应经 tracker 跨 step 慢更)。\n\n    ⚠ 两个开门率口径勿混(2026-08-09 CD-006 曾据此误判\"熵门未标定\"):\n    ``entropy_target_rate``(默认 0.05)标定的是 **w=1 满强度位置**的占比\n    (H_q 追踪 H 分布的对应分位);而 base_open 的条件是 w0 ≥ w_min,即\n    H ≥ w_min·H_q —— **非零干预率**是另一个(远松的)口径,观测 35–46%\n    并非失标。段级 bypass 依赖的是后者(整段全部 w0 < w_min 才跳)。\n    \"\"\"\n\n    #: 跨 turn 可变状态注册表(wire 往返;见 SteeringGate 同名注释)\n    _WIRE_MUTABLE = (\"_decisions\", \"_opens\")\n\n    NEEDS_TEACHER = {\"adaptive\": True, \"always_on\": False, \"entropy\": False,\n                     \"d_var\": True, \"soft_or\": True}\n\n    def __init__(\n        self,\n        *,",
+    "steering/gate.py:365-420": "                self._last_step = int(global_step)\n                self._last_update_step = int(global_step)\n                return\n            if int(global_step) == self._last_step:\n                return\n            self._last_step = int(global_step)\n            # step 前进:累积够 min_obs 才更新并清空;不够则保留继续攒\n            # (多 worker 分片下单 step 观测不足,逐 step 清空会永久冻结)。\n            if self._acc_count < self.min_obs:\n                return\n            target = self._hist_quantile(1.0 - self.target_rate)\n            # 率告警:旧 θ 生效期的非零干预率估计(本步分布上 P(H≥w_min·θ);\n            # warmup 哨兵期恒 0,天然不触上界,下界告警同样抑制——零干预\n            # 是 warmup 的设计语义,不是失控)。\n            rate_at_old = self._tail_mass(self.alarm_w_min * self.theta)\n            if self.update_mode == \"direct\" or self._warmup:\n                # 直标(MENTOR 每步 set 同款):EMA 从错误起点(占位值/\n                # warmup 哨兵)出发要几十步才收敛,直标一步落位。\n                new_theta = target\n            else:\n                k = self._last_step - (self._last_update_step or self._last_step)\n                beta_eff = 1.0 - (1.0 - self.ema_beta) ** max(k, 1)\n                new_theta = (1.0 - beta_eff) * self.theta + beta_eff * target\n            if self.ratchet:\n                if self._ratchet_floor is None:\n                    self._ratchet_floor = new_theta\n                new_theta = max(new_theta, self._ratchet_floor)\n            self.theta = max(new_theta, self.floor)\n            alarm: str | None = None\n            if self.alarm_bounds is not None and not self._warmup:\n                lo, hi = self.alarm_bounds\n                if rate_at_old > hi:\n                    alarm = (\n                        f\"steering open-rate {rate_at_old:.3f} above the \"\n                        f\"pre-registered ceiling {hi} (theta was lagging the \"\n                        \"distribution) — dosage overshoot, inspect before \"\n                        \"trusting this step's steered rows\"\n                    )\n                elif rate_at_old < lo:\n                    alarm = (\n                        f\"steering open-rate {rate_at_old:.3f} below the \"\n                        f\"pre-registered floor {lo} — intervention starved\"\n                    )\n            self._warmup = False\n            self.last_info = {\n                \"step\": self._last_step,\n                \"theta\": self.theta,\n                \"quantile_target\": target,\n                \"open_rate_at_old_theta\": rate_at_old,\n                \"alarm\": alarm,\n            }\n            if alarm:\n                logger.warning(\"gate tracker step %d: %s\", self._last_step, alarm)\n            self._acc = [0] * self.bins\n            self._acc_count = 0\n            self._last_update_step = self._last_step",
+    "train/agent_loop.py:240-280": "                        d_hist_max=config.steering.c * config.steering.c,\n                        bins=D_HIST_BINS,\n                    )\n                    logger.info(\n                        \"gate adaptive tracking on: q=%.2f beta=%.2f theta_init=%.4f\",\n                        config.steering.gate_target_rate,\n                        config.steering.gate_ema_beta,\n                        config.steering.theta_d,\n                    )\n                if config.steering.gate_mode in (\"entropy\", \"soft_or\"):\n                    # v3.3 M4:H_q 率控自适应(同一 tracker 基建换信号源)。\n                    # 2026-08-11 剂量通用化:默认 direct 分位直标 + 自标定\n                    # warmup(init=0)+ ratchet 坍缩防线 + 预注册率带告警\n                    # (此前 rate_bounds 只接 adaptive 硬门,熵门不在环上)。\n                    ent_tracker = GateThresholdTracker(\n                        theta_init=config.steering.entropy_theta_init,\n                        target_rate=config.steering.entropy_target_rate,\n                        ema_beta=config.steering.gate_ema_beta,\n                        d_hist_max=ENT_HIST_MAX,\n                        bins=ENT_HIST_BINS,\n                        floor=config.steering.entropy_floor,\n                        update_mode=config.steering.entropy_theta_update,\n                        ratchet=(\n                            config.steering.entropy_theta_ratchet\n                            and config.steering.entropy_theta_update == \"direct\"\n                        ),\n                        alarm_bounds=tuple(config.steering.gate_rate_bounds),\n                        alarm_w_min=config.steering.intensity_w_min,\n                    )\n                    logger.info(\n                        \"entropy gate tracking on: rate=%.2f init=%s update=%s \"\n                        \"ratchet=%s floor=%.3f bounds=%s\",\n                        config.steering.entropy_target_rate,\n                        (\"auto-warmup\" if config.steering.entropy_theta_init <= 0\n                         else f\"{config.steering.entropy_theta_init:.3f}\"),\n                        config.steering.entropy_theta_update,\n                        config.steering.entropy_theta_ratchet,\n                        config.steering.entropy_floor,\n                        tuple(config.steering.gate_rate_bounds),\n                    )\n        delta = TemplateDelta(tokenizer)",
+    "steering/ledger.py:210-224": "            \"steer_intensity_mean\": (\n                sum(r.intensity for r in self.records) / len(self.records)\n                if self.records else 0.0\n            ),\n            \"steer_entropy_mean\": (\n                self.ent_sum / self.ent_count if self.ent_count else 0.0\n            ),\n            # 轨迹级实测门率(swanlab 单曲线;分子分母另有计数器可复核)\n            \"steer_gate_open_rate\": (\n                self.n_base_open / self.n_candidates if self.n_candidates else 0.0\n            ),\n        }"
+  },
+  "guided_gate_by_step": {
+    "1": {
+      "rows": 64,
+      "candidates": 0,
+      "base_open": 0,
+      "base_open_rate": null,
+      "entropy_observations": 48835,
+      "full_intensity_histogram_proxy": null,
+      "note": "candidate open-rate and entropy histogram full-intensity mass have different denominators; latter is histogram proxy, not accepted intervention count"
+    },
+    "2": {
+      "rows": 64,
+      "candidates": 45206,
+      "base_open": 21432,
+      "base_open_rate": 0.4740963588904128,
+      "entropy_observations": 45329,
+      "full_intensity_histogram_proxy": 0.05026380672942481,
+      "note": "candidate open-rate and entropy histogram full-intensity mass have different denominators; latter is histogram proxy, not accepted intervention count"
+    },
+    "3": {
+      "rows": 64,
+      "candidates": 44957,
+      "base_open": 21953,
+      "base_open_rate": 0.4883110527837712,
+      "entropy_observations": 45171,
+      "full_intensity_histogram_proxy": 0.04452490876180858,
+      "note": "candidate open-rate and entropy histogram full-intensity mass have different denominators; latter is histogram proxy, not accepted intervention count"
+    },
+    "4": {
+      "rows": 64,
+      "candidates": 46659,
+      "base_open": 22113,
+      "base_open_rate": 0.4739278595769305,
+      "entropy_observations": 46774,
+      "full_intensity_histogram_proxy": 0.04036051265762225,
+      "note": "candidate open-rate and entropy histogram full-intensity mass have different denominators; latter is histogram proxy, not accepted intervention count"
+    },
+    "5": {
+      "rows": 64,
+      "candidates": 52918,
+      "base_open": 26758,
+      "base_open_rate": 0.50565025133225,
+      "entropy_observations": 53173,
+      "full_intensity_histogram_proxy": 0.05089727108190428,
+      "note": "candidate open-rate and entropy histogram full-intensity mass have different denominators; latter is histogram proxy, not accepted intervention count"
+    },
+    "6": {
+      "rows": 64,
+      "candidates": 45976,
+      "base_open": 23665,
+      "base_open_rate": 0.5147250739516269,
+      "entropy_observations": 46174,
+      "full_intensity_histogram_proxy": 0.050290352280297976,
+      "note": "candidate open-rate and entropy histogram full-intensity mass have different denominators; latter is histogram proxy, not accepted intervention count"
+    },
+    "7": {
+      "rows": 64,
+      "candidates": 44239,
+      "base_open": 22596,
+      "base_open_rate": 0.5107710391283709,
+      "entropy_observations": 44696,
+      "full_intensity_histogram_proxy": 0.047955753471068084,
+      "note": "candidate open-rate and entropy histogram full-intensity mass have different denominators; latter is histogram proxy, not accepted intervention count"
+    },
+    "8": {
+      "rows": 31,
+      "candidates": 21478,
+      "base_open": 10693,
+      "base_open_rate": 0.49785827358227025,
+      "entropy_observations": 21522,
+      "full_intensity_histogram_proxy": 0.04596318385173985,
+      "note": "candidate open-rate and entropy histogram full-intensity mass have different denominators; latter is histogram proxy, not accepted intervention count"
+    }
+  }
+}

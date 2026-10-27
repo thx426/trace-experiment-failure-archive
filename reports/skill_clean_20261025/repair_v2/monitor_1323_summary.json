@@ -1,0 +1,178 @@
+{
+  "checked_at": "2026-10-25T13:23:29.058579+08:00",
+  "primary_snapshot": "repair_v2/monitor_1323.json",
+  "summary": {
+    "all_owned_processes_alive": true,
+    "webshop_all_http_200": true,
+    "max_webshop_queue_seconds": 8.160565741360188,
+    "mean_webshop_queue_seconds": 0.20286934905594808,
+    "new_failure": false,
+    "new_recoverable_parser_exception": true,
+    "new_method_warning": false,
+    "mutation": "none",
+    "formal_research_calls": 4388,
+    "spec_audit_has_samples": true,
+    "completed_optimizer_steps": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58
+    ],
+    "next_training_step": 59,
+    "current_stage": "Primary13:23 snapshot:58 completed updates, step59 rollout complete and update underway. Supplemental13:26 diagnostic confirms step59 metric; no full59 batch re-audit. No step60 evaluation in primary audit.",
+    "mean_completed_step_seconds": 559.9282460674515,
+    "mean_last5_step_seconds": 400.3568003967404,
+    "actual_optimizer_update_evidence": "58 completed metric records with nonzero logged advantages, gradients and positive lr;58 batches audited. Supplemental step59 metric confirms positive gradient/lr and nonzero advantage extrema.",
+    "researcher_tracebacks_total": 3,
+    "researcher_tracebacks_new": 1,
+    "completed_update_groups": 928,
+    "snapshot_complete_groups": 944,
+    "binary_won_heterogeneous_completed_update_groups": 431,
+    "score_heterogeneous_completed_update_groups": 674,
+    "step40_comparison": {
+      "bare": true,
+      "temperature": 0.6,
+      "new": {
+        "pass1_estimate": 0.69140625,
+        "pass5": 0.80078125
+      },
+      "grpo": {
+        "pass1_estimate": 0.5546875,
+        "pass5": 0.76171875
+      },
+      "delta_percentage_points": {
+        "pass1": 13.671875,
+        "pass5": 3.90625
+      },
+      "below_baseline": false
+    }
+  },
+  "researcher_inputs": {
+    "calls": 4388,
+    "mean": 1914.0136736554239,
+    "max": 2500,
+    "above_3072": 0
+  },
+  "skill_compiler": {
+    "sessions": 944,
+    "missing_docs": 0,
+    "over_500_words": 0,
+    "origins": {
+      "researcher_finalized": 943,
+      "task_checklist_fallback": 1
+    },
+    "max_words": 334,
+    "research_errors": 0,
+    "mean_turns": 4.648305084745763
+  },
+  "independent_spec_audit": {
+    "checked": 944,
+    "issues": []
+  },
+  "supplemental_progress": {
+    "checked_at": "2026-10-25T13:26:17.844408+08:00",
+    "evidence": "repair_v2/monitor_1323_diagnostic.json",
+    "update_metric": {
+      "training/global_step": 59.0,
+      "actor/grad_norm": 0.35545629262924194,
+      "actor/lr": 1e-06,
+      "critic/advantages/min": -0.25,
+      "critic/advantages/max": 0.75,
+      "timing_s/update_actor": 107.7860623896122,
+      "timing_s/update_weights": 5.911843441426754,
+      "timing_s/step": 431.6329793520272
+    },
+    "full_batch_audit_through": 58
+  },
+  "new_anomaly": {
+    "at": "2026-10-25T13:06:26+08:00",
+    "type": "caught_qwen_tool_call_parse_exception_recurrence",
+    "task_id": "webshop_05056",
+    "global_step": 57,
+    "turn": 3,
+    "cause": "Model-generated parameter header <parameter=guiding omitted closing >; qwen3coder parser raised ValueError.",
+    "handling": "Existing parser caught exception and returned no tool calls/raw text with HTTP200. Turn4 fetch_raw, turn5 run_experiment, turn6 finalized successfully.",
+    "failed_request_cost": {
+      "input_tokens": 2347,
+      "output_tokens": 386,
+      "latency_s": 31.16,
+      "note": "Malformed request cost only; not counterfactual total overhead."
+    },
+    "final_document": {
+      "origin": "researcher_finalized",
+      "words": 252,
+      "options": {
+        "color": "228r.brown",
+        "size": "8"
+      },
+      "research_exploration_successes": 2
+    },
+    "training": {
+      "rows": 8,
+      "guided_rows_with_actual_steering": 4,
+      "bare_successes": 3,
+      "guided_successes": 4,
+      "research_error": 0,
+      "doc_missing": 0,
+      "update57_gradient_norm": 0.4969640374183655
+    },
+    "evidence": "repair_v2/monitor_1323_diagnostic.json",
+    "action": "No restart or frozen-code hotpatch. No missing document, lost batch or failed update observed; counterfactual performance effect is unknown.",
+    "notification_sent": true
+  },
+  "experiment_modified": false
+}

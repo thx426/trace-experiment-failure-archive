@@ -1,0 +1,17 @@
+  temperature: 0.6
+  train_batch_size: 16
+  rollout_n: 8
+  adv_estimator: grpo
+  norm_adv_by_std: false
+  rollout_temperature: 1.0
+  seed: 42
+  total_training_steps: 100
+  steered_adv_weight: 1.0
+  steered_adv_decay_steps: 0
+  steered_adv_decay_mode: cosine_steps
+  steered_adv_cap: 0.0
+  steered_fraction: 0.5
+  request_token_limit: 3072
+  temperature: 0.3
+    max_concurrency: 16
+    temperature: 1.0

@@ -1,0 +1,51 @@
+{
+  "asof": "2026-10-23T23:42:38.753444+08:00",
+  "tool_calls": {
+    "run_experiment": 621,
+    "fetch_raw": 768,
+    "finalize": 300
+  },
+  "finish_reasons": {
+    "tool_calls": 1644,
+    "stop": 8
+  },
+  "call_count": 1652,
+  "prompt_lengths": {
+    "first": {
+      "n": 160,
+      "mean": 2411.725,
+      "max": 2429
+    },
+    "later": {
+      "n": 1492,
+      "mean": 15542.689678284183,
+      "max": 49593
+    }
+  },
+  "service_samples": 1310,
+  "running_mean": 6.748854961832061,
+  "running_max": 8.0,
+  "waiting_mean": 4.317557251908397,
+  "waiting_max": 9.0,
+  "waiting_positive_fraction": 0.7122137404580152,
+  "kv_max": 63.1,
+  "prefix_max": 0.0,
+  "preemption_lines": 0,
+  "oom_lines": 0,
+  "recent_server_lines": [
+    "(APIServer pid=1017648) INFO 10-23 23:42:17 [loggers.py:259] Engine 000: Avg prompt throughput: 4087.8 tokens/s, Avg generation throughput: 55.9 tokens/s, Running: 8 reqs, Waiting: 3 reqs, GPU KV cache usage: 46.6%, Prefix cache hit rate: 0.0%",
+    "(APIServer pid=1017648) INFO 10-23 23:42:27 [loggers.py:259] Engine 000: Avg prompt throughput: 5545.1 tokens/s, Avg generation throughput: 78.5 tokens/s, Running: 8 reqs, Waiting: 3 reqs, GPU KV cache usage: 46.4%, Prefix cache hit rate: 0.0%",
+    "(APIServer pid=1017648) INFO 10-23 23:42:37 [loggers.py:259] Engine 000: Avg prompt throughput: 4772.3 tokens/s, Avg generation throughput: 62.7 tokens/s, Running: 8 reqs, Waiting: 3 reqs, GPU KV cache usage: 44.6%, Prefix cache hit rate: 0.0%"
+  ],
+  "tool_response_counts": {
+    "sessions": 160,
+    "accepted": 160,
+    "revision_requested": 140,
+    "budget_exhausted": 141
+  },
+  "revision_reasons": {
+    "word_limit": 129,
+    "zero_success_claim": 90,
+    "blacklist": 2
+  }
+}

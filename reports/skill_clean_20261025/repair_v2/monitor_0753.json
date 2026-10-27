@@ -1,0 +1,864 @@
+{
+  "snapshot": {
+    "checked_at": "2026-10-25T07:53:10.647771+08:00",
+    "sequence": {
+      "phase": "running",
+      "pid": 2536102,
+      "time": 1792870442.7809832,
+      "input_limit": 3072,
+      "server_concurrency": 16,
+      "order": [
+        "clean_skill"
+      ],
+      "job": "clean_skill",
+      "run": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42",
+      "owner_pid": 2536911,
+      "owner_state": "/tmp/p5compact3072-clean25v2",
+      "researcher_owner_pid": 2536409,
+      "next_job": null
+    },
+    "webshop": {
+      "8321": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 18503,
+          "queue_seconds": 1001.349786683917,
+          "backend_seconds": 562.4286261983216,
+          "max_queue_seconds": 2.5816646479070187,
+          "max_backend_seconds": 0.5022425092756748
+        },
+        "http_statuses": {
+          "200": 18503
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8322": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 19422,
+          "queue_seconds": 873.5157629624009,
+          "backend_seconds": 592.0362327545881,
+          "max_queue_seconds": 1.8556537441909313,
+          "max_backend_seconds": 0.49447331577539444
+        },
+        "http_statuses": {
+          "200": 19422
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8323": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 18600,
+          "queue_seconds": 470.66233360767365,
+          "backend_seconds": 580.6620455682278,
+          "max_queue_seconds": 1.9743936136364937,
+          "max_backend_seconds": 0.40762273594737053
+        },
+        "http_statuses": {
+          "200": 18600
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8324": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 21061,
+          "queue_seconds": 2211.3268596343696,
+          "backend_seconds": 619.8020968064666,
+          "max_queue_seconds": 4.1333818435668945,
+          "max_backend_seconds": 0.5654539912939072
+        },
+        "http_statuses": {
+          "200": 21061
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      }
+    },
+    "rollout_rows": {
+      "step_00000_val": 1280,
+      "step_00001": 128,
+      "step_00002": 128,
+      "step_00003": 128,
+      "step_00004": 128,
+      "step_00005": 128,
+      "step_00006": 128,
+      "step_00007": 128,
+      "step_00008": 128,
+      "step_00009": 128,
+      "step_00010": 128,
+      "step_00011": 128,
+      "step_00012": 128,
+      "step_00013": 128,
+      "step_00014": 128,
+      "step_00015": 128,
+      "step_00016": 128,
+      "step_00017": 128,
+      "step_00018": 128,
+      "step_00019": 128,
+      "step_00020": 128
+    },
+    "error_mentions": {
+      "webshop service unreachable": 0,
+      "webshop HTTP 409": 0,
+      "student episode infra error": 0,
+      "OutOfMemoryError": 0,
+      "ReplayBuffer:": 0
+    },
+    "training_tail": [
+      "\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m 2026-10-25 07:48:42,395 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_be406cb7: [Performance] Total success requests: 18, Total req/min: 3.41, Total avg process time: 0.0033s; ",
+      "\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m Time range: last 5.27 minutes; ",
+      "\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m Per-operation statistics: GET_DATA: req_count=1, req/min=0.19, avg_time=0.003847s, max_time=0.003847s, min_time=0.003847s; CLEAR_DATA: req_count=1, req/min=0.19, avg_time=0.012379s, max_time=0.012379s, min_time=0.012379s; PUT_DATA: req_count=16, req/min=3.03, avg_time=0.002689s, max_time=0.003995s, min_time=0.002120s",
+      "\u001b[36m(WorkerDict pid=2541845)\u001b[0m WARNING:2026-10-25 07:49:56,414:max_token_len=8192 below longest sequence 12581 — 33 oversized sample(s) ride in their own micro-batch; packing budget stays at 8192 so the rest of the batch is not inflated\u001b[32m [repeated 2x across cluster]\u001b[0m"
+    ],
+    "completed_steps": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "timing_rows": [
+      {
+        "timing_s/feed": 0.18632498010993004,
+        "timing_s/gen": 375.49421141296625,
+        "timing_s/old_log_prob": 90.19691566005349,
+        "timing_s/adv": 0.13816054165363312,
+        "timing_s/update_actor": 259.4332137145102,
+        "timing_s/update_weights": 4.991514749825001,
+        "timing_s/step": 730.4946755208075
+      },
+      {
+        "timing_s/feed": 0.024835582822561264,
+        "timing_s/gen": 421.5668651945889,
+        "timing_s/old_log_prob": 69.68175910785794,
+        "timing_s/adv": 0.13754279538989067,
+        "timing_s/update_actor": 220.8480596728623,
+        "timing_s/update_weights": 5.978600420057774,
+        "timing_s/step": 718.2829031683505
+      },
+      {
+        "timing_s/feed": 0.023895975202322006,
+        "timing_s/gen": 403.5385713279247,
+        "timing_s/old_log_prob": 71.33842008933425,
+        "timing_s/adv": 0.13236573338508606,
+        "timing_s/update_actor": 223.97361071407795,
+        "timing_s/update_weights": 5.7027622647583485,
+        "timing_s/step": 704.7537227571011
+      },
+      {
+        "timing_s/feed": 0.026720724999904633,
+        "timing_s/gen": 371.4823270961642,
+        "timing_s/old_log_prob": 75.69641346484423,
+        "timing_s/adv": 0.1123897098004818,
+        "timing_s/update_actor": 239.05090810358524,
+        "timing_s/update_weights": 5.772786270827055,
+        "timing_s/step": 692.1866372190416
+      },
+      {
+        "timing_s/feed": 0.022832464426755905,
+        "timing_s/gen": 537.7501622736454,
+        "timing_s/old_log_prob": 78.82128105312586,
+        "timing_s/adv": 0.12326355651021004,
+        "timing_s/update_actor": 248.1531966291368,
+        "timing_s/update_weights": 5.819773767143488,
+        "timing_s/step": 870.7369940243661
+      },
+      {
+        "timing_s/feed": 0.029823940247297287,
+        "timing_s/gen": 331.62750605493784,
+        "timing_s/old_log_prob": 74.31239069998264,
+        "timing_s/adv": 0.12404023110866547,
+        "timing_s/update_actor": 234.17257488891482,
+        "timing_s/update_weights": 6.037770327180624,
+        "timing_s/step": 646.3477810062468
+      },
+      {
+        "timing_s/feed": 0.020575568079948425,
+        "timing_s/gen": 367.4563467204571,
+        "timing_s/old_log_prob": 73.26175500825047,
+        "timing_s/adv": 0.1263885237276554,
+        "timing_s/update_actor": 231.60294009000063,
+        "timing_s/update_weights": 5.811489041894674,
+        "timing_s/step": 678.3269502520561
+      },
+      {
+        "timing_s/feed": 0.025088246911764145,
+        "timing_s/gen": 371.4781291410327,
+        "timing_s/old_log_prob": 78.03959168866277,
+        "timing_s/adv": 0.13064175471663475,
+        "timing_s/update_actor": 248.4143465012312,
+        "timing_s/update_weights": 5.689979642629623,
+        "timing_s/step": 703.8249226547778
+      },
+      {
+        "timing_s/feed": 0.02414087951183319,
+        "timing_s/gen": 397.52950540184975,
+        "timing_s/old_log_prob": 75.79498555883765,
+        "timing_s/adv": 0.12758757919073105,
+        "timing_s/update_actor": 236.00891975685954,
+        "timing_s/update_weights": 5.53112855181098,
+        "timing_s/step": 715.0621679984033
+      },
+      {
+        "timing_s/feed": 0.025667019188404083,
+        "timing_s/gen": 351.45110707357526,
+        "timing_s/old_log_prob": 82.84892529249191,
+        "timing_s/adv": 0.12152497842907906,
+        "timing_s/update_actor": 265.179960437119,
+        "timing_s/update_weights": 5.891205098479986,
+        "timing_s/step": 705.5621179305017
+      },
+      {
+        "timing_s/feed": 0.02288200333714485,
+        "timing_s/gen": 373.47752659767866,
+        "timing_s/old_log_prob": 78.159808203578,
+        "timing_s/adv": 0.12175282835960388,
+        "timing_s/update_actor": 246.7554875165224,
+        "timing_s/update_weights": 5.781450863927603,
+        "timing_s/step": 704.3642106577754
+      },
+      {
+        "timing_s/feed": 0.023106738924980164,
+        "timing_s/gen": 379.49985870718956,
+        "timing_s/old_log_prob": 71.56793684884906,
+        "timing_s/adv": 0.11334390938282013,
+        "timing_s/update_actor": 227.52598060667515,
+        "timing_s/update_weights": 5.559624169021845,
+        "timing_s/step": 684.333763435483
+      },
+      {
+        "timing_s/feed": 0.022433653473854065,
+        "timing_s/gen": 321.40444998815656,
+        "timing_s/old_log_prob": 66.95400189235806,
+        "timing_s/adv": 0.11866527423262596,
+        "timing_s/update_actor": 208.79001266509295,
+        "timing_s/update_weights": 5.510720327496529,
+        "timing_s/step": 602.8493186980486
+      },
+      {
+        "timing_s/feed": 0.019592545926570892,
+        "timing_s/gen": 473.64209930598736,
+        "timing_s/old_log_prob": 72.17877697572112,
+        "timing_s/adv": 0.12036295235157013,
+        "timing_s/update_actor": 228.20102375745773,
+        "timing_s/update_weights": 5.5266959592700005,
+        "timing_s/step": 779.7344037629664
+      },
+      {
+        "timing_s/feed": 0.02554258704185486,
+        "timing_s/gen": 385.5091139487922,
+        "timing_s/old_log_prob": 64.84066773205996,
+        "timing_s/adv": 0.12745173275470734,
+        "timing_s/update_actor": 202.15625381469727,
+        "timing_s/update_weights": 5.433787997812033,
+        "timing_s/step": 658.168784212321
+      },
+      {
+        "timing_s/feed": 0.020675353705883026,
+        "timing_s/gen": 409.56194151192904,
+        "timing_s/old_log_prob": 68.13377322629094,
+        "timing_s/adv": 0.12071913480758667,
+        "timing_s/update_actor": 215.86416403576732,
+        "timing_s/update_weights": 5.579437296837568,
+        "timing_s/step": 699.355725325644
+      },
+      {
+        "timing_s/feed": 0.23846342042088509,
+        "timing_s/gen": 525.7211484722793,
+        "timing_s/old_log_prob": 70.44030322134495,
+        "timing_s/adv": 0.13778283074498177,
+        "timing_s/update_actor": 222.95921107381582,
+        "timing_s/update_weights": 5.604554638266563,
+        "timing_s/step": 825.1509722210467
+      },
+      {
+        "timing_s/feed": 0.029402099549770355,
+        "timing_s/gen": 453.6271086372435,
+        "timing_s/old_log_prob": 69.54934433475137,
+        "timing_s/adv": 0.11810992285609245,
+        "timing_s/update_actor": 219.83169657737017,
+        "timing_s/update_weights": 5.486338969320059,
+        "timing_s/step": 748.6872583143413
+      },
+      {
+        "timing_s/feed": 0.02136266976594925,
+        "timing_s/gen": 389.5042187869549,
+        "timing_s/old_log_prob": 64.57776324823499,
+        "timing_s/adv": 0.11735849827528,
+        "timing_s/update_actor": 201.871317807585,
+        "timing_s/update_weights": 5.517751134932041,
+        "timing_s/step": 661.6539116725326
+      }
+    ],
+    "researcher_inputs": {
+      "calls": 1758,
+      "mean": 1973.372013651877,
+      "max": 2500,
+      "above_3072": 0
+    },
+    "experiment_root": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2",
+    "gpu": "index, utilization.gpu [%], memory.used [MiB]\n0, 0 %, 39445 MiB\n1, 100 %, 33027 MiB\n2, 100 %, 33021 MiB\n3, 0 %, 39445 MiB\n",
+    "gpu_processes": "pid, used_gpu_memory [MiB]\n1790979, 39438 MiB\n1798620, 31588 MiB\n1801825, 1382 MiB\n1798621, 31588 MiB\n1801747, 1376 MiB\n1790980, 39438 MiB\n",
+    "process_identity": {
+      "sequence": {
+        "pid": 2536102,
+        "alive": true,
+        "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python -u /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/run_sequence.py "
+      },
+      "student_owner": {
+        "pid": 2536911,
+        "alive": true,
+        "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/scripts/cloud/run_owned_job.py --state-dir /tmp/p5compact3072-clean25v2 --gpus 1,2 --no-deadline --abort-file /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/ABORT --cwd /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code -- /root/trace-webshop-arm-ratio/.venvs/train/bin/python -u scripts/launch_train.py --config /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/configs/clean_skill.yaml "
+      },
+      "researcher_owner": {
+        "pid": 2536409,
+        "alive": true,
+        "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/scripts/cloud/run_owned_job.py --state-dir /tmp/p5compact3072-research25clean2 --gpus 0,3 --no-deadline --abort-file /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/ABORT --cwd /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code -- /root/trace-webshop-arm-ratio/.venvs/researcher/bin/vllm serve /root/trace-webshop-arm-ratio/models/Qwen3.6-35B-A3B --served-model-name qwen3.6-35b-a3b --host 127.0.0.1 --port 18881 --api-key loopback-only --tensor-parallel-size 2 --dtype bfloat16 --max-model-len 7168 --max-num-seqs 16 --max-num-batched-tokens 4096 --gpu-memory-utilization 0.95 --enforce-eager --language-model-only --enable-auto-tool-choice --tool-call-parser qwen3_coder --reasoning-parser qwen3 "
+      }
+    },
+    "skill_compiler": {
+      "sessions": 320,
+      "missing_docs": 0,
+      "over_500_words": 0,
+      "origins": {
+        "researcher_finalized": 319,
+        "task_checklist_fallback": 1
+      },
+      "max_words": 334,
+      "research_errors": 0,
+      "mean_turns": 5.49375
+    },
+    "training_diagnostics": {
+      "complete_groups": 320,
+      "score_heterogeneous_complete_groups": 289,
+      "advantage_proxy_only": true,
+      "guided_assigned_rows": 1280,
+      "positive_steering_rows": 1216
+    },
+    "baseline_reviews": null,
+    "baseline_stop": null,
+    "cpu_validation": {
+      "passed": true,
+      "tests": 21,
+      "inference_calls": 0,
+      "new_rollouts": 0,
+      "configuration_equal_except_name": true,
+      "src_diffs": [
+        "trace_opd/research/clean_skill.py"
+      ],
+      "public_spec_cases": 512,
+      "independent_spec_issues": 0,
+      "offline_replayed_groups": 576,
+      "max_doc_words": 326
+    },
+    "last_progress_mtime": 1792885722.2266946,
+    "preflight_note": "researcher_inputs contains role=researcher only; startup tokenize and researcher-preflight excluded. Zero calls means no actual formal-input samples.",
+    "independent_spec_audit": {
+      "checked": 320,
+      "issues": []
+    },
+    "steering_by_step": {
+      "1": {
+        "guided_rows": 64,
+        "warmup_rows": 64,
+        "positive_steering_rows": 0,
+        "steer_count_total": 0
+      },
+      "2": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 20389
+      },
+      "3": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 20887
+      },
+      "4": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 20981
+      },
+      "5": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 25416
+      },
+      "6": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 22470
+      },
+      "7": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 21461
+      },
+      "8": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 24525
+      },
+      "9": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 24703
+      },
+      "10": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 24552
+      },
+      "11": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 22727
+      },
+      "12": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 21889
+      },
+      "13": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 21493
+      },
+      "14": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 21420
+      },
+      "15": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 21466
+      },
+      "16": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 20643
+      },
+      "17": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 19592
+      },
+      "18": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 21750
+      },
+      "19": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 21571
+      },
+      "20": {
+        "guided_rows": 64,
+        "warmup_rows": 0,
+        "positive_steering_rows": 64,
+        "steer_count_total": 16730
+      }
+    }
+  },
+  "sequence_pid_file": "2536102\n",
+  "sequence_log": "starting_webshop {}\nwebshop_ready {'ports': [8321, 8322, 8323, 8324], 'pids': [2536152, 2536153, 2536154, 2536155], 'semantic_equivalence': True}\nstarting_researcher {}\n[config] budget: executor 流预算=16384(episode.session_token_budget),轮×单轮乘积=15360(轮×单轮乘积先到);padding 维度=train.response_length=16384,CPU 内存 ∝ 行数×维度。\nresearcher_ready {'researcher_owner_pid': 2536409, 'tokenization_only_count': 701}\n[config] budget: executor 流预算=16384(episode.session_token_budget),轮×单轮乘积=15360(轮×单轮乘积先到);padding 维度=train.response_length=16384,CPU 内存 ∝ 行数×维度。\nrunning {'job': 'clean_skill', 'run': '/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42', 'owner_pid': 2536911, 'owner_state': '/tmp/p5compact3072-clean25v2', 'researcher_owner_pid': 2536409, 'next_job': None}\n",
+  "exported_at": "2026-10-25T07:53:44.673395+08:00",
+  "frozen_changed": [],
+  "p5compact3072-clean25v2_tail": "ransferQueueController pid=2541009)\u001b[0m Per-operation statistics: KV_LIST: req_count=45, req/min=7.43, avg_time=0.000087s, max_time=0.000111s, min_time=0.000082s; KV_RETRIEVE_META: req_count=35, req/min=5.78, avg_time=0.001140s, max_time=0.004852s, min_time=0.000212s; NOTIFY_DATA_UPDATE: req_count=27, req/min=4.46, avg_time=0.000180s, max_time=0.000259s, min_time=0.000094s; SET_CUSTOM_META: req_count=30, req/min=4.95, avg_time=0.000020s, max_time=0.000060s, min_time=0.000009s; CLEAR_META: req_count=1, req/min=0.17, avg_time=0.000407s, max_time=0.000407s, min_time=0.000407s; KV_RETRIEVE_KEYS: req_count=1, req/min=0.17, avg_time=0.000075s, max_time=0.000075s, min_time=0.000075s\n\u001b[36m(WorkerDict pid=2541846)\u001b[0m WARNING:2026-10-25 07:40:04,733:max_token_len=8192 below longest sequence 11993 — 30 oversized sample(s) ride in their own micro-batch; packing budget stays at 8192 so the rest of the batch is not inflated\n\u001b[36m(SimpleStorageUnit pid=2541299)\u001b[0m Per-operation statistics: PUT_DATA: req_count=5, req/min=0.83, avg_time=0.002642s, max_time=0.002775s, min_time=0.002316s; CLEAR_DATA: req_count=1, req/min=0.17, avg_time=0.004624s, max_time=0.004624s, min_time=0.004624s; GET_DATA: req_count=7, req/min=1.17, avg_time=0.003542s, max_time=0.004224s, min_time=0.003076s\n\n\u001b[36m(AgentLoopWorkerTQ pid=2543427)\u001b[0m [compact3072] task=webshop_06807 counted=2105 actual=2105\n\u001b[36m(AgentLoopWorkerTQ pid=2543426)\u001b[0m [compact3072] task=webshop_03267 counted=1959 actual=1959\n\u001b[36m(AgentLoopWorkerTQ pid=2543420)\u001b[0m [compact3072] task=webshop_01439 counted=1973 actual=1973\n\u001b[36m(AgentLoopWorkerTQ pid=2543413)\u001b[0m [compact3072] task=webshop_03398 counted=1971 actual=1971\n\u001b[36m(AgentLoopWorkerTQ pid=2543418)\u001b[0m [compact3072] task=webshop_04815 counted=2160 actual=2160\n\u001b[36m(AgentLoopWorkerTQ pid=2543424)\u001b[0m [compact3072] task=webshop_02082 counted=1960 actual=1960\n\u001b[36m(AgentLoopWorkerTQ pid=2543417)\u001b[0m [compact3072] task=webshop_03003 counted=1938 actual=1938\n\u001b[36m(AgentLoopWorkerTQ pid=2543425)\u001b[0m [compact3072] task=webshop_02909 counted=1951 actual=1951\n\u001b[36m(AgentLoopWorkerTQ pid=2543416)\u001b[0m [compact3072] task=webshop_06302 counted=2353 actual=2353\n\u001b[36m(AgentLoopWorkerTQ pid=2543414)\u001b[0m [compact3072] task=webshop_00879 counted=2338 actual=2338\n\u001b[36m(AgentLoopWorkerTQ pid=2543423)\u001b[0m [compact3072] task=webshop_02283 counted=2353 actual=2353\n\u001b[36m(AgentLoopWorkerTQ pid=2543419)\u001b[0m [compact3072] task=webshop_01831 counted=2095 actual=2095\n\u001b[36m(AgentLoopWorkerTQ pid=2543415)\u001b[0m [compact3072] task=webshop_06259 counted=2334 actual=2334\n\u001b[36m(AgentLoopWorkerTQ pid=2543426)\u001b[0m [compact3072] task=webshop_03267 counted=2345 actual=2345\n\u001b[36m(AgentLoopWorkerTQ pid=2543421)\u001b[0m [compact3072] task=webshop_00906 counted=2235 actual=2235\n\u001b[36m(AgentLoopWorkerTQ pid=2543418)\u001b[0m [compact3072] task=webshop_04815 counted=2445 actual=2445\n\u001b[36m(AgentLoopWorkerTQ pid=2543413)\u001b[0m [compact3072] task=webshop_03398 counted=2356 actual=2356\n\u001b[36m(AgentLoopWorkerTQ pid=2543425)\u001b[0m [compact3072] task=webshop_02909 counted=2333 actual=2333\n\u001b[36m(AgentLoopWorkerTQ pid=2543423)\u001b[0m [compact3072] task=webshop_02283 counted=2269 actual=2269\n\u001b[36m(AgentLoopWorkerTQ pid=2543423)\u001b[0m [compact3072] task=webshop_02283 counted=2468 actual=2468\n\u001b[36m(AgentLoopWorkerTQ pid=2543412)\u001b[0m [compact3072] task=webshop_03653 counted=2320 actual=2320\n\u001b[36m(AgentLoopWorkerTQ pid=2543421)\u001b[0m [compact3072] task=webshop_00906 counted=2265 actual=2265\n\u001b[36m(AgentLoopWorkerTQ pid=2543424)\u001b[0m [compact3072] task=webshop_02082 counted=2342 actual=2342\n\u001b[36m(AgentLoopWorkerTQ pid=2543427)\u001b[0m [compact3072] task=webshop_06807 counted=2367 actual=2367\n\u001b[36m(AgentLoopWorkerTQ pid=2543428)\u001b[0m [compact3072] task=webshop_04935 counted=2345 actual=2345\n\u001b[36m(AgentLoopWorkerTQ pid=2543423)\u001b[0m [compact3072] task=webshop_02283 counted=2033 actual=2033\n\u001b[36m(AgentLoopWorkerTQ pid=2543423)\u001b[0m [compact3072] task=webshop_02283 counted=2361 actual=2361\n\u001b[36m(AgentLoopWorkerTQ pid=2543414)\u001b[0m [compact3072] task=webshop_00879 counted=2121 actual=2121\n\u001b[36m(AgentLoopWorkerTQ pid=2543421)\u001b[0m [compact3072] task=webshop_00906 counted=2461 actual=2461\n\u001b[36m(AgentLoopWorkerTQ pid=2543416)\u001b[0m [compact3072] task=webshop_06302 counted=2357 actual=2357\n\u001b[36m(AgentLoopWorkerTQ pid=2543423)\u001b[0m [compact3072] task=webshop_02283 counted=1926 actual=1926\n\u001b[36m(AgentLoopWorkerTQ pid=2543419)\u001b[0m [compact3072] task=webshop_01831 counted=2330 actual=2330\n\u001b[36m(AgentLoopWorkerTQ pid=2543419)\u001b[0m [compact3072] task=webshop_01831 counted=2330 actual=2330\n\u001b[36m(AgentLoopWorkerTQ pid=2543420)\u001b[0m [compact3072] task=webshop_01439 counted=2356 actual=2356\n\u001b[36m(AgentLoopWorkerTQ pid=2543421)\u001b[0m [compact3072] task=webshop_00906 counted=2356 actual=2356\n\u001b[36m(AgentLoopWorkerTQ pid=2543413)\u001b[0m [compact3072] task=webshop_03398 counted=2362 actual=2362\n\u001b[36m(AgentLoopWorkerTQ pid=2543425)\u001b[0m [compact3072] task=webshop_02909 counted=2334 actual=2334\n\u001b[36m(AgentLoopWorkerTQ pid=2543426)\u001b[0m [compact3072] task=webshop_03267 counted=2351 actual=2351\n\u001b[36m(AgentLoopWorkerTQ pid=2543424)\u001b[0m [compact3072] task=webshop_02082 counted=2257 actual=2257\n\u001b[36m(AgentLoopWorkerTQ pid=2543423)\u001b[0m [compact3072] task=webshop_02283 counted=1926 actual=1926\n\u001b[36m(AgentLoopWorkerTQ pid=2543412)\u001b[0m [compact3072] task=webshop_03653 counted=2495 actual=2495\n\u001b[36m(AgentLoopWorkerTQ pid=2543413)\u001b[0m [compact3072] task=webshop_03398 counted=2303 actual=2303\n\u001b[36m(AgentLoopWorkerTQ pid=2543424)\u001b[0m [compact3072] task=webshop_02082 counted=2457 actual=2457\n\u001b[36m(AgentLoopWorkerTQ pid=2543420)\u001b[0m [compact3072] task=webshop_01439 counted=2267 actual=2267\n\u001b[36m(AgentLoopWorkerTQ pid=2543419)\u001b[0m [compact3072] task=webshop_01831 counted=2223 actual=2223\n\u001b[36m(AgentLoopWorkerTQ pid=2543421)\u001b[0m [compact3072] task=webshop_00906 counted=1920 actual=1920\n\u001b[36m(AgentLoopWorkerTQ pid=2543428)\u001b[0m [compact3072] task=webshop_04935 counted=2265 actual=2265\n\u001b[36m(AgentLoopWorkerTQ pid=2543423)\u001b[0m [compact3072] task=webshop_02283 counted=1927 actual=1927\n\u001b[36m(AgentLoopWorkerTQ pid=2543413)\u001b[0m [compact3072] task=webshop_03398 counted=2484 actual=2484\n\u001b[36m(AgentLoopWorkerTQ pid=2543427)\u001b[0m [compact3072] task=webshop_06807 counted=2156 actual=2156\n\u001b[36m(AgentLoopWorkerTQ pid=2543424)\u001b[0m [compact3072] task=webshop_02082 counted=2022 actual=2022\n\u001b[36m(AgentLoopWorkerTQ pid=2543413)\u001b[0m [compact3072] task=webshop_03398 counted=2047 actual=2047\n\u001b[36m(AgentLoopWorkerTQ pid=2543427)\u001b[0m [compact3072] task=webshop_06807 counted=2172 actual=2172\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:19 - global_seqlen/min:693698.0 - global_seqlen/max:693698.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:693698.0 - global_seqlen/balanced_max:693698.0 - global_seqlen/mean:693698.0 - actor/entropy:0.5310694575309753 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.4702047109603882 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:77.88330841064453 - perf/mfu/actor:0.1362459680148401 - rollout_extra/won/mean:0.140625 - rollout_extra/score/mean:0.39641053391053394 - rollout_extra/env_steps/mean:10.265625 - rollout_extra/invalid_format/mean:0.0 - rollout_extra/truncated/mean:0.0 - rollout_extra/generated_token_count/mean:599.6171875 - rollout_extra/accepted_generated_token_count/mean:599.6171875 - rollout_extra/invalid_action_count/mean:1.859375 - rollout_extra/repeated_action_observation_count/mean:3.2421875 - rollout_extra/max_consecutive_action_observation/mean:1.859375 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:13.76609375 - rollout_extra/student_attempt_generated_tokens/mean:599.6171875 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:218.37933101084926 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:168.5234375 - rollout_extra/steer_record_rows/mean:177.3203125 - rollout_extra/steer_reject_count/mean:5.9296875 - rollout_extra/steer_n_draft_discarded/mean:227.2734375 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:331.9921875 - rollout_extra/steer_d_mean/mean:0.04996170619983505 - rollout_extra/steer_n_candidates/mean:331.9921875 - rollout_extra/steer_n_base_open/mean:177.3203125 - rollout_extra/steer_n_probe_flipped/mean:8.796875 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:2.7265625 - rollout_extra/steer_n_pt_window_miss/mean:50.8203125 - rollout_extra/steer_ell_count/mean:23479.3828125 - rollout_extra/steer_ent_count/mean:334.71875 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.4808012470642873 - rollout_extra/steer_entropy_mean/mean:0.5095030879919178 - rollout_extra/steer_gate_open_rate/mean:0.26230797448470283 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.8619821312313987 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:2.8125 - rollout_extra/research_episodes/mean:6.375 - rollout_extra/research_turns/mean:4.875 - rollout_extra/research_final_success/mean:0.26041666666666663 - rollout_extra/research_doc_words/mean:302.5625 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:18.0 - rollout_extra/won_bare_rate/mean:0.125 - rollout_extra/won_steered_rate/mean:0.15625 - rollout_extra/steer_arm_gap/mean:0.03125 - training/global_step:19 - training/epoch:1 - critic/score/mean:0.140625 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.140625 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.033869266510009766 - critic/advantages/max:0.875 - critic/advantages/min:-0.5 - critic/returns/mean:-0.033869266510009766 - critic/returns/max:0.875 - critic/returns/min:-0.5 - response_length/mean:5046.015625 - response_length/max:11622.0 - response_length/min:1111.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:5046.015625 - response_length_non_aborted/max:11622.0 - response_length_non_aborted/min:1111.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:373.5 - prompt_length/max:386.0 - prompt_length/min:363.0 - prompt_length/clip_ratio:0.0625 - timing_s/feed:0.02136266976594925 - timing_s/gen:389.5042187869549 - timing_s/old_log_prob:64.57776324823499 - timing_s/adv:0.11735849827528 - timing_s/update_actor:201.871317807585 - timing_s/update_weights:5.517751134932041 - timing_s/step:661.6539116725326 - timing_per_token_ms/adv:0.00016917808365496224 - timing_per_token_ms/update_actor:0.2910074957799864 - timing_per_token_ms/gen:0.6030503937000958 - perf/total_num_tokens:693698 - perf/time_per_step:661.6539116725326 - perf/throughput:524.2151431149755 - training/num_turns/mean:np.float64(21.53125) - training/num_turns/max:np.int64(31) - training/num_turns/min:np.int64(7) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m \nTraining Progress:  19%|█▉        | 19/100 [3:46:21<16:08:34, 717.46s/it]\n\u001b[36m(AgentLoopWorkerTQ pid=2543412)\u001b[0m WARNING:2026-10-25 07:43:28,777:gate tracker step 20: steering open-rate 0.499 above the pre-registered ceiling 0.25 (theta was lagging the distribution) — dosage overshoot, inspect before trusting this step's steered rows\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 07:44:28,844:pending: 0, running: 16, finished: 0, failure: 0\n\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m 2026-10-25 07:43:26,055 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_be406cb7: [Performance] Total success requests: 13, Total req/min: 2.19, Total avg process time: 0.0033s; \u001b[32m [repeated 8x across cluster]\u001b[0m\n\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m Time range: last 5.94 minutes; \u001b[32m [repeated 8x across cluster]\u001b[0m\n\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m Per-operation statistics: PUT_DATA: req_count=5, req/min=0.84, avg_time=0.002644s, max_time=0.002928s, min_time=0.002332s; CLEAR_DATA: req_count=1, req/min=0.17, avg_time=0.004645s, max_time=0.004645s, min_time=0.004645s; GET_DATA: req_count=7, req/min=1.18, avg_time=0.003563s, max_time=0.003941s, min_time=0.002556s\u001b[32m [repeated 7x across cluster]\u001b[0m\n\u001b[36m(AgentLoopWorkerTQ pid=2543428)\u001b[0m WARNING:2026-10-25 07:43:28,784:gate tracker step 20: steering open-rate 0.531 above the pre-registered ceiling 0.25 (theta was lagging the distribution) — dosage overshoot, inspect before trusting this step's steered rows\u001b[32m [repeated 15x across cluster]\u001b[0m\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 07:45:28,909:pending: 0, running: 14, finished: 2, failure: 0\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 07:46:28,985:pending: 0, running: 13, finished: 3, failure: 0\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 07:47:29,067:pending: 0, running: 6, finished: 10, failure: 0\n\u001b[36m(TransferQueueController pid=2541009)\u001b[0m 2026-10-25 07:48:27,162 - INFO - transfer_queue.utils.perf_utils - TQ_CONTROLLER_79c282b8: [Performance] Total success requests: 577, Total req/min: 114.97, Total avg process time: 0.0002s; \n\u001b[36m(TransferQueueController pid=2541009)\u001b[0m Time range: last 5.02 minutes; \n\u001b[36m(TransferQueueController pid=2541009)\u001b[0m Per-operation statistics: KV_RETRIEVE_META: req_count=154, req/min=30.68, avg_time=0.000381s, max_time=0.004443s, min_time=0.000194s; CLEAR_META: req_count=1, req/min=0.20, avg_time=0.000721s, max_time=0.000721s, min_time=0.000721s; SET_CUSTOM_META: req_count=152, req/min=30.29, avg_time=0.000016s, max_time=0.000052s, min_time=0.000009s; KV_LIST: req_count=150, req/min=29.89, avg_time=0.000061s, max_time=0.000190s, min_time=0.000043s; NOTIFY_DATA_UPDATE: req_count=120, req/min=23.91, avg_time=0.000173s, max_time=0.000400s, min_time=0.000092s\n\u001b[36m(SimpleStorageUnit pid=2541299)\u001b[0m Per-operation statistics: GET_DATA: req_count=1, req/min=0.20, avg_time=0.003494s, max_time=0.003494s, min_time=0.003494s; CLEAR_DATA: req_count=1, req/min=0.20, avg_time=0.007346s, max_time=0.007346s, min_time=0.007346s; PUT_DATA: req_count=16, req/min=3.17, avg_time=0.002751s, max_time=0.003935s, min_time=0.002191s\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 07:48:29,163:pending: 0, running: 1, finished: 15, failure: 0\n\u001b[36m(SimpleStorageUnit pid=2541303)\u001b[0m 2026-10-25 07:48:34,896 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_9d26bd0a: [Performance] Total success requests: 18, Total req/min: 3.50, Total avg process time: 0.0030s; \u001b[32m [repeated 5x across cluster]\u001b[0m\n\u001b[36m(SimpleStorageUnit pid=2541303)\u001b[0m Time range: last 5.15 minutes; \u001b[32m [repeated 5x across cluster]\u001b[0m\n\u001b[36m(SimpleStorageUnit pid=2541303)\u001b[0m Per-operation statistics: GET_DATA: req_count=1, req/min=0.19, avg_time=0.004154s, max_time=0.004154s, min_time=0.004154s; CLEAR_DATA: req_count=1, req/min=0.19, avg_time=0.011940s, max_time=0.011940s, min_time=0.011940s; PUT_DATA: req_count=16, req/min=3.11, avg_time=0.002409s, max_time=0.003346s, min_time=0.002124s\u001b[32m [repeated 4x across cluster]\u001b[0m\n\u001b[36m(SimpleStorageUnit pid=2541305)\u001b[0m 2026-10-25 07:48:41,852 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_d407e947: [Performance] Total success requests: 18, Total req/min: 3.42, Total avg process time: 0.0037s; \u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(SimpleStorageUnit pid=2541305)\u001b[0m Time range: last 5.26 minutes; \u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(SimpleStorageUnit pid=2541305)\u001b[0m Per-operation statistics: GET_DATA: req_count=1, req/min=0.19, avg_time=0.004116s, max_time=0.004116s, min_time=0.004116s; CLEAR_DATA: req_count=1, req/min=0.19, avg_time=0.013259s, max_time=0.013259s, min_time=0.013259s; PUT_DATA: req_count=16, req/min=3.04, avg_time=0.003054s, max_time=0.004540s, min_time=0.002220s\u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2541845)\u001b[0m WARNING:2026-10-25 07:48:48,368:max_token_len=8192 below longest sequence 12581 — 33 oversized sample(s) ride in their own micro-batch; packing budget stays at 8192 so the rest of the batch is not inflated\n\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m 2026-10-25 07:48:42,395 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_be406cb7: [Performance] Total success requests: 18, Total req/min: 3.41, Total avg process time: 0.0033s; \n\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m Time range: last 5.27 minutes; \n\u001b[36m(SimpleStorageUnit pid=2541306)\u001b[0m Per-operation statistics: GET_DATA: req_count=1, req/min=0.19, avg_time=0.003847s, max_time=0.003847s, min_time=0.003847s; CLEAR_DATA: req_count=1, req/min=0.19, avg_time=0.012379s, max_time=0.012379s, min_time=0.012379s; PUT_DATA: req_count=16, req/min=3.03, avg_time=0.002689s, max_time=0.003995s, min_time=0.002120s\n\u001b[36m(WorkerDict pid=2541845)\u001b[0m WARNING:2026-10-25 07:49:56,414:max_token_len=8192 below longest sequence 12581 — 33 oversized sample(s) ride in their own micro-batch; packing budget stays at 8192 so the rest of the batch is not inflated\u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m INFO:2026-10-25 07:53:20,460:Saving checkpoint to /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/checkpoints/global_step_20\n\u001b[36m(WorkerDict pid=2541846)\u001b[0m WARNING:2026-10-25 07:49:57,091:max_token_len=8192 below longest sequence 12581 — 33 oversized sample(s) ride in their own micro-batch; packing budget stays at 8192 so the rest of the batch is not inflated\n\u001b[36m(WorkerDict pid=2541846)\u001b[0m INFO:2026-10-25 07:53:30,475:[Rank 1] Saved model to /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/checkpoints/global_step_20/actor/model_world_size_2_rank_1.pt\n\u001b[36m(WorkerDict pid=2541846)\u001b[0m INFO:2026-10-25 07:53:41,923:[Rank 1] Saved optim to /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/checkpoints/global_step_20/actor/optim_world_size_2_rank_1.pt\n\u001b[36m(WorkerDict pid=2541846)\u001b[0m INFO:2026-10-25 07:53:41,925:[Rank 1] Saved extra_state to /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/checkpoints/global_step_20/actor/extra_state_world_size_2_rank_1.pt\n\u001b[36m(WorkerDict pid=2541845)\u001b[0m INFO:2026-10-25 07:53:31,504:[Rank 0] Saved model to /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/checkpoints/global_step_20/actor/model_world_size_2_rank_0.pt\n\u001b[36m(WorkerDict pid=2541845)\u001b[0m INFO:2026-10-25 07:53:43,237:[Rank 0] Saved model config and tokenizer class to /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/checkpoints/global_step_20/actor/huggingface\n",
+  "p5compact3072-clean25v2_errors": {
+    "CUDA out of memory": 0,
+    "OutOfMemoryError": 0,
+    "is preempted|preempted by": 0,
+    "ReadTimeout|ConnectTimeout": 0,
+    "Traceback": 0,
+    "HTTP/1.1. 500": 0
+  },
+  "p5compact3072-clean25v2_mtime": 1792886023.2883208,
+  "p5compact3072-clean25v2_tracebacks": [],
+  "update_metric_lines": [
+    "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:8 - global_seqlen/min:858437.0 - global_seqlen/max:858437.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:858437.0 - global_seqlen/balanced_max:858437.0 - global_seqlen/mean:858437.0 - actor/entropy:0.5283235907554626 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.2421215921640396 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:76.32437896728516 - perf/mfu/actor:0.13823488599644485 - rollout_extra/won/mean:0.0546875 - rollout_extra/score/mean:0.22846602182539683 - rollout_extra/env_steps/mean:12.0234375 - rollout_extra/invalid_format/mean:0.0078125 - rollout_extra/truncated/mean:0.0078125 - rollout_extra/generated_token_count/mean:779.828125 - rollout_extra/accepted_generated_token_count/mean:779.828125 - rollout_extra/invalid_action_count/mean:2.8515625 - rollout_extra/repeated_action_observation_count/mean:3.7109375 - rollout_extra/max_consecutive_action_observation/mean:1.875 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:19.8003125 - rollout_extra/student_attempt_generated_tokens/mean:779.828125 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:246.8722976761395 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:191.6015625 - rollout_extra/steer_record_rows/mean:201.4921875 - rollout_extra/steer_reject_count/mean:6.15625 - rollout_extra/steer_n_draft_discarded/mean:256.921875 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:392.6484375 - rollout_extra/steer_d_mean/mean:0.043240703128198416 - rollout_extra/steer_n_candidates/mean:392.6484375 - rollout_extra/steer_n_base_open/mean:201.4921875 - rollout_extra/steer_n_probe_flipped/mean:9.890625 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:0.6875 - rollout_extra/steer_n_pt_window_miss/mean:47.4609375 - rollout_extra/steer_ell_count/mean:27647.9921875 - rollout_extra/steer_ent_count/mean:393.3359375 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.48404980634158895 - rollout_extra/steer_entropy_mean/mean:0.48783097870252623 - rollout_extra/steer_gate_open_rate/mean:0.2554768851894035 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.8189865838913686 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:2.8125 - rollout_extra/research_episodes/mean:6.0 - rollout_extra/research_turns/mean:5.4375 - rollout_extra/research_final_success/mean:0.125 - rollout_extra/research_doc_words/mean:309.125 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:7.0 - rollout_extra/won_bare_rate/mean:0.078125 - rollout_extra/won_steered_rate/mean:0.03125 - rollout_extra/steer_arm_gap/mean:-0.046875 - training/global_step:8 - training/epoch:0 - critic/score/mean:0.0546875 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.0546875 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.015315374359488487 - critic/advantages/max:0.875 - critic/advantages/min:-0.25 - critic/returns/mean:-0.015315374359488487 - critic/returns/max:0.875 - critic/returns/min:-0.25 - response_length/mean:6338.0390625 - response_length/max:11771.0 - response_length/min:1133.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:6338.0390625 - response_length_non_aborted/max:11771.0 - response_length_non_aborted/min:1133.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:368.5 - prompt_length/max:385.0 - prompt_length/min:353.0 - prompt_length/clip_ratio:0.0625 - timing_s/feed:0.025088246911764145 - timing_s/gen:371.4781291410327 - timing_s/old_log_prob:78.03959168866277 - timing_s/adv:0.13064175471663475 - timing_s/update_actor:248.4143465012312 - timing_s/update_weights:5.689979642629623 - timing_s/step:703.8249226547778 - timing_per_token_ms/adv:0.0001521856056025483 - timing_per_token_ms/update_actor:0.2893798222830926 - timing_per_token_ms/gen:0.4578976013394234 - perf/total_num_tokens:858437 - perf/time_per_step:703.8249226547778 - perf/throughput:609.8370293297063 - training/num_turns/mean:np.float64(25.0625) - training/num_turns/max:np.int64(31) - training/num_turns/min:np.int64(7) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)",
+    "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:9 - global_seqlen/min:818726.0 - global_seqlen/max:818726.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:818726.0 - global_seqlen/balanced_max:818726.0 - global_seqlen/mean:818726.0 - actor/entropy:0.5330058336257935 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.2161121368408203 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:76.53396606445312 - perf/mfu/actor:0.1384134397605606 - rollout_extra/won/mean:0.03125 - rollout_extra/score/mean:0.2221524677579365 - rollout_extra/env_steps/mean:11.6796875 - rollout_extra/invalid_format/mean:0.0078125 - rollout_extra/truncated/mean:0.0 - rollout_extra/generated_token_count/mean:777.0859375 - rollout_extra/accepted_generated_token_count/mean:777.0859375 - rollout_extra/invalid_action_count/mean:2.609375 - rollout_extra/repeated_action_observation_count/mean:4.1484375 - rollout_extra/max_consecutive_action_observation/mean:2.078125 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:19.286875000000002 - rollout_extra/student_attempt_generated_tokens/mean:777.0859375 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:247.766849966321 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:192.9921875 - rollout_extra/steer_record_rows/mean:203.4453125 - rollout_extra/steer_reject_count/mean:6.3671875 - rollout_extra/steer_n_draft_discarded/mean:269.1171875 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:396.0703125 - rollout_extra/steer_d_mean/mean:0.044176868143136885 - rollout_extra/steer_n_candidates/mean:396.0703125 - rollout_extra/steer_n_base_open/mean:203.4453125 - rollout_extra/steer_n_probe_flipped/mean:10.453125 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:1.4296875 - rollout_extra/steer_n_pt_window_miss/mean:31.78125 - rollout_extra/steer_ell_count/mean:27846.5625 - rollout_extra/steer_ent_count/mean:397.5 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.48033613352296767 - rollout_extra/steer_entropy_mean/mean:0.48501440609996527 - rollout_extra/steer_gate_open_rate/mean:0.2552510541049632 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.8057288760230652 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:2.6875 - rollout_extra/research_episodes/mean:5.75 - rollout_extra/research_turns/mean:4.9375 - rollout_extra/research_final_success/mean:0.109375 - rollout_extra/research_doc_words/mean:310.0625 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:8.0 - rollout_extra/won_bare_rate/mean:0.015625 - rollout_extra/won_steered_rate/mean:0.046875 - rollout_extra/steer_arm_gap/mean:0.03125 - training/global_step:9 - training/epoch:0 - critic/score/mean:0.03125 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.03125 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.011998954229056835 - critic/advantages/max:0.875 - critic/advantages/min:-0.25 - critic/returns/mean:-0.011998954229056835 - critic/returns/max:0.875 - critic/returns/min:-0.25 - response_length/mean:6024.921875 - response_length/max:12434.0 - response_length/min:1116.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:6024.921875 - response_length_non_aborted/max:12434.0 - response_length_non_aborted/min:1116.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:371.375 - prompt_length/max:385.0 - prompt_length/min:353.0 - prompt_length/clip_ratio:0.0625 - timing_s/feed:0.02414087951183319 - timing_s/gen:397.52950540184975 - timing_s/old_log_prob:75.79498555883765 - timing_s/adv:0.12758757919073105 - timing_s/update_actor:236.00891975685954 - timing_s/update_weights:5.53112855181098 - timing_s/step:715.0621679984033 - timing_per_token_ms/adv:0.00015583672582858128 - timing_per_token_ms/update_actor:0.2882636190335467 - timing_per_token_ms/gen:0.5154754410739892 - perf/total_num_tokens:818726 - perf/time_per_step:715.0621679984033 - perf/throughput:572.4858876898576 - training/num_turns/mean:np.float64(24.375) - training/num_turns/max:np.int64(31) - training/num_turns/min:np.int64(7) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m ",
+    "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:10 - global_seqlen/min:910897.0 - global_seqlen/max:910897.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:910897.0 - global_seqlen/balanced_max:910897.0 - global_seqlen/mean:910897.0 - actor/entropy:0.5573201179504395 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.23400425910949707 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:76.70090866088867 - perf/mfu/actor:0.13856653305341876 - rollout_extra/won/mean:0.046875 - rollout_extra/score/mean:0.1476850818452381 - rollout_extra/env_steps/mean:12.203125 - rollout_extra/invalid_format/mean:0.0 - rollout_extra/truncated/mean:0.0 - rollout_extra/generated_token_count/mean:785.1953125 - rollout_extra/accepted_generated_token_count/mean:785.1953125 - rollout_extra/invalid_action_count/mean:3.4765625 - rollout_extra/repeated_action_observation_count/mean:4.3203125 - rollout_extra/max_consecutive_action_observation/mean:2.265625 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:22.093671875000002 - rollout_extra/student_attempt_generated_tokens/mean:785.1953125 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:257.4449471672329 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:191.8125 - rollout_extra/steer_record_rows/mean:201.5546875 - rollout_extra/steer_reject_count/mean:6.4375 - rollout_extra/steer_n_draft_discarded/mean:264.8671875 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:383.6796875 - rollout_extra/steer_d_mean/mean:0.041150780619923576 - rollout_extra/steer_n_candidates/mean:383.6796875 - rollout_extra/steer_n_base_open/mean:201.5546875 - rollout_extra/steer_n_probe_flipped/mean:9.7421875 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:1.2734375 - rollout_extra/steer_n_pt_window_miss/mean:36.7109375 - rollout_extra/steer_ell_count/mean:26930.046875 - rollout_extra/steer_ent_count/mean:384.953125 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.5009316682033993 - rollout_extra/steer_entropy_mean/mean:0.5100398975207947 - rollout_extra/steer_gate_open_rate/mean:0.25922794612259215 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.8091776336185514 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:2.9375 - rollout_extra/research_episodes/mean:6.625 - rollout_extra/research_turns/mean:5.5625 - rollout_extra/research_final_success/mean:0.0625 - rollout_extra/research_doc_words/mean:313.125 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:9.0 - rollout_extra/won_bare_rate/mean:0.046875 - rollout_extra/won_steered_rate/mean:0.046875 - rollout_extra/steer_arm_gap/mean:0.0 - training/global_step:10 - training/epoch:0 - critic/score/mean:0.046875 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.046875 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.015645988285541534 - critic/advantages/max:0.875 - critic/advantages/min:-0.25 - critic/returns/mean:-0.015645988285541534 - critic/returns/max:0.875 - critic/returns/min:-0.25 - response_length/mean:6742.1953125 - response_length/max:12131.0 - response_length/min:1115.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:6742.1953125 - response_length_non_aborted/max:12131.0 - response_length_non_aborted/min:1115.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:374.1875 - prompt_length/max:384.0 - prompt_length/min:361.0 - prompt_length/clip_ratio:0.0625 - timing_s/feed:0.025667019188404083 - timing_s/gen:351.45110707357526 - timing_s/old_log_prob:82.84892529249191 - timing_s/adv:0.12152497842907906 - timing_s/update_actor:265.179960437119 - timing_s/update_weights:5.891205098479986 - timing_s/step:705.5621179305017 - timing_per_token_ms/adv:0.0001334124258056389 - timing_per_token_ms/update_actor:0.2911195891929812 - timing_per_token_ms/gen:0.4072429893749547 - perf/total_num_tokens:910897 - perf/time_per_step:705.5621179305017 - perf/throughput:645.5115551496516 - training/num_turns/mean:np.float64(25.40625) - training/num_turns/max:np.int64(31) - training/num_turns/min:np.int64(7) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)",
+    "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:11 - global_seqlen/min:851128.0 - global_seqlen/max:851128.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:851128.0 - global_seqlen/balanced_max:851128.0 - global_seqlen/mean:851128.0 - actor/entropy:0.5687238574028015 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.26539674401283264 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:76.87349319458008 - perf/mfu/actor:0.13849924273290412 - rollout_extra/won/mean:0.0546875 - rollout_extra/score/mean:0.24383545274170274 - rollout_extra/env_steps/mean:11.3984375 - rollout_extra/invalid_format/mean:0.0 - rollout_extra/truncated/mean:0.0 - rollout_extra/generated_token_count/mean:733.46875 - rollout_extra/accepted_generated_token_count/mean:733.46875 - rollout_extra/invalid_action_count/mean:2.9765625 - rollout_extra/repeated_action_observation_count/mean:3.8125 - rollout_extra/max_consecutive_action_observation/mean:1.9765625 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:17.137421874999998 - rollout_extra/student_attempt_generated_tokens/mean:733.46875 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:233.3208822340743 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:177.5546875 - rollout_extra/steer_record_rows/mean:186.9453125 - rollout_extra/steer_reject_count/mean:5.9921875 - rollout_extra/steer_n_draft_discarded/mean:241.4453125 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:359.984375 - rollout_extra/steer_d_mean/mean:0.05300746465578342 - rollout_extra/steer_n_candidates/mean:359.984375 - rollout_extra/steer_n_base_open/mean:186.9453125 - rollout_extra/steer_n_probe_flipped/mean:9.390625 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:1.125 - rollout_extra/steer_n_pt_window_miss/mean:50.40625 - rollout_extra/steer_ell_count/mean:25395.8203125 - rollout_extra/steer_ent_count/mean:361.109375 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.4962812556488092 - rollout_extra/steer_entropy_mean/mean:0.5198129806743224 - rollout_extra/steer_gate_open_rate/mean:0.2609975567424597 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.8577863614521326 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:2.9375 - rollout_extra/research_episodes/mean:6.1875 - rollout_extra/research_turns/mean:5.25 - rollout_extra/research_final_success/mean:0.15625 - rollout_extra/research_doc_words/mean:311.0 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:10.0 - rollout_extra/won_bare_rate/mean:0.03125 - rollout_extra/won_steered_rate/mean:0.078125 - rollout_extra/steer_arm_gap/mean:0.046875 - training/global_step:11 - training/epoch:0 - critic/score/mean:0.0546875 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.0546875 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.01908605359494686 - critic/advantages/max:0.875 - critic/advantages/min:-0.5 - critic/returns/mean:-0.01908605359494686 - critic/returns/max:0.875 - critic/returns/min:-0.5 - response_length/mean:6276.625 - response_length/max:11877.0 - response_length/min:972.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:6276.625 - response_length_non_aborted/max:11877.0 - response_length_non_aborted/min:972.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:372.8125 - prompt_length/max:384.0 - prompt_length/min:356.0 - prompt_length/clip_ratio:0.125 - timing_s/feed:0.02288200333714485 - timing_s/gen:373.47752659767866 - timing_s/old_log_prob:78.159808203578 - timing_s/adv:0.12175282835960388 - timing_s/update_actor:246.7554875165224 - timing_s/update_weights:5.781450863927603 - timing_s/step:704.3642106577754 - timing_per_token_ms/adv:0.00014304878744396128 - timing_per_token_ms/update_actor:0.2899158381777152 - timing_per_token_ms/gen:0.46486657663065173 - perf/total_num_tokens:851128 - perf/time_per_step:704.3642106577754 - perf/throughput:604.1817479661327 - training/num_turns/mean:np.float64(23.796875) - training/num_turns/max:np.int64(31) - training/num_turns/min:np.int64(7) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m ",
+    "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:12 - global_seqlen/min:778793.0 - global_seqlen/max:778793.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:778793.0 - global_seqlen/balanced_max:778793.0 - global_seqlen/mean:778793.0 - actor/entropy:0.5460717678070068 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.33054643869400024 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:76.97033309936523 - perf/mfu/actor:0.1368605328551474 - rollout_extra/won/mean:0.1171875 - rollout_extra/score/mean:0.373735119047619 - rollout_extra/env_steps/mean:10.1484375 - rollout_extra/invalid_format/mean:0.0 - rollout_extra/truncated/mean:0.0 - rollout_extra/generated_token_count/mean:687.1875 - rollout_extra/accepted_generated_token_count/mean:687.1875 - rollout_extra/invalid_action_count/mean:2.0625 - rollout_extra/repeated_action_observation_count/mean:3.2109375 - rollout_extra/max_consecutive_action_observation/mean:1.96875 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:16.804453125000002 - rollout_extra/student_attempt_generated_tokens/mean:687.1875 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:228.35522609500583 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:171.0078125 - rollout_extra/steer_record_rows/mean:180.4765625 - rollout_extra/steer_reject_count/mean:6.015625 - rollout_extra/steer_n_draft_discarded/mean:262.8125 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:346.390625 - rollout_extra/steer_d_mean/mean:0.04853478810298614 - rollout_extra/steer_n_candidates/mean:346.390625 - rollout_extra/steer_n_base_open/mean:180.4765625 - rollout_extra/steer_n_probe_flipped/mean:9.46875 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:0.9609375 - rollout_extra/steer_n_pt_window_miss/mean:55.515625 - rollout_extra/steer_ell_count/mean:24413.2578125 - rollout_extra/steer_ent_count/mean:347.3515625 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.4997227147832225 - rollout_extra/steer_entropy_mean/mean:0.5134183679249702 - rollout_extra/steer_gate_open_rate/mean:0.2574703726010312 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.8401295689174102 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:3.0 - rollout_extra/research_episodes/mean:6.9375 - rollout_extra/research_turns/mean:5.5625 - rollout_extra/research_final_success/mean:0.078125 - rollout_extra/research_doc_words/mean:309.1875 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:11.0 - rollout_extra/won_bare_rate/mean:0.140625 - rollout_extra/won_steered_rate/mean:0.09375 - rollout_extra/steer_arm_gap/mean:-0.046875 - training/global_step:12 - training/epoch:0 - critic/score/mean:0.1171875 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.1171875 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.024151602759957314 - critic/advantages/max:0.875 - critic/advantages/min:-0.5 - critic/returns/mean:-0.024151602759957314 - critic/returns/max:0.875 - critic/returns/min:-0.5 - response_length/mean:5711.2578125 - response_length/max:13103.0 - response_length/min:1195.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:5711.2578125 - response_length_non_aborted/max:13103.0 - response_length_non_aborted/min:1195.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:373.0625 - prompt_length/max:385.0 - prompt_length/min:353.0 - prompt_length/clip_ratio:0.0625 - timing_s/feed:0.023106738924980164 - timing_s/gen:379.49985870718956 - timing_s/old_log_prob:71.56793684884906 - timing_s/adv:0.11334390938282013 - timing_s/update_actor:227.52598060667515 - timing_s/update_weights:5.559624169021845 - timing_s/step:684.333763435483 - timing_per_token_ms/adv:0.00014553791493095101 - timing_per_token_ms/update_actor:0.2921520617245855 - timing_per_token_ms/gen:0.5191225371862721 - perf/total_num_tokens:778793 - perf/time_per_step:684.333763435483 - perf/throughput:569.015472866861 - training/num_turns/mean:np.float64(21.296875) - training/num_turns/max:np.int64(31) - training/num_turns/min:np.int64(7) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)",
+    "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:13 - global_seqlen/min:716038.0 - global_seqlen/max:716038.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:716038.0 - global_seqlen/balanced_max:716038.0 - global_seqlen/mean:716038.0 - actor/entropy:0.5545535683631897 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.34243717789649963 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:77.07560729980469 - perf/mfu/actor:0.13675049990867733 - rollout_extra/won/mean:0.078125 - rollout_extra/score/mean:0.29594155844155845 - rollout_extra/env_steps/mean:10.1796875 - rollout_extra/invalid_format/mean:0.0 - rollout_extra/truncated/mean:0.0 - rollout_extra/generated_token_count/mean:653.0546875 - rollout_extra/accepted_generated_token_count/mean:653.0546875 - rollout_extra/invalid_action_count/mean:2.4453125 - rollout_extra/repeated_action_observation_count/mean:3.4296875 - rollout_extra/max_consecutive_action_observation/mean:2.0859375 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:15.694296875000001 - rollout_extra/student_attempt_generated_tokens/mean:653.0546875 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:220.72624493909433 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:167.9140625 - rollout_extra/steer_record_rows/mean:176.890625 - rollout_extra/steer_reject_count/mean:5.6484375 - rollout_extra/steer_n_draft_discarded/mean:229.09375 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:341.421875 - rollout_extra/steer_d_mean/mean:0.04992444349918001 - rollout_extra/steer_n_candidates/mean:341.421875 - rollout_extra/steer_n_base_open/mean:176.890625 - rollout_extra/steer_n_probe_flipped/mean:8.9765625 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:0.9609375 - rollout_extra/steer_n_pt_window_miss/mean:35.3046875 - rollout_extra/steer_ell_count/mean:24017.2890625 - rollout_extra/steer_ent_count/mean:342.3828125 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.4912981410023916 - rollout_extra/steer_entropy_mean/mean:0.5023049791108081 - rollout_extra/steer_gate_open_rate/mean:0.2546172071975387 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.8489159962487598 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:2.75 - rollout_extra/research_episodes/mean:6.25 - rollout_extra/research_turns/mean:5.0 - rollout_extra/research_final_success/mean:0.1875 - rollout_extra/research_doc_words/mean:309.8125 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:12.0 - rollout_extra/won_bare_rate/mean:0.078125 - rollout_extra/won_steered_rate/mean:0.078125 - rollout_extra/steer_arm_gap/mean:0.0 - training/global_step:13 - training/epoch:0 - critic/score/mean:0.078125 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.078125 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.027173977345228195 - critic/advantages/max:0.875 - critic/advantages/min:-0.625 - critic/returns/mean:-0.027173977345228195 - critic/returns/max:0.875 - critic/returns/min:-0.625 - response_length/mean:5225.109375 - response_length/max:11830.0 - response_length/min:962.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:5225.109375 - response_length_non_aborted/max:11830.0 - response_length_non_aborted/min:962.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:368.9375 - prompt_length/max:386.0 - prompt_length/min:350.0 - prompt_length/clip_ratio:0.0625 - timing_s/feed:0.022433653473854065 - timing_s/gen:321.40444998815656 - timing_s/old_log_prob:66.95400189235806 - timing_s/adv:0.11866527423262596 - timing_s/update_actor:208.79001266509295 - timing_s/update_weights:5.510720327496529 - timing_s/step:602.8493186980486 - timing_per_token_ms/adv:0.00016572482777817095 - timing_per_token_ms/update_actor:0.29159068745666145 - timing_per_token_ms/gen:0.4805587951032074 - perf/total_num_tokens:716038 - perf/time_per_step:602.8493186980486 - perf/throughput:593.878086771667 - training/num_turns/mean:np.float64(21.359375) - training/num_turns/max:np.int64(31) - training/num_turns/min:np.int64(7) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m ",
+    "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:14 - global_seqlen/min:784129.0 - global_seqlen/max:784129.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:784129.0 - global_seqlen/balanced_max:784129.0 - global_seqlen/mean:784129.0 - actor/entropy:0.5698520541191101 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.35126519203186035 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:77.22277450561523 - perf/mfu/actor:0.13792943348443507 - rollout_extra/won/mean:0.0625 - rollout_extra/score/mean:0.3078853546626984 - rollout_extra/env_steps/mean:10.53125 - rollout_extra/invalid_format/mean:0.0078125 - rollout_extra/truncated/mean:0.0078125 - rollout_extra/generated_token_count/mean:658.75 - rollout_extra/accepted_generated_token_count/mean:658.75 - rollout_extra/invalid_action_count/mean:2.3828125 - rollout_extra/repeated_action_observation_count/mean:3.34375 - rollout_extra/max_consecutive_action_observation/mean:1.8515625 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:17.014531249999997 - rollout_extra/student_attempt_generated_tokens/mean:658.75 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:221.2866722010984 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:167.34375 - rollout_extra/steer_record_rows/mean:176.0234375 - rollout_extra/steer_reject_count/mean:6.09375 - rollout_extra/steer_n_draft_discarded/mean:246.640625 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:332.8515625 - rollout_extra/steer_d_mean/mean:0.0491284359268251 - rollout_extra/steer_n_candidates/mean:332.8515625 - rollout_extra/steer_n_base_open/mean:176.0234375 - rollout_extra/steer_n_probe_flipped/mean:8.6796875 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:3.8828125 - rollout_extra/steer_n_pt_window_miss/mean:42.1796875 - rollout_extra/steer_ell_count/mean:23472.6796875 - rollout_extra/steer_ent_count/mean:336.734375 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.4966467689779238 - rollout_extra/steer_entropy_mean/mean:0.508505221451593 - rollout_extra/steer_gate_open_rate/mean:0.25991117996228974 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.8300931803385416 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:2.8125 - rollout_extra/research_episodes/mean:5.75 - rollout_extra/research_turns/mean:6.5625 - rollout_extra/research_final_success/mean:0.125 - rollout_extra/research_doc_words/mean:308.0 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:13.0 - rollout_extra/won_bare_rate/mean:0.09375 - rollout_extra/won_steered_rate/mean:0.03125 - rollout_extra/steer_arm_gap/mean:-0.0625 - training/global_step:14 - training/epoch:0 - critic/score/mean:0.0625 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.0625 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.0230995025485754 - critic/advantages/max:0.875 - critic/advantages/min:-0.375 - critic/returns/mean:-0.0230995025485754 - critic/returns/max:0.875 - critic/returns/min:-0.375 - response_length/mean:5756.3828125 - response_length/max:12244.0 - response_length/min:1131.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:5756.3828125 - response_length_non_aborted/max:12244.0 - response_length_non_aborted/min:1131.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:369.625 - prompt_length/max:380.0 - prompt_length/min:363.0 - prompt_length/clip_ratio:0.0625 - timing_s/feed:0.019592545926570892 - timing_s/gen:473.64209930598736 - timing_s/old_log_prob:72.17877697572112 - timing_s/adv:0.12036295235157013 - timing_s/update_actor:228.20102375745773 - timing_s/update_weights:5.5266959592700005 - timing_s/step:779.7344037629664 - timing_per_token_ms/adv:0.00015349891708069734 - timing_per_token_ms/update_actor:0.2910248489183001 - timing_per_token_ms/gen:0.6428218937755065 - perf/total_num_tokens:784129 - perf/time_per_step:779.7344037629664 - perf/throughput:502.81800842429516 - training/num_turns/mean:np.float64(22.078125) - training/num_turns/max:np.int64(31) - training/num_turns/min:np.int64(7) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)",
+    "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:15 - global_seqlen/min:693703.0 - global_seqlen/max:693703.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:693703.0 - global_seqlen/balanced_max:693703.0 - global_seqlen/mean:693703.0 - actor/entropy:0.5752174854278564 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.5012535452842712 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:77.71937561035156 - perf/mfu/actor:0.13657900306202989 - rollout_extra/won/mean:0.1640625 - rollout_extra/score/mean:0.39470584753787874 - rollout_extra/env_steps/mean:9.875 - rollout_extra/invalid_format/mean:0.0 - rollout_extra/truncated/mean:0.0 - rollout_extra/generated_token_count/mean:632.9921875 - rollout_extra/accepted_generated_token_count/mean:632.9921875 - rollout_extra/invalid_action_count/mean:2.1796875 - rollout_extra/repeated_action_observation_count/mean:2.7265625 - rollout_extra/max_consecutive_action_observation/mean:1.765625 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:14.1403125 - rollout_extra/student_attempt_generated_tokens/mean:632.9921875 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:223.8303395922327 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:167.703125 - rollout_extra/steer_record_rows/mean:176.4375 - rollout_extra/steer_reject_count/mean:5.71875 - rollout_extra/steer_n_draft_discarded/mean:231.9453125 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:322.140625 - rollout_extra/steer_d_mean/mean:0.056189435705982414 - rollout_extra/steer_n_candidates/mean:322.140625 - rollout_extra/steer_n_base_open/mean:176.4375 - rollout_extra/steer_n_probe_flipped/mean:8.734375 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:0.9609375 - rollout_extra/steer_n_pt_window_miss/mean:45.15625 - rollout_extra/steer_ell_count/mean:22744.96875 - rollout_extra/steer_ent_count/mean:323.1015625 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.4948542478953062 - rollout_extra/steer_entropy_mean/mean:0.5277355874380159 - rollout_extra/steer_gate_open_rate/mean:0.26884444718776623 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.839619431268601 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:2.75 - rollout_extra/research_episodes/mean:5.6875 - rollout_extra/research_turns/mean:4.8125 - rollout_extra/research_final_success/mean:0.28125 - rollout_extra/research_doc_words/mean:304.6875 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:14.0 - rollout_extra/won_bare_rate/mean:0.15625 - rollout_extra/won_steered_rate/mean:0.171875 - rollout_extra/steer_arm_gap/mean:0.015625 - training/global_step:15 - training/epoch:0 - critic/score/mean:0.1640625 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.1640625 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05744510889053345 - critic/advantages/max:0.875 - critic/advantages/min:-0.625 - critic/returns/mean:-0.05744510889053345 - critic/returns/max:0.875 - critic/returns/min:-0.625 - response_length/mean:5048.2421875 - response_length/max:11718.0 - response_length/min:1048.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:5048.2421875 - response_length_non_aborted/max:11718.0 - response_length_non_aborted/min:1048.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:371.3125 - prompt_length/max:384.0 - prompt_length/min:357.0 - prompt_length/clip_ratio:0.0625 - timing_s/feed:0.02554258704185486 - timing_s/gen:385.5091139487922 - timing_s/old_log_prob:64.84066773205996 - timing_s/adv:0.12745173275470734 - timing_s/update_actor:202.15625381469727 - timing_s/update_weights:5.433787997812033 - timing_s/step:658.168784212321 - timing_per_token_ms/adv:0.00018372665644332997 - timing_per_token_ms/update_actor:0.2914161446825187 - timing_per_token_ms/gen:0.5966017161740894 - perf/total_num_tokens:693703 - perf/time_per_step:658.168784212321 - perf/throughput:526.9947592775958 - training/num_turns/mean:np.float64(20.75) - training/num_turns/max:np.int64(31) - training/num_turns/min:np.int64(7) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m ",
+    "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:16 - global_seqlen/min:740880.0 - global_seqlen/max:740880.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:740880.0 - global_seqlen/balanced_max:740880.0 - global_seqlen/mean:740880.0 - actor/entropy:0.5305423140525818 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.48316308856010437 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:77.33695220947266 - perf/mfu/actor:0.1364870384592942 - rollout_extra/won/mean:0.171875 - rollout_extra/score/mean:0.43000372023809524 - rollout_extra/env_steps/mean:9.8671875 - rollout_extra/invalid_format/mean:0.0 - rollout_extra/truncated/mean:0.0 - rollout_extra/generated_token_count/mean:629.1953125 - rollout_extra/accepted_generated_token_count/mean:629.1953125 - rollout_extra/invalid_action_count/mean:2.2890625 - rollout_extra/repeated_action_observation_count/mean:3.1484375 - rollout_extra/max_consecutive_action_observation/mean:2.1171875 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:14.650390625 - rollout_extra/student_attempt_generated_tokens/mean:629.1953125 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:213.39237877959266 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:161.2734375 - rollout_extra/steer_record_rows/mean:169.890625 - rollout_extra/steer_reject_count/mean:5.9296875 - rollout_extra/steer_n_draft_discarded/mean:248.921875 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:327.203125 - rollout_extra/steer_d_mean/mean:0.056772185619085994 - rollout_extra/steer_n_candidates/mean:327.203125 - rollout_extra/steer_n_base_open/mean:169.890625 - rollout_extra/steer_n_probe_flipped/mean:8.6171875 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:1.84375 - rollout_extra/steer_n_pt_window_miss/mean:58.7890625 - rollout_extra/steer_ell_count/mean:23205.0625 - rollout_extra/steer_ent_count/mean:329.046875 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.49166603139483767 - rollout_extra/steer_entropy_mean/mean:0.5000875738982099 - rollout_extra/steer_gate_open_rate/mean:0.25549453896971247 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.8428205023871527 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:2.625 - rollout_extra/research_episodes/mean:6.0625 - rollout_extra/research_turns/mean:4.625 - rollout_extra/research_final_success/mean:0.38541666666666663 - rollout_extra/research_doc_words/mean:300.0625 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:15.0 - rollout_extra/won_bare_rate/mean:0.203125 - rollout_extra/won_steered_rate/mean:0.140625 - rollout_extra/steer_arm_gap/mean:-0.0625 - training/global_step:16 - training/epoch:0 - critic/score/mean:0.171875 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.171875 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05163775756955147 - critic/advantages/max:0.875 - critic/advantages/min:-0.5 - critic/returns/mean:-0.05163775756955147 - critic/returns/max:0.875 - critic/returns/min:-0.5 - response_length/mean:5419.875 - response_length/max:12337.0 - response_length/min:1215.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:5419.875 - response_length_non_aborted/max:12337.0 - response_length_non_aborted/min:1215.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:368.25 - prompt_length/max:380.0 - prompt_length/min:359.0 - prompt_length/clip_ratio:0.0625 - timing_s/feed:0.020675353705883026 - timing_s/gen:409.56194151192904 - timing_s/old_log_prob:68.13377322629094 - timing_s/adv:0.12071913480758667 - timing_s/update_actor:215.86416403576732 - timing_s/update_weights:5.579437296837568 - timing_s/step:699.355725325644 - timing_per_token_ms/adv:0.00016294019923278623 - timing_per_token_ms/update_actor:0.2913618454213467 - timing_per_token_ms/gen:0.5903646611890395 - perf/total_num_tokens:740880 - perf/time_per_step:699.355725325644 - perf/throughput:529.6875203638469 - training/num_turns/mean:np.float64(20.734375) - training/num_turns/max:np.int64(31) - training/num_turns/min:np.int64(7) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m ",
+    "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:17 - global_seqlen/min:762088.0 - global_seqlen/max:762088.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:762088.0 - global_seqlen/balanced_max:762088.0 - global_seqlen/mean:762088.0 - actor/entropy:0.5421134233474731 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.38711434602737427 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:77.30966186523438 - perf/mfu/actor:0.13685391299169863 - rollout_extra/won/mean:0.1171875 - rollout_extra/score/mean:0.3763036334325397 - rollout_extra/env_steps/mean:10.21875 - rollout_extra/invalid_format/mean:0.0078125 - rollout_extra/truncated/mean:0.0078125 - rollout_extra/generated_token_count/mean:653.515625 - rollout_extra/accepted_generated_token_count/mean:653.515625 - rollout_extra/invalid_action_count/mean:1.90625 - rollout_extra/repeated_action_observation_count/mean:3.2734375 - rollout_extra/max_consecutive_action_observation/mean:1.8359375 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:15.099296875 - rollout_extra/student_attempt_generated_tokens/mean:653.515625 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:204.2921344078659 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:153.0625 - rollout_extra/steer_record_rows/mean:160.8671875 - rollout_extra/steer_reject_count/mean:5.7578125 - rollout_extra/steer_n_draft_discarded/mean:230.921875 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:315.21875 - rollout_extra/steer_d_mean/mean:0.0585223543778954 - rollout_extra/steer_n_candidates/mean:315.21875 - rollout_extra/steer_n_base_open/mean:160.8671875 - rollout_extra/steer_n_probe_flipped/mean:7.8046875 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:1.3046875 - rollout_extra/steer_n_pt_window_miss/mean:56.03125 - rollout_extra/steer_ell_count/mean:22321.109375 - rollout_extra/steer_ent_count/mean:316.5234375 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.4949794267913642 - rollout_extra/steer_entropy_mean/mean:0.4985577835479872 - rollout_extra/steer_gate_open_rate/mean:0.25317897404358936 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.8372137451171873 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:2.8125 - rollout_extra/research_episodes/mean:5.8125 - rollout_extra/research_turns/mean:5.8125 - rollout_extra/research_final_success/mean:0.3125 - rollout_extra/research_doc_words/mean:308.5 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:16.0 - rollout_extra/won_bare_rate/mean:0.140625 - rollout_extra/won_steered_rate/mean:0.09375 - rollout_extra/steer_arm_gap/mean:-0.046875 - training/global_step:17 - training/epoch:1 - critic/score/mean:0.1171875 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.1171875 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.024091452360153198 - critic/advantages/max:0.875 - critic/advantages/min:-0.5 - critic/returns/mean:-0.024091452360153198 - critic/returns/max:0.875 - critic/returns/min:-0.5 - response_length/mean:5581.75 - response_length/max:13503.0 - response_length/min:961.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:5581.75 - response_length_non_aborted/max:13503.0 - response_length_non_aborted/min:961.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:372.0625 - prompt_length/max:383.0 - prompt_length/min:361.0 - prompt_length/clip_ratio:0.0625 - timing_s/feed:0.23846342042088509 - timing_s/gen:525.7211484722793 - timing_s/old_log_prob:70.44030322134495 - timing_s/adv:0.13778283074498177 - timing_s/update_actor:222.95921107381582 - timing_s/update_weights:5.604554638266563 - timing_s/step:825.1509722210467 - timing_per_token_ms/adv:0.00018079648379843504 - timing_per_token_ms/update_actor:0.2925636029878647 - timing_per_token_ms/gen:0.735825945705143 - perf/total_num_tokens:762088 - perf/time_per_step:825.1509722210467 - perf/throughput:461.78700968423937 - training/num_turns/mean:np.float64(21.453125) - training/num_turns/max:np.int64(31) - training/num_turns/min:np.int64(7) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)",
+    "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:18 - global_seqlen/min:753079.0 - global_seqlen/max:753079.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:753079.0 - global_seqlen/balanced_max:753079.0 - global_seqlen/mean:753079.0 - actor/entropy:0.5441222190856934 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.5429369807243347 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:77.75762557983398 - perf/mfu/actor:0.13658865926322122 - rollout_extra/won/mean:0.1796875 - rollout_extra/score/mean:0.4042689732142857 - rollout_extra/env_steps/mean:10.125 - rollout_extra/invalid_format/mean:0.0 - rollout_extra/truncated/mean:0.0 - rollout_extra/generated_token_count/mean:654.7734375 - rollout_extra/accepted_generated_token_count/mean:654.7734375 - rollout_extra/invalid_action_count/mean:1.859375 - rollout_extra/repeated_action_observation_count/mean:2.9296875 - rollout_extra/max_consecutive_action_observation/mean:1.75 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:14.807343750000001 - rollout_extra/student_attempt_generated_tokens/mean:654.7734375 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:228.05314744378478 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:169.921875 - rollout_extra/steer_record_rows/mean:178.5 - rollout_extra/steer_reject_count/mean:5.921875 - rollout_extra/steer_n_draft_discarded/mean:242.9375 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:337.53125 - rollout_extra/steer_d_mean/mean:0.049920139413682174 - rollout_extra/steer_n_candidates/mean:337.53125 - rollout_extra/steer_n_base_open/mean:178.5 - rollout_extra/steer_n_probe_flipped/mean:8.578125 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:1.0625 - rollout_extra/steer_n_pt_window_miss/mean:57.4609375 - rollout_extra/steer_ell_count/mean:23849.84375 - rollout_extra/steer_ent_count/mean:338.59375 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.4962175843625868 - rollout_extra/steer_entropy_mean/mean:0.512449336329122 - rollout_extra/steer_gate_open_rate/mean:0.2585427363210293 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.8471051509796625 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:2.9375 - rollout_extra/research_episodes/mean:6.4375 - rollout_extra/research_turns/mean:6.3125 - rollout_extra/research_final_success/mean:0.19791666666666666 - rollout_extra/research_doc_words/mean:305.3125 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:17.0 - rollout_extra/won_bare_rate/mean:0.171875 - rollout_extra/won_steered_rate/mean:0.1875 - rollout_extra/steer_arm_gap/mean:0.015625 - training/global_step:18 - training/epoch:1 - critic/score/mean:0.1796875 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.1796875 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.06939125061035156 - critic/advantages/max:0.875 - critic/advantages/min:-0.5 - critic/returns/mean:-0.06939125061035156 - critic/returns/max:0.875 - critic/returns/min:-0.5 - response_length/mean:5509.2421875 - response_length/max:12086.0 - response_length/min:1294.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:5509.2421875 - response_length_non_aborted/max:12086.0 - response_length_non_aborted/min:1294.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:374.1875 - prompt_length/max:386.0 - prompt_length/min:367.0 - prompt_length/clip_ratio:0.0625 - timing_s/feed:0.029402099549770355 - timing_s/gen:453.6271086372435 - timing_s/old_log_prob:69.54934433475137 - timing_s/adv:0.11810992285609245 - timing_s/update_actor:219.83169657737017 - timing_s/update_weights:5.486338969320059 - timing_s/step:748.6872583143413 - timing_per_token_ms/adv:0.00015683603294752935 - timing_per_token_ms/update_actor:0.2919105387049302 - timing_per_token_ms/gen:0.6432757293315969 - perf/total_num_tokens:753079 - perf/time_per_step:748.6872583143413 - perf/throughput:502.93296141806036 - training/num_turns/mean:np.float64(21.25) - training/num_turns/max:np.int64(31) - training/num_turns/min:np.int64(7) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)",
+    "\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m step:19 - global_seqlen/min:693698.0 - global_seqlen/max:693698.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:693698.0 - global_seqlen/balanced_max:693698.0 - global_seqlen/mean:693698.0 - actor/entropy:0.5310694575309753 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.4702047109603882 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.248046875 - actor/perf/cpu_memory_used_gb:77.88330841064453 - perf/mfu/actor:0.1362459680148401 - rollout_extra/won/mean:0.140625 - rollout_extra/score/mean:0.39641053391053394 - rollout_extra/env_steps/mean:10.265625 - rollout_extra/invalid_format/mean:0.0 - rollout_extra/truncated/mean:0.0 - rollout_extra/generated_token_count/mean:599.6171875 - rollout_extra/accepted_generated_token_count/mean:599.6171875 - rollout_extra/invalid_action_count/mean:1.859375 - rollout_extra/repeated_action_observation_count/mean:3.2421875 - rollout_extra/max_consecutive_action_observation/mean:1.859375 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overrun_token_excess/mean:0.0 - rollout_extra/student_attempt_count/mean:1.0 - rollout_extra/student_attempt_wall_s/mean:13.76609375 - rollout_extra/student_attempt_generated_tokens/mean:599.6171875 - rollout_extra/task_gate_applied/mean:0.0 - rollout_extra/task_skill_eligible/mean:1.0 - rollout_extra/base_pass5/mean:-1.0 - rollout_extra/doc_missing/mean:0.0 - rollout_extra/doc_overflow/mean:0.0 - rollout_extra/steer_arm/mean:0.5 - rollout_extra/steer_budget_spent/mean:218.37933101084926 - rollout_extra/steer_turns_capped/mean:0.0 - rollout_extra/steer_count/mean:168.5234375 - rollout_extra/steer_record_rows/mean:177.3203125 - rollout_extra/steer_reject_count/mean:5.9296875 - rollout_extra/steer_n_draft_discarded/mean:227.2734375 - rollout_extra/steer_d_hist_max/mean:6.25 - rollout_extra/steer_d_hist_bins/mean:2048.0 - rollout_extra/steer_d_count/mean:331.9921875 - rollout_extra/steer_d_mean/mean:0.04996170619983505 - rollout_extra/steer_n_candidates/mean:331.9921875 - rollout_extra/steer_n_base_open/mean:177.3203125 - rollout_extra/steer_n_probe_flipped/mean:8.796875 - rollout_extra/steer_n_budget_blocked/mean:0.0 - rollout_extra/steer_n_bypassed/mean:0.0 - rollout_extra/steer_n_pacing_wait/mean:0.0 - rollout_extra/steer_n_gate_bypassed/mean:2.7265625 - rollout_extra/steer_n_pt_window_miss/mean:50.8203125 - rollout_extra/steer_ell_count/mean:23479.3828125 - rollout_extra/steer_ent_count/mean:334.71875 - rollout_extra/steer_ent_hist_bins/mean:1024.0 - rollout_extra/steer_ent_hist_max/mean:8.0 - rollout_extra/steer_intensity_mean/mean:0.4808012470642873 - rollout_extra/steer_entropy_mean/mean:0.5095030879919178 - rollout_extra/steer_gate_open_rate/mean:0.26230797448470283 - rollout_extra/steer_w_beh_gamma/mean:0.10000000000000002 - rollout_extra/steer_log_ratio_cap/mean:2.5 - rollout_extra/steer_theta_d/mean:0.0 - rollout_extra/steer_entropy_theta/mean:1.8619821312313987 - rollout_extra/research_error/mean:0.0 - rollout_extra/research_experiments/mean:2.8125 - rollout_extra/research_episodes/mean:6.375 - rollout_extra/research_turns/mean:4.875 - rollout_extra/research_final_success/mean:0.26041666666666663 - rollout_extra/research_doc_words/mean:302.5625 - rollout_extra/research_doc_missing/mean:0.0 - rollout_extra/research_policy_version/mean:18.0 - rollout_extra/won_bare_rate/mean:0.125 - rollout_extra/won_steered_rate/mean:0.15625 - rollout_extra/steer_arm_gap/mean:0.03125 - training/global_step:19 - training/epoch:1 - critic/score/mean:0.140625 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.140625 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.033869266510009766 - critic/advantages/max:0.875 - critic/advantages/min:-0.5 - critic/returns/mean:-0.033869266510009766 - critic/returns/max:0.875 - critic/returns/min:-0.5 - response_length/mean:5046.015625 - response_length/max:11622.0 - response_length/min:1111.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:5046.015625 - response_length_non_aborted/max:11622.0 - response_length_non_aborted/min:1111.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:373.5 - prompt_length/max:386.0 - prompt_length/min:363.0 - prompt_length/clip_ratio:0.0625 - timing_s/feed:0.02136266976594925 - timing_s/gen:389.5042187869549 - timing_s/old_log_prob:64.57776324823499 - timing_s/adv:0.11735849827528 - timing_s/update_actor:201.871317807585 - timing_s/update_weights:5.517751134932041 - timing_s/step:661.6539116725326 - timing_per_token_ms/adv:0.00016917808365496224 - timing_per_token_ms/update_actor:0.2910074957799864 - timing_per_token_ms/gen:0.6030503937000958 - perf/total_num_tokens:693698 - perf/time_per_step:661.6539116725326 - perf/throughput:524.2151431149755 - training/num_turns/mean:np.float64(21.53125) - training/num_turns/max:np.int64(31) - training/num_turns/min:np.int64(7) - training/off_policy/trajectory_spans/mean:np.float64(1.0) - training/off_policy/trajectory_spans/max:np.int64(1) - training/off_policy/trajectory_spans/min:np.int64(1) - training/off_policy/trajectory_staleness/mean:np.float64(0.0) - training/off_policy/trajectory_staleness/max:np.int64(0) - training/off_policy/trajectory_staleness/min:np.int64(0) - training/off_policy/trajectory_staleness_worst/mean:np.float64(0.0) - training/off_policy/trajectory_staleness_worst/max:np.int64(0) - training/off_policy/trajectory_staleness_worst/min:np.int64(0)\u001b[36m(TaskRunnerV1 pid=2540868)\u001b[0m "
+  ],
+  "p5compact3072-research25clean2_tail": "er pid=2536414) INFO:     127.0.0.1:60218 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:33182 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:33182 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:33192 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:33192 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 07:44:41 [loggers.py:259] Engine 000: Avg prompt throughput: 1391.8 tokens/s, Avg generation throughput: 129.8 tokens/s, Running: 13 reqs, Waiting: 0 reqs, GPU KV cache usage: 17.1%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:33208 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:33208 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:32802 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:60194 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:32822 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:48874 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:48874 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:37530 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:37520 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 07:44:51 [loggers.py:259] Engine 000: Avg prompt throughput: 464.2 tokens/s, Avg generation throughput: 141.0 tokens/s, Running: 10 reqs, Waiting: 0 reqs, GPU KV cache usage: 13.2%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:33158 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:37520 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:37520 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:47998 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:47998 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:48004 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:48004 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:33152 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:33166 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:48020 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:48020 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:33208 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:33182 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 07:45:01 [loggers.py:259] Engine 000: Avg prompt throughput: 931.7 tokens/s, Avg generation throughput: 124.7 tokens/s, Running: 9 reqs, Waiting: 0 reqs, GPU KV cache usage: 11.9%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:44110 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42602 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42602 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42602 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42610 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42610 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42610 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42620 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42620 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42624 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42624 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42626 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42626 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42626 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:37458 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42642 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42642 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42642 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 07:45:11 [loggers.py:259] Engine 000: Avg prompt throughput: 1165.7 tokens/s, Avg generation throughput: 120.4 tokens/s, Running: 13 reqs, Waiting: 0 reqs, GPU KV cache usage: 17.1%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:44108 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:48874 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:53182 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:53182 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:53182 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:53192 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:53192 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:53192 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:48020 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 07:45:21 [loggers.py:259] Engine 000: Avg prompt throughput: 704.3 tokens/s, Avg generation throughput: 146.1 tokens/s, Running: 12 reqs, Waiting: 0 reqs, GPU KV cache usage: 15.8%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:42624 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42624 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42624 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:48020 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:48020 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:48020 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:35556 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:35556 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:35556 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:37520 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42624 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42624 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42624 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42642 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42642 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42642 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42642 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:53182 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:53182 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:53182 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:53182 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 07:45:31 [loggers.py:259] Engine 000: Avg prompt throughput: 1347.5 tokens/s, Avg generation throughput: 147.4 tokens/s, Running: 13 reqs, Waiting: 0 reqs, GPU KV cache usage: 16.9%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:42602 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42602 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42602 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:33192 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:45478 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:45478 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:45478 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:48004 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 07:45:41 [loggers.py:259] Engine 000: Avg prompt throughput: 443.4 tokens/s, Avg generation throughput: 152.2 tokens/s, Running: 12 reqs, Waiting: 0 reqs, GPU KV cache usage: 15.6%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:42624 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42624 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42624 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42642 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42642 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42642 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:41328 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:41328 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:41328 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:53182 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:53182 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:53182 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:41332 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:41332 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:41332 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:35556 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:35556 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:35556 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:35556 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 07:45:51 [loggers.py:259] Engine 000: Avg prompt throughput: 1361.1 tokens/s, Avg generation throughput: 152.2 tokens/s, Running: 14 reqs, Waiting: 0 reqs, GPU KV cache usage: 18.2%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:42620 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42610 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:47998 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 07:46:01 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 156.3 tokens/s, Running: 11 reqs, Waiting: 0 reqs, GPU KV cache usage: 14.3%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:53192 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:53192 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:53192 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:53192 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:38008 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:38008 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:38008 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42626 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:41328 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:41328 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:41328 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 07:46:11 [loggers.py:259] Engine 000: Avg prompt throughput: 706.8 tokens/s, Avg generation throughput: 131.7 tokens/s, Running: 11 reqs, Waiting: 0 reqs, GPU KV cache usage: 14.5%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:42642 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:46886 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:46886 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:46886 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 07:46:21 [loggers.py:259] Engine 000: Avg prompt throughput: 225.0 tokens/s, Avg generation throughput: 128.9 tokens/s, Running: 11 reqs, Waiting: 0 reqs, GPU KV cache usage: 14.5%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:38008 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:38008 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:38008 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:38008 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:53182 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:45478 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 07:46:31 [loggers.py:259] Engine 000: Avg prompt throughput: 228.1 tokens/s, Avg generation throughput: 117.1 tokens/s, Running: 9 reqs, Waiting: 0 reqs, GPU KV cache usage: 11.9%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:53192 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:48020 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:48020 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:48020 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:48020 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:48020 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:48020 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:48020 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 07:46:41 [loggers.py:259] Engine 000: Avg prompt throughput: 440.1 tokens/s, Avg generation throughput: 97.5 tokens/s, Running: 8 reqs, Waiting: 0 reqs, GPU KV cache usage: 10.5%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:42624 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:41328 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:38008 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:41328 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:38008 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:41328 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:38008 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:35556 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 07:46:51 [loggers.py:259] Engine 000: Avg prompt throughput: 445.5 tokens/s, Avg generation throughput: 84.6 tokens/s, Running: 6 reqs, Waiting: 0 reqs, GPU KV cache usage: 7.7%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:46886 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:46886 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:46886 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:41328 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:41328 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:41328 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 07:47:01 [loggers.py:259] Engine 000: Avg prompt throughput: 203.5 tokens/s, Avg generation throughput: 71.8 tokens/s, Running: 5 reqs, Waiting: 0 reqs, GPU KV cache usage: 6.8%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO 10-25 07:47:11 [loggers.py:259] Engine 000: Avg prompt throughput: 234.1 tokens/s, Avg generation throughput: 73.0 tokens/s, Running: 6 reqs, Waiting: 0 reqs, GPU KV cache usage: 8.4%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:46886 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:46886 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:46886 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:42602 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:41332 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 07:47:21 [loggers.py:259] Engine 000: Avg prompt throughput: 234.2 tokens/s, Avg generation throughput: 69.9 tokens/s, Running: 4 reqs, Waiting: 0 reqs, GPU KV cache usage: 5.3%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:38008 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 07:47:31 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 47.3 tokens/s, Running: 3 reqs, Waiting: 0 reqs, GPU KV cache usage: 4.0%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO 10-25 07:47:41 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 32.1 tokens/s, Running: 3 reqs, Waiting: 0 reqs, GPU KV cache usage: 4.0%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:48020 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:41328 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 07:47:51 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 24.7 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO 10-25 07:48:01 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 11.2 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO 10-25 07:48:11 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 11.3 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO 10-25 07:48:21 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 11.3 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.3%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:46886 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 07:48:31 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 7.4 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO 10-25 07:48:41 [loggers.py:259] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.0%, Prefix cache hit rate: 0.0%\n",
+  "p5compact3072-research25clean2_errors": {
+    "CUDA out of memory": 0,
+    "OutOfMemoryError": 0,
+    "is preempted|preempted by": 0,
+    "ReadTimeout|ConnectTimeout": 0,
+    "Traceback": 1,
+    "HTTP/1.1. 500": 0
+  },
+  "p5compact3072-research25clean2_mtime": 1792885721.926697,
+  "p5compact3072-research25clean2_tracebacks": [
+    "TTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:57628 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) ERROR 10-25 04:46:37 [qwen3coder_tool_parser.py:344] Error in extracting tool call from response.\n(APIServer pid=2536414) ERROR 10-25 04:46:37 [qwen3coder_tool_parser.py:344] Traceback (most recent call last):\n(APIServer pid=2536414) ERROR 10-25 04:46:37 [qwen3coder_tool_parser.py:344]   File \"/root/trace-webshop-arm-ratio/.venvs/researcher/lib/python3.12/site-packages/vllm/tool_parsers/qwen3coder_tool_parser.py\", line 317, in extract_tool_calls\n(APIServer pid=2536414) ERROR 10-25 04:46:37 [qwen3coder_tool_parser.py:344]     self._parse_xml_function_call(function_call_str, request.tools)\n(APIServer pid=2536414) ERROR 10-25 04:46:37 [qwen3coder_tool_parser.py:344]   File \"/root/trace-webshop-arm-ratio/.venvs/researcher/lib/python3.12/site-packages/vllm/tool_parsers/qwen3coder_tool_parser.py\", line 259, in _parse_xml_function_call\n(APIServer pid=2536414) ERROR 10-25 04:46:37 [qwen3coder_tool_parser.py:344]     idx = match_text.index(\">\")\n(APIServer pid=2536414) ERROR 10-25 04:46:37 [qwen3coder_tool_parser.py:344]           ^^^^^^^^^^^^^^^^^^^^^\n(APIServer pid=2536414) ERROR 10-25 04:46:37 [qwen3coder_tool_parser.py:344] ValueError: substring not found\n(APIServer pid=2536414) INFO:     127.0.0.1:43998 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:57628 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:43998 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:43998 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:57630 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:57630 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:57630 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:57644 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:57644 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:57644 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 04:46:41 [loggers.py:259] Engine 000: Avg prompt throughput: 1341.6 tokens/s, Avg generation throughput: 143.0 tokens/s, Running: 15 reqs, Waiting: 0 reqs, GPU KV cache usage: 19.6%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:44020 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:44006 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:52392 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:52408 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO 10-25 04:46:51 [loggers.py:259] Engine 000: Avg prompt throughput: 224.7 tokens/s, Avg generation throughput: 167.2 tokens/s, Running: 12 reqs, Waiting: 0 reqs, GPU KV cache usage: 15.6%, Prefix cache hit rate: 0.0%\n(APIServer pid=2536414) INFO:     127.0.0.1:52382 - \"POST /v1/chat/completions HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:56018 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIServer pid=2536414) INFO:     127.0.0.1:56018 - \"POST /tokenize HTTP/1.1\" 200 OK\n(APIS"
+  ],
+  "run_root_files": [
+    "effective_config.yaml",
+    "objective_fingerprint.txt",
+    "launch_manifest_20261025_033407.json",
+    "episode_attempts",
+    "rollouts",
+    "tape",
+    "research",
+    "checkpoints"
+  ],
+  "initial_eval": null,
+  "detail_audit": {
+    "checked_at": "2026-10-25T07:53:46.512200+08:00",
+    "initial_eval": {
+      "passed": true,
+      "tasks": 256,
+      "rows": 1280,
+      "successes": 63,
+      "solved": 43,
+      "step": 0,
+      "bare": true,
+      "n": 5,
+      "temperature": 0.6
+    },
+    "train_steps": {
+      "1": {
+        "passed": true,
+        "rows": 128,
+        "groups": 16,
+        "won_heterogeneous_groups": 4,
+        "score_heterogeneous_groups": 15,
+        "binary_successes": 6,
+        "guided_rows": 64,
+        "theta_min": -1,
+        "theta_max": -1,
+        "positive_steering_rows": 0,
+        "gate_candidates": 0,
+        "gate_base_open": 0,
+        "note": "group heterogeneity is only an advantage proxy; actual nonzero advantage extrema and gradient norms separately logged"
+      },
+      "2": {
+        "passed": true,
+        "rows": 128,
+        "groups": 16,
+        "won_heterogeneous_groups": 7,
+        "score_heterogeneous_groups": 15,
+        "binary_successes": 11,
+        "guided_rows": 64,
+        "theta_min": 1.5257812499999996,
+        "theta_max": 1.878515625,
+        "positive_steering_rows": 64,
+        "gate_candidates": 45206,
+        "gate_base_open": 21432,
+        "note": "group heterogeneity is only an advantage proxy; actual nonzero advantage extrema and gradient norms separately logged"
+      },
+      "3": {
+        "passed": true,
+        "rows": 128,
+        "groups": 16,
+        "won_heterogeneous_groups": 7,
+        "score_heterogeneous_groups": 15,
+        "binary_successes": 14,
+        "guided_rows": 64,
+        "theta_min": 1.6931640625,
+        "theta_max": 1.878515625,
+        "positive_steering_rows": 64,
+        "gate_candidates": 44957,
+        "gate_base_open": 21953,
+        "note": "group heterogeneity is only an advantage proxy; actual nonzero advantage extrema and gradient norms separately logged"
+      },
+      "4": {
+        "passed": true,
+        "rows": 128,
+        "groups": 16,
+        "won_heterogeneous_groups": 4,
+        "score_heterogeneous_groups": 10,
+        "binary_successes": 4,
+        "guided_rows": 64,
+        "theta_min": 1.6071093749999996,
+        "theta_max": 1.9181919642857141,
+        "positive_steering_rows": 64,
+        "gate_candidates": 46659,
+        "gate_base_open": 22113,
+        "note": "group heterogeneity is only an advantage proxy; actual nonzero advantage extrema and gradient norms separately logged"
+      },
+      "5": {
+        "passed": true,
+        "rows": 128,
+        "groups": 16,
+        "won_heterogeneous_groups": 4,
+        "score_heterogeneous_groups": 14,
+        "binary_successes": 4,
+        "guided_rows": 64,
+        "theta_min": 1.5257812499999996,
+        "theta_max": 1.878515625,
+        "positive_steering_rows": 64,
+        "gate_candidates": 52918,
+        "gate_base_open": 26758,
+        "note": "group heterogeneity is only an advantage proxy; actual nonzero advantage extrema and gradient norms separately logged"
+      },
+      "6": {
+        "passed": true,
+        "rows": 128,
+        "groups": 16,
+        "won_heterogeneous_groups": 3,
+        "score_heterogeneous_groups": 14,
+        "binary_successes": 3,
+        "guided_rows": 64,
+        "theta_min": 1.684921875,
+        "theta_max": 1.9346191406249997,
+        "positive_steering_rows": 64,
+        "gate_candidates": 45976,
+        "gate_base_open": 23665,
+        "note": "group heterogeneity is only an advantage proxy; actual nonzero advantage extrema and gradient norms separately logged"
+      },
+      "7": {
+        "passed": true,
+        "rows": 128,
+        "groups": 16,
+        "won_heterogeneous_groups": 4,
+        "score_heterogeneous_groups": 15,
+        "binary_successes": 10,
+        "guided_rows": 64,
+        "theta_min": 1.7024739583333333,
+        "theta_max": 1.981689453125,
+        "positive_steering_rows": 64,
+        "gate_candidates": 44239,
+        "gate_base_open": 22596,
+        "note": "group heterogeneity is only an advantage proxy; actual nonzero advantage extrema and gradient norms separately logged"
+      },
+      "8": {
+        "passed": true,
+        "rows": 128,
+        "groups": 16,
+        "won_heterogeneous_groups": 6,
+        "score_heterogeneous_groups": 12,
+        "binary_successes": 7,
+        "guided_rows": 64,
+        "theta_min": 1.6179687499999993,
+        "theta_max": 1.9393229166666661,
+        "positive_steering_rows": 64,
+        "gate_candidates": 50259,
+        "gate_base_open": 25791,
+        "note": "group heterogeneity is only an advantage proxy; actual nonzero advantage extrema and gradient norms separately logged"
+      },
+      "9": {
+        "passed": true,
+        "rows": 128,
+        "groups": 16,
+        "won_heterogeneous_groups": 3,
+        "score_heterogeneous_groups": 13,
+        "binary_successes": 4,
+        "guided_rows": 64,
+        "theta_min": 1.7256510416666668,
+        "theta_max": 1.9709960937499993,
+        "positive_steering_rows": 64,
+        "gate_candidates": 50697,
+        "gate_base_open": 26041,
+        "note": "group heterogeneity is only an advantage proxy; actual nonzero advantage extrema and gradient norms separately logged"
+      },
+      "10": {
+        "passed": true,
+        "rows": 128,
+        "groups": 16,
+        "won_heterogeneous_groups": 5,
+        "score_heterogeneous_groups": 13,
+        "binary_successes": 6,
+        "guided_rows": 64,
+        "theta_min": 1.590234375,
+        "theta_max": 1.8828125,
+        "positive_steering_rows": 64,
+        "gate_candidates": 49111,
+        "gate_base_open": 25799,
+        "note": "group heterogeneity is only an advantage proxy; actual nonzero advantage extrema and gradient norms separately logged"
+      },
+      "11": {
+        "passed": true,
+        "rows": 128,
+        "groups": 16,
+        "won_heterogeneous_groups": 4,
+        "score_heterogeneous_groups": 14,
+        "binary_successes": 7,
+        "guided_rows": 64,
+        "theta_min": 1.78037109375,
+        "theta_max": 2.0069878472222222,
+        "positive_steering_rows": 64,
+        "gate_candidates": 46078,
+        "gate_base_open": 23929,
+        "note": "group heterogeneity is only an advantage proxy; actual nonzero advantage extrema and gradient norms separately logged"
+      },
+      "12": {
+        "passed": true,
+        "rows": 128,
+        "groups": 16,
+        "won_heterogeneous_groups": 9,
+        "score_heterogeneous_groups": 16,
+        "binary_successes": 15,
+        "guided_rows": 64,
+        "theta_min": 1.7315624999999997,
+        "theta_max": 1.951674107142857,
+        "positive_steering_rows": 64,
+        "gate_candidates": 44338,
+        "gate_base_open": 23101,
+        "note": "group heterogeneity is only an advantage proxy; actual nonzero advantage extrema and gradient norms separately logged"
+      },
+      "13": {
+        "passed": true,
+        "rows": 128,
+        "groups": 16,
+        "won_heterogeneous_groups": 5,
+        "score_heterogeneous_groups": 14,
+        "binary_successes": 10,
+        "guided_rows": 64,
+        "theta_min": 1.76953125,
+        "theta_max": 1.9009114583333329,
+        "positive_steering_rows": 64,
+        "gate_candidates": 43702,
+        "gate_base_open": 22642,
+        "note": "group heterogeneity is only an advantage proxy; actual nonzero advantage extrema and gradient norms separately logged"
+      },
+      "14": {
+        "passed": true,
+        "rows": 128,
+        "groups": 16,
+        "won_heterogeneous_groups": 5,
+        "score_heterogeneous_groups": 16,
+        "binary_successes": 8,
+        "guided_rows": 64,
+        "theta_min": 1.6931640625,
+        "theta_max": 1.9266406249999997,
+        "positive_steering_rows": 64,
+        "gate_candidates": 42605,
+        "gate_base_open": 22531,
+        "note": "group heterogeneity is only an advantage proxy; actual nonzero advantage extrema and gradient norms separately logged"
+      },
+      "15": {
+        "passed": true,
+        "rows": 128,
+        "groups": 16,
+        "won_heterogeneous_groups": 9,
+        "score_heterogeneous_groups": 16,
+        "binary_successes": 21,
+        "guided_rows": 64,
+        "theta_min": 1.6898437499999996,
+        "theta_max": 1.912734375,
+        "positive_steering_rows": 64,
+        "gate_candidates": 41234,
+        "gate_base_open": 22584,
+        "note": "group heterogeneity is only an advantage proxy; actual nonzero advantage extrema and gradient norms separately logged"
+      },
+      "16": {
+        "passed": true,
+        "rows": 128,
+        "groups": 16,
+        "won_heterogeneous_groups": 10,
+        "score_heterogeneous_groups": 16,
+        "binary_successes": 22,
+        "guided_rows": 64,
+        "theta_min": 1.612109375,
+        "theta_max": 1.943359375,
+        "positive_steering_rows": 64,
+        "gate_candidates": 41882,
+        "gate_base_open": 21746,
+        "note": "group heterogeneity is only an advantage proxy; actual nonzero advantage extrema and gradient norms separately logged"
+      },
+      "17": {
+        "passed": true,
+        "rows": 128,
+        "groups": 16,
+        "won_heterogeneous_groups": 9,
+        "score_heterogeneous_groups": 14,
+        "binary_successes": 15,
+        "guided_rows": 64,
+        "theta_min": 1.7367187499999996,
+        "theta_max": 1.9524088541666664,
+        "positive_steering_rows": 64,
+        "gate_candidates": 40348,
+        "gate_base_open": 20591,
+        "note": "group heterogeneity is only an advantage proxy; actual nonzero advantage extrema and gradient norms separately logged"
+      },
+      "18": {
+        "passed": true,
+        "rows": 128,
+        "groups": 16,
+        "won_heterogeneous_groups": 11,
+        "score_heterogeneous_groups": 15,
+        "binary_successes": 23,
+        "guided_rows": 64,
+        "theta_min": 1.7482421874999998,
+        "theta_max": 1.9198567708333332,
+        "positive_steering_rows": 64,
+        "gate_candidates": 43204,
+        "gate_base_open": 22848,
+        "note": "group heterogeneity is only an advantage proxy; actual nonzero advantage extrema and gradient norms separately logged"
+      },
+      "19": {
+        "passed": true,
+        "rows": 128,
+        "groups": 16,
+        "won_heterogeneous_groups": 11,
+        "score_heterogeneous_groups": 16,
+        "binary_successes": 18,
+        "guided_rows": 64,
+        "theta_min": 1.7312499999999997,
+        "theta_max": 1.96484375,
+        "positive_steering_rows": 64,
+        "gate_candidates": 42495,
+        "gate_base_open": 22697,
+        "note": "group heterogeneity is only an advantage proxy; actual nonzero advantage extrema and gradient norms separately logged"
+      }
+    }
+  }
+}

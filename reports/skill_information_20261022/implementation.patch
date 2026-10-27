@@ -1,0 +1,545 @@
+--- a/src/trace_opd/common/config.py
++++ b/src/trace_opd/common/config.py
+@@ -753,6 +753,9 @@
+     enabled: bool = False
+     # 缺省 static 保持历史配置/指纹语义；researcher 每 step 在线产文档。
+     doc_source: str = "static"       # static | researcher
++    # Opt-in conservative ablation. Unknown initial-input locators reject the
++    # entire doc before SPS; off preserves historical sampling and fingerprints.
++    information_guard: str = "off"  # off | reject_unobserved_locators
+     gate_mode: str = "adaptive"    # 门控模式(v3.2 硬门档 + v3.3 软强度档,
+                                    # docs/pgs-v33-mixed-policy-design.md M4):
+                                    # adaptive = D 硬门 + ε 探针 + θ_D 率控自适应(历史行为);
+@@ -1067,6 +1070,11 @@
+     if t.rollout_n < 1:
+         raise ValueError("train.rollout_n must be >= 1")
+     st = cfg.steering
++    from ..analysis.information_dependencies import MODES as INFORMATION_GUARD_MODES
++    if st.information_guard not in INFORMATION_GUARD_MODES:
++        raise ValueError(f"unknown steering.information_guard: {st.information_guard}")
++    if cfg.research_rl.enabled and st.information_guard != "off":
++        raise ValueError("information_guard currently supports executor training only, not research_rl")
+     if st.doc_source not in ("static", "researcher"):
+         raise ValueError(
+             f"steering.doc_source 必须是 static|researcher,得到 {st.doc_source!r}"
+@@ -1619,6 +1627,9 @@
+     # 不改 material,既有 run 指纹逐字节不变。
+     if cfg.environment.name != "alfworld":
+         material += f"|environment={cfg.environment.name}"
++    if st.enabled and st.information_guard != "off":
++        from ..analysis.information_dependencies import VERSION as INFORMATION_GUARD_VERSION
++        material += f"|information_guard={st.information_guard}:{INFORMATION_GUARD_VERSION}"
+     # FC 协议统一(2026-08-08 用户裁定)改变任务表面(system prompt/输出
+     # 协议/观察包裹)= 换优化目标;条件追加:text(历史行为)不改 material,
+     # 在跑 text run 的指纹逐字节不变,误用新代码续跑旧 run 会被 resume 守卫拦下。
+--- a/src/trace_opd/train/agent_loop.py
++++ b/src/trace_opd/train/agent_loop.py
+@@ -675,6 +675,9 @@
+             "steer_entropy_theta": 0.0,
+             "doc_missing": 0,
+             "doc_overflow": 0,
++            "information_guard_evaluated": 0,
++            "information_guard_blocked": 0,
++            "information_guard_candidates": 0,
+             "steer_arm": 0,
+             "sample_role": "research",
+             "role_research": 1,
+@@ -958,6 +961,10 @@
+ 
+             steer_fields["doc_missing"] = steer_ctx["doc_missing"]
+             steer_fields["doc_overflow"] = steer_ctx.get("doc_overflow", 0)
++            info_audit = steer_ctx.get("information_audit", {})
++            steer_fields["information_guard_evaluated"] = int(bool(info_audit))
++            steer_fields["information_guard_blocked"] = int(info_audit.get("blocked", False))
++            steer_fields["information_guard_candidates"] = len(info_audit.get("unobserved_locators", []))
+             # 分臂身份(v3.1)进账与曲线:steer_arm ∈ {0,1};聚合端
+             # (metric_utils)据此产出 won_bare/won_steered 条件率与 δ gap。
+             steer_fields["steer_arm"] = steer_ctx.get("steered_arm", 1)
+@@ -1094,6 +1101,7 @@
+                         k: v for k, v in steer_fields.items() if k != "ledger_fields"
+                     },
+                     "research": dict(research_fields),
++                    "information_audit": (steer_ctx or {}).get("information_audit"),
+                     "policy_version": {
+                         "min_global_steps": result.gen_extra.get("min_global_steps"),
+                         "max_global_steps": result.gen_extra.get("max_global_steps"),
+@@ -1127,6 +1135,22 @@
+         if not steer_ctx or not steer_ctx.get("doc"):
+             return engine
+         from ..core import protocol
++        from ..analysis.information_dependencies import screen_guidance
++
++        # Inspect precisely the student's initial public surface, not task_brief,
++        # researcher experiments, GT or future observations. A blocked document
++        # never reaches teacher verification; this episode is sampled bare from
++        # its start. Keep the assigned arm for an intention-to-treat comparison.
++        accepted_doc, information_audit = screen_guidance(
++            steer_ctx["doc"],
++            [adapter.executor_scaffold(), protocol.truncate_obs(adapter.initial_obs),
++             json.dumps(adapter.tools(), ensure_ascii=False)],
++            self.cfg.steering.information_guard,
++        )
++        steer_ctx["information_audit"] = information_audit
++        steer_ctx.pop("state", None)  # retries must not retain a prior SPS ledger
++        if not accepted_doc:
++            return engine
+         from ..steering import IntensityGate, TrajectoryBudget, TurnRejectCap
+         from ..steering.hook import SpsGenerate, TrajectorySteerState
+ 
+--- /dev/null
++++ b/src/trace_opd/analysis/information_dependencies.py
+@@ -0,0 +1,88 @@
++"""Conservative literal provenance checks, NOT a semantic leakage detector.
++
++An unobserved locator is a review candidate, not proof of leakage. The optional
++pre-sampling guard rejects the *whole document*, avoiding loss-mask surgery on
++trajectories whose later states already depend on privileged actions. It may
++reject legitimate output paths, common URLs and conditional instructions.
++"""
++from __future__ import annotations
++
++import hashlib
++import re
++from collections.abc import Iterable
++
++VERSION = "literal-provenance-v1"
++MODES = ("off", "reject_unobserved_locators")
++# Deliberately bounded scope: absolute POSIX paths, HTTP URLs, WebShop ASINs.
++# No claims about relative paths, arbitrary answers, symbols or natural language.
++_LOCATOR = re.compile(
++    r"https?://[^\s<>\"'`\[\]{}()]+"
++    r"|(?<![\w:/<])/(?:[A-Za-z0-9_.~-]+/)*[A-Za-z0-9_.~-]+"
++    r"|(?P<asin>\b(?i:B[0-9A-Z]{9})\b)"
++)
++
++
++def locators(text: str) -> set[str]:
++    # WebShop actions commonly lowercase ASINs. Paths/URLs remain case-sensitive.
++    return {m.group().upper() if m.group("asin") else m.group().rstrip(".,;:!?")
++            for m in _LOCATOR.finditer(text)}
++
++
++def screen_guidance(doc: str, public_texts: Iterable[str], mode: str) -> tuple[str, dict]:
++    """Only pass actual student-visible initial input here, never task metadata/GT.
++
++    Text matching is evidence of exposure, not truth, authority or derivability.
++    Off preserves historical sampling; it still reports review candidates.
++    """
++    if mode not in MODES:
++        raise ValueError(f"unknown information guard mode: {mode}")
++    public = set().union(*(locators(text) for text in public_texts))
++    candidates = sorted(locators(doc) - public)
++    blocked = mode == "reject_unobserved_locators" and bool(candidates)
++    return ("" if blocked else doc), {
++        "version": VERSION, "mode": mode,
++        "doc_sha256": hashlib.sha256(doc.encode()).hexdigest(),
++        "unobserved_locators": candidates, "blocked": blocked,
++        "scope": "literal exposure only; no semantic safety certification",
++    }
++
++
++def audit_trajectory(doc: str, initial_public: Iterable[str], steps: list[dict]) -> dict:
++    """Check each action/thought BEFORE adding that turn's observation.
++
++    Assistant statements never count as new public evidence. After a suspect
++    action, later observations are tainted for this audit: they cannot certify
++    an independently discoverable prefix. A clean replay is needed to repair it.
++    Missing initial input must be reported by callers, not replaced by GT.
++    """
++    public = set().union(*(locators(text) for text in initial_public))
++    doc_refs = locators(doc)
++    first_exposure = {ref: "initial_input" for ref in public}
++    findings = []
++    tainted = False
++    for position, step in enumerate(steps):
++        turn = step.get("t", position + 1)
++        action = str(step.get("action_norm") or step.get("action_raw") or "")
++        thought = str(step.get("thought") or "")
++        for ref in sorted((locators(action) | locators(thought)) & doc_refs - public):
++            findings.append({"turn": turn, "locator": ref,
++                             "in_action": ref in locators(action),
++                             "in_thought": ref in locators(thought),
++                             "kind": "doc_literal_before_clean_public_exposure"})
++        if (locators(action) & doc_refs) - public:
++            tainted = True
++        if not tainted:
++            # An environment error may merely echo a guessed identifier. Never
++            # let an invalid/no-op action launder it into established evidence.
++            observed = locators(str(step.get("observation") or ""))
++            if step.get("valid") is False or step.get("acted") is False:
++                observed -= locators(action) | locators(thought)
++            for ref in observed - public:
++                first_exposure[ref] = f"observation_after_turn_{turn}"
++            public |= observed
++    return {"version": VERSION, "findings": findings,
++            "action_findings": sum(f["in_action"] for f in findings),
++            "thought_only_findings": sum(not f["in_action"] for f in findings),
++            "tainted_suffix": tainted,
++            "first_clean_exposure": {k: v for k, v in first_exposure.items() if k in doc_refs},
++            "status": "review" if findings else "no_literal_finding"}
+--- /dev/null
++++ b/scripts/classic/audit_skill_information.py
+@@ -0,0 +1,126 @@
++#!/usr/bin/env python3
++"""Reproduce the bounded WebShop ASIN audit on a hashed evidence export.
++
++CPU only; no model calls. The export binds each rollout to its exact research
++archive and actual training row. A zero finding is NOT semantic clearance.
++Run: python3 scripts/classic/audit_skill_information.py evidence.json.gz --out report-dir
++"""
++from __future__ import annotations
++
++import argparse
++import ast
++from collections import Counter, defaultdict
++import gzip
++import hashlib
++import json
++from pathlib import Path
++import re
++
++
++def refs(text):
++    return {x.upper() for x in re.findall(r'\bB[0-9A-Z]{9}\b', text or '', re.I)}
++
++
++def analyse(data):
++    # The audited run uses WebShop text protocol. Only literals in its actual
++    # system prompt function / shared role text count, not unrelated API examples.
++    tree = ast.parse(data['sources']['src/trace_opd/envs/webshop/adapter.py']['text'])
++    nodes = [n for n in tree.body if
++             (isinstance(n, ast.FunctionDef) and n.name == 'system_prompt_text') or
++             (isinstance(n, ast.Assign) and any(isinstance(t, ast.Name) and
++              t.id == '_ROLE_AND_STYLE' for t in n.targets))]
++    if not nodes:
++        raise ValueError('cannot reconstruct public WebShop text scaffold')
++    public_ids = set().union(*(refs(n.value) for root in nodes for n in ast.walk(root)
++                              if isinstance(n, ast.Constant) and isinstance(n.value, str)))
++    joined = {}
++    for bundle in data['training_audits']:
++        assert bundle['summary']['audit_status'] == 'ok'
++        assert bundle['actor_update']['audit_id'] == bundle['summary']['audit_id']
++        for row in bundle['rows']:
++            key = row['global_step'], row['sample_id'], row['tags'].get('attempt_id')
++            assert key not in joined, f'duplicate training row: {key}'
++            joined[key] = row
++    stats = defaultdict(Counter)
++    used, findings = set(), []
++    for row in data['rows']:
++        key = row['global_step'], row['sample_id'], row['attempt_id']
++        assert key in joined and key not in used, f'missing/duplicate rollout: {key}'
++        used.add(key)
++        train = joined[key]
++        assert train['reward'] == float(row['won'])
++        assert train['steer_arm'] == row['steering']['steer_arm']
++        count = stats[str(train['steer_arm'])]
++        advantage = train['advantage'] or 0
++        count['rows'] += 1
++        count['positive_rows'] += int(advantage > 0)
++        count['positive_mass_all_rows'] += max(advantage, 0)
++        doc = data['docs'].get(row['research'].get('research_archive'))
++        if not doc or not doc['text']:
++            count['missing_doc_rows'] += 1
++            continue
++        assert hashlib.sha256(doc['text'].encode()).hexdigest() == doc['sha256']
++        assert doc['meta']['task_id'] == row['task_id']
++        assert doc['meta']['global_step'] == row['global_step']
++        trajectory = row['trajectory']
++        assert isinstance(trajectory['initial_obs'], str) and trajectory['initial_obs']
++        seen = refs(trajectory['initial_obs']) | public_ids
++        doc_ids = refs(doc['text'])
++        count['doc_asin_rows'] += int(bool(doc_ids))
++        count['initial_unobserved_doc_rows'] += int(bool(doc_ids - seen))
++        events, tainted = [], False
++        for step in trajectory['steps']:
++            action = refs(step.get('action_norm') or step.get('action_raw'))
++            thought = refs(step.get('thought'))
++            missing_action, missing_thought = action & doc_ids - seen, thought & doc_ids - seen
++            if missing_action or missing_thought:
++                events.append({'turn': step['t'], 'action_ids': sorted(missing_action),
++                               'thought_ids': sorted(missing_thought)})
++            if missing_action:
++                tainted = True
++            if not tainted:
++                observed = refs(step.get('observation'))
++                if step.get('valid') is False or step.get('acted') is False:
++                    observed -= action | thought
++                seen |= observed
++        action_hit = any(e['action_ids'] for e in events)
++        count['before_exposure_action_rows'] += int(action_hit)
++        count['before_exposure_any_rows'] += int(bool(events))
++        count['before_exposure_action_positive_rows'] += int(action_hit and advantage > 0)
++        count['positive_mass'] += max(advantage, 0)  # only rows with nonempty docs
++        if events:
++            findings.append({'key': key, 'task_id': row['task_id'], 'events': events,
++                             'doc_path': doc['path'], 'doc_sha256': doc['sha256'],
++                             'source': row['source_path'], 'source_sha256': row['source_sha256']})
++    assert used == set(joined), 'training rows without matching rollout evidence'
++    assert not data['read_failures'], 'export has read failures; do not certify coverage'
++    summary = {
++        'scope': 'WebShop control pilot steps 1-14; ASIN literal audit, not semantic or causal proof',
++        'public_scaffold_literal_ids': sorted(public_ids),
++        'case_normalization': 'ASIN case-insensitive; supersedes initial uppercase-only audit',
++        'raw_rows': len(data['rows']), 'training_rows': len(joined), 'matched_rows': len(used),
++        'unmatched_rollouts': 0, 'unmatched_training_rows': 0,
++        'read_failures': data['read_failures'], 'doc_archives': len(data['docs']),
++        'nonempty_docs': sum(bool(v['text']) for v in data['docs'].values()),
++        'docs_with_asin': sum(bool(refs(v['text'])) for v in data['docs'].values()),
++        'arm_stats': dict(stats),
++    }
++    return summary, findings
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('evidence', type=Path)
++    parser.add_argument('--out', required=True, type=Path)
++    args = parser.parse_args()
++    with gzip.open(args.evidence, 'rt') as file:
++        summary, findings = analyse(json.load(file))
++    summary['input_sha256'] = hashlib.sha256(args.evidence.read_bytes()).hexdigest()
++    args.out.mkdir(parents=True, exist_ok=True)
++    for name, value in [('summary', summary), ('findings', findings)]:
++        (args.out / f'{name}.json').write_text(json.dumps(value, ensure_ascii=False, indent=2))
++    print(json.dumps(summary, ensure_ascii=False, indent=2))
++
++
++if __name__ == '__main__':
++    main()
+--- /dev/null
++++ b/tests/test_information_dependencies.py
+@@ -0,0 +1,172 @@
++import ast
++import __future__
++import json
++import os
++import contextlib
++import io
++from pathlib import Path
++from types import SimpleNamespace
++import unittest
++from unittest.mock import patch
++
++from trace_opd.analysis.information_dependencies import (
++    audit_trajectory, locators, screen_guidance,
++)
++from trace_opd.research.tools import ToolRouter, SessionState
++from trace_opd.common.config import ResearchCfg, load_config, objective_fingerprint
++
++ROOT = Path(__file__).resolve().parents[1]
++SECRET = "/mnt/hidden/opaque_9471.csv"
++DOC = f"WHEN input is needed DO read {SECRET} and confirm its contents."
++
++
++def step(action, observation="", thought="", **kwargs):
++    return dict(action_norm=action, observation=observation, thought=thought, **kwargs)
++
++
++class InformationDependencyTests(unittest.TestCase):
++    def test_existing_finalize_accepts_unobserved_path(self):
++        # A regression probe of the old *soft checker*, not the new sampling gate.
++        router = ToolRouter.__new__(ToolRouter)
++        router.cfg = ResearchCfg()
++        router.state = SessionState(exp_successes_total=1)
++        self.assertEqual(router._check_doc(DOC), [])
++        router._finalize({"experience_doc": DOC})
++        self.assertTrue(router.state.finalized)
++
++    def test_repeat_submission_bypasses_existing_warning(self):
++        router = ToolRouter.__new__(ToolRouter)
++        router.cfg = ResearchCfg()
++        router.state = SessionState()
++        doc = "# Understanding & Approach\nThis is verified."
++        router._finalize({"experience_doc": doc})
++        self.assertFalse(router.state.finalized)
++        router._finalize({"experience_doc": doc})
++        self.assertTrue(router.state.finalized)
++        self.assertTrue(router.state.flags)
++
++    def test_locators(self):
++        self.assertEqual(locators('cat /mnt/a.csv; click[B012345678] https://site.test/a?q=3.'),
++                         {'/mnt/a.csv', 'B012345678', 'https://site.test/a?q=3'})
++
++    def test_strict_blocks_even_when_doc_says_verify(self):
++        doc, audit = screen_guidance(DOC, ["Analyze the available input."], "reject_unobserved_locators")
++        self.assertEqual(doc, "")
++        self.assertTrue(audit['blocked'])
++
++    def test_asin_case_normalization_preserves_path_case(self):
++        self.assertEqual(locators('b08p8lrfz4 B08P8LRFZ4 /mnt/Input.csv /mnt/input.csv'),
++                         {'B08P8LRFZ4', '/mnt/Input.csv', '/mnt/input.csv'})
++        a = audit_trajectory('Target B08P8LRFZ4', [], [step('click[b08p8lrfz4]')])
++        self.assertEqual(a['action_findings'], 1)
++        clean = audit_trajectory('Target b08p8lrfz4', [],
++                                 [step('search[chair]', 'B08P8LRFZ4'), step('click[b08p8lrfz4]')])
++        self.assertEqual(clean['findings'], [])
++
++    def test_lowercase_doc_is_blocked_unless_public(self):
++        doc = 'click[b08p8lrfz4]'
++        self.assertEqual(screen_guidance(doc, [], 'reject_unobserved_locators')[0], '')
++        self.assertEqual(screen_guidance(doc, ['B08P8LRFZ4'], 'reject_unobserved_locators')[0], doc)
++
++    def test_public_path_permitted(self):
++        doc, audit = screen_guidance(DOC, [f"Input: {SECRET}"], "reject_unobserved_locators")
++        self.assertEqual(doc, DOC)
++        self.assertFalse(audit['blocked'])
++
++    def test_off_preserves_exact_bytes(self):
++        doc, audit = screen_guidance(DOC, [], "off")
++        self.assertEqual(doc, DOC)
++        self.assertEqual(audit['unobserved_locators'], [SECRET])
++
++    def test_strategy_only(self):
++        doc = 'List the task directory, inspect candidate files, then read the selected input.'
++        self.assertEqual(screen_guidance(doc, [], "reject_unobserved_locators")[0], doc)
++
++    def test_no_future_observation_credit(self):
++        a = audit_trajectory(DOC, [], [step(f'cat {SECRET}', SECRET)])
++        self.assertEqual(a['action_findings'], 1)
++        self.assertTrue(a['tainted_suffix'])
++
++    def test_clean_discovery_before_use(self):
++        a = audit_trajectory(DOC, [], [step('ls -R .', SECRET), step(f'cat {SECRET}')])
++        self.assertEqual(a['findings'], [])
++
++    def test_assistant_cannot_self_certify(self):
++        a = audit_trajectory(DOC, [], [step('pwd', '.', f'I know {SECRET}'), step(f'cat {SECRET}')])
++        self.assertEqual(a['action_findings'], 1)
++        self.assertEqual(a['thought_only_findings'], 1)
++
++    def test_tainted_suffix_cannot_certify_next_locator(self):
++        b = '/mnt/another.csv'
++        a = audit_trajectory(DOC + ' ' + b, [], [step(f'cat {SECRET}', b), step(f'cat {b}')])
++        self.assertEqual(a['action_findings'], 2)
++
++    def test_prefix_and_partial_id_not_evidence(self):
++        a = audit_trajectory('B012345678', ['B012345678X'], [step('click[B012345678]')])
++        self.assertEqual(a['action_findings'], 1)
++
++    def test_non_doc_hallucination_is_outside_scope(self):
++        a = audit_trajectory('Use search.', [], [step('click[B012345678]')])
++        self.assertEqual(a['findings'], [])
++        self.assertEqual(a['status'], 'no_literal_finding')
++
++    def test_actual_generate_method_bare_and_blocked_paths(self):
++        # Execute the actual method AST without importing the unavailable GPU
++        # stack. Teacher prefix construction must never run on rejected docs.
++        tree = ast.parse((ROOT / 'src/trace_opd/train/agent_loop.py').read_text())
++        cls = next(n for n in tree.body if isinstance(n, ast.ClassDef) and n.name == 'TraceAgentLoop')
++        method = next(n for n in cls.body if isinstance(n, ast.FunctionDef) and n.name == '_make_generate')
++        env = {'Any': object, '__name__': 'trace_opd.train.agent_loop',
++               '__package__': 'trace_opd.train', 'json': json,
++               'EngineGenerate': lambda *a, **k: 'bare_backend'}
++        exec(compile(ast.Module(body=[method], type_ignores=[]), '<actual_make_generate>', 'exec',
++                     flags=__future__.annotations.compiler_flag), env)
++        self_obj = SimpleNamespace(server_manager=None, tokenizer=None,
++            cfg=SimpleNamespace(steering=SimpleNamespace(information_guard='reject_unobserved_locators')))
++        adapter = SimpleNamespace(executor_scaffold=lambda: 'Use tools.',
++                                  initial_obs='Analyze the input.', tools=lambda: [])
++        run = env['_make_generate']
++        self.assertEqual(run(self_obj, adapter, 'test', None), 'bare_backend')
++        self.assertEqual(run(self_obj, adapter, 'test', {'doc': ''}), 'bare_backend')
++        context = {'doc': DOC, 'state': 'stale-ledger'}
++        self.assertEqual(run(self_obj, adapter, 'test', context), 'bare_backend')
++        self.assertTrue(context['information_audit']['blocked'])
++        self.assertNotIn('state', context)
++        # Off and publicly grounded docs must still reach teacher construction.
++        env['render_ids'] = lambda *a, **kw: [1, 2]
++        env['inject_guidance'] = lambda scaffold, doc: scaffold
++        teacher_docs = []
++        self_obj._teacher_prompt_ids = lambda adapter, doc, *a: teacher_docs.append(doc)
++        self_obj.cfg.steering.information_guard = 'off'
++        self.assertEqual(run(self_obj, adapter, 'test', {'doc': DOC}), 'bare_backend')
++        self.assertEqual(teacher_docs, [DOC])  # None return simulates context overflow
++        self_obj.cfg.steering.information_guard = 'reject_unobserved_locators'
++        adapter.initial_obs = 'Input: ' + SECRET
++        self.assertEqual(run(self_obj, adapter, 'test', {'doc': DOC}), 'bare_backend')
++        self.assertEqual(teacher_docs, [DOC, DOC])
++
++    def test_unknown_mode_fails(self):
++        with self.assertRaises(ValueError):
++            screen_guidance(DOC, [], 'silent_typo')
++
++    def test_markup_is_not_a_path(self):
++        self.assertEqual(locators('<answer>result</answer>'), set())
++
++    def test_config_validates_and_guard_changes_fingerprint(self):
++        variables = {'TRACE_WEBSHOP_URLS': 'http://127.0.0.1:1', 'TRACE_MODELS': '/fake-models',
++                     'TRACE_WEBSHOP_ARM_DATA': '/fake-data', 'TRACE_RESEARCHER_URLS': 'http://127.0.0.1:2',
++                     'TRACE_35B_KEY': 'unit-test-placeholder'}
++        path = ROOT / 'configs/experiments/webshop_arm_ratio/control.yaml'
++        with patch.dict(os.environ, variables), contextlib.redirect_stdout(io.StringIO()):
++            cfg = load_config(path)
++            original = objective_fingerprint(cfg)
++            guarded = load_config(path, overrides=['steering.information_guard=reject_unobserved_locators'])
++            self.assertNotEqual(original, objective_fingerprint(guarded))
++            explicit_off = load_config(path, overrides=['steering.information_guard="off"'])
++            self.assertEqual(original, objective_fingerprint(explicit_off))
++            with self.assertRaises(ValueError):
++                load_config(path, overrides=['steering.information_guard=typo'])
++
++
++if __name__ == '__main__':
++    unittest.main()
+--- /dev/null
++++ b/tests/test_skill_information_audit.py
+@@ -0,0 +1,59 @@
++"""Evidence identity and observation-order regressions for the offline audit."""
++import copy
++import hashlib
++import importlib.util
++from pathlib import Path
++import unittest
++
++ROOT = Path(__file__).resolve().parents[1]
++SPEC = importlib.util.spec_from_file_location('skill_audit', ROOT / 'scripts/classic/audit_skill_information.py')
++audit = importlib.util.module_from_spec(SPEC)
++SPEC.loader.exec_module(audit)
++
++
++def evidence(steps):
++    doc = 'Click B08P8LRFZ4.'
++    return {
++        'sources': {'src/trace_opd/envs/webshop/adapter.py': {
++            'text': '_ROLE_AND_STYLE = "Find a product"\ndef system_prompt_text():\n return _ROLE_AND_STYLE\n'}},
++        'read_failures': [],
++        'docs': {'research/one': {'text': doc, 'sha256': hashlib.sha256(doc.encode()).hexdigest(),
++                                  'path': '/run/doc.md', 'meta': {'task_id': 'task', 'global_step': 1}}},
++        'training_audits': [{'summary': {'audit_status': 'ok', 'audit_id': 'x'},
++                             'actor_update': {'audit_id': 'x'}, 'rows': [{
++                                 'global_step': 1, 'sample_id': 'sample', 'tags': {'attempt_id': 'try'},
++                                 'reward': 1, 'steer_arm': 1, 'advantage': 0.5}]}],
++        'rows': [{'global_step': 1, 'sample_id': 'sample', 'attempt_id': 'try', 'task_id': 'task',
++                  'won': True, 'steering': {'steer_arm': 1}, 'research': {'research_archive': 'research/one'},
++                  'source_path': '/run/row.json', 'source_sha256': 'fixture',
++                  'trajectory': {'initial_obs': 'Find a chair.', 'steps': steps}}],
++    }
++
++
++class SkillAuditTests(unittest.TestCase):
++    def test_lowercase_action_cannot_use_future_observation(self):
++        data = evidence([{'t': 1, 'action_norm': 'click[b08p8lrfz4]', 'observation': 'B08P8LRFZ4'}])
++        summary, findings = audit.analyse(data)
++        self.assertEqual(summary['arm_stats']['1']['before_exposure_action_positive_rows'], 1)
++        self.assertEqual(findings[0]['events'][0]['action_ids'], ['B08P8LRFZ4'])
++
++    def test_discovery_precedes_use(self):
++        data = evidence([{'t': 1, 'action_norm': 'search[chair]', 'observation': 'B08P8LRFZ4'},
++                         {'t': 2, 'action_norm': 'click[b08p8lrfz4]'}])
++        self.assertEqual(audit.analyse(data)[1], [])
++
++    def test_wrong_archive_version_is_rejected(self):
++        data = evidence([])
++        data['docs']['research/one']['meta']['global_step'] = 2
++        with self.assertRaises(AssertionError):
++            audit.analyse(data)
++
++    def test_duplicate_rollouts_are_not_counted_twice(self):
++        data = evidence([])
++        data['rows'].append(copy.deepcopy(data['rows'][0]))
++        with self.assertRaises(AssertionError):
++            audit.analyse(data)
++
++
++if __name__ == '__main__':
++    unittest.main()

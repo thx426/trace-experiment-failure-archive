@@ -1,0 +1,227 @@
+{
+  "snapshot": {
+    "checked_at": "2026-10-24T09:24:11.190379+08:00",
+    "sequence": {
+      "phase": "running",
+      "pid": 2014347,
+      "time": 1792801923.9596894,
+      "input_limit": 3072,
+      "server_concurrency": 16,
+      "order": [
+        "all_skill",
+        "selective_skill"
+      ],
+      "job": "all_skill",
+      "run": "/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/code/runs/pass5_compact3072_all_skill_s42",
+      "owner_pid": 2015098,
+      "owner_state": "/tmp/p5compact3072-all24r3",
+      "researcher_owner_pid": 2014656,
+      "next_job": "selective_skill"
+    },
+    "webshop": {
+      "8321": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 7124,
+          "queue_seconds": 1092.3895278647542,
+          "backend_seconds": 230.4298747293651,
+          "max_queue_seconds": 3.555290099233389,
+          "max_backend_seconds": 0.7339263670146465
+        },
+        "http_statuses": {
+          "200": 7124
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8322": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 6162,
+          "queue_seconds": 715.3930566981435,
+          "backend_seconds": 187.57073524221778,
+          "max_queue_seconds": 2.1518811732530594,
+          "max_backend_seconds": 0.5971399322152138
+        },
+        "http_statuses": {
+          "200": 6162
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8323": {
+        "active": 4,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 5412,
+          "queue_seconds": 312.39667051658034,
+          "backend_seconds": 173.27374118566513,
+          "max_queue_seconds": 1.1953264325857162,
+          "max_backend_seconds": 0.45766666159033775
+        },
+        "http_statuses": {
+          "200": 5412
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8324": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 7487,
+          "queue_seconds": 2128.952425714582,
+          "backend_seconds": 236.35843141004443,
+          "max_queue_seconds": 4.360935088247061,
+          "max_backend_seconds": 0.6597558408975601
+        },
+        "http_statuses": {
+          "200": 7487
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      }
+    },
+    "rollout_rows": {
+      "step_00000_val": 1280,
+      "step_00001": 128,
+      "step_00002": 128,
+      "step_00003": 15
+    },
+    "error_mentions": {
+      "webshop service unreachable": 0,
+      "webshop HTTP 409": 0,
+      "student episode infra error": 0,
+      "OutOfMemoryError": 0,
+      "ReplayBuffer:": 0
+    },
+    "training_tail": [
+      "\u001b[36m(AgentLoopWorkerTQ pid=2021383)\u001b[0m [compact3072] task=webshop_03152 counted=2343 actual=2343\u001b[36m(SimpleStorageUnit pid=2019337)\u001b[0m 2026-10-24 09:24:03,529 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_a54243d0: [Performance] Total success requests: 11, Total req/min: 1.64, Total avg process time: 0.0037s; ",
+      "\u001b[36m(SimpleStorageUnit pid=2019337)\u001b[0m Time range: last 6.70 minutes; ",
+      "\u001b[36m(SimpleStorageUnit pid=2019337)\u001b[0m Per-operation statistics: GET_DATA: req_count=6, req/min=0.90, avg_time=0.003620s, max_time=0.004795s, min_time=0.002790s; PUT_DATA: req_count=4, req/min=0.60, avg_time=0.003032s, max_time=0.004280s, min_time=0.002344s; CLEAR_DATA: req_count=1, req/min=0.15, avg_time=0.006610s, max_time=0.006610s, min_time=0.006610s",
+      "\u001b[36m(TaskRunnerV1 pid=2018898)\u001b[0m INFO:2026-10-24 09:24:07,977:pending: 0, running: 15, finished: 1, failure: 0"
+    ],
+    "completed_steps": [
+      1,
+      2
+    ],
+    "timing_rows": [
+      {
+        "timing_s/feed": 0.2151353806257248,
+        "timing_s/gen": 473.55641608685255,
+        "timing_s/old_log_prob": 85.97509347647429,
+        "timing_s/adv": 0.13161682710051537,
+        "timing_s/update_actor": 250.2363826520741,
+        "timing_s/update_weights": 5.530635349452496,
+        "timing_s/step": 815.6960954256356
+      },
+      {
+        "timing_s/feed": 0.027740567922592163,
+        "timing_s/gen": 425.54103569313884,
+        "timing_s/old_log_prob": 67.23549339547753,
+        "timing_s/adv": 0.13567079231142998,
+        "timing_s/update_actor": 218.97190622240305,
+        "timing_s/update_weights": 5.9906383864581585,
+        "timing_s/step": 717.946874152869
+      }
+    ],
+    "researcher_inputs": {
+      "calls": 549,
+      "mean": 2143.1147540983607,
+      "max": 2500,
+      "above_3072": 0
+    }
+  },
+  "audited_at": "2026-10-24T09:25:12.658407+08:00",
+  "processes": {
+    "sequence": {
+      "pid": 2014347,
+      "exists": true,
+      "identity_matches": true,
+      "process_state": "S"
+    },
+    "all_skill_owner": {
+      "pid": 2015098,
+      "exists": true,
+      "identity_matches": true,
+      "process_state": "S"
+    },
+    "researcher_owner": {
+      "pid": 2014656,
+      "exists": true,
+      "identity_matches": true,
+      "process_state": "S"
+    },
+    "webshop_8321": {
+      "pid": 2014398,
+      "exists": true,
+      "identity_matches": true,
+      "process_state": "S"
+    },
+    "webshop_8322": {
+      "pid": 2014399,
+      "exists": true,
+      "identity_matches": true,
+      "process_state": "S"
+    },
+    "webshop_8323": {
+      "pid": 2014400,
+      "exists": true,
+      "identity_matches": true,
+      "process_state": "S"
+    },
+    "webshop_8324": {
+      "pid": 2014401,
+      "exists": true,
+      "identity_matches": true,
+      "process_state": "S"
+    }
+  },
+  "owners": {
+    "all": {
+      "result_status": "INCOMPLETE",
+      "returncode": null,
+      "ended_at": null,
+      "stop_reason": null,
+      "gpu_release_verified": false
+    },
+    "research": {
+      "result_status": "INCOMPLETE",
+      "returncode": null,
+      "ended_at": null,
+      "stop_reason": null,
+      "gpu_release_verified": false
+    }
+  },
+  "researcher_service": {
+    "oom_mentions": 0,
+    "preemption_mentions": 0,
+    "log_mtime": "2026-10-24T09:25:12.365424+08:00"
+  },
+  "gpu": "index, utilization.gpu [%], memory.used [MiB], memory.total [MiB]\n0, 67 %, 39405 MiB, 40960 MiB\n1, 0 %, 25555 MiB, 40960 MiB\n2, 0 %, 26399 MiB, 40960 MiB\n3, 98 %, 39405 MiB, 40960 MiB\n",
+  "abort": null,
+  "frozen_manifest_mismatches": [],
+  "launch_count": 1,
+  "initial_eval_audit": {
+    "passed": true,
+    "tasks": 256,
+    "attempts": 1280,
+    "successes": 79
+  },
+  "latest_artifact": {
+    "path": "/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/code/runs/pass5_compact3072_all_skill_s42/tape/researcher.2021390.jsonl",
+    "mtime": "2026-10-24T09:25:13.345417+08:00"
+  },
+  "research_error_lines": [
+    "[launch] /root/trace-webshop-arm-ratio/.venvs/train/bin/python -m verl.trainer.main_ppo algorithm.adv_estimator=grpo algorithm.norm_adv_by_std_in_grpo=False algorithm.use_kl_in_reward=False +algorithm.steered_adv_weight=1.0 +algorithm.steered_adv_decay_steps=0 +algorithm.steered_adv_cap=0.0 +algorithm.training_audit_dir=/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/code/runs/pass5_compact3072_all_skill_s42/training_audit 'data.train_files=['\"'\"'/root/trace-webshop-arm-ratio/experiments/pass5_20261023/data/train.parquet'\"'\"']' 'data.val_files=['\"'\"'/root/trace-webshop-arm-ratio/experiments/pass5_20261023/data/dev.parquet'\"'\"']' data.train_batch_size=16 data.shuffle=True data.seed=42 actor_rollout_ref.rollout.seed=42 actor_rollout_ref.actor.data_loader_seed=42 data.max_prompt_length=4096 data.max_response_length=16384 data.return_raw_chat=True data.filter_overlong_prompts=False data.truncation=error actor_rollout_ref.model.path=/root/trace-webshop-arm-ratio/models/Qwen2.5-3B-Instruct actor_rollout_ref.model.use_remove_padding=True +actor_rollout_ref.model.override_config.attn_implementation=flash_attention_2 actor_rollout_ref.model.enable_gradient_checkpoint",
+    "\u001b[36m(TaskRunnerV1 pid=2018898)\u001b[0m step:1 - global_seqlen/min:840353.0 - global_seqlen/max:840353.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:840353.0 - global_seqlen/balanced_max:840353.0 - global_seqlen/mean:840353.0 - actor/entropy:0.4682996869087219 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.28236234188079834 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.757867336273193 - actor/perf/max_memory_reserved_gb:30.228515625 - actor/perf/cpu_memory_used_gb:72.44543075561523 - perf/mfu/actor:0.13727254940289482 - rollout_extra/won/mean:0.046875 - rollout_extra/score/mean:0.2798859126984127 - rollout_extra/env_steps/mean:11.03125 - rollout_extra/invalid_format/mean:0.0 - rollout_extra/truncated/mean:0.0 - rollout_extra/generated_token_count/mean:725.1953125 - rollout_extra/accepted_generated_token_count/mean:725.1953125 - rollout_extra/invalid_action_count/mean:2.890625 - rollout_extra/repeated_action_observation_count/mean:3.8046875 - rollout_extra/max_consecutive_action_observation/mean:2.2265625 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generat",
+    "\u001b[36m(TaskRunnerV1 pid=2018898)\u001b[0m step:2 - global_seqlen/min:758485.0 - global_seqlen/max:758485.0 - global_seqlen/minmax_diff:0.0 - global_seqlen/balanced_min:758485.0 - global_seqlen/balanced_max:758485.0 - global_seqlen/mean:758485.0 - actor/entropy:0.4706515073776245 - actor/pg_clipfrac:0.0 - actor/ppo_kl:0.0 - actor/pg_clipfrac_lower:0.0 - actor/pg_loss:0.0 - actor/loss:0.0 - actor/grad_norm:0.3033212721347809 - actor/lr:1e-06 - actor/perf/max_memory_allocated_gb:28.758074283599854 - actor/perf/max_memory_reserved_gb:30.228515625 - actor/perf/cpu_memory_used_gb:73.42013931274414 - perf/mfu/actor:0.13742567958666152 - rollout_extra/won/mean:0.0625 - rollout_extra/score/mean:0.30996279761904766 - rollout_extra/env_steps/mean:10.4765625 - rollout_extra/invalid_format/mean:0.0 - rollout_extra/truncated/mean:0.0 - rollout_extra/generated_token_count/mean:686.96875 - rollout_extra/accepted_generated_token_count/mean:686.96875 - rollout_extra/invalid_action_count/mean:2.875 - rollout_extra/repeated_action_observation_count/mean:3.65625 - rollout_extra/max_consecutive_action_observation/mean:2.015625 - rollout_extra/generation_overrun_count/mean:0.0 - rollout_extra/generation_overru"
+  ],
+  "selective_started": false
+}

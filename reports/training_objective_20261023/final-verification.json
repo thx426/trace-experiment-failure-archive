@@ -1,0 +1,26 @@
+{
+  "local_links_valid": true,
+  "python_syntax_valid": true,
+  "paper_gate_statuses_unchanged": true,
+  "author_signoff_unchanged": true,
+  "audit_scope": "frozen source and historical configurations; no new training",
+  "checks": {
+    "all_legacy_blobs_match": true,
+    "all_current_snapshots_match": false,
+    "all_manifest_estimators_match_commands": true,
+    "no_local_launch_has_opd_options": true,
+    "ssb_observed_steps": 67,
+    "ssb_metric_rows_without_complete_actor_metrics": [
+      100
+    ],
+    "ssb_actor_loss_equals_pg_loss_max_absolute_error": 9.89530235528946e-10,
+    "ssb_alpha_decay_steps_from_manifest": 176,
+    "ssb_alpha_matches_manifest_schedule_max_absolute_error": 5.551115123125783e-17,
+    "ssb_all_observed_grad_norms_positive": true,
+    "main_ppo_logs": 71,
+    "nonempty_main_ppo_logs": 0,
+    "valid_manifests": 22,
+    "invalid_manifests": 1,
+    "runs_with_valid_manifests": 11
+  }
+}

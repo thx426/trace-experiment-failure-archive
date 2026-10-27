@@ -1,0 +1,37 @@
+{
+  "version": "clean_skill_v1",
+  "original_root": "/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3",
+  "order": [
+    "clean_skill"
+  ],
+  "steps": 100,
+  "student_checkpoint": "/root/trace-webshop-arm-ratio/models/Qwen2.5-3B-Instruct",
+  "researcher": "Qwen3.6-35B-A3B",
+  "input_limit": 3072,
+  "concurrency": 16,
+  "unchanged": [
+    "reward",
+    "student initial checkpoint",
+    "data splits",
+    "seed42",
+    "optimizer",
+    "GRPO objective",
+    "8 rollouts/task",
+    "0.5 guided fraction",
+    "bare eval n5 temperature0.6"
+  ],
+  "changes": [
+    "mechanical evidence instead of narrative excerpt",
+    "reserve finalization turns",
+    "at most two fetch calls after experiment budget exhaustion",
+    "compile exploratory/final Skill from exact public specifications and checked evidence",
+    "label fallback checklist when normal session exhausts without finalize",
+    "abort on missing Skill or infrastructure failure",
+    "stop at complete same-step bare eval if pass1 or pass5 below GRPO"
+  ],
+  "comparability": "New guidance variant, not pure infrastructure fix; compare to archived original PGS/GRPO, count all researcher cost. No claims that this isolates each component.",
+  "evaluation": "Existing dev protocol is retained for stop decisions; not a new independent final test.",
+  "fallback": "No new inference; task checklist only, explicitly labelled and never counted as exploration success.",
+  "approval": "2026-10-25 user authorized stopping both old arms, minimum Skill clean-up, one new guided experiment and 30-minute review/repair.",
+  "resume": "Disabled. On confirmed unrecoverable implementation fault, keep failed directory and restart in a new directory only after diagnosis and CPU contract checks; never auto-restart a below-baseline stop."
+}

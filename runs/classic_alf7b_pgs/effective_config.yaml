@@ -1,0 +1,131 @@
+# RESOLVED CONFIG — written by launch_train.py, read by every worker.
+# Do not edit: it is regenerated at each launch from
+#   config   : /fs/fast/u2021000902/wushang/workspace/TRACE-OPD-TERM/configs/classic/alfworld_7b_pgs.yaml
+# objective fingerprint: fce85904e15d
+run:
+  name: classic_alf7b_pgs
+environment:
+  name: alfworld
+episode:
+  max_env_steps: 30
+  max_assistant_turns: 30
+  max_tokens_per_turn: 1024
+alfworld:
+  protocol: text
+  data_root: /fs/fast/u2021000902/wushang/workspace/data/alfworld_data
+  worker_python: /fs/fast/u2021000902/wushang/workspace/alfworld-venv/bin/python
+  spawn_concurrency: 32
+eval:
+  response_budget: 16384
+  temperature: 0.0
+  n: 1
+train:
+  model_path: /fs/fast/u2021000902/wushang/model/Qwen/Qwen2.5-7B-Instruct
+  train_file: /fs/fast/u2021000902/wushang/data/classic/classic_alfworld_data/train_3553.parquet
+  val_files:
+  - /fs/fast/u2021000902/wushang/data/classic/classic_alfworld_data/valid_seen.parquet
+  - /fs/fast/u2021000902/wushang/data/classic/classic_alfworld_data/valid_unseen.parquet
+  experiment_name: classic_alf7b_pgs
+  project_name: trace_opd
+  n_gpus: 4
+  rollout_tp: 1
+  train_batch_size: 16
+  rollout_n: 8
+  agent_num_workers: 16
+  ppo_mini_batch_size: 16
+  lr: 1.0e-06
+  lr_scheduler_type: constant
+  lr_warmup_steps_ratio: 0.0
+  adv_estimator: pgs_asym_grpo
+  norm_adv_by_std: false
+  max_prompt_length: 4096
+  response_length: 16384
+  max_token_len_per_gpu: 20480
+  ppo_max_token_len_per_gpu: 8192
+  log_prob_max_token_len_per_gpu: 8192
+  ulysses_sp: 2
+  use_fused_kernels: false
+  rollout_max_model_len: 20480
+  rollout_max_num_batched_tokens: 8192
+  rollout_backend: sglang
+  rollout_gpu_mem: 0.55
+  rollout_max_num_seqs: 256
+  rollout_temperature: 1.0
+  loss_agg_mode: seq-mean-token-mean
+  vllm_rpc_timeout_ms: 300000
+  agent_task_timeout_s: 5400
+  total_epochs: 2
+  test_freq: 20
+  save_freq: 20
+  max_ckpt_to_keep: 3
+  val_before_train: true
+  resume_mode: auto
+  loggers:
+  - console
+  - swanlab
+  fsdp_strategy: fsdp2
+  param_offload: true
+  reshard_after_forward: true
+steering:
+  enabled: true
+  doc_source: researcher
+  doc_table: ''
+  eta_max: 0.5
+  c: 2.5
+  b_max: .inf
+  topk: 64
+  obs_topk: 256
+  theta_d: 0.0
+  gate_mode: entropy
+  gate_adaptive: true
+  gate_target_rate: 0.1
+  gate_ema_beta: 0.1
+  epsilon: 0.05
+  gate_rate_bounds:
+  - 0.05
+  - 0.25
+  r_max: 0
+  w_beh_mode: 'off'
+  adv_mode: asym
+  steered_adv_weight: 1.0
+  steered_adv_decay_steps: 300
+  steered_adv_decay_mode: cosine_steps
+  steered_adv_cap: 0.0
+  entropy_target_rate: 0.05
+  entropy_theta_init: 0.0
+  entropy_theta_ratchet: true
+  entropy_floor: 0.0
+  intensity_w_min: 0.05
+  steered_fraction: 0.5
+research:
+  enabled: true
+  backend: external
+  tool_protocol: fncall
+  n_exp: 6
+  k_default: 2
+  k_max: 4
+  max_turns: 24
+  wrapup_buffer: 2
+  doc_max_words: 500
+  researcher_max_tokens: 4096
+  session_timeout_s: 2400
+  session_token_budget: 50000
+  max_prompt_tokens: 8000
+narration:
+  backend: engine
+  max_words: 600
+  temperature: 0.3
+  max_prompt_tokens: 12000
+roles:
+  researcher:
+    endpoint: http://HOST_IP:8880/v1,http://HOST_IP:8881/v1
+    model: qwen3.6-35b-a3b
+    mode: external_pool
+    api_key_env: TRACE_35B_KEY
+    max_concurrency: 64
+    temperature: 1.0
+    max_tokens: 4096
+    timeout_s: 600
+    extra_body:
+      chat_template_kwargs:
+        enable_thinking: false

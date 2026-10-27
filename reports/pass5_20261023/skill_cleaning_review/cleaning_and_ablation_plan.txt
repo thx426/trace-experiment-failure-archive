@@ -1,0 +1,38 @@
+STATUS: review proposal; no live config, frozen experiment, or queued job changed.
+
+Question
+Does incorrect guidance or task-specific privileged information reduce learning or unaided generalization? Existing smoke results do not identify either causal effect.
+
+Information boundary
+- Allowed: user-requested attributes, the executor's public action schema, observations already received, and accepted action history.
+- Remove from the procedural Skill: preselected product IDs, hidden target mappings, success labels, final answer paths, later observations, and unsupported conclusions from researcher trials.
+- A product ID appearing in current search results is public at that point. Knowing that it is the correct answer before inspecting it is a separate informational advantage. Literal ID exposure alone cannot certify the absence of semantic privilege.
+- Delete false claims and unsupported universal bans. Do not convert a malformed action's failure into a claim that an environment feature does not work.
+- Retain conditional procedures: observable trigger -> available action -> verification condition -> fallback. Do not erase actionable strategy when removing identifiers.
+- The earlier skill_*_review_draft.txt files contain task-specific answers and are diagnostic repair drafts. They are not the answer-free training condition.
+
+First comparison: hold the student checkpoint and sampling mechanism fixed
+A: no Skill.
+B: original raw Skill.
+C: fact-checked concise Skill retaining task-specific candidate hints.
+D: fact-checked concise procedural Skill without privileged task-specific hints.
+C vs D is the key privilege comparison; B vs C primarily probes quality. Match non-privileged instructions, document/token budget where possible, intervention settings, task pool, and evaluation budget. Report residual length/content confounding.
+Select training tasks across low/middle/high strata; do not select only the two reviewed failures. Keep development/test labels out of Skill generation and selection. Evaluate on fresh attempts. Count researcher experiments and any extra rollout sampling separately.
+Measure immediate success, mixed-reward group fraction, invalid/repeated actions, missing-option purchases, sampling intervention amount, and cost. Then run matched training only for promising variants, with unaided held-out evaluation as the primary endpoint. Do not infer learning from guided rollout success alone.
+
+Second comparison: reward signal, independently of Skill content
+The current experiment uses binary success reward and no within-group std normalization. All-failure groups have zero task-reward advantage even if their environment scores differ.
+Compare binary reward with an explicitly declared partial-score reward condition across both no-Skill and procedural-Skill arms. A possible pilot objective is success_indicator + alpha * bounded_environment_score, with alpha predeclared and separately validated. This is a changed training objective, not a silent fix. Keep evaluation success unchanged. Track partial-score purchases without full success to detect proxy optimization.
+Evaluate bounded dynamic sampling of nonconstant-reward groups as a separate ablation. Do not silently drop difficult tasks from evaluation or hide resampling costs. Do not repeatedly sample until success without a budget cap.
+
+Mechanism diagnostics
+- Task-reward advantage distribution and mixed-reward group fraction.
+- Group success diversity, distinguished from merely different wording/actions.
+- Guided versus bare rollout success and unaided validation gain.
+- Behavior-policy accounting, importance-weight concentration/effective sample size, and PPO clip fraction, when applicable to the selected SPS configuration.
+- Successful and failed trajectory lengths. norm_adv_by_std=false removes only the std-normalization component; it does not imply the full Dr.GRPO objective or resolve all length weighting effects.
+
+Primary sources
+DeepSeekMath / GRPO: https://arxiv.org/abs/2402.03300
+DAPO / dynamic sampling: https://arxiv.org/abs/2503.14476
+Dr.GRPO / normalization biases: https://arxiv.org/abs/2503.20783

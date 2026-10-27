@@ -1,0 +1,925 @@
+webshop_01418 完整证据对照
+
+训练步：5；八条训练rollout的学生policy版本：4
+
+选取性质：机制案例，非随机样本，非最终DEV评测。
+
+公开任务原文：
+
+Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars
+
+
+
+证据结论：
+
+没有 finalize 原稿，不能把最后一次探索指导冒充最终 Skill。最终 origin=task_checklist_fallback。六次探索均失败。指导组 sid0、sid2 漏选后购买；无指导 sid6 已选 x-large 和 c-black，却继续重复、搜索，直到用完步数，没有购买。这一会话没有贡献经过成功轨迹支持的搜索方案。
+
+
+
+一、研究员最终原始 Skill（finalize.experience_doc 原文）
+
+无。该会话没有 finalize 调用。后续编译文档由 task_checklist_fallback 产生。
+
+
+
+二、研究员每次探索提交的原始指导（原文）
+
+session.jsonl 第3行，run_experiment 参数：
+
+{
+  "guidance": "search[women's long sleeve activewear]"
+}
+
+session.jsonl 第5行，run_experiment 参数：
+
+{
+  "guidance": "Step 1: Search for \"women's activewear long sleeve\".\nStep 2: From the results, click on a product that appears to be long sleeve activewear and is likely to have multiple options (look for prices under $40).\nStep 3: On the product page, look for \"Color\" and \"Size\" selectors.\nStep 4: Select Color \"c-black\" and Size \"x-large\" EXACTLY as written.\nStep 5: If \"c-black\" or \"x-large\" are not available, go back to search and try another product.\nStep 6: Once both options are selected, click \"Buy Now\".",
+  "k": 2
+}
+
+session.jsonl 第7行，run_experiment 参数：
+
+{
+  "guidance": "Search for \"women's activewear\". If results appear, select the first product that looks promising. On the product page, look for options \"c-black\" and \"x-large\". If found, select them and buy. Do not click \"next >\" more than once. If you cannot find \"c-black\" or \"x-large\", go back to search.",
+  "k": 2
+}
+
+
+
+三、最终编译 Skill（doc.md 原文）
+
+# Task constraints and completion procedure
+
+Exact required option values from your instruction: {"color": "c-black", "size": "x-large"}.
+
+Preserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.
+
+WHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.
+
+WHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.
+
+WHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.
+
+Track successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.
+
+WHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.
+
+WHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.
+
+# Evidence and recovery
+
+No checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.
+
+Invalid actions occurred in exploration: copy a single target exactly from current clickables; if unavailable, reconsider the page before acting.
+
+Repeated action/observation pairs occurred in exploration: use your action history to choose the next unmet requirement instead of repeating an unchanged action.
+
+No successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.
+
+
+
+编译审计：
+
+{
+  "version": "webshop_clean_skill_v2",
+  "origin": "task_checklist_fallback",
+  "required_options": {
+    "color": "c-black",
+    "size": "x-large"
+  },
+  "source": "public_task_and_mechanical_episode_evidence",
+  "successes": 0,
+  "invalid_actions": 14,
+  "repeated_pairs": 32,
+  "candidate_query": null,
+  "free_form_prose_forwarded": false,
+  "words": 313
+}
+
+CPU复核：保存的原稿、公开任务和探索记录可精确重现doc.md；只删除最终原稿，仍得到完全相同的文档。此操作保留了研究员先前安排的全部探索，因此不能视为去研究员的训练消融。
+
+
+
+四、研究员探索的学生动作（全部探索轨迹）
+
+episode=ep001 guidance_hash=832e3f0f4de2 won=False score=0.0 outcome=FAILED
+  01. search[quick drying women's activewear long sleeve c-black x-large price 40.00]  [valid=True, acted=True]
+  02. click[next >  [valid=False, acted=True]
+  03. click[next >  [valid=False, acted=True]
+  04. click[next >  [valid=False, acted=True]
+  05. click[next >  [valid=False, acted=True]
+  06. click[next >  [valid=False, acted=True]
+  07. click[back to search]  [valid=True, acted=True]
+  08. search[quick drying moisture wicking women's activewear long sleeve c-black x-large price <40]  [valid=True, acted=True]
+  09. click[back to search]  [valid=True, acted=True]
+  10. search[quick drying moisture wicking women's activewear long sleeve c-black x-large price <40]  [valid=True, acted=True]
+  11. search[quick drying moisture wicking women's activewear long sleeve x-large c-black]  [valid=False, acted=True]
+  12. click[back to search]  [valid=True, acted=True]
+  13. search[quick drying moisture wicking women's activewear long sleeve black x-large]  [valid=True, acted=True]
+  14. click[back to search]  [valid=True, acted=True]
+  15. click[search]  [valid=False, acted=True]
+
+
+
+episode=ep002 guidance_hash=832e3f0f4de2 won=False score=0.0 outcome=FAILED
+  01. search[quick drying moisture wicking women's activewear long sleeve black x-large]  [valid=True, acted=True]
+  02. click[b07wmmyb6g]  [valid=True, acted=True]
+  03. click[< prev]  [valid=True, acted=True]
+  04. click[b09qcp4579]  [valid=True, acted=True]
+  05. click[x-large]  [valid=True, acted=True]
+  06. click[< prev]  [valid=True, acted=True]
+  07. click[b09qcp4579]  [valid=True, acted=True]
+  08. click[< prev]  [valid=True, acted=True]
+  09. click[b08jd14gjf]  [valid=True, acted=True]
+  10. click[< prev]  [valid=True, acted=True]
+  11. click[< prev]  [valid=False, acted=True]
+  12. click[< prev]  [valid=False, acted=True]
+  13. click[back to search]  [valid=True, acted=True]
+  14. search[quick drying moisture wicking women x-large black long sleeve price < 40]  [valid=True, acted=True]
+  15. click[back to search]  [valid=True, acted=True]
+
+
+
+episode=ep003 guidance_hash=9612b45b472a won=False score=0.0 outcome=FAILED
+  01. search[quick drying moisture wicking women activewear long sleeve c-black x-large]  [valid=True, acted=True]
+  02. click[next >]  [valid=True, acted=True]
+  03. click[next >]  [valid=True, acted=True]
+  04. click[next >]  [valid=True, acted=True]
+  05. click[next >]  [valid=True, acted=True]
+  06. click[next >]  [valid=True, acted=True]
+  07. click[next >]  [valid=True, acted=True]
+  08. click[next >]  [valid=True, acted=True]
+  09. click[next >]  [valid=True, acted=True]
+  10. click[next >]  [valid=True, acted=True]
+  11. click[back to search]  [valid=True, acted=True]
+  12. search[quick drying moisture wicking women activewear long sleeve c-black x-large price lower than 40.00]  [valid=True, acted=True]
+  13. click[b08jd14gjf]  [valid=True, acted=True]
+  14. click[c-black]  [valid=True, acted=True]
+  15. click[c-black]  [valid=True, acted=True]
+
+
+
+episode=ep004 guidance_hash=9612b45b472a won=False score=0.0 outcome=FAILED
+  01. search[quick drying moisture wicking women's activewear long sleeve c-black x-large]  [valid=True, acted=True]
+  02. click[back to search]  [valid=True, acted=True]
+  03. search[quick drying moisture wicking women's activewear long sleeve c-black x-large]  [valid=True, acted=True]
+  04. click[back to search]  [valid=True, acted=True]
+  05. search[quick drying moisture wicking women's activewear long sleeve c-black x-large]  [valid=True, acted=True]
+  06. search[quick drying moisture wicking women's activewear long sleeve c-black x-large]  [valid=False, acted=True]
+  07. search[quick drying moisture wicking women's activewear long sleeve c-black x-large]  [valid=False, acted=True]
+  08. click[back to search]  [valid=True, acted=True]
+  09. search[quick drying moisture wicking women's activewear long sleeve c-black x-large]  [valid=True, acted=True]
+  10. click[back to search]  [valid=True, acted=True]
+  11. search[quick drying moisture wicking women's activewear long sleeve c-black x-large]  [valid=True, acted=True]
+  12. click[back to search]  [valid=True, acted=True]
+  13. search[quick drying moisture wicking women's activewear long sleeve c-black x-large]  [valid=True, acted=True]
+  14. click[back to search]  [valid=True, acted=True]
+  15. search[quick drying moisture wicking women's activewear long sleeve c-black x-large]  [valid=True, acted=True]
+
+
+
+episode=ep005 guidance_hash=9612b45b472a won=False score=0.0 outcome=FAILED
+  01. search[quick drying moisture wicking women activewear c-black x-large]  [valid=True, acted=True]
+  02. click[b09qcp4579]  [valid=True, acted=True]
+  03. click[< prev]  [valid=True, acted=True]
+  04. click[next >]  [valid=True, acted=True]
+  05. click[next >]  [valid=True, acted=True]
+  06. click[next >]  [valid=True, acted=True]
+  07. click[next >]  [valid=True, acted=True]
+  08. click[next >]  [valid=True, acted=True]
+  09. click[back to search]  [valid=True, acted=True]
+  10. search[quick drying moisture wicking women activewear c-black x-large]  [valid=True, acted=True]
+  11. click[back to search]  [valid=True, acted=True]
+  12. search[quick drying moisture wicking women's activewear c-black x-large price < 40.00]  [valid=True, acted=True]
+  13. click[next >]  [valid=True, acted=True]
+  14. click[next >]  [valid=True, acted=True]
+  15. click[next >  [valid=False, acted=True]
+
+
+
+episode=ep006 guidance_hash=9612b45b472a won=False score=0.8333333333333334 outcome=FAILED
+  01. search[quick drying moisture wicking women's activewear long sleeve c-black x-large]  [valid=True, acted=True]
+  02. click[next>  [valid=False, acted=True]
+  03. click[next>  [valid=False, acted=True]
+  04. click[b08jd14gjf]  [valid=True, acted=True]
+  05. click[c-black]  [valid=True, acted=True]
+  06. click[buy now]  [valid=True, acted=True]
+
+
+
+五、正式训练的八条学生动作（全部）
+
+sid0 指导组，steer_count=142，won=False，score=0.6666666666666666
+
+episode=student guidance_hash=bare won=False score=0.6666666666666666 outcome=FAILED
+  01. search[quick drying women's activewear long sleeve c-black x-large price lower than 40.00]  [valid=True, acted=True]
+  02. click[b08jd14gjf]  [valid=True, acted=True]
+  03. click[buy now]  [valid=True, acted=True]
+
+
+
+sid1 指导组，steer_count=116，won=False，score=0.06666666666666667
+
+episode=student guidance_hash=bare won=False score=0.06666666666666667 outcome=FAILED
+  01. search[quick drying moisture wicking women activewear long sleeve black x-large price < $40]  [valid=True, acted=True]
+  02. click[b09qcp4579]  [valid=True, acted=True]
+  03. click[x-large]  [valid=True, acted=True]
+  04. click[buy now]  [valid=True, acted=True]
+
+
+
+sid2 指导组，steer_count=125，won=False，score=0.6666666666666666
+
+episode=student guidance_hash=bare won=False score=0.6666666666666666 outcome=FAILED
+  01. search[quick drying moisture wicking women's activewear long sleeve c-black x-large price lower than 40]  [valid=True, acted=True]
+  02. click[b08jd14gjf]  [valid=True, acted=True]
+  03. click[buy now]  [valid=True, acted=True]
+
+
+
+sid3 指导组，steer_count=360，won=False，score=0.0
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[quick drying moisture wicking women activewear long sleeve x large c-black]  [valid=True, acted=True]
+  02. click[next >]  [valid=True, acted=True]
+  03. click[next >]  [valid=True, acted=True]
+  04. click[next >]  [valid=True, acted=True]
+  05. click[next >]  [valid=True, acted=True]
+  06. click[next >]  [valid=True, acted=True]
+  07. click[next >]  [valid=True, acted=True]
+  08. click[next >]  [valid=True, acted=True]
+  09. click[back to search]  [valid=True, acted=True]
+  10. search[quick drying moisture wicking women activewear long sleeve x large c-black]  [valid=True, acted=True]
+  11. click[next >]  [valid=True, acted=True]
+  12. click[next >]  [valid=True, acted=True]
+  13. click[next >]  [valid=True, acted=True]
+  14. click[next >]  [valid=True, acted=True]
+  15. click[back to search]  [valid=True, acted=True]
+
+
+
+sid4 无指导组，steer_count=0，won=False，score=0.0
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[quick drying, moisture wicking activewear long sleeve women's x-large c-black]  [valid=True, acted=True]
+  02. click[next >]  [valid=True, acted=True]
+  03. click[next >]  [valid=True, acted=True]
+  04. click[back to search]  [valid=True, acted=True]
+  05. search[quick drying moisture wicking women's activewear long sleeve x-large c-black price less than 40]  [valid=True, acted=True]
+  06. click[next >]  [valid=True, acted=True]
+  07. click[next >]  [valid=True, acted=True]
+  08. click[back to search]  [valid=True, acted=True]
+  09. search[quick drying moisture wicking women's activewear long sleeve c-black size x-large price less than 40]  [valid=True, acted=True]
+  10. click[next >]  [valid=True, acted=True]
+  11. click[next >  [valid=False, acted=True]
+  12. click[back to search]  [valid=True, acted=True]
+  13. search[quick drying moisture wicking women\'s activewear long sleeve c-black size x-large price less than 40]  [valid=True, acted=True]
+  14. click[next >  [valid=False, acted=True]
+  15. click[back to search]  [valid=True, acted=True]
+
+
+
+sid5 无指导组，steer_count=0，won=False，score=0.0
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. click[search]  [valid=False, acted=True]
+  02. search[quick drying moisturizing women\'s activewear black long sleeve x-large]  [valid=True, acted=True]
+  03. click[next >]  [valid=True, acted=True]
+  04. click[next >]  [valid=True, acted=True]
+  05. click[next >  [valid=False, acted=True]
+  06. search[quick drying moisture wicking women\'s activewear long sleeve black x-large lower than 40]  [valid=False, acted=True]
+  07. click[b08jd14gjf]  [valid=True, acted=True]
+  08. click[c-black]  [valid=True, acted=True]
+  09. click[b-black-thumbhole]  [valid=True, acted=True]
+  10. click[back to search]  [valid=True, acted=True]
+  11. search[quick drying moisture wicking women\'s activewear long sleeve black x-large price < 40]  [valid=True, acted=True]
+  12. click[next >  [valid=False, acted=True]
+  13. click[next >  [valid=False, acted=True]
+  14. click[back to search]  [valid=True, acted=True]
+  15. search[quick drying moisture wicking women\'s activewear long sleeve black x-large price < 40]  [valid=True, acted=True]
+
+
+
+sid6 无指导组，steer_count=0，won=False，score=0.0
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[quick drying, moisture wicking women\'s activewear long sleeve x-large c-black]  [valid=True, acted=True]
+  02. click[b08jd14gjf]  [valid=True, acted=True]
+  03. click[x-large]  [valid=True, acted=True]
+  04. click[c-black]  [valid=True, acted=True]
+  05. click[x-large]  [valid=True, acted=True]
+  06. search[coorun women's x-large black activewear long sleeve quick drying]  [valid=False, acted=True]
+  07. click[b08jd14gjf]  [valid=True, acted=True]
+  08. click[c-black]  [valid=True, acted=True]
+  09. click[next>  [valid=False, acted=True]
+  10. search[coorun x-large black activewear long sleeve]  [valid=False, acted=True]
+  11. search[women x-large black activewear long sleeve quick dry]  [valid=False, acted=True]
+  12. click[next>  [valid=False, acted=True]
+  13. click[next>  [valid=False, acted=True]
+  14. click[back to search]  [valid=True, acted=True]
+  15. search[quick drying moisture wicking women\'s activewear long sleeve x-large c-black price less than 40]  [valid=True, acted=True]
+
+
+
+sid7 无指导组，steer_count=0，won=False，score=0.05
+
+episode=student guidance_hash=bare won=False score=0.05 outcome=FAILED
+  01. search[quick drying moisture wicking women activewear long sleeve]  [valid=True, acted=True]
+  02. click[b09qcp4579]  [valid=True, acted=True]
+  03. click[buy now]  [valid=True, acted=True]
+
+
+
+六、探索时实际使用的指导（非空原稿也经过编译；以下为guidance_log原文）
+
+experiment_idx=1 k=2 guidance_hash=832e3f0f4de2 episodes_before=0
+
+# Task constraints and completion procedure
+
+Exact required option values from your instruction: {"color": "c-black", "size": "x-large"}.
+
+Preserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.
+
+WHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.
+
+WHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.
+
+WHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.
+
+Track successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.
+
+WHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.
+
+WHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.
+
+# Evidence and recovery
+
+Candidate search query: "women's long sleeve activewear". Untested retrieval suggestion; verify current results.
+
+No successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.
+
+
+
+experiment_idx=2 k=2 guidance_hash=9612b45b472a episodes_before=2
+
+# Task constraints and completion procedure
+
+Exact required option values from your instruction: {"color": "c-black", "size": "x-large"}.
+
+Preserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.
+
+WHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.
+
+WHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.
+
+WHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.
+
+Track successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.
+
+WHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.
+
+WHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.
+
+# Evidence and recovery
+
+No checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.
+
+Invalid actions occurred in exploration: copy a single target exactly from current clickables; if unavailable, reconsider the page before acting.
+
+Repeated action/observation pairs occurred in exploration: use your action history to choose the next unmet requirement instead of repeating an unchanged action.
+
+No successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.
+
+
+
+experiment_idx=3 k=2 guidance_hash=9612b45b472a episodes_before=4
+
+# Task constraints and completion procedure
+
+Exact required option values from your instruction: {"color": "c-black", "size": "x-large"}.
+
+Preserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.
+
+WHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.
+
+WHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.
+
+WHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.
+
+Track successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.
+
+WHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.
+
+WHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.
+
+# Evidence and recovery
+
+No checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.
+
+Invalid actions occurred in exploration: copy a single target exactly from current clickables; if unavailable, reconsider the page before acting.
+
+Repeated action/observation pairs occurred in exploration: use your action history to choose the next unmet requirement instead of repeating an unchanged action.
+
+No successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.
+
+
+
+七、正式训练动作后的页面观察（用于检查可用目标、选择是否有效）
+
+sid0 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.6666666666666666 outcome=FAILED
+  01. search[quick drying women's activewear long sleeve c-black x-large price lower than 40.00]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09GLVMLMS [SEP] Anniou Electric Heated Jacket Adjustable Temp USB Heated Coat Winter Hooded Jacket Men Women [SEP] $64.99 to $114.99 [SEP] B09S6LZYHQ [SEP] One Piece Swimsuit for Women Halter Cut Out Bathing Suit Sexy Criss Cross Swimwear Backless Tie Dye Monokini Beachwear [SEP] $14.99 [SEP] B09KRLGSC5 [SEP] SweatyRocks Women's Oversized Sweater Crewneck Long Sleeve Knit Tops Pullover Jumper Tops [SEP] $25.99 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07 [SEP] B08G8DXR5N [SEP] Beninos Sports Bras for Women - Activewear Tops for Yoga Running Fitness [SEP] $6.99 [SEP] B09PVNLVRW [SEP] Women's V-Neck Rompers Printed Jumpsuit Long Sleeve Homewear Butt Flap Pajamas One-Piece Onesies Nightwear Sexy Bodysuit [SEP] $17.4 to $28.67 [SEP] B08G14B779 [SEP] NIUTA 2 Pack Hair Towel Wrap, Microfiber Quick Drying Hair Towels, Super Absorbent Quick Dry Hair Towel, Wrapped Bath Cap (Pink+Light Blue) [SEP] $4.99 [SEP] B08DXL22JN [SEP] Cicy Bell Womens Casual Blazers Open Front Long Sleeve Work Office Jackets Blazer [SEP] $48.99 [SEP] B09HGFV91W [SEP] ZHDD Tops for Mens, Men's Knight Punk Vintage Style Long Sleeve Asymmetric Hem Cowl Neck Teen Boys Gothic Pullover [SEP] $4.98 to $7.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b08jd14gjf", "b09glvmlms", "b09s6lzyhq", "b09krlgsc5", "b09kp78g37", "b08g8dxr5n", "b09pvnlvrw", "b08g14b779", "b08dxl22jn", "b09hgfv91w"]
+  02. click[b08jd14gjf]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] b-orange-thumbhole [SEP] b-sky blue-thumbhole [SEP] c-black [SEP] c-grey [SEP] a-white-thumbhole [SEP] b-green-thumbhole [SEP] c-blue [SEP] c-navy blue [SEP] c-purple [SEP] c-white [SEP] b-black-thumbhole [SEP] b-light grey-thumbhole [SEP] b-peach-thumbhole [SEP] c-green [SEP] b-navy blue-thumbhole [SEP] b-purple-thumbhole [SEP] b-grey-thumbhole [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] Price: $9.98 to $16.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "b-orange-thumbhole", "b-sky blue-thumbhole", "c-black", "c-grey", "a-white-thumbhole", "b-green-thumbhole", "c-blue", "c-navy blue", "c-purple", "c-white", "b-black-thumbhole", "b-light grey-thumbhole", "b-peach-thumbhole", "c-green", "b-navy blue-thumbhole", "b-purple-thumbhole", "b-grey-thumbhole", "small", "medium", "large", "x-large", "xx-large"]
+  03. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+sid1 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.06666666666666667 outcome=FAILED
+  01. search[quick drying moisture wicking women activewear long sleeve black x-large price < $40]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B07WMMYB6G [SEP] MAGCOMSEN Men's Gym Workout Shorts with Pockets Mesh Liner Quick Dry Running Shorts for Jogging, Hiking [SEP] $17.98 to $17.99 [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B089KGBJGW [SEP] ZINUS 10 Inch Cooling Copper ADAPTIVE Pocket Spring Hybrid Mattress / Moisture Wicking Cover / Cooling Foam / Pocket Innersprings for Motion Isolation / Mattress-in-a-Box, Full [SEP] $289.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09QT2369P [SEP] Stylish Women's Long Sleeve Sweatshirt Letters Printed Tops Casual Crewneck Solid Blouses Loose Fitting Soft Pullover [SEP] $11.99 to $14.99 [SEP] B09KRLGSC5 [SEP] SweatyRocks Women's Oversized Sweater Crewneck Long Sleeve Knit Tops Pullover Jumper Tops [SEP] $25.99 [SEP] B09LVMQ1K6 [SEP] Women's Warm Fall Winter Tops, Thicken Padded Plus Size Outerwear Drawstring Long Sleeve Pockets Hooded Overcoats S-5XL [SEP] $71.99 to $79.99 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07 [SEP] B08G8DXR5N [SEP] Beninos Sports Bras for Women - Activewear Tops for Yoga Running Fitness [SEP] $6.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09qcp4579", "b07wmmyb6g", "b08jd14gjf", "b089kgbjgw", "b09q5zhrvm", "b09qt2369p", "b09krlgsc5", "b09lvmq1k6", "b09kp78g37", "b08g8dxr5n"]
+  02. click[b09qcp4579]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] black [SEP] blue [SEP] gray [SEP] purple [SEP] wine [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] Price: $13.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "black", "blue", "gray", "purple", "wine", "small", "medium", "large", "x-large", "xx-large", "3x-large"]
+  03. click[x-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] black [SEP] blue [SEP] gray [SEP] purple [SEP] wine [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] Price: $13.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "black", "blue", "gray", "purple", "wine", "small", "medium", "large", "x-large", "xx-large", "3x-large"]
+  04. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+sid2 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.6666666666666666 outcome=FAILED
+  01. search[quick drying moisture wicking women's activewear long sleeve c-black x-large price lower than 40]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B07WMMYB6G [SEP] MAGCOMSEN Men's Gym Workout Shorts with Pockets Mesh Liner Quick Dry Running Shorts for Jogging, Hiking [SEP] $17.98 to $17.99 [SEP] B09GLVMLMS [SEP] Anniou Electric Heated Jacket Adjustable Temp USB Heated Coat Winter Hooded Jacket Men Women [SEP] $64.99 to $114.99 [SEP] B089KGBJGW [SEP] ZINUS 10 Inch Cooling Copper ADAPTIVE Pocket Spring Hybrid Mattress / Moisture Wicking Cover / Cooling Foam / Pocket Innersprings for Motion Isolation / Mattress-in-a-Box, Full [SEP] $289.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09S6LZYHQ [SEP] One Piece Swimsuit for Women Halter Cut Out Bathing Suit Sexy Criss Cross Swimwear Backless Tie Dye Monokini Beachwear [SEP] $14.99 [SEP] B09QT2369P [SEP] Stylish Women's Long Sleeve Sweatshirt Letters Printed Tops Casual Crewneck Solid Blouses Loose Fitting Soft Pullover [SEP] $11.99 to $14.99 [SEP] B09KRLGSC5 [SEP] SweatyRocks Women's Oversized Sweater Crewneck Long Sleeve Knit Tops Pullover Jumper Tops [SEP] $25.99 [SEP] B094Q7B3SS [SEP] Women Cold Shoulder Tops, Summer Butterfly Print Shirts Fashion Casual Short Sleeve Plus-Size Tunic Top Tee and Blouse [SEP] $9.49 to $14.98
+
+[Available actions]
+clickables: ["back to search", "next >", "b08jd14gjf", "b09qcp4579", "b07wmmyb6g", "b09glvmlms", "b089kgbjgw", "b09q5zhrvm", "b09s6lzyhq", "b09qt2369p", "b09krlgsc5", "b094q7b3ss"]
+  02. click[b08jd14gjf]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] b-orange-thumbhole [SEP] b-sky blue-thumbhole [SEP] c-black [SEP] c-grey [SEP] a-white-thumbhole [SEP] b-green-thumbhole [SEP] c-blue [SEP] c-navy blue [SEP] c-purple [SEP] c-white [SEP] b-black-thumbhole [SEP] b-light grey-thumbhole [SEP] b-peach-thumbhole [SEP] c-green [SEP] b-navy blue-thumbhole [SEP] b-purple-thumbhole [SEP] b-grey-thumbhole [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] Price: $9.98 to $16.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "b-orange-thumbhole", "b-sky blue-thumbhole", "c-black", "c-grey", "a-white-thumbhole", "b-green-thumbhole", "c-blue", "c-navy blue", "c-purple", "c-white", "b-black-thumbhole", "b-light grey-thumbhole", "b-peach-thumbhole", "c-green", "b-navy blue-thumbhole", "b-purple-thumbhole", "b-grey-thumbhole", "small", "medium", "large", "x-large", "xx-large"]
+  03. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+sid3 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[quick drying moisture wicking women activewear long sleeve x large c-black]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B07WMMYB6G [SEP] MAGCOMSEN Men's Gym Workout Shorts with Pockets Mesh Liner Quick Dry Running Shorts for Jogging, Hiking [SEP] $17.98 to $17.99 [SEP] B09S6LZYHQ [SEP] One Piece Swimsuit for Women Halter Cut Out Bathing Suit Sexy Criss Cross Swimwear Backless Tie Dye Monokini Beachwear [SEP] $14.99 [SEP] B09KRLGSC5 [SEP] SweatyRocks Women's Oversized Sweater Crewneck Long Sleeve Knit Tops Pullover Jumper Tops [SEP] $25.99 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07 [SEP] B08G8DXR5N [SEP] Beninos Sports Bras for Women - Activewear Tops for Yoga Running Fitness [SEP] $6.99 [SEP] B09PVNLVRW [SEP] Women's V-Neck Rompers Printed Jumpsuit Long Sleeve Homewear Butt Flap Pajamas One-Piece Onesies Nightwear Sexy Bodysuit [SEP] $17.4 to $28.67 [SEP] B09GLVMLMS [SEP] Anniou Electric Heated Jacket Adjustable Temp USB Heated Coat Winter Hooded Jacket Men Women [SEP] $64.99 to $114.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b08jd14gjf", "b09qcp4579", "b07wmmyb6g", "b09s6lzyhq", "b09krlgsc5", "b09q5zhrvm", "b09kp78g37", "b08g8dxr5n", "b09pvnlvrw", "b09glvmlms"]
+  02. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B08DXL22JN [SEP] Cicy Bell Womens Casual Blazers Open Front Long Sleeve Work Office Jackets Blazer [SEP] $48.99 [SEP] B09M63B87V [SEP] YALFJV Women Long Sleeve Crew Neck Side Button T Shirts Tunic Dress Loose Asymmetric Hem Tunic Pullover to Wear with Leggings [SEP] $10.71 to $18.34 [SEP] B09QT2369P [SEP] Stylish Women's Long Sleeve Sweatshirt Letters Printed Tops Casual Crewneck Solid Blouses Loose Fitting Soft Pullover [SEP] $11.99 to $14.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B096P77XMD [SEP] Runhit 2 in 1 Men’s Running Shorts 5" Quick Dry Workout Shorts for Men with Pockets Gym Athletic Shorts [SEP] $14.98 to $17.98 [SEP] B09RK77R3V [SEP] Gym Shorts For Men Quick Dry Lightweight Training Running Jogger Drawstring Pockets Solid Zipper Shorts [SEP] $8.29 to $10.79 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b08dxl22jn", "b09m63b87v", "b09qt2369p", "b00o30jldk", "b07dkgjr74", "b09nd8p2qr", "b09nd9dp7j", "b096p77xmd", "b09rk77r3v", "b09nds8f4v"]
+  03. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 3 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09NPML43M [SEP] Womens Short Sleeve Tops, Womens Casual Dandelion Printing T-Shirts Loose O-Neck Blouse Tops Funny Graphic Tee Shirts [SEP] $1.01 to $1.74 [SEP] B09LVMQ1K6 [SEP] Women's Warm Fall Winter Tops, Thicken Padded Plus Size Outerwear Drawstring Long Sleeve Pockets Hooded Overcoats S-5XL [SEP] $71.99 to $79.99 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B08ZB1MN8D [SEP] Unipro Mens Jogger Pants 2 Pack Tech Fleece Sweatpants Lightweight Running Pant for Men [SEP] $22.99 to $24.99 [SEP] B09QGK5XHZ [SEP] WENKOMG1 Men's Long Sleeve Undershirt with Mask Turtleneck Hooded T-Shirt Solid Color Workout Tops Zipper Side Slit Shirts Slim Fit Sweatshirt Spring/Summer Tee Shirts(Gray,) [SEP] $8.39 [SEP] B09P5CRVQ6 [SEP] Womens Tops Casual, Sweatshirt for Women Graphic, Womens Sweatshirt Hoodie, Women Love Print Sweatshirt Long Sleeve Cute Heart Sweater Pullover Tops Blouse [SEP] $22.78 [SEP] B07MGB73NJ [SEP] Viracy Women's Short Sleeve V-Neck Casual Flowy Tunic Shirt (M-3XL) [SEP] $16.99 to $26.99 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09Q37JQZ6 [SEP] Women's Sexy Swimsuit One Piece High Neck Halter Bikini Floral Stiching See Through Monokini Tummy Control Beachwear [SEP] $10.99 to $18.99 [SEP] B08BC7JRLQ [SEP] YEAQING Women's Sweatpants Pockets High Waist Gym Athletic Cinch Bottom Jogger Pants Baggy Lounge Trousers [SEP] $19.99 to $21.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b09npml43m", "b09lvmq1k6", "b09q8rd8yn", "b08zb1mn8d", "b09qgk5xhz", "b09p5crvq6", "b07mgb73nj", "b09s3bn15c", "b09q37jqz6", "b08bc7jrlq"]
+  04. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 4 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B095SX6366 [SEP] WYTong Women Dress Summer V Neck Swing Dress Fashion Solid Color Tie the knot Short sleeves Leisure Dress [SEP] $9.99 to $11.99 [SEP] B078WSND96 [SEP] Clearance Deals Retro T-Shirt Bee Printed Blouse, 2021 Summer Fashion Boys Men 3D Round Neck Short Sleeve Tee Tops [SEP] $9.99 to $11.99 [SEP] B09QQP3356 [SEP] HAUKLIE Men's Sports Waffle Ribbed Polo Shirts Summer Short Sleeve Cotton Muscle Quarter-Zip Henley T-Shirt Tunics Tops [SEP] $10.99 [SEP] B09HGFV91W [SEP] ZHDD Tops for Mens, Men's Knight Punk Vintage Style Long Sleeve Asymmetric Hem Cowl Neck Teen Boys Gothic Pullover [SEP] $4.98 to $7.99 [SEP] B09QQJJ3KM [SEP] One Lucky Teacher St Patrick Day Shamrock Tee Teachers Custom Personalized Unisex T-Shirts Long Sleeve Hoodie Sweatshirt Gifts [SEP] $100.0 [SEP] B081KJLMST [SEP] Champion Women's Reverse Weave Crew [SEP] $35.0 to $117.47 [SEP] B09KLQLLT2 [SEP] Long Sleeve Superhero T Shirt Tank Top Mens Compression Shirt Men Workout Fitness Gym Shirt [SEP] $19.99 [SEP] B08G14B779 [SEP] NIUTA 2 Pack Hair Towel Wrap, Microfiber Quick Drying Hair Towels, Super Absorbent Quick Dry Hair Towel, Wrapped Bath Cap (Pink+Light Blue) [SEP] $4.99 [SEP] B09PB9MWKR [SEP] AILUNSNIKA Womens Bikini Swimsuit Cover Up Beach Long Turkish Kaftan Dress [SEP] $26.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b09q67h373", "b095sx6366", "b078wsnd96", "b09qqp3356", "b09hgfv91w", "b09qqjj3km", "b081kjlmst", "b09klqllt2", "b08g14b779", "b09pb9mwkr"]
+  05. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 5 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09PL5W9PD [SEP] Women's One Piece Swimsuit Halter Plunge Neck Tummy Control Bathing Suits Push Up Tankini Sets Plus Size Beachwear [SEP] $7.8 [SEP] B07N7TDKXQ [SEP] SOCKS'NBULK Mens Cotton Crew Neck Short Sleeve T-Shirts Mix Colors Bulk [SEP] $38.79 to $172.8 [SEP] B098824K9T [SEP] Spa Savvy Shower Cap and Twist Hair Turban Duo, Enhance Your Shower Experience with this Complete Set, Fully Lined Shower Cap, Microfiber Turban (Green) [SEP] $11.99 [SEP] B01C8RQ1NM [SEP] Acer P6500 Large Venue 1080p Video Projector [SEP] $1619.94 [SEP] B07ZXBGDXF [SEP] Women's Coat, FORUU Winter Faux Fur Fleece Outwear Warm Lapel Biker Motor Aviator Jacket [SEP] $21.49 to $24.99 [SEP] B00V6AB796 [SEP] Star Vixen Women's Cold-Shoulder Top [SEP] $9.38 to $30.32 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99 [SEP] B01EX1BWE4 [SEP] Milwaukee Leather MBM9075 Men's Black 6-inch Plain Toe Dual Zipper Lock Leather Boots [SEP] $99.82 to $134.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b07hrfsnl4", "b07t3vmgdg", "b09pl5w9pd", "b07n7tdkxq", "b098824k9t", "b01c8rq1nm", "b07zxbgdxf", "b00v6ab796", "b09nnmv9ln", "b01ex1bwe4"]
+  06. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 6 (Total results: 50) [SEP] < Prev [SEP] Next >
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >"]
+  07. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 7 (Total results: 50) [SEP] < Prev [SEP] Next >
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >"]
+  08. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 8 (Total results: 50) [SEP] < Prev [SEP] Next >
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >"]
+  09. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  10. search[quick drying moisture wicking women activewear long sleeve x large c-black]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B07WMMYB6G [SEP] MAGCOMSEN Men's Gym Workout Shorts with Pockets Mesh Liner Quick Dry Running Shorts for Jogging, Hiking [SEP] $17.98 to $17.99 [SEP] B09S6LZYHQ [SEP] One Piece Swimsuit for Women Halter Cut Out Bathing Suit Sexy Criss Cross Swimwear Backless Tie Dye Monokini Beachwear [SEP] $14.99 [SEP] B09KRLGSC5 [SEP] SweatyRocks Women's Oversized Sweater Crewneck Long Sleeve Knit Tops Pullover Jumper Tops [SEP] $25.99 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07 [SEP] B08G8DXR5N [SEP] Beninos Sports Bras for Women - Activewear Tops for Yoga Running Fitness [SEP] $6.99 [SEP] B09PVNLVRW [SEP] Women's V-Neck Rompers Printed Jumpsuit Long Sleeve Homewear Butt Flap Pajamas One-Piece Onesies Nightwear Sexy Bodysuit [SEP] $17.4 to $28.67 [SEP] B09GLVMLMS [SEP] Anniou Electric Heated Jacket Adjustable Temp USB Heated Coat Winter Hooded Jacket Men Women [SEP] $64.99 to $114.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b08jd14gjf", "b09qcp4579", "b07wmmyb6g", "b09s6lzyhq", "b09krlgsc5", "b09q5zhrvm", "b09kp78g37", "b08g8dxr5n", "b09pvnlvrw", "b09glvmlms"]
+  11. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B08DXL22JN [SEP] Cicy Bell Womens Casual Blazers Open Front Long Sleeve Work Office Jackets Blazer [SEP] $48.99 [SEP] B09M63B87V [SEP] YALFJV Women Long Sleeve Crew Neck Side Button T Shirts Tunic Dress Loose Asymmetric Hem Tunic Pullover to Wear with Leggings [SEP] $10.71 to $18.34 [SEP] B09QT2369P [SEP] Stylish Women's Long Sleeve Sweatshirt Letters Printed Tops Casual Crewneck Solid Blouses Loose Fitting Soft Pullover [SEP] $11.99 to $14.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B096P77XMD [SEP] Runhit 2 in 1 Men’s Running Shorts 5" Quick Dry Workout Shorts for Men with Pockets Gym Athletic Shorts [SEP] $14.98 to $17.98 [SEP] B09RK77R3V [SEP] Gym Shorts For Men Quick Dry Lightweight Training Running Jogger Drawstring Pockets Solid Zipper Shorts [SEP] $8.29 to $10.79 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b08dxl22jn", "b09m63b87v", "b09qt2369p", "b00o30jldk", "b07dkgjr74", "b09nd8p2qr", "b09nd9dp7j", "b096p77xmd", "b09rk77r3v", "b09nds8f4v"]
+  12. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 3 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09NPML43M [SEP] Womens Short Sleeve Tops, Womens Casual Dandelion Printing T-Shirts Loose O-Neck Blouse Tops Funny Graphic Tee Shirts [SEP] $1.01 to $1.74 [SEP] B09LVMQ1K6 [SEP] Women's Warm Fall Winter Tops, Thicken Padded Plus Size Outerwear Drawstring Long Sleeve Pockets Hooded Overcoats S-5XL [SEP] $71.99 to $79.99 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B08ZB1MN8D [SEP] Unipro Mens Jogger Pants 2 Pack Tech Fleece Sweatpants Lightweight Running Pant for Men [SEP] $22.99 to $24.99 [SEP] B09QGK5XHZ [SEP] WENKOMG1 Men's Long Sleeve Undershirt with Mask Turtleneck Hooded T-Shirt Solid Color Workout Tops Zipper Side Slit Shirts Slim Fit Sweatshirt Spring/Summer Tee Shirts(Gray,) [SEP] $8.39 [SEP] B09P5CRVQ6 [SEP] Womens Tops Casual, Sweatshirt for Women Graphic, Womens Sweatshirt Hoodie, Women Love Print Sweatshirt Long Sleeve Cute Heart Sweater Pullover Tops Blouse [SEP] $22.78 [SEP] B07MGB73NJ [SEP] Viracy Women's Short Sleeve V-Neck Casual Flowy Tunic Shirt (M-3XL) [SEP] $16.99 to $26.99 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09Q37JQZ6 [SEP] Women's Sexy Swimsuit One Piece High Neck Halter Bikini Floral Stiching See Through Monokini Tummy Control Beachwear [SEP] $10.99 to $18.99 [SEP] B08BC7JRLQ [SEP] YEAQING Women's Sweatpants Pockets High Waist Gym Athletic Cinch Bottom Jogger Pants Baggy Lounge Trousers [SEP] $19.99 to $21.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b09npml43m", "b09lvmq1k6", "b09q8rd8yn", "b08zb1mn8d", "b09qgk5xhz", "b09p5crvq6", "b07mgb73nj", "b09s3bn15c", "b09q37jqz6", "b08bc7jrlq"]
+  13. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 4 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B095SX6366 [SEP] WYTong Women Dress Summer V Neck Swing Dress Fashion Solid Color Tie the knot Short sleeves Leisure Dress [SEP] $9.99 to $11.99 [SEP] B078WSND96 [SEP] Clearance Deals Retro T-Shirt Bee Printed Blouse, 2021 Summer Fashion Boys Men 3D Round Neck Short Sleeve Tee Tops [SEP] $9.99 to $11.99 [SEP] B09QQP3356 [SEP] HAUKLIE Men's Sports Waffle Ribbed Polo Shirts Summer Short Sleeve Cotton Muscle Quarter-Zip Henley T-Shirt Tunics Tops [SEP] $10.99 [SEP] B09HGFV91W [SEP] ZHDD Tops for Mens, Men's Knight Punk Vintage Style Long Sleeve Asymmetric Hem Cowl Neck Teen Boys Gothic Pullover [SEP] $4.98 to $7.99 [SEP] B09QQJJ3KM [SEP] One Lucky Teacher St Patrick Day Shamrock Tee Teachers Custom Personalized Unisex T-Shirts Long Sleeve Hoodie Sweatshirt Gifts [SEP] $100.0 [SEP] B081KJLMST [SEP] Champion Women's Reverse Weave Crew [SEP] $35.0 to $117.47 [SEP] B09KLQLLT2 [SEP] Long Sleeve Superhero T Shirt Tank Top Mens Compression Shirt Men Workout Fitness Gym Shirt [SEP] $19.99 [SEP] B08G14B779 [SEP] NIUTA 2 Pack Hair Towel Wrap, Microfiber Quick Drying Hair Towels, Super Absorbent Quick Dry Hair Towel, Wrapped Bath Cap (Pink+Light Blue) [SEP] $4.99 [SEP] B09PB9MWKR [SEP] AILUNSNIKA Womens Bikini Swimsuit Cover Up Beach Long Turkish Kaftan Dress [SEP] $26.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b09q67h373", "b095sx6366", "b078wsnd96", "b09qqp3356", "b09hgfv91w", "b09qqjj3km", "b081kjlmst", "b09klqllt2", "b08g14b779", "b09pb9mwkr"]
+  14. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 5 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09PL5W9PD [SEP] Women's One Piece Swimsuit Halter Plunge Neck Tummy Control Bathing Suits Push Up Tankini Sets Plus Size Beachwear [SEP] $7.8 [SEP] B07N7TDKXQ [SEP] SOCKS'NBULK Mens Cotton Crew Neck Short Sleeve T-Shirts Mix Colors Bulk [SEP] $38.79 to $172.8 [SEP] B098824K9T [SEP] Spa Savvy Shower Cap and Twist Hair Turban Duo, Enhance Your Shower Experience with this Complete Set, Fully Lined Shower Cap, Microfiber Turban (Green) [SEP] $11.99 [SEP] B01C8RQ1NM [SEP] Acer P6500 Large Venue 1080p Video Projector [SEP] $1619.94 [SEP] B07ZXBGDXF [SEP] Women's Coat, FORUU Winter Faux Fur Fleece Outwear Warm Lapel Biker Motor Aviator Jacket [SEP] $21.49 to $24.99 [SEP] B00V6AB796 [SEP] Star Vixen Women's Cold-Shoulder Top [SEP] $9.38 to $30.32 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99 [SEP] B01EX1BWE4 [SEP] Milwaukee Leather MBM9075 Men's Black 6-inch Plain Toe Dual Zipper Lock Leather Boots [SEP] $99.82 to $134.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b07hrfsnl4", "b07t3vmgdg", "b09pl5w9pd", "b07n7tdkxq", "b098824k9t", "b01c8rq1nm", "b07zxbgdxf", "b00v6ab796", "b09nnmv9ln", "b01ex1bwe4"]
+  15. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+
+
+sid4 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[quick drying, moisture wicking activewear long sleeve women's x-large c-black]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B07WMMYB6G [SEP] MAGCOMSEN Men's Gym Workout Shorts with Pockets Mesh Liner Quick Dry Running Shorts for Jogging, Hiking [SEP] $17.98 to $17.99 [SEP] B09S6LZYHQ [SEP] One Piece Swimsuit for Women Halter Cut Out Bathing Suit Sexy Criss Cross Swimwear Backless Tie Dye Monokini Beachwear [SEP] $14.99 [SEP] B09KRLGSC5 [SEP] SweatyRocks Women's Oversized Sweater Crewneck Long Sleeve Knit Tops Pullover Jumper Tops [SEP] $25.99 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07 [SEP] B08G8DXR5N [SEP] Beninos Sports Bras for Women - Activewear Tops for Yoga Running Fitness [SEP] $6.99 [SEP] B09PVNLVRW [SEP] Women's V-Neck Rompers Printed Jumpsuit Long Sleeve Homewear Butt Flap Pajamas One-Piece Onesies Nightwear Sexy Bodysuit [SEP] $17.4 to $28.67 [SEP] B09GLVMLMS [SEP] Anniou Electric Heated Jacket Adjustable Temp USB Heated Coat Winter Hooded Jacket Men Women [SEP] $64.99 to $114.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b08jd14gjf", "b09qcp4579", "b07wmmyb6g", "b09s6lzyhq", "b09krlgsc5", "b09q5zhrvm", "b09kp78g37", "b08g8dxr5n", "b09pvnlvrw", "b09glvmlms"]
+  02. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B08DXL22JN [SEP] Cicy Bell Womens Casual Blazers Open Front Long Sleeve Work Office Jackets Blazer [SEP] $48.99 [SEP] B09M63B87V [SEP] YALFJV Women Long Sleeve Crew Neck Side Button T Shirts Tunic Dress Loose Asymmetric Hem Tunic Pullover to Wear with Leggings [SEP] $10.71 to $18.34 [SEP] B09QT2369P [SEP] Stylish Women's Long Sleeve Sweatshirt Letters Printed Tops Casual Crewneck Solid Blouses Loose Fitting Soft Pullover [SEP] $11.99 to $14.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B096P77XMD [SEP] Runhit 2 in 1 Men’s Running Shorts 5" Quick Dry Workout Shorts for Men with Pockets Gym Athletic Shorts [SEP] $14.98 to $17.98 [SEP] B09RK77R3V [SEP] Gym Shorts For Men Quick Dry Lightweight Training Running Jogger Drawstring Pockets Solid Zipper Shorts [SEP] $8.29 to $10.79 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b08dxl22jn", "b09m63b87v", "b09qt2369p", "b00o30jldk", "b07dkgjr74", "b09nd8p2qr", "b09nd9dp7j", "b096p77xmd", "b09rk77r3v", "b09nds8f4v"]
+  03. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 3 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09NPML43M [SEP] Womens Short Sleeve Tops, Womens Casual Dandelion Printing T-Shirts Loose O-Neck Blouse Tops Funny Graphic Tee Shirts [SEP] $1.01 to $1.74 [SEP] B09LVMQ1K6 [SEP] Women's Warm Fall Winter Tops, Thicken Padded Plus Size Outerwear Drawstring Long Sleeve Pockets Hooded Overcoats S-5XL [SEP] $71.99 to $79.99 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B08ZB1MN8D [SEP] Unipro Mens Jogger Pants 2 Pack Tech Fleece Sweatpants Lightweight Running Pant for Men [SEP] $22.99 to $24.99 [SEP] B09QGK5XHZ [SEP] WENKOMG1 Men's Long Sleeve Undershirt with Mask Turtleneck Hooded T-Shirt Solid Color Workout Tops Zipper Side Slit Shirts Slim Fit Sweatshirt Spring/Summer Tee Shirts(Gray,) [SEP] $8.39 [SEP] B09P5CRVQ6 [SEP] Womens Tops Casual, Sweatshirt for Women Graphic, Womens Sweatshirt Hoodie, Women Love Print Sweatshirt Long Sleeve Cute Heart Sweater Pullover Tops Blouse [SEP] $22.78 [SEP] B07MGB73NJ [SEP] Viracy Women's Short Sleeve V-Neck Casual Flowy Tunic Shirt (M-3XL) [SEP] $16.99 to $26.99 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09Q37JQZ6 [SEP] Women's Sexy Swimsuit One Piece High Neck Halter Bikini Floral Stiching See Through Monokini Tummy Control Beachwear [SEP] $10.99 to $18.99 [SEP] B08BC7JRLQ [SEP] YEAQING Women's Sweatpants Pockets High Waist Gym Athletic Cinch Bottom Jogger Pants Baggy Lounge Trousers [SEP] $19.99 to $21.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b09npml43m", "b09lvmq1k6", "b09q8rd8yn", "b08zb1mn8d", "b09qgk5xhz", "b09p5crvq6", "b07mgb73nj", "b09s3bn15c", "b09q37jqz6", "b08bc7jrlq"]
+  04. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  05. search[quick drying moisture wicking women's activewear long sleeve x-large c-black price less than 40]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B07WMMYB6G [SEP] MAGCOMSEN Men's Gym Workout Shorts with Pockets Mesh Liner Quick Dry Running Shorts for Jogging, Hiking [SEP] $17.98 to $17.99 [SEP] B089KGBJGW [SEP] ZINUS 10 Inch Cooling Copper ADAPTIVE Pocket Spring Hybrid Mattress / Moisture Wicking Cover / Cooling Foam / Pocket Innersprings for Motion Isolation / Mattress-in-a-Box, Full [SEP] $289.0 [SEP] B098824K9T [SEP] Spa Savvy Shower Cap and Twist Hair Turban Duo, Enhance Your Shower Experience with this Complete Set, Fully Lined Shower Cap, Microfiber Turban (Green) [SEP] $11.99 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09S6LZYHQ [SEP] One Piece Swimsuit for Women Halter Cut Out Bathing Suit Sexy Criss Cross Swimwear Backless Tie Dye Monokini Beachwear [SEP] $14.99 [SEP] B09QT2369P [SEP] Stylish Women's Long Sleeve Sweatshirt Letters Printed Tops Casual Crewneck Solid Blouses Loose Fitting Soft Pullover [SEP] $11.99 to $14.99 [SEP] B09GLVMLMS [SEP] Anniou Electric Heated Jacket Adjustable Temp USB Heated Coat Winter Hooded Jacket Men Women [SEP] $64.99 to $114.99 [SEP] B09KRLGSC5 [SEP] SweatyRocks Women's Oversized Sweater Crewneck Long Sleeve Knit Tops Pullover Jumper Tops [SEP] $25.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b08jd14gjf", "b09qcp4579", "b07wmmyb6g", "b089kgbjgw", "b098824k9t", "b09q5zhrvm", "b09s6lzyhq", "b09qt2369p", "b09glvmlms", "b09krlgsc5"]
+  06. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B094Q7B3SS [SEP] Women Cold Shoulder Tops, Summer Butterfly Print Shirts Fashion Casual Short Sleeve Plus-Size Tunic Top Tee and Blouse [SEP] $9.49 to $14.98 [SEP] B09LVMQ1K6 [SEP] Women's Warm Fall Winter Tops, Thicken Padded Plus Size Outerwear Drawstring Long Sleeve Pockets Hooded Overcoats S-5XL [SEP] $71.99 to $79.99 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07 [SEP] B08G8DXR5N [SEP] Beninos Sports Bras for Women - Activewear Tops for Yoga Running Fitness [SEP] $6.99 [SEP] B095SX6366 [SEP] WYTong Women Dress Summer V Neck Swing Dress Fashion Solid Color Tie the knot Short sleeves Leisure Dress [SEP] $9.99 to $11.99 [SEP] B09PVNLVRW [SEP] Women's V-Neck Rompers Printed Jumpsuit Long Sleeve Homewear Butt Flap Pajamas One-Piece Onesies Nightwear Sexy Bodysuit [SEP] $17.4 to $28.67 [SEP] B08G14B779 [SEP] NIUTA 2 Pack Hair Towel Wrap, Microfiber Quick Drying Hair Towels, Super Absorbent Quick Dry Hair Towel, Wrapped Bath Cap (Pink+Light Blue) [SEP] $4.99 [SEP] B078WSND96 [SEP] Clearance Deals Retro T-Shirt Bee Printed Blouse, 2021 Summer Fashion Boys Men 3D Round Neck Short Sleeve Tee Tops [SEP] $9.99 to $11.99 [SEP] B08DXL22JN [SEP] Cicy Bell Womens Casual Blazers Open Front Long Sleeve Work Office Jackets Blazer [SEP] $48.99 [SEP] B01C8RQ1NM [SEP] Acer P6500 Large Venue 1080p Video Projector [SEP] $1619.94
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b094q7b3ss", "b09lvmq1k6", "b09kp78g37", "b08g8dxr5n", "b095sx6366", "b09pvnlvrw", "b08g14b779", "b078wsnd96", "b08dxl22jn", "b01c8rq1nm"]
+  07. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 3 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09HGFV91W [SEP] ZHDD Tops for Mens, Men's Knight Punk Vintage Style Long Sleeve Asymmetric Hem Cowl Neck Teen Boys Gothic Pullover [SEP] $4.98 to $7.99 [SEP] B09M63B87V [SEP] YALFJV Women Long Sleeve Crew Neck Side Button T Shirts Tunic Dress Loose Asymmetric Hem Tunic Pullover to Wear with Leggings [SEP] $10.71 to $18.34 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09MM9NCQQ [SEP] Simayixx Christmas Gift Wigs Hair Extensions 24 Inches Synthetic Long Natural Black Thick Clip Straight Hair Stylish Fasionable Fabulous Hair Piece 6 Pieces Popular Hairstyle(E) [SEP] $7.83 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B096P77XMD [SEP] Runhit 2 in 1 Men’s Running Shorts 5" Quick Dry Workout Shorts for Men with Pockets Gym Athletic Shorts [SEP] $14.98 to $17.98 [SEP] B09RK77R3V [SEP] Gym Shorts For Men Quick Dry Lightweight Training Running Jogger Drawstring Pockets Solid Zipper Shorts [SEP] $8.29 to $10.79 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b09hgfv91w", "b09m63b87v", "b00o30jldk", "b09mm9ncqq", "b07dkgjr74", "b09nd8p2qr", "b09nd9dp7j", "b096p77xmd", "b09rk77r3v", "b09nds8f4v"]
+  08. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  09. search[quick drying moisture wicking women's activewear long sleeve c-black size x-large price less than 40]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B07WMMYB6G [SEP] MAGCOMSEN Men's Gym Workout Shorts with Pockets Mesh Liner Quick Dry Running Shorts for Jogging, Hiking [SEP] $17.98 to $17.99 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B089KGBJGW [SEP] ZINUS 10 Inch Cooling Copper ADAPTIVE Pocket Spring Hybrid Mattress / Moisture Wicking Cover / Cooling Foam / Pocket Innersprings for Motion Isolation / Mattress-in-a-Box, Full [SEP] $289.0 [SEP] B09S6LZYHQ [SEP] One Piece Swimsuit for Women Halter Cut Out Bathing Suit Sexy Criss Cross Swimwear Backless Tie Dye Monokini Beachwear [SEP] $14.99 [SEP] B09QT2369P [SEP] Stylish Women's Long Sleeve Sweatshirt Letters Printed Tops Casual Crewneck Solid Blouses Loose Fitting Soft Pullover [SEP] $11.99 to $14.99 [SEP] B098824K9T [SEP] Spa Savvy Shower Cap and Twist Hair Turban Duo, Enhance Your Shower Experience with this Complete Set, Fully Lined Shower Cap, Microfiber Turban (Green) [SEP] $11.99 [SEP] B09GLVMLMS [SEP] Anniou Electric Heated Jacket Adjustable Temp USB Heated Coat Winter Hooded Jacket Men Women [SEP] $64.99 to $114.99 [SEP] B094Q7B3SS [SEP] Women Cold Shoulder Tops, Summer Butterfly Print Shirts Fashion Casual Short Sleeve Plus-Size Tunic Top Tee and Blouse [SEP] $9.49 to $14.98
+
+[Available actions]
+clickables: ["back to search", "next >", "b08jd14gjf", "b09qcp4579", "b07wmmyb6g", "b09q5zhrvm", "b089kgbjgw", "b09s6lzyhq", "b09qt2369p", "b098824k9t", "b09glvmlms", "b094q7b3ss"]
+  10. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09LVMQ1K6 [SEP] Women's Warm Fall Winter Tops, Thicken Padded Plus Size Outerwear Drawstring Long Sleeve Pockets Hooded Overcoats S-5XL [SEP] $71.99 to $79.99 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07 [SEP] B09KRLGSC5 [SEP] SweatyRocks Women's Oversized Sweater Crewneck Long Sleeve Knit Tops Pullover Jumper Tops [SEP] $25.99 [SEP] B095SX6366 [SEP] WYTong Women Dress Summer V Neck Swing Dress Fashion Solid Color Tie the knot Short sleeves Leisure Dress [SEP] $9.99 to $11.99 [SEP] B08G8DXR5N [SEP] Beninos Sports Bras for Women - Activewear Tops for Yoga Running Fitness [SEP] $6.99 [SEP] B09PVNLVRW [SEP] Women's V-Neck Rompers Printed Jumpsuit Long Sleeve Homewear Butt Flap Pajamas One-Piece Onesies Nightwear Sexy Bodysuit [SEP] $17.4 to $28.67 [SEP] B09HGFV91W [SEP] ZHDD Tops for Mens, Men's Knight Punk Vintage Style Long Sleeve Asymmetric Hem Cowl Neck Teen Boys Gothic Pullover [SEP] $4.98 to $7.99 [SEP] B08G14B779 [SEP] NIUTA 2 Pack Hair Towel Wrap, Microfiber Quick Drying Hair Towels, Super Absorbent Quick Dry Hair Towel, Wrapped Bath Cap (Pink+Light Blue) [SEP] $4.99 [SEP] B078WSND96 [SEP] Clearance Deals Retro T-Shirt Bee Printed Blouse, 2021 Summer Fashion Boys Men 3D Round Neck Short Sleeve Tee Tops [SEP] $9.99 to $11.99 [SEP] B08DXL22JN [SEP] Cicy Bell Womens Casual Blazers Open Front Long Sleeve Work Office Jackets Blazer [SEP] $48.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b09lvmq1k6", "b09kp78g37", "b09krlgsc5", "b095sx6366", "b08g8dxr5n", "b09pvnlvrw", "b09hgfv91w", "b08g14b779", "b078wsnd96", "b08dxl22jn"]
+  11. click[next >  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09LVMQ1K6 [SEP] Women's Warm Fall Winter Tops, Thicken Padded Plus Size Outerwear Drawstring Long Sleeve Pockets Hooded Overcoats S-5XL [SEP] $71.99 to $79.99 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07 [SEP] B09KRLGSC5 [SEP] SweatyRocks Women's Oversized Sweater Crewneck Long Sleeve Knit Tops Pullover Jumper Tops [SEP] $25.99 [SEP] B095SX6366 [SEP] WYTong Women Dress Summer V Neck Swing Dress Fashion Solid Color Tie the knot Short sleeves Leisure Dress [SEP] $9.99 to $11.99 [SEP] B08G8DXR5N [SEP] Beninos Sports Bras for Women - Activewear Tops for Yoga Running Fitness [SEP] $6.99 [SEP] B09PVNLVRW [SEP] Women's V-Neck Rompers Printed Jumpsuit Long Sleeve Homewear Butt Flap Pajamas One-Piece Onesies Nightwear Sexy Bodysuit [SEP] $17.4 to $28.67 [SEP] B09HGFV91W [SEP] ZHDD Tops for Mens, Men's Knight Punk Vintage Style Long Sleeve Asymmetric Hem Cowl Neck Teen Boys Gothic Pullover [SEP] $4.98 to $7.99 [SEP] B08G14B779 [SEP] NIUTA 2 Pack Hair Towel Wrap, Microfiber Quick Drying Hair Towels, Super Absorbent Quick Dry Hair Towel, Wrapped Bath Cap (Pink+Light Blue) [SEP] $4.99 [SEP] B078WSND96 [SEP] Clearance Deals Retro T-Shirt Bee Printed Blouse, 2021 Summer Fashion Boys Men 3D Round Neck Short Sleeve Tee Tops [SEP] $9.99 to $11.99 [SEP] B08DXL22JN [SEP] Cicy Bell Womens Casual Blazers Open Front Long Sleeve Work Office Jackets Blazer [SEP] $48.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b09lvmq1k6", "b09kp78g37", "b09krlgsc5", "b095sx6366", "b08g8dxr5n", "b09pvnlvrw", "b09hgfv91w", "b08g14b779", "b078wsnd96", "b08dxl22jn"]
+  12. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  13. search[quick drying moisture wicking women\'s activewear long sleeve c-black size x-large price less than 40]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B07WMMYB6G [SEP] MAGCOMSEN Men's Gym Workout Shorts with Pockets Mesh Liner Quick Dry Running Shorts for Jogging, Hiking [SEP] $17.98 to $17.99 [SEP] B09S6LZYHQ [SEP] One Piece Swimsuit for Women Halter Cut Out Bathing Suit Sexy Criss Cross Swimwear Backless Tie Dye Monokini Beachwear [SEP] $14.99 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B094Q7B3SS [SEP] Women Cold Shoulder Tops, Summer Butterfly Print Shirts Fashion Casual Short Sleeve Plus-Size Tunic Top Tee and Blouse [SEP] $9.49 to $14.98 [SEP] B09HGFV91W [SEP] ZHDD Tops for Mens, Men's Knight Punk Vintage Style Long Sleeve Asymmetric Hem Cowl Neck Teen Boys Gothic Pullover [SEP] $4.98 to $7.99 [SEP] B09LVMQ1K6 [SEP] Women's Warm Fall Winter Tops, Thicken Padded Plus Size Outerwear Drawstring Long Sleeve Pockets Hooded Overcoats S-5XL [SEP] $71.99 to $79.99 [SEP] B095SX6366 [SEP] WYTong Women Dress Summer V Neck Swing Dress Fashion Solid Color Tie the knot Short sleeves Leisure Dress [SEP] $9.99 to $11.99 [SEP] B089KGBJGW [SEP] ZINUS 10 Inch Cooling Copper ADAPTIVE Pocket Spring Hybrid Mattress / Moisture Wicking Cover / Cooling Foam / Pocket Innersprings for Motion Isolation / Mattress-in-a-Box, Full [SEP] $289.0
+
+[Available actions]
+clickables: ["back to search", "next >", "b08jd14gjf", "b09qcp4579", "b07wmmyb6g", "b09s6lzyhq", "b09q5zhrvm", "b094q7b3ss", "b09hgfv91w", "b09lvmq1k6", "b095sx6366", "b089kgbjgw"]
+  14. click[next >  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B07WMMYB6G [SEP] MAGCOMSEN Men's Gym Workout Shorts with Pockets Mesh Liner Quick Dry Running Shorts for Jogging, Hiking [SEP] $17.98 to $17.99 [SEP] B09S6LZYHQ [SEP] One Piece Swimsuit for Women Halter Cut Out Bathing Suit Sexy Criss Cross Swimwear Backless Tie Dye Monokini Beachwear [SEP] $14.99 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B094Q7B3SS [SEP] Women Cold Shoulder Tops, Summer Butterfly Print Shirts Fashion Casual Short Sleeve Plus-Size Tunic Top Tee and Blouse [SEP] $9.49 to $14.98 [SEP] B09HGFV91W [SEP] ZHDD Tops for Mens, Men's Knight Punk Vintage Style Long Sleeve Asymmetric Hem Cowl Neck Teen Boys Gothic Pullover [SEP] $4.98 to $7.99 [SEP] B09LVMQ1K6 [SEP] Women's Warm Fall Winter Tops, Thicken Padded Plus Size Outerwear Drawstring Long Sleeve Pockets Hooded Overcoats S-5XL [SEP] $71.99 to $79.99 [SEP] B095SX6366 [SEP] WYTong Women Dress Summer V Neck Swing Dress Fashion Solid Color Tie the knot Short sleeves Leisure Dress [SEP] $9.99 to $11.99 [SEP] B089KGBJGW [SEP] ZINUS 10 Inch Cooling Copper ADAPTIVE Pocket Spring Hybrid Mattress / Moisture Wicking Cover / Cooling Foam / Pocket Innersprings for Motion Isolation / Mattress-in-a-Box, Full [SEP] $289.0
+
+[Available actions]
+clickables: ["back to search", "next >", "b08jd14gjf", "b09qcp4579", "b07wmmyb6g", "b09s6lzyhq", "b09q5zhrvm", "b094q7b3ss", "b09hgfv91w", "b09lvmq1k6", "b095sx6366", "b089kgbjgw"]
+  15. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+
+
+sid5 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. click[search]  [valid=False, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  02. search[quick drying moisturizing women\'s activewear black long sleeve x-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09KRLGSC5 [SEP] SweatyRocks Women's Oversized Sweater Crewneck Long Sleeve Knit Tops Pullover Jumper Tops [SEP] $25.99 [SEP] B09S6LZYHQ [SEP] One Piece Swimsuit for Women Halter Cut Out Bathing Suit Sexy Criss Cross Swimwear Backless Tie Dye Monokini Beachwear [SEP] $14.99 [SEP] B09LVMQ1K6 [SEP] Women's Warm Fall Winter Tops, Thicken Padded Plus Size Outerwear Drawstring Long Sleeve Pockets Hooded Overcoats S-5XL [SEP] $71.99 to $79.99 [SEP] B09HGFV91W [SEP] ZHDD Tops for Mens, Men's Knight Punk Vintage Style Long Sleeve Asymmetric Hem Cowl Neck Teen Boys Gothic Pullover [SEP] $4.98 to $7.99 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07 [SEP] B08G8DXR5N [SEP] Beninos Sports Bras for Women - Activewear Tops for Yoga Running Fitness [SEP] $6.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b08jd14gjf", "b09qcp4579", "b09nd8p2qr", "b09nd9dp7j", "b09krlgsc5", "b09s6lzyhq", "b09lvmq1k6", "b09hgfv91w", "b09kp78g37", "b08g8dxr5n"]
+  03. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09QGK5XHZ [SEP] WENKOMG1 Men's Long Sleeve Undershirt with Mask Turtleneck Hooded T-Shirt Solid Color Workout Tops Zipper Side Slit Shirts Slim Fit Sweatshirt Spring/Summer Tee Shirts(Gray,) [SEP] $8.39 [SEP] B095SX6366 [SEP] WYTong Women Dress Summer V Neck Swing Dress Fashion Solid Color Tie the knot Short sleeves Leisure Dress [SEP] $9.99 to $11.99 [SEP] B09PVNLVRW [SEP] Women's V-Neck Rompers Printed Jumpsuit Long Sleeve Homewear Butt Flap Pajamas One-Piece Onesies Nightwear Sexy Bodysuit [SEP] $17.4 to $28.67 [SEP] B08DXL22JN [SEP] Cicy Bell Womens Casual Blazers Open Front Long Sleeve Work Office Jackets Blazer [SEP] $48.99 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09M63B87V [SEP] YALFJV Women Long Sleeve Crew Neck Side Button T Shirts Tunic Dress Loose Asymmetric Hem Tunic Pullover to Wear with Leggings [SEP] $10.71 to $18.34 [SEP] B09QT2369P [SEP] Stylish Women's Long Sleeve Sweatshirt Letters Printed Tops Casual Crewneck Solid Blouses Loose Fitting Soft Pullover [SEP] $11.99 to $14.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B096P77XMD [SEP] Runhit 2 in 1 Men’s Running Shorts 5" Quick Dry Workout Shorts for Men with Pockets Gym Athletic Shorts [SEP] $14.98 to $17.98
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b09qgk5xhz", "b095sx6366", "b09pvnlvrw", "b08dxl22jn", "b09q5zhrvm", "b09m63b87v", "b09qt2369p", "b00o30jldk", "b07dkgjr74", "b096p77xmd"]
+  04. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 3 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09RK77R3V [SEP] Gym Shorts For Men Quick Dry Lightweight Training Running Jogger Drawstring Pockets Solid Zipper Shorts [SEP] $8.29 to $10.79 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09NPML43M [SEP] Womens Short Sleeve Tops, Womens Casual Dandelion Printing T-Shirts Loose O-Neck Blouse Tops Funny Graphic Tee Shirts [SEP] $1.01 to $1.74 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B09P5CRVQ6 [SEP] Womens Tops Casual, Sweatshirt for Women Graphic, Womens Sweatshirt Hoodie, Women Love Print Sweatshirt Long Sleeve Cute Heart Sweater Pullover Tops Blouse [SEP] $22.78 [SEP] B07MGB73NJ [SEP] Viracy Women's Short Sleeve V-Neck Casual Flowy Tunic Shirt (M-3XL) [SEP] $16.99 to $26.99 [SEP] B094Q7B3SS [SEP] Women Cold Shoulder Tops, Summer Butterfly Print Shirts Fashion Casual Short Sleeve Plus-Size Tunic Top Tee and Blouse [SEP] $9.49 to $14.98 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09Q37JQZ6 [SEP] Women's Sexy Swimsuit One Piece High Neck Halter Bikini Floral Stiching See Through Monokini Tummy Control Beachwear [SEP] $10.99 to $18.99 [SEP] B07WX8FPGG [SEP] Matching Couple Hoodies Set Funny Hubby Wifey Hoodies Pullover Sweater Honeymoon [SEP] $23.99 to $37.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b09rk77r3v", "b09nds8f4v", "b09npml43m", "b09q8rd8yn", "b09p5crvq6", "b07mgb73nj", "b094q7b3ss", "b09s3bn15c", "b09q37jqz6", "b07wx8fpgg"]
+  05. click[next >  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 3 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09RK77R3V [SEP] Gym Shorts For Men Quick Dry Lightweight Training Running Jogger Drawstring Pockets Solid Zipper Shorts [SEP] $8.29 to $10.79 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09NPML43M [SEP] Womens Short Sleeve Tops, Womens Casual Dandelion Printing T-Shirts Loose O-Neck Blouse Tops Funny Graphic Tee Shirts [SEP] $1.01 to $1.74 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B09P5CRVQ6 [SEP] Womens Tops Casual, Sweatshirt for Women Graphic, Womens Sweatshirt Hoodie, Women Love Print Sweatshirt Long Sleeve Cute Heart Sweater Pullover Tops Blouse [SEP] $22.78 [SEP] B07MGB73NJ [SEP] Viracy Women's Short Sleeve V-Neck Casual Flowy Tunic Shirt (M-3XL) [SEP] $16.99 to $26.99 [SEP] B094Q7B3SS [SEP] Women Cold Shoulder Tops, Summer Butterfly Print Shirts Fashion Casual Short Sleeve Plus-Size Tunic Top Tee and Blouse [SEP] $9.49 to $14.98 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09Q37JQZ6 [SEP] Women's Sexy Swimsuit One Piece High Neck Halter Bikini Floral Stiching See Through Monokini Tummy Control Beachwear [SEP] $10.99 to $18.99 [SEP] B07WX8FPGG [SEP] Matching Couple Hoodies Set Funny Hubby Wifey Hoodies Pullover Sweater Honeymoon [SEP] $23.99 to $37.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b09rk77r3v", "b09nds8f4v", "b09npml43m", "b09q8rd8yn", "b09p5crvq6", "b07mgb73nj", "b094q7b3ss", "b09s3bn15c", "b09q37jqz6", "b07wx8fpgg"]
+  06. search[quick drying moisture wicking women\'s activewear long sleeve black x-large lower than 40]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B07WMMYB6G [SEP] MAGCOMSEN Men's Gym Workout Shorts with Pockets Mesh Liner Quick Dry Running Shorts for Jogging, Hiking [SEP] $17.98 to $17.99 [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B094Q7B3SS [SEP] Women Cold Shoulder Tops, Summer Butterfly Print Shirts Fashion Casual Short Sleeve Plus-Size Tunic Top Tee and Blouse [SEP] $9.49 to $14.98 [SEP] B09LVMQ1K6 [SEP] Women's Warm Fall Winter Tops, Thicken Padded Plus Size Outerwear Drawstring Long Sleeve Pockets Hooded Overcoats S-5XL [SEP] $71.99 to $79.99 [SEP] B09HGFV91W [SEP] ZHDD Tops for Mens, Men's Knight Punk Vintage Style Long Sleeve Asymmetric Hem Cowl Neck Teen Boys Gothic Pullover [SEP] $4.98 to $7.99 [SEP] B095SX6366 [SEP] WYTong Women Dress Summer V Neck Swing Dress Fashion Solid Color Tie the knot Short sleeves Leisure Dress [SEP] $9.99 to $11.99 [SEP] B09QT2369P [SEP] Stylish Women's Long Sleeve Sweatshirt Letters Printed Tops Casual Crewneck Solid Blouses Loose Fitting Soft Pullover [SEP] $11.99 to $14.99 [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59
+
+[Available actions]
+clickables: ["back to search", "next >", "b09qcp4579", "b07wmmyb6g", "b08jd14gjf", "b09q5zhrvm", "b094q7b3ss", "b09lvmq1k6", "b09hgfv91w", "b095sx6366", "b09qt2369p", "b09nd8p2qr"]
+  07. click[b08jd14gjf]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] b-orange-thumbhole [SEP] b-sky blue-thumbhole [SEP] c-black [SEP] c-grey [SEP] a-white-thumbhole [SEP] b-green-thumbhole [SEP] c-blue [SEP] c-navy blue [SEP] c-purple [SEP] c-white [SEP] b-black-thumbhole [SEP] b-light grey-thumbhole [SEP] b-peach-thumbhole [SEP] c-green [SEP] b-navy blue-thumbhole [SEP] b-purple-thumbhole [SEP] b-grey-thumbhole [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] Price: $9.98 to $16.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "b-orange-thumbhole", "b-sky blue-thumbhole", "c-black", "c-grey", "a-white-thumbhole", "b-green-thumbhole", "c-blue", "c-navy blue", "c-purple", "c-white", "b-black-thumbhole", "b-light grey-thumbhole", "b-peach-thumbhole", "c-green", "b-navy blue-thumbhole", "b-purple-thumbhole", "b-grey-thumbhole", "small", "medium", "large", "x-large", "xx-large"]
+  08. click[c-black]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] b-orange-thumbhole [SEP] b-sky blue-thumbhole [SEP] c-black [SEP] c-grey [SEP] a-white-thumbhole [SEP] b-green-thumbhole [SEP] c-blue [SEP] c-navy blue [SEP] c-purple [SEP] c-white [SEP] b-black-thumbhole [SEP] b-light grey-thumbhole [SEP] b-peach-thumbhole [SEP] c-green [SEP] b-navy blue-thumbhole [SEP] b-purple-thumbhole [SEP] b-grey-thumbhole [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] Price: $9.98 to $16.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "b-orange-thumbhole", "b-sky blue-thumbhole", "c-black", "c-grey", "a-white-thumbhole", "b-green-thumbhole", "c-blue", "c-navy blue", "c-purple", "c-white", "b-black-thumbhole", "b-light grey-thumbhole", "b-peach-thumbhole", "c-green", "b-navy blue-thumbhole", "b-purple-thumbhole", "b-grey-thumbhole", "small", "medium", "large", "x-large", "xx-large"]
+  09. click[b-black-thumbhole]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] b-orange-thumbhole [SEP] b-sky blue-thumbhole [SEP] c-black [SEP] c-grey [SEP] a-white-thumbhole [SEP] b-green-thumbhole [SEP] c-blue [SEP] c-navy blue [SEP] c-purple [SEP] c-white [SEP] b-black-thumbhole [SEP] b-light grey-thumbhole [SEP] b-peach-thumbhole [SEP] c-green [SEP] b-navy blue-thumbhole [SEP] b-purple-thumbhole [SEP] b-grey-thumbhole [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] Price: $9.98 to $16.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "b-orange-thumbhole", "b-sky blue-thumbhole", "c-black", "c-grey", "a-white-thumbhole", "b-green-thumbhole", "c-blue", "c-navy blue", "c-purple", "c-white", "b-black-thumbhole", "b-light grey-thumbhole", "b-peach-thumbhole", "c-green", "b-navy blue-thumbhole", "b-purple-thumbhole", "b-grey-thumbhole", "small", "medium", "large", "x-large", "xx-large"]
+  10. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  11. search[quick drying moisture wicking women\'s activewear long sleeve black x-large price < 40]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B07WMMYB6G [SEP] MAGCOMSEN Men's Gym Workout Shorts with Pockets Mesh Liner Quick Dry Running Shorts for Jogging, Hiking [SEP] $17.98 to $17.99 [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B089KGBJGW [SEP] ZINUS 10 Inch Cooling Copper ADAPTIVE Pocket Spring Hybrid Mattress / Moisture Wicking Cover / Cooling Foam / Pocket Innersprings for Motion Isolation / Mattress-in-a-Box, Full [SEP] $289.0 [SEP] B09LVMQ1K6 [SEP] Women's Warm Fall Winter Tops, Thicken Padded Plus Size Outerwear Drawstring Long Sleeve Pockets Hooded Overcoats S-5XL [SEP] $71.99 to $79.99 [SEP] B095SX6366 [SEP] WYTong Women Dress Summer V Neck Swing Dress Fashion Solid Color Tie the knot Short sleeves Leisure Dress [SEP] $9.99 to $11.99 [SEP] B09QT2369P [SEP] Stylish Women's Long Sleeve Sweatshirt Letters Printed Tops Casual Crewneck Solid Blouses Loose Fitting Soft Pullover [SEP] $11.99 to $14.99 [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59
+
+[Available actions]
+clickables: ["back to search", "next >", "b09qcp4579", "b07wmmyb6g", "b08jd14gjf", "b09q5zhrvm", "b089kgbjgw", "b09lvmq1k6", "b095sx6366", "b09qt2369p", "b09nd8p2qr", "b09nd9dp7j"]
+  12. click[next >  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B07WMMYB6G [SEP] MAGCOMSEN Men's Gym Workout Shorts with Pockets Mesh Liner Quick Dry Running Shorts for Jogging, Hiking [SEP] $17.98 to $17.99 [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B089KGBJGW [SEP] ZINUS 10 Inch Cooling Copper ADAPTIVE Pocket Spring Hybrid Mattress / Moisture Wicking Cover / Cooling Foam / Pocket Innersprings for Motion Isolation / Mattress-in-a-Box, Full [SEP] $289.0 [SEP] B09LVMQ1K6 [SEP] Women's Warm Fall Winter Tops, Thicken Padded Plus Size Outerwear Drawstring Long Sleeve Pockets Hooded Overcoats S-5XL [SEP] $71.99 to $79.99 [SEP] B095SX6366 [SEP] WYTong Women Dress Summer V Neck Swing Dress Fashion Solid Color Tie the knot Short sleeves Leisure Dress [SEP] $9.99 to $11.99 [SEP] B09QT2369P [SEP] Stylish Women's Long Sleeve Sweatshirt Letters Printed Tops Casual Crewneck Solid Blouses Loose Fitting Soft Pullover [SEP] $11.99 to $14.99 [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59
+
+[Available actions]
+clickables: ["back to search", "next >", "b09qcp4579", "b07wmmyb6g", "b08jd14gjf", "b09q5zhrvm", "b089kgbjgw", "b09lvmq1k6", "b095sx6366", "b09qt2369p", "b09nd8p2qr", "b09nd9dp7j"]
+  13. click[next >  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B07WMMYB6G [SEP] MAGCOMSEN Men's Gym Workout Shorts with Pockets Mesh Liner Quick Dry Running Shorts for Jogging, Hiking [SEP] $17.98 to $17.99 [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B089KGBJGW [SEP] ZINUS 10 Inch Cooling Copper ADAPTIVE Pocket Spring Hybrid Mattress / Moisture Wicking Cover / Cooling Foam / Pocket Innersprings for Motion Isolation / Mattress-in-a-Box, Full [SEP] $289.0 [SEP] B09LVMQ1K6 [SEP] Women's Warm Fall Winter Tops, Thicken Padded Plus Size Outerwear Drawstring Long Sleeve Pockets Hooded Overcoats S-5XL [SEP] $71.99 to $79.99 [SEP] B095SX6366 [SEP] WYTong Women Dress Summer V Neck Swing Dress Fashion Solid Color Tie the knot Short sleeves Leisure Dress [SEP] $9.99 to $11.99 [SEP] B09QT2369P [SEP] Stylish Women's Long Sleeve Sweatshirt Letters Printed Tops Casual Crewneck Solid Blouses Loose Fitting Soft Pullover [SEP] $11.99 to $14.99 [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59
+
+[Available actions]
+clickables: ["back to search", "next >", "b09qcp4579", "b07wmmyb6g", "b08jd14gjf", "b09q5zhrvm", "b089kgbjgw", "b09lvmq1k6", "b095sx6366", "b09qt2369p", "b09nd8p2qr", "b09nd9dp7j"]
+  14. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  15. search[quick drying moisture wicking women\'s activewear long sleeve black x-large price < 40]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B07WMMYB6G [SEP] MAGCOMSEN Men's Gym Workout Shorts with Pockets Mesh Liner Quick Dry Running Shorts for Jogging, Hiking [SEP] $17.98 to $17.99 [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B089KGBJGW [SEP] ZINUS 10 Inch Cooling Copper ADAPTIVE Pocket Spring Hybrid Mattress / Moisture Wicking Cover / Cooling Foam / Pocket Innersprings for Motion Isolation / Mattress-in-a-Box, Full [SEP] $289.0 [SEP] B09LVMQ1K6 [SEP] Women's Warm Fall Winter Tops, Thicken Padded Plus Size Outerwear Drawstring Long Sleeve Pockets Hooded Overcoats S-5XL [SEP] $71.99 to $79.99 [SEP] B095SX6366 [SEP] WYTong Women Dress Summer V Neck Swing Dress Fashion Solid Color Tie the knot Short sleeves Leisure Dress [SEP] $9.99 to $11.99 [SEP] B09QT2369P [SEP] Stylish Women's Long Sleeve Sweatshirt Letters Printed Tops Casual Crewneck Solid Blouses Loose Fitting Soft Pullover [SEP] $11.99 to $14.99 [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59
+
+[Available actions]
+clickables: ["back to search", "next >", "b09qcp4579", "b07wmmyb6g", "b08jd14gjf", "b09q5zhrvm", "b089kgbjgw", "b09lvmq1k6", "b095sx6366", "b09qt2369p", "b09nd8p2qr", "b09nd9dp7j"]
+
+
+
+sid6 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[quick drying, moisture wicking women\'s activewear long sleeve x-large c-black]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B09S6LZYHQ [SEP] One Piece Swimsuit for Women Halter Cut Out Bathing Suit Sexy Criss Cross Swimwear Backless Tie Dye Monokini Beachwear [SEP] $14.99 [SEP] B07WMMYB6G [SEP] MAGCOMSEN Men's Gym Workout Shorts with Pockets Mesh Liner Quick Dry Running Shorts for Jogging, Hiking [SEP] $17.98 to $17.99 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09KRLGSC5 [SEP] SweatyRocks Women's Oversized Sweater Crewneck Long Sleeve Knit Tops Pullover Jumper Tops [SEP] $25.99 [SEP] B08BC7JRLQ [SEP] YEAQING Women's Sweatpants Pockets High Waist Gym Athletic Cinch Bottom Jogger Pants Baggy Lounge Trousers [SEP] $19.99 to $21.99 [SEP] B09LVMQ1K6 [SEP] Women's Warm Fall Winter Tops, Thicken Padded Plus Size Outerwear Drawstring Long Sleeve Pockets Hooded Overcoats S-5XL [SEP] $71.99 to $79.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b08jd14gjf", "b09qcp4579", "b09s6lzyhq", "b07wmmyb6g", "b09q5zhrvm", "b09nd8p2qr", "b09nd9dp7j", "b09krlgsc5", "b08bc7jrlq", "b09lvmq1k6"]
+  02. click[b08jd14gjf]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] b-orange-thumbhole [SEP] b-sky blue-thumbhole [SEP] c-black [SEP] c-grey [SEP] a-white-thumbhole [SEP] b-green-thumbhole [SEP] c-blue [SEP] c-navy blue [SEP] c-purple [SEP] c-white [SEP] b-black-thumbhole [SEP] b-light grey-thumbhole [SEP] b-peach-thumbhole [SEP] c-green [SEP] b-navy blue-thumbhole [SEP] b-purple-thumbhole [SEP] b-grey-thumbhole [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] Price: $9.98 to $16.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "b-orange-thumbhole", "b-sky blue-thumbhole", "c-black", "c-grey", "a-white-thumbhole", "b-green-thumbhole", "c-blue", "c-navy blue", "c-purple", "c-white", "b-black-thumbhole", "b-light grey-thumbhole", "b-peach-thumbhole", "c-green", "b-navy blue-thumbhole", "b-purple-thumbhole", "b-grey-thumbhole", "small", "medium", "large", "x-large", "xx-large"]
+  03. click[x-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] b-orange-thumbhole [SEP] b-sky blue-thumbhole [SEP] c-black [SEP] c-grey [SEP] a-white-thumbhole [SEP] b-green-thumbhole [SEP] c-blue [SEP] c-navy blue [SEP] c-purple [SEP] c-white [SEP] b-black-thumbhole [SEP] b-light grey-thumbhole [SEP] b-peach-thumbhole [SEP] c-green [SEP] b-navy blue-thumbhole [SEP] b-purple-thumbhole [SEP] b-grey-thumbhole [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] Price: $9.98 to $16.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "b-orange-thumbhole", "b-sky blue-thumbhole", "c-black", "c-grey", "a-white-thumbhole", "b-green-thumbhole", "c-blue", "c-navy blue", "c-purple", "c-white", "b-black-thumbhole", "b-light grey-thumbhole", "b-peach-thumbhole", "c-green", "b-navy blue-thumbhole", "b-purple-thumbhole", "b-grey-thumbhole", "small", "medium", "large", "x-large", "xx-large"]
+  04. click[c-black]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] b-orange-thumbhole [SEP] b-sky blue-thumbhole [SEP] c-black [SEP] c-grey [SEP] a-white-thumbhole [SEP] b-green-thumbhole [SEP] c-blue [SEP] c-navy blue [SEP] c-purple [SEP] c-white [SEP] b-black-thumbhole [SEP] b-light grey-thumbhole [SEP] b-peach-thumbhole [SEP] c-green [SEP] b-navy blue-thumbhole [SEP] b-purple-thumbhole [SEP] b-grey-thumbhole [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] Price: $9.98 to $16.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "b-orange-thumbhole", "b-sky blue-thumbhole", "c-black", "c-grey", "a-white-thumbhole", "b-green-thumbhole", "c-blue", "c-navy blue", "c-purple", "c-white", "b-black-thumbhole", "b-light grey-thumbhole", "b-peach-thumbhole", "c-green", "b-navy blue-thumbhole", "b-purple-thumbhole", "b-grey-thumbhole", "small", "medium", "large", "x-large", "xx-large"]
+  05. click[x-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] b-orange-thumbhole [SEP] b-sky blue-thumbhole [SEP] c-black [SEP] c-grey [SEP] a-white-thumbhole [SEP] b-green-thumbhole [SEP] c-blue [SEP] c-navy blue [SEP] c-purple [SEP] c-white [SEP] b-black-thumbhole [SEP] b-light grey-thumbhole [SEP] b-peach-thumbhole [SEP] c-green [SEP] b-navy blue-thumbhole [SEP] b-purple-thumbhole [SEP] b-grey-thumbhole [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] Price: $9.98 to $16.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "b-orange-thumbhole", "b-sky blue-thumbhole", "c-black", "c-grey", "a-white-thumbhole", "b-green-thumbhole", "c-blue", "c-navy blue", "c-purple", "c-white", "b-black-thumbhole", "b-light grey-thumbhole", "b-peach-thumbhole", "c-green", "b-navy blue-thumbhole", "b-purple-thumbhole", "b-grey-thumbhole", "small", "medium", "large", "x-large", "xx-large"]
+  06. search[coorun women's x-large black activewear long sleeve quick drying]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09KRLGSC5 [SEP] SweatyRocks Women's Oversized Sweater Crewneck Long Sleeve Knit Tops Pullover Jumper Tops [SEP] $25.99 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07 [SEP] B08G8DXR5N [SEP] Beninos Sports Bras for Women - Activewear Tops for Yoga Running Fitness [SEP] $6.99 [SEP] B09PVNLVRW [SEP] Women's V-Neck Rompers Printed Jumpsuit Long Sleeve Homewear Butt Flap Pajamas One-Piece Onesies Nightwear Sexy Bodysuit [SEP] $17.4 to $28.67 [SEP] B08DXL22JN [SEP] Cicy Bell Womens Casual Blazers Open Front Long Sleeve Work Office Jackets Blazer [SEP] $48.99 [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B09M63B87V [SEP] YALFJV Women Long Sleeve Crew Neck Side Button T Shirts Tunic Dress Loose Asymmetric Hem Tunic Pullover to Wear with Leggings [SEP] $10.71 to $18.34 [SEP] B09QT2369P [SEP] Stylish Women's Long Sleeve Sweatshirt Letters Printed Tops Casual Crewneck Solid Blouses Loose Fitting Soft Pullover [SEP] $11.99 to $14.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5
+
+[Available actions]
+clickables: ["back to search", "next >", "b08jd14gjf", "b09krlgsc5", "b09kp78g37", "b08g8dxr5n", "b09pvnlvrw", "b08dxl22jn", "b09qcp4579", "b09m63b87v", "b09qt2369p", "b00o30jldk"]
+  07. click[b08jd14gjf]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] b-orange-thumbhole [SEP] b-sky blue-thumbhole [SEP] c-black [SEP] c-grey [SEP] a-white-thumbhole [SEP] b-green-thumbhole [SEP] c-blue [SEP] c-navy blue [SEP] c-purple [SEP] c-white [SEP] b-black-thumbhole [SEP] b-light grey-thumbhole [SEP] b-peach-thumbhole [SEP] c-green [SEP] b-navy blue-thumbhole [SEP] b-purple-thumbhole [SEP] b-grey-thumbhole [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] Price: $9.98 to $16.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "b-orange-thumbhole", "b-sky blue-thumbhole", "c-black", "c-grey", "a-white-thumbhole", "b-green-thumbhole", "c-blue", "c-navy blue", "c-purple", "c-white", "b-black-thumbhole", "b-light grey-thumbhole", "b-peach-thumbhole", "c-green", "b-navy blue-thumbhole", "b-purple-thumbhole", "b-grey-thumbhole", "small", "medium", "large", "x-large", "xx-large"]
+  08. click[c-black]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] b-orange-thumbhole [SEP] b-sky blue-thumbhole [SEP] c-black [SEP] c-grey [SEP] a-white-thumbhole [SEP] b-green-thumbhole [SEP] c-blue [SEP] c-navy blue [SEP] c-purple [SEP] c-white [SEP] b-black-thumbhole [SEP] b-light grey-thumbhole [SEP] b-peach-thumbhole [SEP] c-green [SEP] b-navy blue-thumbhole [SEP] b-purple-thumbhole [SEP] b-grey-thumbhole [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] Price: $9.98 to $16.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "b-orange-thumbhole", "b-sky blue-thumbhole", "c-black", "c-grey", "a-white-thumbhole", "b-green-thumbhole", "c-blue", "c-navy blue", "c-purple", "c-white", "b-black-thumbhole", "b-light grey-thumbhole", "b-peach-thumbhole", "c-green", "b-navy blue-thumbhole", "b-purple-thumbhole", "b-grey-thumbhole", "small", "medium", "large", "x-large", "xx-large"]
+  09. click[next>  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] b-orange-thumbhole [SEP] b-sky blue-thumbhole [SEP] c-black [SEP] c-grey [SEP] a-white-thumbhole [SEP] b-green-thumbhole [SEP] c-blue [SEP] c-navy blue [SEP] c-purple [SEP] c-white [SEP] b-black-thumbhole [SEP] b-light grey-thumbhole [SEP] b-peach-thumbhole [SEP] c-green [SEP] b-navy blue-thumbhole [SEP] b-purple-thumbhole [SEP] b-grey-thumbhole [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] Price: $9.98 to $16.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "b-orange-thumbhole", "b-sky blue-thumbhole", "c-black", "c-grey", "a-white-thumbhole", "b-green-thumbhole", "c-blue", "c-navy blue", "c-purple", "c-white", "b-black-thumbhole", "b-light grey-thumbhole", "b-peach-thumbhole", "c-green", "b-navy blue-thumbhole", "b-purple-thumbhole", "b-grey-thumbhole", "small", "medium", "large", "x-large", "xx-large"]
+  10. search[coorun x-large black activewear long sleeve]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09KRLGSC5 [SEP] SweatyRocks Women's Oversized Sweater Crewneck Long Sleeve Knit Tops Pullover Jumper Tops [SEP] $25.99 [SEP] B08G8DXR5N [SEP] Beninos Sports Bras for Women - Activewear Tops for Yoga Running Fitness [SEP] $6.99 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B08DXL22JN [SEP] Cicy Bell Womens Casual Blazers Open Front Long Sleeve Work Office Jackets Blazer [SEP] $48.99 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07 [SEP] B09QQP3356 [SEP] HAUKLIE Men's Sports Waffle Ribbed Polo Shirts Summer Short Sleeve Cotton Muscle Quarter-Zip Henley T-Shirt Tunics Tops [SEP] $10.99 [SEP] B09HGFV91W [SEP] ZHDD Tops for Mens, Men's Knight Punk Vintage Style Long Sleeve Asymmetric Hem Cowl Neck Teen Boys Gothic Pullover [SEP] $4.98 to $7.99 [SEP] B09KLQLLT2 [SEP] Long Sleeve Superhero T Shirt Tank Top Mens Compression Shirt Men Workout Fitness Gym Shirt [SEP] $19.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b08jd14gjf", "b00o30jldk", "b09krlgsc5", "b08g8dxr5n", "b09s3bn15c", "b08dxl22jn", "b09kp78g37", "b09qqp3356", "b09hgfv91w", "b09klqllt2"]
+  11. search[women x-large black activewear long sleeve quick dry]  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09KRLGSC5 [SEP] SweatyRocks Women's Oversized Sweater Crewneck Long Sleeve Knit Tops Pullover Jumper Tops [SEP] $25.99 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07 [SEP] B08G8DXR5N [SEP] Beninos Sports Bras for Women - Activewear Tops for Yoga Running Fitness [SEP] $6.99 [SEP] B09PVNLVRW [SEP] Women's V-Neck Rompers Printed Jumpsuit Long Sleeve Homewear Butt Flap Pajamas One-Piece Onesies Nightwear Sexy Bodysuit [SEP] $17.4 to $28.67 [SEP] B08DXL22JN [SEP] Cicy Bell Womens Casual Blazers Open Front Long Sleeve Work Office Jackets Blazer [SEP] $48.99 [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B09M63B87V [SEP] YALFJV Women Long Sleeve Crew Neck Side Button T Shirts Tunic Dress Loose Asymmetric Hem Tunic Pullover to Wear with Leggings [SEP] $10.71 to $18.34 [SEP] B09QT2369P [SEP] Stylish Women's Long Sleeve Sweatshirt Letters Printed Tops Casual Crewneck Solid Blouses Loose Fitting Soft Pullover [SEP] $11.99 to $14.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5
+
+[Available actions]
+clickables: ["back to search", "next >", "b08jd14gjf", "b09krlgsc5", "b09kp78g37", "b08g8dxr5n", "b09pvnlvrw", "b08dxl22jn", "b09qcp4579", "b09m63b87v", "b09qt2369p", "b00o30jldk"]
+  12. click[next>  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09KRLGSC5 [SEP] SweatyRocks Women's Oversized Sweater Crewneck Long Sleeve Knit Tops Pullover Jumper Tops [SEP] $25.99 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07 [SEP] B08G8DXR5N [SEP] Beninos Sports Bras for Women - Activewear Tops for Yoga Running Fitness [SEP] $6.99 [SEP] B09PVNLVRW [SEP] Women's V-Neck Rompers Printed Jumpsuit Long Sleeve Homewear Butt Flap Pajamas One-Piece Onesies Nightwear Sexy Bodysuit [SEP] $17.4 to $28.67 [SEP] B08DXL22JN [SEP] Cicy Bell Womens Casual Blazers Open Front Long Sleeve Work Office Jackets Blazer [SEP] $48.99 [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B09M63B87V [SEP] YALFJV Women Long Sleeve Crew Neck Side Button T Shirts Tunic Dress Loose Asymmetric Hem Tunic Pullover to Wear with Leggings [SEP] $10.71 to $18.34 [SEP] B09QT2369P [SEP] Stylish Women's Long Sleeve Sweatshirt Letters Printed Tops Casual Crewneck Solid Blouses Loose Fitting Soft Pullover [SEP] $11.99 to $14.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5
+
+[Available actions]
+clickables: ["back to search", "next >", "b08jd14gjf", "b09krlgsc5", "b09kp78g37", "b08g8dxr5n", "b09pvnlvrw", "b08dxl22jn", "b09qcp4579", "b09m63b87v", "b09qt2369p", "b00o30jldk"]
+  13. click[next>  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09KRLGSC5 [SEP] SweatyRocks Women's Oversized Sweater Crewneck Long Sleeve Knit Tops Pullover Jumper Tops [SEP] $25.99 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07 [SEP] B08G8DXR5N [SEP] Beninos Sports Bras for Women - Activewear Tops for Yoga Running Fitness [SEP] $6.99 [SEP] B09PVNLVRW [SEP] Women's V-Neck Rompers Printed Jumpsuit Long Sleeve Homewear Butt Flap Pajamas One-Piece Onesies Nightwear Sexy Bodysuit [SEP] $17.4 to $28.67 [SEP] B08DXL22JN [SEP] Cicy Bell Womens Casual Blazers Open Front Long Sleeve Work Office Jackets Blazer [SEP] $48.99 [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B09M63B87V [SEP] YALFJV Women Long Sleeve Crew Neck Side Button T Shirts Tunic Dress Loose Asymmetric Hem Tunic Pullover to Wear with Leggings [SEP] $10.71 to $18.34 [SEP] B09QT2369P [SEP] Stylish Women's Long Sleeve Sweatshirt Letters Printed Tops Casual Crewneck Solid Blouses Loose Fitting Soft Pullover [SEP] $11.99 to $14.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5
+
+[Available actions]
+clickables: ["back to search", "next >", "b08jd14gjf", "b09krlgsc5", "b09kp78g37", "b08g8dxr5n", "b09pvnlvrw", "b08dxl22jn", "b09qcp4579", "b09m63b87v", "b09qt2369p", "b00o30jldk"]
+  14. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  15. search[quick drying moisture wicking women\'s activewear long sleeve x-large c-black price less than 40]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B07WMMYB6G [SEP] MAGCOMSEN Men's Gym Workout Shorts with Pockets Mesh Liner Quick Dry Running Shorts for Jogging, Hiking [SEP] $17.98 to $17.99 [SEP] B09S6LZYHQ [SEP] One Piece Swimsuit for Women Halter Cut Out Bathing Suit Sexy Criss Cross Swimwear Backless Tie Dye Monokini Beachwear [SEP] $14.99 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B094Q7B3SS [SEP] Women Cold Shoulder Tops, Summer Butterfly Print Shirts Fashion Casual Short Sleeve Plus-Size Tunic Top Tee and Blouse [SEP] $9.49 to $14.98 [SEP] B089KGBJGW [SEP] ZINUS 10 Inch Cooling Copper ADAPTIVE Pocket Spring Hybrid Mattress / Moisture Wicking Cover / Cooling Foam / Pocket Innersprings for Motion Isolation / Mattress-in-a-Box, Full [SEP] $289.0 [SEP] B098824K9T [SEP] Spa Savvy Shower Cap and Twist Hair Turban Duo, Enhance Your Shower Experience with this Complete Set, Fully Lined Shower Cap, Microfiber Turban (Green) [SEP] $11.99 [SEP] B09LVMQ1K6 [SEP] Women's Warm Fall Winter Tops, Thicken Padded Plus Size Outerwear Drawstring Long Sleeve Pockets Hooded Overcoats S-5XL [SEP] $71.99 to $79.99 [SEP] B09HGFV91W [SEP] ZHDD Tops for Mens, Men's Knight Punk Vintage Style Long Sleeve Asymmetric Hem Cowl Neck Teen Boys Gothic Pullover [SEP] $4.98 to $7.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b08jd14gjf", "b09qcp4579", "b07wmmyb6g", "b09s6lzyhq", "b09q5zhrvm", "b094q7b3ss", "b089kgbjgw", "b098824k9t", "b09lvmq1k6", "b09hgfv91w"]
+
+
+
+sid7 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.05 outcome=FAILED
+  01. search[quick drying moisture wicking women activewear long sleeve]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B07WMMYB6G [SEP] MAGCOMSEN Men's Gym Workout Shorts with Pockets Mesh Liner Quick Dry Running Shorts for Jogging, Hiking [SEP] $17.98 to $17.99 [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B09QQJJ3KM [SEP] One Lucky Teacher St Patrick Day Shamrock Tee Teachers Custom Personalized Unisex T-Shirts Long Sleeve Hoodie Sweatshirt Gifts [SEP] $100.0 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B09QGK5XHZ [SEP] WENKOMG1 Men's Long Sleeve Undershirt with Mask Turtleneck Hooded T-Shirt Solid Color Workout Tops Zipper Side Slit Shirts Slim Fit Sweatshirt Spring/Summer Tee Shirts(Gray,) [SEP] $8.39 [SEP] B098824K9T [SEP] Spa Savvy Shower Cap and Twist Hair Turban Duo, Enhance Your Shower Experience with this Complete Set, Fully Lined Shower Cap, Microfiber Turban (Green) [SEP] $11.99 [SEP] B09P5CRVQ6 [SEP] Womens Tops Casual, Sweatshirt for Women Graphic, Womens Sweatshirt Hoodie, Women Love Print Sweatshirt Long Sleeve Cute Heart Sweater Pullover Tops Blouse [SEP] $22.78 [SEP] B09KRLGSC5 [SEP] SweatyRocks Women's Oversized Sweater Crewneck Long Sleeve Knit Tops Pullover Jumper Tops [SEP] $25.99 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07
+
+[Available actions]
+clickables: ["back to search", "next >", "b09qcp4579", "b07wmmyb6g", "b08jd14gjf", "b09qqjj3km", "b09q8rd8yn", "b09qgk5xhz", "b098824k9t", "b09p5crvq6", "b09krlgsc5", "b09kp78g37"]
+  02. click[b09qcp4579]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-black, and size: x-large, and price lower than 40.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] black [SEP] blue [SEP] gray [SEP] purple [SEP] wine [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] Price: $13.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "black", "blue", "gray", "purple", "wine", "small", "medium", "large", "x-large", "xx-large", "3x-large"]
+  03. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+八、来源
+
+远端会话目录：/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/research/webshop_01418--97a3b9472f/20261025_045322_v4
+
+原始文件SHA256：
+
+{
+  "meta.json": "76b343e3b62e9c1254d17fd891f88c96b2051884eebfa4cf98aa4749eed91ebf",
+  "session.jsonl": "6c93b2b3668023aa4d33b42c297f4df7aa863f142ca398a630add113b7d3f17d",
+  "doc.md": "fbf0c308cb2319c5306293a47f5fa7ce0a96c70459e77eda4b8115e4a2421d68",
+  "episodes.jsonl": "cf42478a5e3b2d806a0cccad6e55a36dea3b9c10a77368caa47731fab9b1e459"
+}
+
+训练rollout来源及SHA256：
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00005/webshop_01418_f6098160.json
+50d827331191599f4bcafabffea94273c6f939946b71efd1378e4c93b4047e14
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00005/webshop_01418_687a406c.json
+2f15c036907005655a11f2ce7ededc600fb82a8e93b6c26e299016086bbd337f
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00005/webshop_01418_22051a6c.json
+9e2ab9cdf64faf8162bf52934ac504037c4071028b3a174a7417f91c9d16bdc9
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00005/webshop_01418_93890148.json
+0e76a05d8846fd9cfa380147782a3a3ca7de8579c52ac57694f06e702695cef2
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00005/webshop_01418_ca709042.json
+8980e81a2e979cbe6145a2465156e920a1eec29d506fd3106dd63b9a24145278
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00005/webshop_01418_34b0f8ce.json
+f628b9e97f4f49bccbc1c90450aa3227acd007cabb1e3f8d92ba49a196bd696f
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00005/webshop_01418_f974aff1.json
+aee285533801b06f91c80def77b4fe22b79df0ba801138567ca1378d3d7db7cc
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00005/webshop_01418_991420e5.json
+01ec39974c325b283aef645f9224bde63d5bac3ab95fdb26980c2762a648019a

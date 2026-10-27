@@ -1,0 +1,23 @@
+run,timestamp,command_estimator,std_normalization,steering,steered_fraction,w_beh_mode,alpha_decay_steps,loss_aggregation,reward_from_score_recorded,path
+classic_alf3b_grpo,2026-08-16 19:34:34,grpo,False,False,,,,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_alf3b_grpo/launch_manifest_20260816_193434.json
+classic_alf3b_pgs,2026-08-16 15:06:08,pgs_asym_grpo,False,True,0.5,off,300,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_alf3b_pgs/launch_manifest_20260816_150608.json
+classic_alf7b_grpo,2026-08-13 01:40:30,grpo,False,False,,,,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_alf7b_grpo/launch_manifest_20260813_014030.json
+classic_alf7b_pgs,2026-08-13 01:40:11,pgs_asym_grpo,False,True,0.5,off,300,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_alf7b_pgs/launch_manifest_20260813_014011.json
+classic_math7b_pgs,2026-08-14 14:22:55,pgs_asym_grpo,False,True,0.5,off,180,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_math7b_pgs/launch_manifest_20260814_142255.json
+classic_math7b_pgs,2026-08-14 14:42:00,pgs_asym_grpo,False,True,0.5,off,180,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_math7b_pgs/launch_manifest_20260814_144200.json
+classic_math7b_pgs,2026-08-14 15:15:11,pgs_asym_grpo,False,True,0.5,off,180,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_math7b_pgs/launch_manifest_20260814_151511.json
+classic_sqa7b_grpo,2026-08-13 18:25:25,grpo,False,False,,,,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_sqa7b_grpo/launch_manifest_20260813_182525.json
+classic_sqa7b_grpo,2026-08-14 14:17:31,grpo,False,False,,,,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_sqa7b_grpo/launch_manifest_20260814_141731.json
+classic_sqa7b_pgs,2026-08-27 21:50:24,pgs_asym_grpo,False,True,0.5,off,1400,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_sqa7b_pgs/launch_manifest_20260827_215024.json
+classic_sqa7b_pgs,2026-08-28 13:18:48,pgs_asym_grpo,False,True,0.5,off,1400,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_sqa7b_pgs/launch_manifest_20260828_131848.json
+classic_sqa7b_pgs,2026-08-29 23:35:19,pgs_asym_grpo,False,True,0.5,off,1400,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_sqa7b_pgs/launch_manifest_20260829_233519.json
+classic_sqa7b_pgs_legacy0813,2026-08-13 18:25:07,pgs_asym_grpo,False,True,0.5,off,1800,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260813_182507.json
+classic_sqa7b_pgs_legacy0813,2026-08-14 14:17:12,pgs_asym_grpo,False,True,0.5,off,1800,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260814_141712.json
+classic_sqa7b_pgs_legacy0813,2026-08-14 14:22:30,pgs_asym_grpo,False,True,0.5,off,1800,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260814_142230.json
+classic_sqa7b_pgs_legacy0813,2026-08-14 14:41:37,pgs_asym_grpo,False,True,0.5,off,1800,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260814_144137.json
+classic_sqa7b_pgs_legacy0813,2026-08-14 14:53:15,pgs_asym_grpo,False,True,0.5,off,1800,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260814_145315.json
+classic_sqa7b_pgs_legacy0813,2026-08-14 14:55:32,pgs_asym_grpo,False,True,0.5,off,1800,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_sqa7b_pgs_legacy0813/launch_manifest_20260814_145532.json
+classic_ssb3b_pgs,2026-08-18 11:21:08,pgs_asym_grpo,False,True,0.5,off,176,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_ssb3b_pgs/launch_manifest_20260818_112108.json
+classic_ssb3b_pgs,2026-08-20 03:17:53,pgs_asym_grpo,False,True,0.5,off,176,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_ssb3b_pgs/launch_manifest_20260820_031753.json
+classic_ws3b_grpo,2026-08-17 00:29:16,grpo,False,False,,,,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_ws3b_grpo/launch_manifest_20260817_002916.json
+classic_ws3b_pgs,2026-08-17 00:29:09,pgs_asym_grpo,False,True,0.5,off,133,seq-mean-token-mean,ABSENT,<PROJECT_ROOT>/runs/classic_ws3b_pgs/launch_manifest_20260817_002909.json

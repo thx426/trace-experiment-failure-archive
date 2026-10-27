@@ -1,0 +1,41 @@
+# Current Understanding & Ruled-Out Directions
+
+This task requires finding an eco-friendly fleece throw blanket with color: thanksgivinggoo4573, size: 39x59in, and price under $50.00.
+
+Search page allows keyword searches returning paginated product listings (IDs, titles, prices). Clicking a product shows available sizes and colors as clickable options, plus a "buy now" button.
+
+**Ruled-out directions:**
+
+1. **Searching with full attributes** — Searched "eco friendly throw blankets fleece throw thanksgivinggoo4573 39x59in" repeatedly. Ineffective: search results don't change meaningfully, and products don't display color/size codes in search listings.
+
+2. **Browsing pages looking for matching products** — Clicking "next >" across pages is wasteful: executor cycles without inspecting individual products for their options.
+
+3. **Relying on product titles** — Titles show some size info (e.g., "39x49inch") but not the color codes needed.
+
+4. **Direct product specification in guidance** — Explicit guidance to click b09dg3ythy was ignored; executor defaults to browsing.
+
+**Key finding from raw logs:** Product b09dg3ythy (Gogobebe fleece throw, $31.39) has all required attributes. On its product page, colors include "thanksgivinggoo4573" and sizes include "39x59in" as selectable clickables. The correct approach: search "throw blanket", click b09dg3ythy, select size 39x59in, select color thanksgivinggoo4573, click buy now. Untested.
+
+# Failure Modes & Lessons
+
+**Pattern 1: Page-browsing loop instead of product inspection**
+- Recognized by: executor repeatedly clicks "next >"/"< prev"/"back to search" without clicking any product.
+- Cause: Executor cannot see color codes in search results, assumes no match exists, and keeps searching.
+- Fix: When on search results page, click the first fleece throw product under $50. On the product page, sizes and colors become visible as selectable options. Untested.
+
+**Pattern 2: Not selecting color/size before buying**
+- Recognized by: executor is on a product page (clickables include "size", "color", "buy now") but either clicks "buy now" without selecting options, or goes back immediately.
+- Cause: Executor may not realize color and size are separate clickable options to be chosen.
+- Fix: On product page, click "size" → select "39x59in". Click "color" → select "thanksgivinggoo4573". Then click "buy now". Untested.
+
+**Pattern 3: Wasting actions on repeated searches**
+- Recognized by: executor returns to search bar and performs search multiple times across episodes.
+- Cause: Keeps trying to find matching product from search results alone.
+- Fix: After one initial search, stop searching and start inspecting products. Each search costs 1 action. Untested.
+
+**Pattern 4: Invalid action attempts**
+- Recognized by: 4 invalid actions in some episodes (e.g., click[next > → with extra characters).
+- Cause: Executor emits malformed action strings in some turns.
+- Fix: Ensure guidance uses clean, simple action syntax. Untested.
+
+**Core strategy (untested but identified):** Search "throw blanket" → click b09dg3ythy → click "size" → click "39x59in" → click "color" → click "thanksgivinggoo4573" → click "buy now". Total: ~7 actions.

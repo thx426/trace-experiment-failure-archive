@@ -1,0 +1,102 @@
+{
+  "evidence_checked_at": "2026-10-24T15:45:00.144949+08:00",
+  "evidence_file": "<PROJECT_ROOT>/reports/webshop_repair_20261024/switch_feasibility_20261024_1545.json",
+  "request": "调研是否提前结束 All-Skill 并启动 Selective-Skill；随后用户要求继续",
+  "actions_taken": "只读远端诊断、保存证据及本地分析；未停止、启动或修改实验",
+  "completed_steps": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "current_rollout_step": 31,
+  "selective_started": false,
+  "researcher_actual_inputs": {
+    "calls": 6080,
+    "mean": 2164.8065789473685,
+    "max": 2500,
+    "above_3072": 0
+  },
+  "recent10_step_minutes": 12.3662794952405,
+  "remaining_all_skill_hours_estimate": [
+    15.490076921225215,
+    16.076936815340513
+  ],
+  "estimate_assumptions": "以已完成30步计，余下70步按实测步时外推，加4次按step20时长估算的评测；不保证后续耗时恒定。",
+  "selective_train_eligible": {
+    "tasks": 256,
+    "eligible": 248,
+    "skipped": 8,
+    "missing_gate_tasks": 0,
+    "strata": {
+      "low": 227,
+      "high": 8,
+      "middle": 21
+    }
+  },
+  "expected_research_session_reduction_fraction": 0.03125,
+  "reduction_caveat": "均匀训练采样下的覆盖率差，非已实测调用数或墙钟提速；并发长尾可能使提速更少。",
+  "evaluation_step20": {
+    "all_skill": {
+      "status": "passed",
+      "tasks": 256,
+      "attempts": 1280,
+      "successes": 214,
+      "pass1_estimate": 0.1671875,
+      "pass5": 0.46484375
+    },
+    "grpo": {
+      "status": "passed",
+      "tasks": 256,
+      "attempts": 1280,
+      "successes": 265,
+      "pass1_estimate": 0.20703125,
+      "pass5": 0.5078125
+    }
+  },
+  "switch_feasible": true,
+  "why_not_automatic": "run_sequence.py 要求 All-Skill 正常结束并通过100步完整审计，才会启动 Selective-Skill；单独杀学生会触发整个序列停止。",
+  "proposed_switch": [
+    "重新核验本任务进程身份并保存停止时的日志、训练步数、rollout、研究员成本及配置摘要。",
+    "通过已确认的序列进程停止旧作业并核实其研究员、学生、WebShop分片资源已释放；不操作其他任务。",
+    "保留原目录及第20步checkpoint/完整评测，另存提前结束记录；不得伪造100步完成审计。",
+    "在独立新目录准备仅启动Selective-Skill的调度，复用已验证代码和原Selective配置，使用新owner/abort状态以免继承旧ABORT。",
+    "核验CPU合约、冻结文件及配置等价；研究员3072硬限、并发16、同一初始学生checkpoint、奖励、seed、数据、优化器、采样、引导比例及100步均不改变。",
+    "直接启动正式Selective-Skill，不做GPU小试；启动后核验进程、实际输入上限及rollout进展。",
+    "更新监控至新目录，同时保留All-Skill提前结束记录及成本。"
+  ],
+  "comparison_limits": [
+    "可将All-Skill已有20步评测与GRPO/Selective-Skill同20步结果对照。",
+    "不能把提前结束的All-Skill与100步结果作为等步数或等成本对照。",
+    "不能以All-Skill checkpoint作为Selective初始checkpoint。",
+    "20步阶段性单seed结果不证明最终性能优劣；基于dev结果提前结束应披露该自适应决策。"
+  ],
+  "execution_state": "not_executed",
+  "decision_needed": "是否将此前All-Skill100步后接Selective-Skill100步的顺序改为提前结束All-Skill、按原配置立即启动Selective-Skill。"
+}

@@ -1,0 +1,10 @@
+{
+  "metric_cases_passed": [
+    "all_failure_zero_adv",
+    "all_success_zero_adv",
+    "mixed_rewards_nonzero_adv",
+    "env_error_excluded_and_run_incomplete",
+    "duplicate_sample_invalidates_group"
+  ],
+  "no_model_sampling_performed": true
+}

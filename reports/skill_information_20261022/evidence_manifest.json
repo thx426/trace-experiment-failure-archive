@@ -1,0 +1,57 @@
+{
+  "collection_date": "2026-10-23",
+  "run": "/root/trace-webshop-arm-ratio/code/runs/ws_control_pilot_20261018_p1",
+  "original_export": {
+    "remote_path": "/skill-info-evidence-20261022.json.gz",
+    "bytes": 167168955,
+    "sha256": "2673622f4bcf15a61692a4fdadd8d60b6b535a8804c4a1514dc40f5970ef999d"
+  },
+  "compact_export": {
+    "remote_path": "/skill-info-compact-20261023.json.gz",
+    "bytes": 13249988,
+    "sha256": "210ceaabbe1702780be0891ad292ab1a240cc8d3427eaa2cbe5c82b92563226f"
+  },
+  "remote_audit_script": "/skill-info-audit-20261023.py",
+  "remote_full_semantic_cases": "/skill-info-semantic-cases-20261023.json",
+  "local_copy_status": "Summary and selected excerpts transcribed from browser DOM. Original full exports remain on the cloud server; browser download did not complete.",
+  "sources": {
+    "src/trace_opd/core/episode.py": {
+      "sha256": "3ca73413375572f9acc28efd41313f11bbab60ef59b4a72ee2a256bc3774b991",
+      "cloud_matches_local": true
+    },
+    "src/trace_opd/envs/webshop/adapter.py": {
+      "sha256": "1e50e6f5ae6ea79586695d6cc863ad823a546b1df80d5dc3571a3b8182ba8f4b",
+      "cloud_matches_local": true
+    },
+    "src/trace_opd/research/prompts.py": {
+      "sha256": "2fe958e221a8c424d9e29c3d219b82c42f24b6b85afc6e9fd5587e5972834abf",
+      "cloud_matches_local": true
+    },
+    "src/trace_opd/research/tools.py": {
+      "sha256": "3030b58bbba0c1fac21cb89a07f61b52dc79e5a0d34e06174a294aeb9262cf8d",
+      "cloud_matches_local": true
+    },
+    "verl/verl/trainer/ppo/core_algos.py": {
+      "sha256": "49144d6e2e4ec92f64657532601b3a076d5675cdae2b5134e78d5815faa28333",
+      "cloud_matches_local": true
+    },
+    "src/trace_opd/train/agent_loop.py": {
+      "cloud_sha256": "db22ec78eda55e187445c1aeb8931183dc5601923fbe9cfdbb6496d33c767f59",
+      "local_prechange_sha256": "db22ec78eda55e187445c1aeb8931183dc5601923fbe9cfdbb6496d33c767f59"
+    }
+  },
+  "implementation_sha256": {
+    "src/trace_opd/common/config.py": "a44083e013b9461487cb13a3c70cd98b3ff538b34810782529b7b9576ae5f6d7",
+    "src/trace_opd/train/agent_loop.py": "b9cc69b2a18addc638582d1052621dc5cf3ab684d7f458d458c525248ed35bba",
+    "src/trace_opd/analysis/information_dependencies.py": "4209175506ec57e9a84180feba4f45ec1b4e2227d3454df159e865b7f585a447",
+    "scripts/classic/audit_skill_information.py": "ae8d270ee51d602784fa0f7147205ba5797d27174c3cc09752e9163ae54ce4a9",
+    "tests/test_information_dependencies.py": "c0f7682ba69237f8aeb0d07eecc0bd11d8c747197f7d56c61313682b652a85bf",
+    "tests/test_skill_information_audit.py": "93b7825e26a6896f6efeccd6d314748faa2f11bba2ad148c1a6be06a157db678"
+  },
+  "validation": {
+    "tests_passed": 48,
+    "guarded_launch_dry_run_exit": 0,
+    "full_gpu_run": false,
+    "cloud_training_code_deployed": false
+  }
+}

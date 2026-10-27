@@ -1,0 +1,9 @@
+{
+  "version": "v1.0.0",
+  "snapshot_date": "2026-10-28",
+  "record_files": 463,
+  "record_bytes": 100709560,
+  "license": "MIT for original code and authored text; see NOTICE.md",
+  "repository": "https://github.com/thx426/trace-experiment-failure-archive",
+  "training_rerun": false
+}

@@ -1,0 +1,61 @@
+[
+  {
+    "task_id": "webshop_00510",
+    "split": "train",
+    "sample_idx": 11,
+    "score": 1.0,
+    "arm": "bare",
+    "outcome": "SUCCESS",
+    "won": true,
+    "env_steps": 6,
+    "invalid_format": 0,
+    "truncated": false,
+    "source_path": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/base_probe/episodes.jsonl",
+    "source_row_sha256": "ecddeceee34d1a3749e076a09608c6883f7ae60773f426caa2088218a1cc58de",
+    "initial_observation": "WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search\n\n[Available actions]\nsearch bar: available\nclickables: [\"search\"]",
+    "steps": [
+      {
+        "t": 1,
+        "action_norm": "search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit heather grey youth small price <30]",
+        "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b09p39qn2w\", \"b08hf132pn\", \"b09rvf4jp1\", \"b07dkgjr74\", \"b07t3vmgdg\", \"b09p7h5yk7\", \"b07hrfsnl4\", \"b09q8rd8yn\", \"b08226ndzw\"]",
+        "valid": true,
+        "acted": true
+      },
+      {
+        "t": 2,
+        "action_norm": "click[b07jvvdj6l]",
+        "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+        "valid": true,
+        "acted": true
+      },
+      {
+        "t": 3,
+        "action_norm": "click[youth]",
+        "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+        "valid": true,
+        "acted": true
+      },
+      {
+        "t": 4,
+        "action_norm": "click[heather grey]",
+        "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+        "valid": true,
+        "acted": true
+      },
+      {
+        "t": 5,
+        "action_norm": "click[small]",
+        "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+        "valid": true,
+        "acted": true
+      },
+      {
+        "t": 6,
+        "action_norm": "click[buy now]",
+        "observation": "Purchase completed. The episode has ended.",
+        "valid": true,
+        "acted": true
+      }
+    ]
+  }
+]

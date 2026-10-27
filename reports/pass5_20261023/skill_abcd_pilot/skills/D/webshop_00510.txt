@@ -1,0 +1,8 @@
+Follow the procedure below. Verify decisions against the user's request, current observation, and this episode's accepted actions.
+
+1. Extract the required fit type, color, size, product requirements, and price limit from the request. Keep them as separate checks.
+2. Search only when the search bar is available. On a results page, inspect a plausible candidate from the current clickables before repeating the search or paging indefinitely.
+3. On the product page, compare the visible information with the request. Select each required option directly from the current clickables, preserving its exact spelling and spaces. Section headings are not clickable unless explicitly listed.
+4. Track accepted option clicks for the current product. An unchanged observation does not by itself mean an option click failed. Continue to a missing option instead of repeating an already selected one.
+5. Before buying, confirm all required options were selected and the visible price meets the limit. If a requirement cannot be checked or matched, inspect further or choose another candidate.
+6. After an invalid action, re-read the current observation and correct the action. Do not repeat the same invalid action. Use the visible return-to-search action before issuing a new search when necessary.

@@ -1,0 +1,136 @@
+{
+  "verified_at": "2026-10-25T18:42:17.678745+08:00",
+  "current_configs": {
+    "clean": {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/configs/clean_skill.yaml",
+      "train": {
+        "adv_estimator": "grpo",
+        "norm_adv_by_std": false,
+        "seed": 42,
+        "train_batch_size": 16,
+        "rollout_n": 8,
+        "rollout_temperature": 1,
+        "total_training_steps": 100,
+        "model_path": "/root/trace-webshop-arm-ratio/models/Qwen2.5-3B-Instruct",
+        "reward_from_score": null,
+        "test_freq": 20,
+        "lr": 1e-06
+      },
+      "eval": {
+        "n": 5,
+        "temperature": 0.6
+      },
+      "steering": {
+        "enabled": true,
+        "doc_source": "researcher",
+        "task_gate_path": null,
+        "steered_fraction": 0.5,
+        "steered_adv_decay_steps": 0,
+        "w_beh_mode": "off"
+      },
+      "research": {
+        "request_token_limit": 3072,
+        "n_exp": 3,
+        "k_default": 2,
+        "max_turns": 16
+      }
+    },
+    "selective": {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_compact3072_20261024_r3/configs/selective_skill.yaml",
+      "train": {
+        "adv_estimator": "grpo",
+        "norm_adv_by_std": false,
+        "seed": 42,
+        "train_batch_size": 16,
+        "rollout_n": 8,
+        "rollout_temperature": 1,
+        "total_training_steps": 100,
+        "model_path": "/root/trace-webshop-arm-ratio/models/Qwen2.5-3B-Instruct",
+        "reward_from_score": null,
+        "test_freq": 20,
+        "lr": 1e-06
+      },
+      "eval": {
+        "n": 5,
+        "temperature": 0.6
+      },
+      "steering": {
+        "enabled": true,
+        "doc_source": "researcher",
+        "task_gate_path": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/pass5_gate.json",
+        "steered_fraction": 0.5,
+        "steered_adv_decay_steps": 0,
+        "w_beh_mode": "off"
+      },
+      "research": {
+        "request_token_limit": 3072,
+        "n_exp": 3,
+        "k_default": 2,
+        "max_turns": 16
+      }
+    },
+    "grpo": {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/configs/grpo.yaml",
+      "train": {
+        "adv_estimator": "grpo",
+        "norm_adv_by_std": false,
+        "seed": 42,
+        "train_batch_size": 16,
+        "rollout_n": 8,
+        "rollout_temperature": 1,
+        "total_training_steps": 100,
+        "model_path": "/root/trace-webshop-arm-ratio/models/Qwen2.5-3B-Instruct",
+        "reward_from_score": null,
+        "test_freq": 20,
+        "lr": 1e-06
+      },
+      "eval": {
+        "n": 5,
+        "temperature": 0.6
+      },
+      "steering": {
+        "enabled": false,
+        "doc_source": null,
+        "task_gate_path": null,
+        "steered_fraction": null,
+        "steered_adv_decay_steps": null,
+        "w_beh_mode": null
+      },
+      "research": {
+        "request_token_limit": null,
+        "n_exp": 3,
+        "k_default": 2,
+        "max_turns": 16
+      }
+    }
+  },
+  "actual_clean_launch": [
+    "algorithm.adv_estimator=grpo",
+    "algorithm.norm_adv_by_std_in_grpo=False",
+    "+algorithm.steered_adv_weight=1.0",
+    "+algorithm.steered_adv_decay_steps=0",
+    "+algorithm.steered_adv_cap=0.0",
+    "data.train_batch_size=16",
+    "data.seed=42",
+    "actor_rollout_ref.rollout.seed=42",
+    "actor_rollout_ref.actor.data_loader_seed=42",
+    "actor_rollout_ref.rollout.n=8",
+    "actor_rollout_ref.rollout.val_kwargs.temperature=0.6",
+    "actor_rollout_ref.rollout.val_kwargs.top_p=1.0",
+    "actor_rollout_ref.rollout.val_kwargs.top_k=-1",
+    "actor_rollout_ref.rollout.val_kwargs.n=5",
+    "actor_rollout_ref.rollout.val_kwargs.do_sample=True",
+    "trainer.total_training_steps=100"
+  ],
+  "local_research_note": "/Users/REDACTED/Documents/Trace 这篇论文的进一步整理 目标ACL/Privileged Guidance RL (1).md",
+  "source_note": "Local retained note used; live Feishu page not read in this turn.",
+  "paper": "https://arxiv.org/html/2607.14777v1",
+  "historical_objective_audit": "docs/training-objective-audit-20261023.md",
+  "critical_distinction": "Current arms use grpo with no std normalization and no steered-advantage decay. Historical classic PGS uses pgs_asym_grpo and cosine retirement.",
+  "current_seed": 42,
+  "historical_and_SEED_seed": "Not established by inspected manifest/paper; do not assume42.",
+  "evaluation_current": "256 dev tasks x5, temperature0.6, no Skill; pass1 pooled over1280 attempts; pass5 solved tasks/256.",
+  "evaluation_historical_note": "500 WebShop tasks x3; success rate, not pass@3; historical reported results not newly audited.",
+  "evaluation_SEED": "128 tasks; Score and Succ.; no comparable pass@5 supplied.",
+  "selection": "Base untrained no-Skill20 replicates/task; pass5=1-C(20-c,5)/C(20,5); Skill eligible iff pass5<0.8; 248/256 training tasks eligible."
+}

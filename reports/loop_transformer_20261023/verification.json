@@ -1,0 +1,27 @@
+[
+  {
+    "variant": "results",
+    "checkpoint_case_replay": "15/15 passed",
+    "ground_truth_case_check": "3/3 passed"
+  },
+  {
+    "variant": "results_tied",
+    "checkpoint_case_replay": "15/15 passed",
+    "ground_truth_case_check": "3/3 passed"
+  },
+  {
+    "seed": 0,
+    "distinct_training_tables": 256000,
+    "test_tables_in_training": 0
+  },
+  {
+    "seed": 1,
+    "distinct_training_tables": 256000,
+    "test_tables_in_training": 0
+  },
+  {
+    "seed": 2,
+    "distinct_training_tables": 256000,
+    "test_tables_in_training": 0
+  }
+]

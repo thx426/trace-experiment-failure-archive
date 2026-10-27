@@ -1,0 +1,1300 @@
+{
+  "scope": "All eight actual-intervention episodes from effect smoke update 2; observational diagnosis, not causal PGS effectiveness estimate.",
+  "source_packet_sha256": "e94b1664b8cddb8b1b623f98cf44510483d79e41fe6ad6aa40a5d971093926d3",
+  "episodes": [
+    {
+      "run_label": "pgs_effect_smoke",
+      "task_id": "webshop_00510",
+      "sample_id": "c8dfc799-cb44-400b-9c8a-fd9aeedd73f2_0_0",
+      "step": 2,
+      "session_id": 0,
+      "split": "train",
+      "validate": false,
+      "won": false,
+      "score": 0.0,
+      "outcome": "FAILED",
+      "initial_observation": "WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search\n\n[Available actions]\nsearch bar: available\nclickables: [\"search\"]",
+      "error": null,
+      "policy_version": {
+        "min_global_steps": 1,
+        "max_global_steps": 1
+      },
+      "steering": {
+        "steer_arm": 1,
+        "steer_count": 518,
+        "steer_theta": null,
+        "task_skill_eligible": 1
+      },
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 6,
+        "research_turns": 13,
+        "research_final_success": 0.0,
+        "research_doc_words": 625,
+        "research_doc_missing": 0,
+        "research_policy_version": 1,
+        "research_archive": "research/webshop_00510--fe0e1fc08f/20261023_101953_v1"
+      },
+      "source_path": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/code/runs/pass5_selective_effect_s42/rollouts/step_00002/webshop_00510_f9b2a4a5.json",
+      "source_sha256": "85a2f90aefe6493836839d6b47e86c904926a15bf4709e895909777e6a42787a",
+      "steps": [
+        {
+          "t": 1,
+          "action_norm": "search[men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit heather grey youth small price <30]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b09p39qn2w\", \"b08hf132pn\", \"b09rvf4jp1\", \"b07dkgjr74\", \"b07t3vmgdg\", \"b09p7h5yk7\", \"b07hrfsnl4\", \"b08226ndzw\", \"b07q48jvt8\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "搜索有效，直接返回结果；无需额外点击 search。"
+        },
+        {
+          "t": 2,
+          "action_norm": "click[b07jvvdj6l]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "进入候选商品；下一步应核对并直接选择目标属性。"
+        },
+        {
+          "t": 3,
+          "action_norm": "click[youth]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "执行了目标属性选择；保留已选状态，继续选择剩余属性。"
+        },
+        {
+          "t": 4,
+          "action_norm": "click[youth]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "重复已成功选择的属性；与 Skill“每个选项选一次”的要求不一致。应转向未满足属性。"
+        },
+        {
+          "t": 5,
+          "action_norm": "click[<prev]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+          "valid": false,
+          "acted": true,
+          "comparison": "违反“按 clickables 执行”：页面标签为 < prev，输出少了空格。不能把它的失败当作返回功能失效。"
+        },
+        {
+          "t": 6,
+          "action_norm": "search[men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit heather grey youth small price <30]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b09p39qn2w\", \"b08hf132pn\", \"b09rvf4jp1\", \"b07dkgjr74\", \"b07t3vmgdg\", \"b09p7h5yk7\", \"b07hrfsnl4\", \"b08226ndzw\", \"b07q48jvt8\"]",
+          "valid": false,
+          "acted": true,
+          "comparison": "违反页面状态约束：此处不在可搜索页面，应先检查当前观察。"
+        },
+        {
+          "t": 7,
+          "action_norm": "search[men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit heather grey youth small price <30]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b09p39qn2w\", \"b08hf132pn\", \"b09rvf4jp1\", \"b07dkgjr74\", \"b07t3vmgdg\", \"b09p7h5yk7\", \"b07hrfsnl4\", \"b08226ndzw\", \"b07q48jvt8\"]",
+          "valid": false,
+          "acted": true,
+          "comparison": "违反页面状态约束：此处不在可搜索页面，应先检查当前观察。"
+        },
+        {
+          "t": 8,
+          "action_norm": "click[b07jvvdj6l]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "进入候选商品；下一步应核对并直接选择目标属性。"
+        },
+        {
+          "t": 9,
+          "action_norm": "click[youth]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "执行了目标属性选择；保留已选状态，继续选择剩余属性。"
+        },
+        {
+          "t": 10,
+          "action_norm": "click[<prev]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+          "valid": false,
+          "acted": true,
+          "comparison": "违反“按 clickables 执行”：页面标签为 < prev，输出少了空格。不能把它的失败当作返回功能失效。"
+        },
+        {
+          "t": 11,
+          "action_norm": "search[men's youth heather grey dress shirt polyester heathers heathers cotton cotton heather needle sleeve classic fit needle sleeve price <30]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b07dkgjr74\", \"b07t3vmgdg\", \"b09p39qn2w\", \"b09rvf4jp1\", \"b08hf132pn\", \"b07hrfsnl4\", \"b09p7h5yk7\", \"b09q8rd8yn\", \"b08226ndzw\"]",
+          "valid": false,
+          "acted": true,
+          "comparison": "违反页面状态约束：此处不在可搜索页面，应先检查当前观察。"
+        },
+        {
+          "t": 12,
+          "action_norm": "click[b07jvvdj6l]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "进入候选商品；下一步应核对并直接选择目标属性。"
+        },
+        {
+          "t": 13,
+          "action_norm": "click[<prev]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+          "valid": false,
+          "acted": true,
+          "comparison": "违反“按 clickables 执行”：页面标签为 < prev，输出少了空格。不能把它的失败当作返回功能失效。"
+        },
+        {
+          "t": 14,
+          "action_norm": "click[<prev]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+          "valid": false,
+          "acted": true,
+          "comparison": "违反“按 clickables 执行”：页面标签为 < prev，输出少了空格。不能把它的失败当作返回功能失效。"
+        },
+        {
+          "t": 15,
+          "action_norm": "search[men's youth heather grey classic fit dress shirt price <30]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B00ITCBD3Y [SEP] Laredo Womens Spellbound Studded Square Toe Dress Boots Mid Calf Low Heel 1-2\" - Black [SEP] $132.0 to $150.26 [SEP] B07XPR3R7N [SEP] Marvel Avengers: Endgame Captain America America's Language T-Shirt [SEP] $22.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b09gl561xh\", \"b08hf132pn\", \"b09rvf4jp1\", \"b07dkgjr74\", \"b09p39qn2w\", \"b0969g2dh8\", \"b07hrfsnl4\", \"b00itcbd3y\", \"b07xpr3r7n\"]",
+          "valid": false,
+          "acted": true,
+          "comparison": "违反页面状态约束：此处不在可搜索页面，应先检查当前观察。"
+        }
+      ],
+      "human": {
+        "before_t": 4,
+        "reason": "重复 click[youth]；随后发生格式错误和无效搜索。",
+        "proposed_continuation": [
+          "click[heather grey]",
+          "click[small]",
+          "click[buy now]"
+        ],
+        "first_action_in_observed_clickables": true,
+        "applied_to_training": false
+      }
+    },
+    {
+      "run_label": "pgs_effect_smoke",
+      "task_id": "webshop_00510",
+      "sample_id": "c8dfc799-cb44-400b-9c8a-fd9aeedd73f2_1_0",
+      "step": 2,
+      "session_id": 1,
+      "split": "train",
+      "validate": false,
+      "won": false,
+      "score": 0.8,
+      "outcome": "FAILED",
+      "initial_observation": "WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search\n\n[Available actions]\nsearch bar: available\nclickables: [\"search\"]",
+      "error": null,
+      "policy_version": {
+        "min_global_steps": 1,
+        "max_global_steps": 1
+      },
+      "steering": {
+        "steer_arm": 1,
+        "steer_count": 168,
+        "steer_theta": null,
+        "task_skill_eligible": 1
+      },
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 6,
+        "research_turns": 13,
+        "research_final_success": 0.0,
+        "research_doc_words": 625,
+        "research_doc_missing": 0,
+        "research_policy_version": 1,
+        "research_archive": "research/webshop_00510--fe0e1fc08f/20261023_101953_v1"
+      },
+      "source_path": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/code/runs/pass5_selective_effect_s42/rollouts/step_00002/webshop_00510_30eb7ee0.json",
+      "source_sha256": "d6afaf89a4a67b59441fd975a84319eb241c61241cedc43baab177f0df13bc1e",
+      "steps": [
+        {
+          "t": 1,
+          "action_norm": "search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit heather grey youth small price <30]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b09p39qn2w\", \"b08hf132pn\", \"b09rvf4jp1\", \"b07dkgjr74\", \"b07t3vmgdg\", \"b09p7h5yk7\", \"b07hrfsnl4\", \"b09q8rd8yn\", \"b08226ndzw\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "搜索有效，直接返回结果；无需额外点击 search。"
+        },
+        {
+          "t": 2,
+          "action_norm": "click[b07jvvdj6l]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "进入候选商品；下一步应核对并直接选择目标属性。"
+        },
+        {
+          "t": 3,
+          "action_norm": "click[youth]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "执行了目标属性选择；保留已选状态，继续选择剩余属性。"
+        },
+        {
+          "t": 4,
+          "action_norm": "click[buy now]",
+          "observation": "Purchase completed. The episode has ended.",
+          "valid": true,
+          "acted": true,
+          "comparison": "购买前历史中缺少目标选项：heather grey, small。Skill 的购买前属性检查没有落实。"
+        }
+      ],
+      "human": {
+        "before_t": 4,
+        "reason": "仅选 youth 就购买；未显式选择目标颜色和尺寸。",
+        "proposed_continuation": [
+          "click[heather grey]",
+          "click[small]",
+          "click[buy now]"
+        ],
+        "first_action_in_observed_clickables": true,
+        "applied_to_training": false
+      }
+    },
+    {
+      "run_label": "pgs_effect_smoke",
+      "task_id": "webshop_00510",
+      "sample_id": "c8dfc799-cb44-400b-9c8a-fd9aeedd73f2_2_0",
+      "step": 2,
+      "session_id": 2,
+      "split": "train",
+      "validate": false,
+      "won": false,
+      "score": 0.0,
+      "outcome": "FAILED",
+      "initial_observation": "WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search\n\n[Available actions]\nsearch bar: available\nclickables: [\"search\"]",
+      "error": null,
+      "policy_version": {
+        "min_global_steps": 1,
+        "max_global_steps": 1
+      },
+      "steering": {
+        "steer_arm": 1,
+        "steer_count": 515,
+        "steer_theta": null,
+        "task_skill_eligible": 1
+      },
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 6,
+        "research_turns": 13,
+        "research_final_success": 0.0,
+        "research_doc_words": 625,
+        "research_doc_missing": 0,
+        "research_policy_version": 1,
+        "research_archive": "research/webshop_00510--fe0e1fc08f/20261023_101953_v1"
+      },
+      "source_path": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/code/runs/pass5_selective_effect_s42/rollouts/step_00002/webshop_00510_3005c261.json",
+      "source_sha256": "2c04c6ab848bb2523a90f01771f88e7f6f38786fe6dd54291ee31ad21fadb97e",
+      "steps": [
+        {
+          "t": 1,
+          "action_norm": "search[machine wash men's dress shirts heathers cotton heather polyester youth small less than 30]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09QQP3356 [SEP] HAUKLIE Men's Sports Waffle Ribbed Polo Shirts Summer Short Sleeve Cotton Muscle Quarter-Zip Henley T-Shirt Tunics Tops [SEP] $10.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b08hf132pn\", \"b09p39qn2w\", \"b09rvf4jp1\", \"b09q8rd8yn\", \"b09p7h5yk7\", \"b07dkgjr74\", \"b07t3vmgdg\", \"b09qqp3356\", \"b07q48jvt8\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "搜索有效，直接返回结果；无需额外点击 search。"
+        },
+        {
+          "t": 2,
+          "action_norm": "click[back to search]",
+          "observation": "WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search\n\n[Available actions]\nsearch bar: available\nclickables: [\"search\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "离开当前页面；在已存在候选或目标选项时，与 Skill 的“先检查商品/选齐选项”方向不一致。"
+        },
+        {
+          "t": 3,
+          "action_norm": "search[needle sleeve heathers cotton polyester youth small dress shirt heather grey price less than 30]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B07YDHNZ6B [SEP] Daily Ritual Women's Cozy Knit Puff-Shoulder Dress [SEP] $13.06 to $29.2\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b08hf132pn\", \"b09p39qn2w\", \"b09rvf4jp1\", \"b07dkgjr74\", \"b07t3vmgdg\", \"b09p7h5yk7\", \"b07q48jvt8\", \"b07hrfsnl4\", \"b07ydhnz6b\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "再次搜索；与 Skill 避免反复搜索的方向不一致。此前偏离后应先重新检查页面。"
+        },
+        {
+          "t": 4,
+          "action_norm": "click[back to search]",
+          "observation": "WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search\n\n[Available actions]\nsearch bar: available\nclickables: [\"search\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "离开当前页面；在已存在候选或目标选项时，与 Skill 的“先检查商品/选齐选项”方向不一致。"
+        },
+        {
+          "t": 5,
+          "action_norm": "search[needle sleeve polyester heathers cotton heather youth small heather grey classic fit price less than 30]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b09p39qn2w\", \"b08hf132pn\", \"b07t3vmgdg\", \"b09rvf4jp1\", \"b07dkgjr74\", \"b07hrfsnl4\", \"b09p7h5yk7\", \"b08226ndzw\", \"b07q48jvt8\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "再次搜索；与 Skill 避免反复搜索的方向不一致。此前偏离后应先重新检查页面。"
+        },
+        {
+          "t": 6,
+          "action_norm": "click[next>",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b09p39qn2w\", \"b08hf132pn\", \"b07t3vmgdg\", \"b09rvf4jp1\", \"b07dkgjr74\", \"b07hrfsnl4\", \"b09p7h5yk7\", \"b08226ndzw\", \"b07q48jvt8\"]",
+          "valid": false,
+          "acted": true,
+          "comparison": "违反动作格式要求：缺少闭括号；无效动作不能用于判断翻页功能。"
+        },
+        {
+          "t": 7,
+          "action_norm": "click[next>",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b09p39qn2w\", \"b08hf132pn\", \"b07t3vmgdg\", \"b09rvf4jp1\", \"b07dkgjr74\", \"b07hrfsnl4\", \"b09p7h5yk7\", \"b08226ndzw\", \"b07q48jvt8\"]",
+          "valid": false,
+          "acted": true,
+          "comparison": "违反动作格式要求：缺少闭括号；无效动作不能用于判断翻页功能。"
+        },
+        {
+          "t": 8,
+          "action_norm": "click[next>",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b09p39qn2w\", \"b08hf132pn\", \"b07t3vmgdg\", \"b09rvf4jp1\", \"b07dkgjr74\", \"b07hrfsnl4\", \"b09p7h5yk7\", \"b08226ndzw\", \"b07q48jvt8\"]",
+          "valid": false,
+          "acted": true,
+          "comparison": "违反动作格式要求：缺少闭括号；无效动作不能用于判断翻页功能。"
+        },
+        {
+          "t": 9,
+          "action_norm": "click[back to search]",
+          "observation": "WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search\n\n[Available actions]\nsearch bar: available\nclickables: [\"search\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "离开当前页面；在已存在候选或目标选项时，与 Skill 的“先检查商品/选齐选项”方向不一致。"
+        },
+        {
+          "t": 10,
+          "action_norm": "search[needle sleeve polyester heathers cotton heather youth small heather grey classic fit price less than 30]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07Q48JVT8 [SEP] Marvel Infinity War Thanos Streetwear Poster Graphic Hoodie [SEP] $47.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b09p39qn2w\", \"b08hf132pn\", \"b07t3vmgdg\", \"b09rvf4jp1\", \"b07dkgjr74\", \"b07hrfsnl4\", \"b09p7h5yk7\", \"b08226ndzw\", \"b07q48jvt8\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "再次搜索；与 Skill 避免反复搜索的方向不一致。此前偏离后应先重新检查页面。"
+        },
+        {
+          "t": 11,
+          "action_norm": "click[back to search]",
+          "observation": "WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search\n\n[Available actions]\nsearch bar: available\nclickables: [\"search\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "离开当前页面；在已存在候选或目标选项时，与 Skill 的“先检查商品/选齐选项”方向不一致。"
+        },
+        {
+          "t": 12,
+          "action_norm": "search[needle sleeve polyester heathers youth small heather grey price less than 30 and fit type youth]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b08hf132pn\", \"b09p39qn2w\", \"b09rvf4jp1\", \"b0969g2dh8\", \"b07t3vmgdg\", \"b09gl561xh\", \"b09p7h5yk7\", \"b08226ndzw\", \"b07dkgjr74\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "再次搜索；与 Skill 避免反复搜索的方向不一致。此前偏离后应先重新检查页面。"
+        },
+        {
+          "t": 13,
+          "action_norm": "click[next>",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b08hf132pn\", \"b09p39qn2w\", \"b09rvf4jp1\", \"b0969g2dh8\", \"b07t3vmgdg\", \"b09gl561xh\", \"b09p7h5yk7\", \"b08226ndzw\", \"b07dkgjr74\"]",
+          "valid": false,
+          "acted": true,
+          "comparison": "违反动作格式要求：缺少闭括号；无效动作不能用于判断翻页功能。"
+        },
+        {
+          "t": 14,
+          "action_norm": "search[needle sleeve polyester heathers youth small heather price less than 30 fit classic]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99 [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b08hf132pn\", \"b09p39qn2w\", \"b07t3vmgdg\", \"b09rvf4jp1\", \"b07dkgjr74\", \"b07hrfsnl4\", \"b09gl561xh\", \"b0969g2dh8\", \"b09p7h5yk7\"]",
+          "valid": false,
+          "acted": true,
+          "comparison": "违反页面状态约束：此处不在可搜索页面，应先检查当前观察。"
+        },
+        {
+          "t": 15,
+          "action_norm": "search[needle sleeve polyester heather heathers youth small price less than 30 classic fit]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09GL561XH [SEP] Disney Mickey And Friends Happy Birthday Mickey Confetti T-Shirt [SEP] $22.99 [SEP] B0969G2DH8 [SEP] The cool twins just showed up T-Shirt [SEP] $17.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b08hf132pn\", \"b09p39qn2w\", \"b07t3vmgdg\", \"b09rvf4jp1\", \"b07dkgjr74\", \"b07hrfsnl4\", \"b09gl561xh\", \"b0969g2dh8\", \"b09p7h5yk7\"]",
+          "valid": false,
+          "acted": true,
+          "comparison": "违反页面状态约束：此处不在可搜索页面，应先检查当前观察。"
+        }
+      ],
+      "human": {
+        "before_t": 2,
+        "reason": "首轮结果已出现目标候选，却返回搜索；随后进入搜索与无效翻页循环。",
+        "proposed_continuation": [
+          "click[b07jvvdj6l]",
+          "click[youth]",
+          "click[heather grey]",
+          "click[small]",
+          "click[buy now]"
+        ],
+        "first_action_in_observed_clickables": true,
+        "applied_to_training": false
+      }
+    },
+    {
+      "run_label": "pgs_effect_smoke",
+      "task_id": "webshop_00510",
+      "sample_id": "c8dfc799-cb44-400b-9c8a-fd9aeedd73f2_3_0",
+      "step": 2,
+      "session_id": 3,
+      "split": "train",
+      "validate": false,
+      "won": false,
+      "score": 0.3,
+      "outcome": "FAILED",
+      "initial_observation": "WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search\n\n[Available actions]\nsearch bar: available\nclickables: [\"search\"]",
+      "error": null,
+      "policy_version": {
+        "min_global_steps": 1,
+        "max_global_steps": 1
+      },
+      "steering": {
+        "steer_arm": 1,
+        "steer_count": 208,
+        "steer_theta": null,
+        "task_skill_eligible": 1
+      },
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 6,
+        "research_turns": 13,
+        "research_final_success": 0.0,
+        "research_doc_words": 625,
+        "research_doc_missing": 0,
+        "research_policy_version": 1,
+        "research_archive": "research/webshop_00510--fe0e1fc08f/20261023_101953_v1"
+      },
+      "source_path": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/code/runs/pass5_selective_effect_s42/rollouts/step_00002/webshop_00510_9216f752.json",
+      "source_sha256": "cc866cf70596e6f3d4f90b5a68a942538ba7c2690140a2a9f9f035ff29d5d3d6",
+      "steps": [
+        {
+          "t": 1,
+          "action_norm": "search[machine wash men's dress shirts polyester heathers heather cotton cotton heather needle sleeve classic fit heather grey youth small price <30]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b09p39qn2w\", \"b08hf132pn\", \"b09rvf4jp1\", \"b07dkgjr74\", \"b07t3vmgdg\", \"b09p7h5yk7\", \"b07hrfsnl4\", \"b09q8rd8yn\", \"b08226ndzw\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "搜索有效，直接返回结果；无需额外点击 search。"
+        },
+        {
+          "t": 2,
+          "action_norm": "click[b07jvvdj6l]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "进入候选商品；下一步应核对并直接选择目标属性。"
+        },
+        {
+          "t": 3,
+          "action_norm": "click[< prev]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b09p39qn2w\", \"b08hf132pn\", \"b09rvf4jp1\", \"b07dkgjr74\", \"b07t3vmgdg\", \"b09p7h5yk7\", \"b07hrfsnl4\", \"b09q8rd8yn\", \"b08226ndzw\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "离开当前页面；在已存在候选或目标选项时，与 Skill 的“先检查商品/选齐选项”方向不一致。"
+        },
+        {
+          "t": 4,
+          "action_norm": "click[b07hrfsnl4]",
+          "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] x-small [SEP] small [SEP] medium [SEP] large [SEP] large tall [SEP] x-large [SEP] x-large tall [SEP] xx-large [SEP] xx-large tall [SEP] 3x-large tall [SEP] 4x-large tall [SEP] 5x-large tall [SEP] 1x [SEP] 2x [SEP] 3x [SEP] 4x [SEP] 5x [SEP] 6x [SEP] color [SEP] navy [SEP] noon blue [SEP] grey heather [SEP] nautica red [SEP] bright white [SEP] true black [SEP] pale coral [SEP] cradle pink [SEP] bright aqua [SEP] mint spring [SEP] monaco blue [SEP] charcoal heather (dark) [SEP] barolo [SEP] tidal green [SEP] charcoal heather (light) [SEP] estate blue [SEP] patina green [SEP] black [SEP] bright aqua blue [SEP] bright cobalt [SEP] coral sands [SEP] deep anchor heather [SEP] hawaiian ocean [SEP] melon berry [SEP] pine forest green [SEP] shipwreck burgundy [SEP] white [SEP] zest [SEP] deep atlantic [SEP] delft [SEP] pale coral red [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] Price: $16.05 to $40.98 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"x-small\", \"small\", \"medium\", \"large\", \"large tall\", \"x-large\", \"x-large tall\", \"xx-large\", \"xx-large tall\", \"3x-large tall\", \"4x-large tall\", \"5x-large tall\", \"1x\", \"2x\", \"3x\", \"4x\", \"5x\", \"6x\", \"navy\", \"noon blue\", \"grey heather\", \"nautica red\", \"bright white\", \"true black\", \"pale coral\", \"cradle pink\", \"bright aqua\", \"mint spring\", \"monaco blue\", \"charcoal heather (dark)\", \"barolo\", \"tidal green\", \"charcoal heather (light)\", \"estate blue\", \"patina green\", \"black\", \"bright aqua blue\", \"bright cobalt\", \"coral sands\", \"deep anchor heather\", \"hawaiian ocean\", \"melon berry\", \"pine forest green\", \"shipwreck burgundy\", \"white\", \"zest\", \"deep atlantic\", \"delft\", \"pale coral red\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "进入候选商品；下一步应核对并直接选择目标属性。"
+        },
+        {
+          "t": 5,
+          "action_norm": "click[buy now]",
+          "observation": "Purchase completed. The episode has ended.",
+          "valid": true,
+          "acted": true,
+          "comparison": "购买前历史中缺少目标选项：youth, heather grey, small。Skill 的购买前属性检查没有落实。"
+        }
+      ],
+      "human": {
+        "before_t": 3,
+        "reason": "离开已有目标选项的商品页，改买另一商品且未选属性。",
+        "proposed_continuation": [
+          "click[youth]",
+          "click[heather grey]",
+          "click[small]",
+          "click[buy now]"
+        ],
+        "first_action_in_observed_clickables": true,
+        "applied_to_training": false
+      }
+    },
+    {
+      "run_label": "pgs_effect_smoke",
+      "task_id": "webshop_00512",
+      "sample_id": "5acba3b0-b788-42b8-b03f-c1d5b0d73dd4_0_0",
+      "step": 2,
+      "session_id": 0,
+      "split": "train",
+      "validate": false,
+      "won": false,
+      "score": 0.6,
+      "outcome": "FAILED",
+      "initial_observation": "WebShop [SEP] Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Search\n\n[Available actions]\nsearch bar: available\nclickables: [\"search\"]",
+      "error": null,
+      "policy_version": {
+        "min_global_steps": 1,
+        "max_global_steps": 1
+      },
+      "steering": {
+        "steer_arm": 1,
+        "steer_count": 107,
+        "steer_theta": null,
+        "task_skill_eligible": 1
+      },
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 6,
+        "research_turns": 13,
+        "research_final_success": 0.0,
+        "research_doc_words": 459,
+        "research_doc_missing": 0,
+        "research_policy_version": 1,
+        "research_archive": "research/webshop_00512--ae6ae7a349/20261023_101640_v1"
+      },
+      "source_path": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/code/runs/pass5_selective_effect_s42/rollouts/step_00002/webshop_00512_6701e8fa.json",
+      "source_sha256": "943cfca78960b42d8efd4fb9c60a5d16e4f23cc6f419ca6ce258ef2e94f7721e",
+      "steps": [
+        {
+          "t": 1,
+          "action_norm": "search[eco friendly throw blankets fleece thanksgiving color:thanksgivinggoo4573 size:39x59in price:below 50]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09DG3YTHY [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] $31.39 [SEP] B0836D6CW4 [SEP] Sunbeam Heated Electric Fleece Throw Comforter Blanket with Controller, Auto Off Setting, Thermofine Wiring, and 3 Heat Settings, Red Plaid [SEP] $45.99 [SEP] B09KTB1VG6 [SEP] FOHOG Collection Flannel Fleece Silky Soft Throw Shaggy Blanket Lightweight Comfy and Cozy Plush Microfiber Travel Silk 50\" X 60\" for Sofa Couch Bed (127 cm X 152 cm) (Buffalo Plaid) [SEP] $11.99 [SEP] B08FGWZZ8J [SEP] Itachishop Flannel Fleece Blanket with Pompom Fringe, Fuzzy Throw Blanket Bed Blanket for Couch Home Decor, 60x50in [SEP] $28.8 [SEP] B09C1YWG8W [SEP] Soft Plush Electric Heated Blanket Throw with Foot Pocket | Navy Blue 50 x 62 | 3 Heat Settings with 2 Hour Auto Shut Off, UL Certified | Machine Washable [SEP] $69.99 [SEP] B07SXRVKZ2 [SEP] Fab Habitat Seagrass Storage Basket Set - Wicker Pattern Baskets, Strong Handles - Organizer for Blankets, Towels, Pillows, Toys, Laundry, Baby, Kids, Home Décor - Harlem - XL [SEP] $69.0 [SEP] B08SKH3LTM [SEP] RACHEL Rachel Roy Jacquard Textured Oversized Throw - Silky Soft and Cozy Flannel Fleece, Blanket for Bed and Couch - Oversized Throw 60\" X 70\", Coconut Milk [SEP] $26.99 [SEP] B09BNCFGLY [SEP] Wrington Storage Platform Bed, Frame Material: Solid Wood, Eco-Friendly Solid Hardwood with Non-Toxic Finish [SEP] $1514.48 [SEP] B08WKMHTGH [SEP] ECOAND Natural Exfoliating Bath Spa Shower Scrub - Dual Side Sisal and Cotton Glove - Deep Exfoliation Wash Mitten (1) [SEP] $5.99 [SEP] B09MYFGDY5 [SEP] Orthodontic Elastics, Safe Orthodontic Rubber Band Pet Grooming Eco Friendly for Men Women for Dental Hospital for Home for Dentist [SEP] $24.35\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b09dg3ythy\", \"b0836d6cw4\", \"b09ktb1vg6\", \"b08fgwzz8j\", \"b09c1ywg8w\", \"b07sxrvkz2\", \"b08skh3ltm\", \"b09bncfgly\", \"b08wkmhtgh\", \"b09myfgdy5\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "搜索有效，直接返回结果；无需额外点击 search。"
+        },
+        {
+          "t": 2,
+          "action_norm": "click[b09dg3ythy]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 39 x 49 in [SEP] 39x49in [SEP] 39x59in [SEP] 49x59in [SEP] 49x79in [SEP] 59x79in [SEP] color [SEP] love32goo9557 [SEP] cartoon2goo8633 [SEP] christmas 2374lgoo8402 [SEP] christmasgoo1747 [SEP] christmasgoo2799 [SEP] clovergoo4857 [SEP] fish scale1goo8111 [SEP] graffiti1goo9830 [SEP] halloween-018goo7397 [SEP] halloweengoo6082 [SEP] halloweengoo7556 [SEP] paris eiffel tower1goo8867 [SEP] peacock2goo1111 [SEP] shamrockgoo9573 [SEP] snowflakegoo5851 [SEP] snowflakesgoo3985 [SEP] starfish beach8goo3481 [SEP] thanksgiving1goo6115 [SEP] thanksgivinggoo1780 [SEP] thanksgivinggoo4573 [SEP] thanksgivinggoo6016 [SEP] thanksgivinggoo9948 [SEP] tortoisegoo9511 [SEP] wood grain4goo3989 [SEP] wood grain5goo6823 [SEP] you are my sunshinegoo1809 [SEP] christmas-003goo3552 [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] Price: $31.39 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"39 x 49 in\", \"39x49in\", \"39x59in\", \"49x59in\", \"49x79in\", \"59x79in\", \"love32goo9557\", \"cartoon2goo8633\", \"christmas 2374lgoo8402\", \"christmasgoo1747\", \"christmasgoo2799\", \"clovergoo4857\", \"fish scale1goo8111\", \"graffiti1goo9830\", \"halloween-018goo7397\", \"halloweengoo6082\", \"halloweengoo7556\", \"paris eiffel tower1goo8867\", \"peacock2goo1111\", \"shamrockgoo9573\", \"snowflakegoo5851\", \"snowflakesgoo3985\", \"starfish beach8goo3481\", \"thanksgiving1goo6115\", \"thanksgivinggoo1780\", \"thanksgivinggoo4573\", \"thanksgivinggoo6016\", \"thanksgivinggoo9948\", \"tortoisegoo9511\", \"wood grain4goo3989\", \"wood grain5goo6823\", \"you are my sunshinegoo1809\", \"christmas-003goo3552\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "进入候选商品；下一步应核对并直接选择目标属性。"
+        },
+        {
+          "t": 3,
+          "action_norm": "click[buy now]",
+          "observation": "Purchase completed. The episode has ended.",
+          "valid": true,
+          "acted": true,
+          "comparison": "购买前历史中缺少目标选项：39x59in, thanksgivinggoo4573。Skill 的购买前属性检查没有落实。"
+        }
+      ],
+      "human": {
+        "before_t": 3,
+        "reason": "进入正确候选后直接购买，尺寸和图案均未显式选择。",
+        "proposed_continuation": [
+          "click[39x59in]",
+          "click[thanksgivinggoo4573]",
+          "click[buy now]"
+        ],
+        "first_action_in_observed_clickables": true,
+        "applied_to_training": false
+      }
+    },
+    {
+      "run_label": "pgs_effect_smoke",
+      "task_id": "webshop_00512",
+      "sample_id": "5acba3b0-b788-42b8-b03f-c1d5b0d73dd4_1_0",
+      "step": 2,
+      "session_id": 1,
+      "split": "train",
+      "validate": false,
+      "won": false,
+      "score": 0.6,
+      "outcome": "FAILED",
+      "initial_observation": "WebShop [SEP] Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Search\n\n[Available actions]\nsearch bar: available\nclickables: [\"search\"]",
+      "error": null,
+      "policy_version": {
+        "min_global_steps": 1,
+        "max_global_steps": 1
+      },
+      "steering": {
+        "steer_arm": 1,
+        "steer_count": 78,
+        "steer_theta": null,
+        "task_skill_eligible": 1
+      },
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 6,
+        "research_turns": 13,
+        "research_final_success": 0.0,
+        "research_doc_words": 459,
+        "research_doc_missing": 0,
+        "research_policy_version": 1,
+        "research_archive": "research/webshop_00512--ae6ae7a349/20261023_101640_v1"
+      },
+      "source_path": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/code/runs/pass5_selective_effect_s42/rollouts/step_00002/webshop_00512_47f61184.json",
+      "source_sha256": "b906229f6b7b73038deb1a727cee5cd54323acc713038d1d6fdbb64dcf8e84f8",
+      "steps": [
+        {
+          "t": 1,
+          "action_norm": "search[eco friendly throw blankets fleece thanksgivinggoo4573 39x59in price less than 50]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09DG3YTHY [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] $31.39 [SEP] B0836D6CW4 [SEP] Sunbeam Heated Electric Fleece Throw Comforter Blanket with Controller, Auto Off Setting, Thermofine Wiring, and 3 Heat Settings, Red Plaid [SEP] $45.99 [SEP] B08FGWZZ8J [SEP] Itachishop Flannel Fleece Blanket with Pompom Fringe, Fuzzy Throw Blanket Bed Blanket for Couch Home Decor, 60x50in [SEP] $28.8 [SEP] B09KTB1VG6 [SEP] FOHOG Collection Flannel Fleece Silky Soft Throw Shaggy Blanket Lightweight Comfy and Cozy Plush Microfiber Travel Silk 50\" X 60\" for Sofa Couch Bed (127 cm X 152 cm) (Buffalo Plaid) [SEP] $11.99 [SEP] B09C1YWG8W [SEP] Soft Plush Electric Heated Blanket Throw with Foot Pocket | Navy Blue 50 x 62 | 3 Heat Settings with 2 Hour Auto Shut Off, UL Certified | Machine Washable [SEP] $69.99 [SEP] B08SKH3LTM [SEP] RACHEL Rachel Roy Jacquard Textured Oversized Throw - Silky Soft and Cozy Flannel Fleece, Blanket for Bed and Couch - Oversized Throw 60\" X 70\", Coconut Milk [SEP] $26.99 [SEP] B07SXRVKZ2 [SEP] Fab Habitat Seagrass Storage Basket Set - Wicker Pattern Baskets, Strong Handles - Organizer for Blankets, Towels, Pillows, Toys, Laundry, Baby, Kids, Home Décor - Harlem - XL [SEP] $69.0 [SEP] B078T46X81 [SEP] Sparkle-Dent Denture Whitener and Cleaner [SEP] $27.95 [SEP] B08WKMHTGH [SEP] ECOAND Natural Exfoliating Bath Spa Shower Scrub - Dual Side Sisal and Cotton Glove - Deep Exfoliation Wash Mitten (1) [SEP] $5.99 [SEP] B09BNCFGLY [SEP] Wrington Storage Platform Bed, Frame Material: Solid Wood, Eco-Friendly Solid Hardwood with Non-Toxic Finish [SEP] $1514.48\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b09dg3ythy\", \"b0836d6cw4\", \"b08fgwzz8j\", \"b09ktb1vg6\", \"b09c1ywg8w\", \"b08skh3ltm\", \"b07sxrvkz2\", \"b078t46x81\", \"b08wkmhtgh\", \"b09bncfgly\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "搜索有效，直接返回结果；无需额外点击 search。"
+        },
+        {
+          "t": 2,
+          "action_norm": "click[b09dg3ythy]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 39 x 49 in [SEP] 39x49in [SEP] 39x59in [SEP] 49x59in [SEP] 49x79in [SEP] 59x79in [SEP] color [SEP] love32goo9557 [SEP] cartoon2goo8633 [SEP] christmas 2374lgoo8402 [SEP] christmasgoo1747 [SEP] christmasgoo2799 [SEP] clovergoo4857 [SEP] fish scale1goo8111 [SEP] graffiti1goo9830 [SEP] halloween-018goo7397 [SEP] halloweengoo6082 [SEP] halloweengoo7556 [SEP] paris eiffel tower1goo8867 [SEP] peacock2goo1111 [SEP] shamrockgoo9573 [SEP] snowflakegoo5851 [SEP] snowflakesgoo3985 [SEP] starfish beach8goo3481 [SEP] thanksgiving1goo6115 [SEP] thanksgivinggoo1780 [SEP] thanksgivinggoo4573 [SEP] thanksgivinggoo6016 [SEP] thanksgivinggoo9948 [SEP] tortoisegoo9511 [SEP] wood grain4goo3989 [SEP] wood grain5goo6823 [SEP] you are my sunshinegoo1809 [SEP] christmas-003goo3552 [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] Price: $31.39 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"39 x 49 in\", \"39x49in\", \"39x59in\", \"49x59in\", \"49x79in\", \"59x79in\", \"love32goo9557\", \"cartoon2goo8633\", \"christmas 2374lgoo8402\", \"christmasgoo1747\", \"christmasgoo2799\", \"clovergoo4857\", \"fish scale1goo8111\", \"graffiti1goo9830\", \"halloween-018goo7397\", \"halloweengoo6082\", \"halloweengoo7556\", \"paris eiffel tower1goo8867\", \"peacock2goo1111\", \"shamrockgoo9573\", \"snowflakegoo5851\", \"snowflakesgoo3985\", \"starfish beach8goo3481\", \"thanksgiving1goo6115\", \"thanksgivinggoo1780\", \"thanksgivinggoo4573\", \"thanksgivinggoo6016\", \"thanksgivinggoo9948\", \"tortoisegoo9511\", \"wood grain4goo3989\", \"wood grain5goo6823\", \"you are my sunshinegoo1809\", \"christmas-003goo3552\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "进入候选商品；下一步应核对并直接选择目标属性。"
+        },
+        {
+          "t": 3,
+          "action_norm": "click[buy now]",
+          "observation": "Purchase completed. The episode has ended.",
+          "valid": true,
+          "acted": true,
+          "comparison": "购买前历史中缺少目标选项：39x59in, thanksgivinggoo4573。Skill 的购买前属性检查没有落实。"
+        }
+      ],
+      "human": {
+        "before_t": 3,
+        "reason": "进入正确候选后直接购买，尺寸和图案均未显式选择。",
+        "proposed_continuation": [
+          "click[39x59in]",
+          "click[thanksgivinggoo4573]",
+          "click[buy now]"
+        ],
+        "first_action_in_observed_clickables": true,
+        "applied_to_training": false
+      }
+    },
+    {
+      "run_label": "pgs_effect_smoke",
+      "task_id": "webshop_00512",
+      "sample_id": "5acba3b0-b788-42b8-b03f-c1d5b0d73dd4_2_0",
+      "step": 2,
+      "session_id": 2,
+      "split": "train",
+      "validate": false,
+      "won": false,
+      "score": 0.0,
+      "outcome": "FAILED",
+      "initial_observation": "WebShop [SEP] Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Search\n\n[Available actions]\nsearch bar: available\nclickables: [\"search\"]",
+      "error": null,
+      "policy_version": {
+        "min_global_steps": 1,
+        "max_global_steps": 1
+      },
+      "steering": {
+        "steer_arm": 1,
+        "steer_count": 463,
+        "steer_theta": null,
+        "task_skill_eligible": 1
+      },
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 6,
+        "research_turns": 13,
+        "research_final_success": 0.0,
+        "research_doc_words": 459,
+        "research_doc_missing": 0,
+        "research_policy_version": 1,
+        "research_archive": "research/webshop_00512--ae6ae7a349/20261023_101640_v1"
+      },
+      "source_path": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/code/runs/pass5_selective_effect_s42/rollouts/step_00002/webshop_00512_9fc96861.json",
+      "source_sha256": "300e658f582b4c5449569452a7ce89af75890ed7346b01ea55e9b689656f96c9",
+      "steps": [
+        {
+          "t": 1,
+          "action_norm": "search[eco friendly throw blanket fleece thanksgivinggoo4573 39x59in]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09DG3YTHY [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] $31.39 [SEP] B0836D6CW4 [SEP] Sunbeam Heated Electric Fleece Throw Comforter Blanket with Controller, Auto Off Setting, Thermofine Wiring, and 3 Heat Settings, Red Plaid [SEP] $45.99 [SEP] B08FGWZZ8J [SEP] Itachishop Flannel Fleece Blanket with Pompom Fringe, Fuzzy Throw Blanket Bed Blanket for Couch Home Decor, 60x50in [SEP] $28.8 [SEP] B09KTB1VG6 [SEP] FOHOG Collection Flannel Fleece Silky Soft Throw Shaggy Blanket Lightweight Comfy and Cozy Plush Microfiber Travel Silk 50\" X 60\" for Sofa Couch Bed (127 cm X 152 cm) (Buffalo Plaid) [SEP] $11.99 [SEP] B08SKH3LTM [SEP] RACHEL Rachel Roy Jacquard Textured Oversized Throw - Silky Soft and Cozy Flannel Fleece, Blanket for Bed and Couch - Oversized Throw 60\" X 70\", Coconut Milk [SEP] $26.99 [SEP] B07SXRVKZ2 [SEP] Fab Habitat Seagrass Storage Basket Set - Wicker Pattern Baskets, Strong Handles - Organizer for Blankets, Towels, Pillows, Toys, Laundry, Baby, Kids, Home Décor - Harlem - XL [SEP] $69.0 [SEP] B09C1YWG8W [SEP] Soft Plush Electric Heated Blanket Throw with Foot Pocket | Navy Blue 50 x 62 | 3 Heat Settings with 2 Hour Auto Shut Off, UL Certified | Machine Washable [SEP] $69.99 [SEP] B08WKMHTGH [SEP] ECOAND Natural Exfoliating Bath Spa Shower Scrub - Dual Side Sisal and Cotton Glove - Deep Exfoliation Wash Mitten (1) [SEP] $5.99 [SEP] B09MYFGDY5 [SEP] Orthodontic Elastics, Safe Orthodontic Rubber Band Pet Grooming Eco Friendly for Men Women for Dental Hospital for Home for Dentist [SEP] $24.35 [SEP] B09BNCFGLY [SEP] Wrington Storage Platform Bed, Frame Material: Solid Wood, Eco-Friendly Solid Hardwood with Non-Toxic Finish [SEP] $1514.48\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b09dg3ythy\", \"b0836d6cw4\", \"b08fgwzz8j\", \"b09ktb1vg6\", \"b08skh3ltm\", \"b07sxrvkz2\", \"b09c1ywg8w\", \"b08wkmhtgh\", \"b09myfgdy5\", \"b09bncfgly\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "搜索有效，直接返回结果；无需额外点击 search。"
+        },
+        {
+          "t": 2,
+          "action_norm": "click[b09dg3ythy]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 39 x 49 in [SEP] 39x49in [SEP] 39x59in [SEP] 49x59in [SEP] 49x79in [SEP] 59x79in [SEP] color [SEP] love32goo9557 [SEP] cartoon2goo8633 [SEP] christmas 2374lgoo8402 [SEP] christmasgoo1747 [SEP] christmasgoo2799 [SEP] clovergoo4857 [SEP] fish scale1goo8111 [SEP] graffiti1goo9830 [SEP] halloween-018goo7397 [SEP] halloweengoo6082 [SEP] halloweengoo7556 [SEP] paris eiffel tower1goo8867 [SEP] peacock2goo1111 [SEP] shamrockgoo9573 [SEP] snowflakegoo5851 [SEP] snowflakesgoo3985 [SEP] starfish beach8goo3481 [SEP] thanksgiving1goo6115 [SEP] thanksgivinggoo1780 [SEP] thanksgivinggoo4573 [SEP] thanksgivinggoo6016 [SEP] thanksgivinggoo9948 [SEP] tortoisegoo9511 [SEP] wood grain4goo3989 [SEP] wood grain5goo6823 [SEP] you are my sunshinegoo1809 [SEP] christmas-003goo3552 [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] Price: $31.39 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"39 x 49 in\", \"39x49in\", \"39x59in\", \"49x59in\", \"49x79in\", \"59x79in\", \"love32goo9557\", \"cartoon2goo8633\", \"christmas 2374lgoo8402\", \"christmasgoo1747\", \"christmasgoo2799\", \"clovergoo4857\", \"fish scale1goo8111\", \"graffiti1goo9830\", \"halloween-018goo7397\", \"halloweengoo6082\", \"halloweengoo7556\", \"paris eiffel tower1goo8867\", \"peacock2goo1111\", \"shamrockgoo9573\", \"snowflakegoo5851\", \"snowflakesgoo3985\", \"starfish beach8goo3481\", \"thanksgiving1goo6115\", \"thanksgivinggoo1780\", \"thanksgivinggoo4573\", \"thanksgivinggoo6016\", \"thanksgivinggoo9948\", \"tortoisegoo9511\", \"wood grain4goo3989\", \"wood grain5goo6823\", \"you are my sunshinegoo1809\", \"christmas-003goo3552\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "进入候选商品；下一步应核对并直接选择目标属性。"
+        },
+        {
+          "t": 3,
+          "action_norm": "click[< prev]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09DG3YTHY [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] $31.39 [SEP] B0836D6CW4 [SEP] Sunbeam Heated Electric Fleece Throw Comforter Blanket with Controller, Auto Off Setting, Thermofine Wiring, and 3 Heat Settings, Red Plaid [SEP] $45.99 [SEP] B08FGWZZ8J [SEP] Itachishop Flannel Fleece Blanket with Pompom Fringe, Fuzzy Throw Blanket Bed Blanket for Couch Home Decor, 60x50in [SEP] $28.8 [SEP] B09KTB1VG6 [SEP] FOHOG Collection Flannel Fleece Silky Soft Throw Shaggy Blanket Lightweight Comfy and Cozy Plush Microfiber Travel Silk 50\" X 60\" for Sofa Couch Bed (127 cm X 152 cm) (Buffalo Plaid) [SEP] $11.99 [SEP] B08SKH3LTM [SEP] RACHEL Rachel Roy Jacquard Textured Oversized Throw - Silky Soft and Cozy Flannel Fleece, Blanket for Bed and Couch - Oversized Throw 60\" X 70\", Coconut Milk [SEP] $26.99 [SEP] B07SXRVKZ2 [SEP] Fab Habitat Seagrass Storage Basket Set - Wicker Pattern Baskets, Strong Handles - Organizer for Blankets, Towels, Pillows, Toys, Laundry, Baby, Kids, Home Décor - Harlem - XL [SEP] $69.0 [SEP] B09C1YWG8W [SEP] Soft Plush Electric Heated Blanket Throw with Foot Pocket | Navy Blue 50 x 62 | 3 Heat Settings with 2 Hour Auto Shut Off, UL Certified | Machine Washable [SEP] $69.99 [SEP] B08WKMHTGH [SEP] ECOAND Natural Exfoliating Bath Spa Shower Scrub - Dual Side Sisal and Cotton Glove - Deep Exfoliation Wash Mitten (1) [SEP] $5.99 [SEP] B09MYFGDY5 [SEP] Orthodontic Elastics, Safe Orthodontic Rubber Band Pet Grooming Eco Friendly for Men Women for Dental Hospital for Home for Dentist [SEP] $24.35 [SEP] B09BNCFGLY [SEP] Wrington Storage Platform Bed, Frame Material: Solid Wood, Eco-Friendly Solid Hardwood with Non-Toxic Finish [SEP] $1514.48\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b09dg3ythy\", \"b0836d6cw4\", \"b08fgwzz8j\", \"b09ktb1vg6\", \"b08skh3ltm\", \"b07sxrvkz2\", \"b09c1ywg8w\", \"b08wkmhtgh\", \"b09myfgdy5\", \"b09bncfgly\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "离开当前页面；在已存在候选或目标选项时，与 Skill 的“先检查商品/选齐选项”方向不一致。"
+        },
+        {
+          "t": 4,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B08K7LDM7Q [SEP] 2 Pcs Cowhide Throw Pillow Covers Decorative Pillow Cases Farm Animal Brown Cow Hide Skin Print Pillow Case 18 X 18 Inch Velvet Square Cushion Cover for Sofa Bedroom [SEP] $17.99 [SEP] B08L2ZDWN2 [SEP] PAVILIA Decorative Sherpa Throw Pillow Covers, Set of 2, 18x18, Light Pink Blush Fluffy Pillow Cases for Couch, Bed, Sofa|Soft Accent Cushion Cover, Shaggy Living Room Decor [SEP] $13.99 [SEP] B07QXZL1K5 [SEP] Bamboo Cotton Swab 1000PCS Double Cotton Buds bamboo Cotton Bud Eco organic bamboo ear swab for Ear Skin Jewelry Art Pet Cleaning Craft Paper Packaging (5 PACKS OF 200 STICKS) [SEP] $13.99 [SEP] B09MSZ4VS8 [SEP] Goldweather Women Winter Leggings Printed Warm Fleece Lined Yoga Pants Trousers Thermal High Waist Thicken Cashmere Tights (Navy, L) [SEP] $20.99 [SEP] B0743JKHBV [SEP] Ambesonne Abstract Throw Pillow Cushion Cover, Geometric Composition with Different Colored Squares Striped Dotted Rhombus, Decorative Square Accent Pillow Case, 16\" X 16\", Grey Purple [SEP] $14.95 [SEP] B09HX5CD2D [SEP] CSU Cleveland State University Vikings Property Fleece Drawstring Shorts Heather Charcoal [SEP] $39.95 [SEP] B07P24ZMXK [SEP] ShareJ Home Sweet Home Decorative Throw Pillow Covers Cotton Linen Inspirational Warm Quotes Home Decor Cushion Covers 18 x 18 inch,Set of 4 [SEP] $19.99 [SEP] B09HKZS7LV [SEP] Studio Outback Pillow Covers Pillow Cover Set of 2 Throw Pillow Covers 18x18 Throw Pillows Embroidered Pillow Covers Pillows Decorative Pillow Covers Bedroom Decor Farmhouse Decor House Décor [SEP] $24.99 [SEP] B091YV7CRB [SEP] Full Protection Silicone Cover VR Headset for Quest 2 VR Premium Silicone Front Cover Controller Cover Grips Accessories Anti-Throw Sweatproof (White) [SEP] $16.99 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\", \"b08k7ldm7q\", \"b08l2zdwn2\", \"b07qxzl1k5\", \"b09msz4vs8\", \"b0743jkhbv\", \"b09hx5cd2d\", \"b07p24zmxk\", \"b09hkzs7lv\", \"b091yv7crb\", \"b09kp78g37\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 5,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 3 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B08ZB1MN8D [SEP] Unipro Mens Jogger Pants 2 Pack Tech Fleece Sweatpants Lightweight Running Pant for Men [SEP] $22.99 to $24.99 [SEP] B08QVDNJC7 [SEP] Valentine‘s Day Love Blue Throw Pillow Covers 18x18 for Home Decor- Love Heart Flower - Modern Linen Cushion Cover Square Home Pillowcase Love Theme Decorative Pillow Covers for Sofa Bed Chair Car [SEP] $7.99 [SEP] B07XTK3P89 [SEP] Lunarable Oriental Storage Toy Bag Chair, Eastern Bohem Detail Ottoman Tile Work Inspired Flowers, Stuffed Animal Organizer Washable Bag, Small Size, Turquoise Marigold [SEP] $39.99 [SEP] B09KM7X1G4 [SEP] Fishouflage Ladies Hoodie - Women's Fishing Sweatshirt [SEP] $69.99 [SEP] B09MHLS36W [SEP] ZEFS--ESD Mini Projector for Movies D29 Native1920x1080 Full HD Projector Android OS (2G+16G) 5G WiFi DLP Proyector Support 4K 3D Zoom Video Game Beamer [SEP] $967.76 [SEP] B07V5WMYXS [SEP] Sweet Jojo Designs Blush Pink and Grey Woodland Boho Dream Catcher Arrow Decorative Accent Throw Pillows for Gray Bunny Floral Collection - Set of 2 - Watercolor Rose Flower [SEP] $22.99 [SEP] B09DYFZM1X [SEP] Sykting Christmas Pillow Covers 18x18 Inch with Raised Embroidery Snowflakes Neutral Boho Throw Pillow Covers Decorative for Winter Holiday Grey Pack of 2 [SEP] $19.99 [SEP] B079N3VLRJ [SEP] Baja Night Stand / 2 Drawer / Solid Wood / Rustic Bedside Table for Bedroom, Living Room, Sofa Couch, Hall / Metal Drawer Pulls, Barnwood Finish [SEP] $237.0 [SEP] B07FD13LP1 [SEP] The Establishment Men's Organic Cotton Fleece Short with Pocket(S to XXL) [SEP] $24.99 [SEP] B09LQHW84R [SEP] Children Toothbrush Creative Shape High Density Bristles Silicone Oral Care Cleaning Massage Toddler Brush for Home Children [SEP] $4.4\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\", \"b08zb1mn8d\", \"b08qvdnjc7\", \"b07xtk3p89\", \"b09km7x1g4\", \"b09mhls36w\", \"b07v5wmyxs\", \"b09dyfzm1x\", \"b079n3vlrj\", \"b07fd13lp1\", \"b09lqhw84r\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 6,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 4 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B07V3WXX85 [SEP] PUMA Men's Amplified Hooded Fleece Jacket [SEP] $55.0 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B083YVHBXH [SEP] Spa Headbands, Coral Fleece Makeup Headband Cosmetic Headband, Lovely Face Washing Headband Shower Headbands Headwraps, Soft Bowknot Spa Hair Band Spa Birthday Party Supplies (9 Colors) [SEP] $12.99 [SEP] B07CYXLSF2 [SEP] TEMPTU Airbrush Makeup System 2.0 Premier Kit: Airbrush Makeup Set for Professionals Includes S/B Silicone-Based Foundation Starter Set & Cleaning Kit, Travel-Friendly [SEP] $250.0 [SEP] B09QQP3356 [SEP] HAUKLIE Men's Sports Waffle Ribbed Polo Shirts Summer Short Sleeve Cotton Muscle Quarter-Zip Henley T-Shirt Tunics Tops [SEP] $10.99 [SEP] B07T9LZKM7 [SEP] Avigers Luxury Decorative European Throw Pillow Cover 18 x 18 Inch Soft Floral Embroidered Cushion Case with Tassels for Couch Bedroom Car 45 x 45 cm, Beige Gold [SEP] $16.99 [SEP] B09N3CDKGV [SEP] Romwe Women's Ruffle Hem Beach Cover Up Chiffon Swimsuit Wrap Skirts [SEP] $19.99 [SEP] B08SKT2TCH [SEP] JYLRX natural loofah sponge,Very Suitable for Kitchen Household use and Personal Skin Care Products with Cleanser Pack of 4 (white) [SEP] $12.98 [SEP] B07963ZMK6 [SEP] DOVE STICK Mix Antiperspirant deodorants 40Ml /1.76OZ (Dove Stick Mix, 12X40ML/1.4OZ) [SEP] $28.99 [SEP] B095PF5BXT [SEP] 【2+2 Pack】 for Samsung Galaxy A12 5G 【2pcs Screen Protector + 2pcs Camera Lens Protector】 Tempered Glass Film [0.3mm Thickness] [9H Hardness HD Clear] [Bubble Free] [Case Friendly] [Anti-Scratch] [Shatterproof ] [Anti-Fingerprint] [SEP] $6.5\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\", \"b07v3wxx85\", \"b09s3bn15c\", \"b083yvhbxh\", \"b07cyxlsf2\", \"b09qqp3356\", \"b07t9lzkm7\", \"b09n3cdkgv\", \"b08skt2tch\", \"b07963zmk6\", \"b095pf5bxt\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 7,
+          "action_norm": "click[back to search]",
+          "observation": "WebShop [SEP] Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Search\n\n[Available actions]\nsearch bar: available\nclickables: [\"search\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "离开当前页面；在已存在候选或目标选项时，与 Skill 的“先检查商品/选齐选项”方向不一致。"
+        },
+        {
+          "t": 8,
+          "action_norm": "search[eco friendly throw blankets fleece throw color:thanksgivinggoo4573 size:39x59in price:<50]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09DG3YTHY [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] $31.39 [SEP] B0836D6CW4 [SEP] Sunbeam Heated Electric Fleece Throw Comforter Blanket with Controller, Auto Off Setting, Thermofine Wiring, and 3 Heat Settings, Red Plaid [SEP] $45.99 [SEP] B09KTB1VG6 [SEP] FOHOG Collection Flannel Fleece Silky Soft Throw Shaggy Blanket Lightweight Comfy and Cozy Plush Microfiber Travel Silk 50\" X 60\" for Sofa Couch Bed (127 cm X 152 cm) (Buffalo Plaid) [SEP] $11.99 [SEP] B08FGWZZ8J [SEP] Itachishop Flannel Fleece Blanket with Pompom Fringe, Fuzzy Throw Blanket Bed Blanket for Couch Home Decor, 60x50in [SEP] $28.8 [SEP] B09C1YWG8W [SEP] Soft Plush Electric Heated Blanket Throw with Foot Pocket | Navy Blue 50 x 62 | 3 Heat Settings with 2 Hour Auto Shut Off, UL Certified | Machine Washable [SEP] $69.99 [SEP] B08SKH3LTM [SEP] RACHEL Rachel Roy Jacquard Textured Oversized Throw - Silky Soft and Cozy Flannel Fleece, Blanket for Bed and Couch - Oversized Throw 60\" X 70\", Coconut Milk [SEP] $26.99 [SEP] B08K7LDM7Q [SEP] 2 Pcs Cowhide Throw Pillow Covers Decorative Pillow Cases Farm Animal Brown Cow Hide Skin Print Pillow Case 18 X 18 Inch Velvet Square Cushion Cover for Sofa Bedroom [SEP] $17.99 [SEP] B07SXRVKZ2 [SEP] Fab Habitat Seagrass Storage Basket Set - Wicker Pattern Baskets, Strong Handles - Organizer for Blankets, Towels, Pillows, Toys, Laundry, Baby, Kids, Home Décor - Harlem - XL [SEP] $69.0 [SEP] B09BNCFGLY [SEP] Wrington Storage Platform Bed, Frame Material: Solid Wood, Eco-Friendly Solid Hardwood with Non-Toxic Finish [SEP] $1514.48 [SEP] B08L2ZDWN2 [SEP] PAVILIA Decorative Sherpa Throw Pillow Covers, Set of 2, 18x18, Light Pink Blush Fluffy Pillow Cases for Couch, Bed, Sofa|Soft Accent Cushion Cover, Shaggy Living Room Decor [SEP] $13.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b09dg3ythy\", \"b0836d6cw4\", \"b09ktb1vg6\", \"b08fgwzz8j\", \"b09c1ywg8w\", \"b08skh3ltm\", \"b08k7ldm7q\", \"b07sxrvkz2\", \"b09bncfgly\", \"b08l2zdwn2\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "再次搜索；与 Skill 避免反复搜索的方向不一致。此前偏离后应先重新检查页面。"
+        },
+        {
+          "t": 9,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B08WKMHTGH [SEP] ECOAND Natural Exfoliating Bath Spa Shower Scrub - Dual Side Sisal and Cotton Glove - Deep Exfoliation Wash Mitten (1) [SEP] $5.99 [SEP] B09MYFGDY5 [SEP] Orthodontic Elastics, Safe Orthodontic Rubber Band Pet Grooming Eco Friendly for Men Women for Dental Hospital for Home for Dentist [SEP] $24.35 [SEP] B09HKZS7LV [SEP] Studio Outback Pillow Covers Pillow Cover Set of 2 Throw Pillow Covers 18x18 Throw Pillows Embroidered Pillow Covers Pillows Decorative Pillow Covers Bedroom Decor Farmhouse Decor House Décor [SEP] $24.99 [SEP] B08QVDNJC7 [SEP] Valentine‘s Day Love Blue Throw Pillow Covers 18x18 for Home Decor- Love Heart Flower - Modern Linen Cushion Cover Square Home Pillowcase Love Theme Decorative Pillow Covers for Sofa Bed Chair Car [SEP] $7.99 [SEP] B091YV7CRB [SEP] Full Protection Silicone Cover VR Headset for Quest 2 VR Premium Silicone Front Cover Controller Cover Grips Accessories Anti-Throw Sweatproof (White) [SEP] $16.99 [SEP] B0743JKHBV [SEP] Ambesonne Abstract Throw Pillow Cushion Cover, Geometric Composition with Different Colored Squares Striped Dotted Rhombus, Decorative Square Accent Pillow Case, 16\" X 16\", Grey Purple [SEP] $14.95 [SEP] B09DYFZM1X [SEP] Sykting Christmas Pillow Covers 18x18 Inch with Raised Embroidery Snowflakes Neutral Boho Throw Pillow Covers Decorative for Winter Holiday Grey Pack of 2 [SEP] $19.99 [SEP] B07XTK3P89 [SEP] Lunarable Oriental Storage Toy Bag Chair, Eastern Bohem Detail Ottoman Tile Work Inspired Flowers, Stuffed Animal Organizer Washable Bag, Small Size, Turquoise Marigold [SEP] $39.99 [SEP] B07V5WMYXS [SEP] Sweet Jojo Designs Blush Pink and Grey Woodland Boho Dream Catcher Arrow Decorative Accent Throw Pillows for Gray Bunny Floral Collection - Set of 2 - Watercolor Rose Flower [SEP] $22.99 [SEP] B01HQTWL6S [SEP] Expression Tees Pug Life Funny Thug Life Unisex Adult Hoodie [SEP] $36.99 to $48.99\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\", \"b08wkmhtgh\", \"b09myfgdy5\", \"b09hkzs7lv\", \"b08qvdnjc7\", \"b091yv7crb\", \"b0743jkhbv\", \"b09dyfzm1x\", \"b07xtk3p89\", \"b07v5wmyxs\", \"b01hqtwl6s\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 10,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 3 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B07P24ZMXK [SEP] ShareJ Home Sweet Home Decorative Throw Pillow Covers Cotton Linen Inspirational Warm Quotes Home Decor Cushion Covers 18 x 18 inch,Set of 4 [SEP] $19.99 [SEP] B07T9LZKM7 [SEP] Avigers Luxury Decorative European Throw Pillow Cover 18 x 18 Inch Soft Floral Embroidered Cushion Case with Tassels for Couch Bedroom Car 45 x 45 cm, Beige Gold [SEP] $16.99 [SEP] B07963ZMK6 [SEP] DOVE STICK Mix Antiperspirant deodorants 40Ml /1.76OZ (Dove Stick Mix, 12X40ML/1.4OZ) [SEP] $28.99 [SEP] B09MHLS36W [SEP] ZEFS--ESD Mini Projector for Movies D29 Native1920x1080 Full HD Projector Android OS (2G+16G) 5G WiFi DLP Proyector Support 4K 3D Zoom Video Game Beamer [SEP] $967.76 [SEP] B089KGBJGW [SEP] ZINUS 10 Inch Cooling Copper ADAPTIVE Pocket Spring Hybrid Mattress / Moisture Wicking Cover / Cooling Foam / Pocket Innersprings for Motion Isolation / Mattress-in-a-Box, Full [SEP] $289.0 [SEP] B07JMS4SL4 [SEP] Xerox AltaLink B8055 A3 Mono Laser Multifunction Copier - 55ppm, Copy, Print, Scan, Email, Auto Duplex, Network, Single Pass Duplex Auto Doc Feeder, 2 Trays, High Capacity Tandem Tray [SEP] $4299.99 [SEP] B09QMGX7V3 [SEP] SHOWV Face_Masks for Adult,Unisex Face_Masks 50 PCs Breathable Comfortable Facial Mouth Cover with High Filtration Cover [SEP] $11.99 [SEP] B09MSZ4VS8 [SEP] Goldweather Women Winter Leggings Printed Warm Fleece Lined Yoga Pants Trousers Thermal High Waist Thicken Cashmere Tights (Navy, L) [SEP] $20.99 [SEP] B00ITCBD3Y [SEP] Laredo Womens Spellbound Studded Square Toe Dress Boots Mid Calf Low Heel 1-2\" - Black [SEP] $132.0 to $150.26 [SEP] B09GLVMLMS [SEP] Anniou Electric Heated Jacket Adjustable Temp USB Heated Coat Winter Hooded Jacket Men Women [SEP] $64.99 to $114.99\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\", \"b07p24zmxk\", \"b07t9lzkm7\", \"b07963zmk6\", \"b09mhls36w\", \"b089kgbjgw\", \"b07jms4sl4\", \"b09qmgx7v3\", \"b09msz4vs8\", \"b00itcbd3y\", \"b09glvmlms\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 11,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 4 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09HX5CD2D [SEP] CSU Cleveland State University Vikings Property Fleece Drawstring Shorts Heather Charcoal [SEP] $39.95 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07 [SEP] B07FKGQKZ1 [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2\"x7'4\" [SEP] $44.99 to $33.98 [SEP] B078T46X81 [SEP] Sparkle-Dent Denture Whitener and Cleaner [SEP] $27.95 [SEP] B08NB29KXH [SEP] Seki Japan Face Beauty Trimmer, Women's Facial Razor, Disposable Facial Hair Removal Groomer, with Safety Cover 3 Pieces [SEP] $8.1 [SEP] B08ZB1MN8D [SEP] Unipro Mens Jogger Pants 2 Pack Tech Fleece Sweatpants Lightweight Running Pant for Men [SEP] $22.99 to $24.99 [SEP] B07QXZL1K5 [SEP] Bamboo Cotton Swab 1000PCS Double Cotton Buds bamboo Cotton Bud Eco organic bamboo ear swab for Ear Skin Jewelry Art Pet Cleaning Craft Paper Packaging (5 PACKS OF 200 STICKS) [SEP] $13.99 [SEP] B094QQ7X9T [SEP] YyuX-qff Retro Decorative Mirror, Creativity Polygon Wall-Mounted Mirror Coffee Shop Library High Definition Full-Length Mirror Handmade Bathroom Mirrors (Size : 5050CM) [SEP] $196.03 [SEP] B09L4WSCBS [SEP] Colour Me Pink - Fragrance for Women - 3.4oz Eau de Parfum, by Milton-Lloyd (Pack of 3, 3 x 3.4oz) [SEP] $58.0 [SEP] B09GVF8WWY [SEP] BRST AC Power Cord Outlet Socket Cable Plug Lead for Panasonic SC-HT830V DVD/VCR Combo Home Theater System [SEP] $9.93\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\", \"b09hx5cd2d\", \"b09kp78g37\", \"b07fkgqkz1\", \"b078t46x81\", \"b08nb29kxh\", \"b08zb1mn8d\", \"b07qxzl1k5\", \"b094qq7x9t\", \"b09l4wscbs\", \"b09gvf8wwy\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 12,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 5 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09KM7X1G4 [SEP] Fishouflage Ladies Hoodie - Women's Fishing Sweatshirt [SEP] $69.99 [SEP] B09LHM4WQS [SEP] Lift Top Coffee Tables for Living Room Coffee Table with Storage, Lift Cable Coffee Table, Dining Table with Hidden Storage Compartment Chestnut [SEP] $82.99 [SEP] B09P1HJ32G [SEP] VDSOIUTYHFV Infrared Digital Night Vision Device, High-Definition Day and Night Dual-use, Outdoor Photos and Videos are All Black, for Adults Bird Watching, Traveling, Hiking [SEP] $840.99 [SEP] B01KI9HU1O [SEP] Grandfather Italian Mafia Puppet Men's Crewneck Sweatshirt [SEP] $23.99 to $29.99 [SEP] B09QQP3356 [SEP] HAUKLIE Men's Sports Waffle Ribbed Polo Shirts Summer Short Sleeve Cotton Muscle Quarter-Zip Henley T-Shirt Tunics Tops [SEP] $10.99 [SEP] B09N3CDKGV [SEP] Romwe Women's Ruffle Hem Beach Cover Up Chiffon Swimsuit Wrap Skirts [SEP] $19.99 [SEP] B07BHQ6ZFT [SEP] 100 Pieces -50 Peanut Butter Packets WITH 25 each Strawberry and Grape Jelly Individual Servings [SEP] $36.97 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07FD13LP1 [SEP] The Establishment Men's Organic Cotton Fleece Short with Pocket(S to XXL) [SEP] $24.99 [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\", \"b09km7x1g4\", \"b09lhm4wqs\", \"b09p1hj32g\", \"b01ki9hu1o\", \"b09qqp3356\", \"b09n3cdkgv\", \"b07bhq6zft\", \"b09p7h5yk7\", \"b07fd13lp1\", \"b07jvvdj6l\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 13,
+          "action_norm": "click[back to search]",
+          "observation": "WebShop [SEP] Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Search\n\n[Available actions]\nsearch bar: available\nclickables: [\"search\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "离开当前页面；在已存在候选或目标选项时，与 Skill 的“先检查商品/选齐选项”方向不一致。"
+        },
+        {
+          "t": 14,
+          "action_norm": "search[eco friendly throw blankets fleece throw size:39x59in color:thanksgivinggoo4573 price:<50]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09DG3YTHY [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] $31.39 [SEP] B0836D6CW4 [SEP] Sunbeam Heated Electric Fleece Throw Comforter Blanket with Controller, Auto Off Setting, Thermofine Wiring, and 3 Heat Settings, Red Plaid [SEP] $45.99 [SEP] B09KTB1VG6 [SEP] FOHOG Collection Flannel Fleece Silky Soft Throw Shaggy Blanket Lightweight Comfy and Cozy Plush Microfiber Travel Silk 50\" X 60\" for Sofa Couch Bed (127 cm X 152 cm) (Buffalo Plaid) [SEP] $11.99 [SEP] B08FGWZZ8J [SEP] Itachishop Flannel Fleece Blanket with Pompom Fringe, Fuzzy Throw Blanket Bed Blanket for Couch Home Decor, 60x50in [SEP] $28.8 [SEP] B09C1YWG8W [SEP] Soft Plush Electric Heated Blanket Throw with Foot Pocket | Navy Blue 50 x 62 | 3 Heat Settings with 2 Hour Auto Shut Off, UL Certified | Machine Washable [SEP] $69.99 [SEP] B08SKH3LTM [SEP] RACHEL Rachel Roy Jacquard Textured Oversized Throw - Silky Soft and Cozy Flannel Fleece, Blanket for Bed and Couch - Oversized Throw 60\" X 70\", Coconut Milk [SEP] $26.99 [SEP] B08K7LDM7Q [SEP] 2 Pcs Cowhide Throw Pillow Covers Decorative Pillow Cases Farm Animal Brown Cow Hide Skin Print Pillow Case 18 X 18 Inch Velvet Square Cushion Cover for Sofa Bedroom [SEP] $17.99 [SEP] B07SXRVKZ2 [SEP] Fab Habitat Seagrass Storage Basket Set - Wicker Pattern Baskets, Strong Handles - Organizer for Blankets, Towels, Pillows, Toys, Laundry, Baby, Kids, Home Décor - Harlem - XL [SEP] $69.0 [SEP] B09BNCFGLY [SEP] Wrington Storage Platform Bed, Frame Material: Solid Wood, Eco-Friendly Solid Hardwood with Non-Toxic Finish [SEP] $1514.48 [SEP] B08L2ZDWN2 [SEP] PAVILIA Decorative Sherpa Throw Pillow Covers, Set of 2, 18x18, Light Pink Blush Fluffy Pillow Cases for Couch, Bed, Sofa|Soft Accent Cushion Cover, Shaggy Living Room Decor [SEP] $13.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b09dg3ythy\", \"b0836d6cw4\", \"b09ktb1vg6\", \"b08fgwzz8j\", \"b09c1ywg8w\", \"b08skh3ltm\", \"b08k7ldm7q\", \"b07sxrvkz2\", \"b09bncfgly\", \"b08l2zdwn2\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "再次搜索；与 Skill 避免反复搜索的方向不一致。此前偏离后应先重新检查页面。"
+        },
+        {
+          "t": 15,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B08WKMHTGH [SEP] ECOAND Natural Exfoliating Bath Spa Shower Scrub - Dual Side Sisal and Cotton Glove - Deep Exfoliation Wash Mitten (1) [SEP] $5.99 [SEP] B09MYFGDY5 [SEP] Orthodontic Elastics, Safe Orthodontic Rubber Band Pet Grooming Eco Friendly for Men Women for Dental Hospital for Home for Dentist [SEP] $24.35 [SEP] B09HKZS7LV [SEP] Studio Outback Pillow Covers Pillow Cover Set of 2 Throw Pillow Covers 18x18 Throw Pillows Embroidered Pillow Covers Pillows Decorative Pillow Covers Bedroom Decor Farmhouse Decor House Décor [SEP] $24.99 [SEP] B08QVDNJC7 [SEP] Valentine‘s Day Love Blue Throw Pillow Covers 18x18 for Home Decor- Love Heart Flower - Modern Linen Cushion Cover Square Home Pillowcase Love Theme Decorative Pillow Covers for Sofa Bed Chair Car [SEP] $7.99 [SEP] B091YV7CRB [SEP] Full Protection Silicone Cover VR Headset for Quest 2 VR Premium Silicone Front Cover Controller Cover Grips Accessories Anti-Throw Sweatproof (White) [SEP] $16.99 [SEP] B0743JKHBV [SEP] Ambesonne Abstract Throw Pillow Cushion Cover, Geometric Composition with Different Colored Squares Striped Dotted Rhombus, Decorative Square Accent Pillow Case, 16\" X 16\", Grey Purple [SEP] $14.95 [SEP] B09DYFZM1X [SEP] Sykting Christmas Pillow Covers 18x18 Inch with Raised Embroidery Snowflakes Neutral Boho Throw Pillow Covers Decorative for Winter Holiday Grey Pack of 2 [SEP] $19.99 [SEP] B07XTK3P89 [SEP] Lunarable Oriental Storage Toy Bag Chair, Eastern Bohem Detail Ottoman Tile Work Inspired Flowers, Stuffed Animal Organizer Washable Bag, Small Size, Turquoise Marigold [SEP] $39.99 [SEP] B07V5WMYXS [SEP] Sweet Jojo Designs Blush Pink and Grey Woodland Boho Dream Catcher Arrow Decorative Accent Throw Pillows for Gray Bunny Floral Collection - Set of 2 - Watercolor Rose Flower [SEP] $22.99 [SEP] B01HQTWL6S [SEP] Expression Tees Pug Life Funny Thug Life Unisex Adult Hoodie [SEP] $36.99 to $48.99\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\", \"b08wkmhtgh\", \"b09myfgdy5\", \"b09hkzs7lv\", \"b08qvdnjc7\", \"b091yv7crb\", \"b0743jkhbv\", \"b09dyfzm1x\", \"b07xtk3p89\", \"b07v5wmyxs\", \"b01hqtwl6s\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        }
+      ],
+      "human": {
+        "before_t": 3,
+        "reason": "进入正确候选后退出，随后持续翻页与重新搜索。",
+        "proposed_continuation": [
+          "click[39x59in]",
+          "click[thanksgivinggoo4573]",
+          "click[buy now]"
+        ],
+        "first_action_in_observed_clickables": true,
+        "applied_to_training": false
+      }
+    },
+    {
+      "run_label": "pgs_effect_smoke",
+      "task_id": "webshop_00512",
+      "sample_id": "5acba3b0-b788-42b8-b03f-c1d5b0d73dd4_3_0",
+      "step": 2,
+      "session_id": 3,
+      "split": "train",
+      "validate": false,
+      "won": false,
+      "score": 0.0,
+      "outcome": "FAILED",
+      "initial_observation": "WebShop [SEP] Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Search\n\n[Available actions]\nsearch bar: available\nclickables: [\"search\"]",
+      "error": null,
+      "policy_version": {
+        "min_global_steps": 1,
+        "max_global_steps": 1
+      },
+      "steering": {
+        "steer_arm": 1,
+        "steer_count": 140,
+        "steer_theta": null,
+        "task_skill_eligible": 1
+      },
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 6,
+        "research_turns": 13,
+        "research_final_success": 0.0,
+        "research_doc_words": 459,
+        "research_doc_missing": 0,
+        "research_policy_version": 1,
+        "research_archive": "research/webshop_00512--ae6ae7a349/20261023_101640_v1"
+      },
+      "source_path": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/code/runs/pass5_selective_effect_s42/rollouts/step_00002/webshop_00512_b363abcf.json",
+      "source_sha256": "0583f55e2e722e4ce29f253668102312f7e2d49978cbd9348de096580ada1be4",
+      "steps": [
+        {
+          "t": 1,
+          "action_norm": "search[eco friendly throw blankets fleece thanksgivinggoo4573 39x59in price under 50]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09DG3YTHY [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] $31.39 [SEP] B0836D6CW4 [SEP] Sunbeam Heated Electric Fleece Throw Comforter Blanket with Controller, Auto Off Setting, Thermofine Wiring, and 3 Heat Settings, Red Plaid [SEP] $45.99 [SEP] B09KTB1VG6 [SEP] FOHOG Collection Flannel Fleece Silky Soft Throw Shaggy Blanket Lightweight Comfy and Cozy Plush Microfiber Travel Silk 50\" X 60\" for Sofa Couch Bed (127 cm X 152 cm) (Buffalo Plaid) [SEP] $11.99 [SEP] B08FGWZZ8J [SEP] Itachishop Flannel Fleece Blanket with Pompom Fringe, Fuzzy Throw Blanket Bed Blanket for Couch Home Decor, 60x50in [SEP] $28.8 [SEP] B09C1YWG8W [SEP] Soft Plush Electric Heated Blanket Throw with Foot Pocket | Navy Blue 50 x 62 | 3 Heat Settings with 2 Hour Auto Shut Off, UL Certified | Machine Washable [SEP] $69.99 [SEP] B09BNCFGLY [SEP] Wrington Storage Platform Bed, Frame Material: Solid Wood, Eco-Friendly Solid Hardwood with Non-Toxic Finish [SEP] $1514.48 [SEP] B08SKH3LTM [SEP] RACHEL Rachel Roy Jacquard Textured Oversized Throw - Silky Soft and Cozy Flannel Fleece, Blanket for Bed and Couch - Oversized Throw 60\" X 70\", Coconut Milk [SEP] $26.99 [SEP] B07SXRVKZ2 [SEP] Fab Habitat Seagrass Storage Basket Set - Wicker Pattern Baskets, Strong Handles - Organizer for Blankets, Towels, Pillows, Toys, Laundry, Baby, Kids, Home Décor - Harlem - XL [SEP] $69.0 [SEP] B08WKMHTGH [SEP] ECOAND Natural Exfoliating Bath Spa Shower Scrub - Dual Side Sisal and Cotton Glove - Deep Exfoliation Wash Mitten (1) [SEP] $5.99 [SEP] B09MYFGDY5 [SEP] Orthodontic Elastics, Safe Orthodontic Rubber Band Pet Grooming Eco Friendly for Men Women for Dental Hospital for Home for Dentist [SEP] $24.35\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b09dg3ythy\", \"b0836d6cw4\", \"b09ktb1vg6\", \"b08fgwzz8j\", \"b09c1ywg8w\", \"b09bncfgly\", \"b08skh3ltm\", \"b07sxrvkz2\", \"b08wkmhtgh\", \"b09myfgdy5\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "搜索有效，直接返回结果；无需额外点击 search。"
+        },
+        {
+          "t": 2,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09MHLS36W [SEP] ZEFS--ESD Mini Projector for Movies D29 Native1920x1080 Full HD Projector Android OS (2G+16G) 5G WiFi DLP Proyector Support 4K 3D Zoom Video Game Beamer [SEP] $967.76 [SEP] B08K7LDM7Q [SEP] 2 Pcs Cowhide Throw Pillow Covers Decorative Pillow Cases Farm Animal Brown Cow Hide Skin Print Pillow Case 18 X 18 Inch Velvet Square Cushion Cover for Sofa Bedroom [SEP] $17.99 [SEP] B08L2ZDWN2 [SEP] PAVILIA Decorative Sherpa Throw Pillow Covers, Set of 2, 18x18, Light Pink Blush Fluffy Pillow Cases for Couch, Bed, Sofa|Soft Accent Cushion Cover, Shaggy Living Room Decor [SEP] $13.99 [SEP] B07XTK3P89 [SEP] Lunarable Oriental Storage Toy Bag Chair, Eastern Bohem Detail Ottoman Tile Work Inspired Flowers, Stuffed Animal Organizer Washable Bag, Small Size, Turquoise Marigold [SEP] $39.99 [SEP] B01HQTWL6S [SEP] Expression Tees Pug Life Funny Thug Life Unisex Adult Hoodie [SEP] $36.99 to $48.99 [SEP] B00N6Y8ORI [SEP] Birds Eye Steamfresh Family Size Mixed Vegetables, Keto Friendly Frozen Vegetables, 19 OZ [SEP] $100.0 [SEP] B089KGBJGW [SEP] ZINUS 10 Inch Cooling Copper ADAPTIVE Pocket Spring Hybrid Mattress / Moisture Wicking Cover / Cooling Foam / Pocket Innersprings for Motion Isolation / Mattress-in-a-Box, Full [SEP] $289.0 [SEP] B078T46X81 [SEP] Sparkle-Dent Denture Whitener and Cleaner [SEP] $27.95 [SEP] B09GLVMLMS [SEP] Anniou Electric Heated Jacket Adjustable Temp USB Heated Coat Winter Hooded Jacket Men Women [SEP] $64.99 to $114.99 [SEP] B09QMGX7V3 [SEP] SHOWV Face_Masks for Adult,Unisex Face_Masks 50 PCs Breathable Comfortable Facial Mouth Cover with High Filtration Cover [SEP] $11.99\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\", \"b09mhls36w\", \"b08k7ldm7q\", \"b08l2zdwn2\", \"b07xtk3p89\", \"b01hqtwl6s\", \"b00n6y8ori\", \"b089kgbjgw\", \"b078t46x81\", \"b09glvmlms\", \"b09qmgx7v3\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 3,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 3 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B00ITCBD3Y [SEP] Laredo Womens Spellbound Studded Square Toe Dress Boots Mid Calf Low Heel 1-2\" - Black [SEP] $132.0 to $150.26 [SEP] B07QXZL1K5 [SEP] Bamboo Cotton Swab 1000PCS Double Cotton Buds bamboo Cotton Bud Eco organic bamboo ear swab for Ear Skin Jewelry Art Pet Cleaning Craft Paper Packaging (5 PACKS OF 200 STICKS) [SEP] $13.99 [SEP] B07JMS4SL4 [SEP] Xerox AltaLink B8055 A3 Mono Laser Multifunction Copier - 55ppm, Copy, Print, Scan, Email, Auto Duplex, Network, Single Pass Duplex Auto Doc Feeder, 2 Trays, High Capacity Tandem Tray [SEP] $4299.99 [SEP] B09MSZ4VS8 [SEP] Goldweather Women Winter Leggings Printed Warm Fleece Lined Yoga Pants Trousers Thermal High Waist Thicken Cashmere Tights (Navy, L) [SEP] $20.99 [SEP] B0743JKHBV [SEP] Ambesonne Abstract Throw Pillow Cushion Cover, Geometric Composition with Different Colored Squares Striped Dotted Rhombus, Decorative Square Accent Pillow Case, 16\" X 16\", Grey Purple [SEP] $14.95 [SEP] B07FKGQKZ1 [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2\"x7'4\" [SEP] $44.99 to $33.98 [SEP] B09GVF8WWY [SEP] BRST AC Power Cord Outlet Socket Cable Plug Lead for Panasonic SC-HT830V DVD/VCR Combo Home Theater System [SEP] $9.93 [SEP] B09HX5CD2D [SEP] CSU Cleveland State University Vikings Property Fleece Drawstring Shorts Heather Charcoal [SEP] $39.95 [SEP] B07P24ZMXK [SEP] ShareJ Home Sweet Home Decorative Throw Pillow Covers Cotton Linen Inspirational Warm Quotes Home Decor Cushion Covers 18 x 18 inch,Set of 4 [SEP] $19.99 [SEP] B09HKZS7LV [SEP] Studio Outback Pillow Covers Pillow Cover Set of 2 Throw Pillow Covers 18x18 Throw Pillows Embroidered Pillow Covers Pillows Decorative Pillow Covers Bedroom Decor Farmhouse Decor House Décor [SEP] $24.99\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\", \"b00itcbd3y\", \"b07qxzl1k5\", \"b07jms4sl4\", \"b09msz4vs8\", \"b0743jkhbv\", \"b07fkgqkz1\", \"b09gvf8wwy\", \"b09hx5cd2d\", \"b07p24zmxk\", \"b09hkzs7lv\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 4,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 4 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B091YV7CRB [SEP] Full Protection Silicone Cover VR Headset for Quest 2 VR Premium Silicone Front Cover Controller Cover Grips Accessories Anti-Throw Sweatproof (White) [SEP] $16.99 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07 [SEP] B08ZB1MN8D [SEP] Unipro Mens Jogger Pants 2 Pack Tech Fleece Sweatpants Lightweight Running Pant for Men [SEP] $22.99 to $24.99 [SEP] B09QXG3BM2 [SEP] Women Lingerie Sexy Sets - Cage Bra + Corset Bandage Hollow G String Thong Panties Racy Muslin Sleepwear Underwear [SEP] $10.3 [SEP] B09J4RS3V1 [SEP] Elecsung Smart Mirror TV for Bathroom IP66 Waterproof Android System with Integrated HDTV(ATSC) Tuner and Built-in Wi-Fi&Bluetooth (27 inch Mirror) [SEP] $689.0 [SEP] B094QQ7X9T [SEP] YyuX-qff Retro Decorative Mirror, Creativity Polygon Wall-Mounted Mirror Coffee Shop Library High Definition Full-Length Mirror Handmade Bathroom Mirrors (Size : 5050CM) [SEP] $196.03 [SEP] B09L4WSCBS [SEP] Colour Me Pink - Fragrance for Women - 3.4oz Eau de Parfum, by Milton-Lloyd (Pack of 3, 3 x 3.4oz) [SEP] $58.0 [SEP] B08QVDNJC7 [SEP] Valentine‘s Day Love Blue Throw Pillow Covers 18x18 for Home Decor- Love Heart Flower - Modern Linen Cushion Cover Square Home Pillowcase Love Theme Decorative Pillow Covers for Sofa Bed Chair Car [SEP] $7.99 [SEP] B09KM7X1G4 [SEP] Fishouflage Ladies Hoodie - Women's Fishing Sweatshirt [SEP] $69.99 [SEP] B08KGWLWFN [SEP] Raising Arrows Sweatshirt, Psalm 127 3-5 Sweater, Bible Quote Cool Unisex Sweatshirt, Girl Quote, Christian Mom Gift. White [SEP] $32.99\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\", \"b091yv7crb\", \"b09kp78g37\", \"b08zb1mn8d\", \"b09qxg3bm2\", \"b09j4rs3v1\", \"b094qq7x9t\", \"b09l4wscbs\", \"b08qvdnjc7\", \"b09km7x1g4\", \"b08kgwlwfn\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 5,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 5 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B07V5WMYXS [SEP] Sweet Jojo Designs Blush Pink and Grey Woodland Boho Dream Catcher Arrow Decorative Accent Throw Pillows for Gray Bunny Floral Collection - Set of 2 - Watercolor Rose Flower [SEP] $22.99 [SEP] B09DYFZM1X [SEP] Sykting Christmas Pillow Covers 18x18 Inch with Raised Embroidery Snowflakes Neutral Boho Throw Pillow Covers Decorative for Winter Holiday Grey Pack of 2 [SEP] $19.99 [SEP] B09LHM4WQS [SEP] Lift Top Coffee Tables for Living Room Coffee Table with Storage, Lift Cable Coffee Table, Dining Table with Hidden Storage Compartment Chestnut [SEP] $82.99 [SEP] B09P1HJ32G [SEP] VDSOIUTYHFV Infrared Digital Night Vision Device, High-Definition Day and Night Dual-use, Outdoor Photos and Videos are All Black, for Adults Bird Watching, Traveling, Hiking [SEP] $840.99 [SEP] B01KI9HU1O [SEP] Grandfather Italian Mafia Puppet Men's Crewneck Sweatshirt [SEP] $23.99 to $29.99 [SEP] B01MQH5VGR [SEP] QualGear High Speed Long HDMI 2.0 Cable with Ethernet (50 Feet) - 100% OFC Copper, 24 Awg, 24K Gold Plated Contacts, CL3 Rated, Triple-Shielded. Supports 4K UHD, 3D, 18 Gbps, ARC (QG-CBL-HD20-50FT) [SEP] $39.45 [SEP] B079N3VLRJ [SEP] Baja Night Stand / 2 Drawer / Solid Wood / Rustic Bedside Table for Bedroom, Living Room, Sofa Couch, Hall / Metal Drawer Pulls, Barnwood Finish [SEP] $237.0 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B001C6JXJU [SEP] Premier HiDef Grey Electric Projection Screen with Low Voltage Motor Viewing Area: 50\" H x 80\" W [SEP] $2721.34 [SEP] B07FD13LP1 [SEP] The Establishment Men's Organic Cotton Fleece Short with Pocket(S to XXL) [SEP] $24.99\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\", \"b07v5wmyxs\", \"b09dyfzm1x\", \"b09lhm4wqs\", \"b09p1hj32g\", \"b01ki9hu1o\", \"b01mqh5vgr\", \"b079n3vlrj\", \"b09p7h5yk7\", \"b001c6jxju\", \"b07fd13lp1\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 6,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 6 (Total results: 50) [SEP] < Prev [SEP] Next >\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 7,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 7 (Total results: 50) [SEP] < Prev [SEP] Next >\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 8,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 8 (Total results: 50) [SEP] < Prev [SEP] Next >\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 9,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 9 (Total results: 50) [SEP] < Prev [SEP] Next >\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 10,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 10 (Total results: 50) [SEP] < Prev [SEP] Next >\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 11,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 11 (Total results: 50) [SEP] < Prev [SEP] Next >\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 12,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 12 (Total results: 50) [SEP] < Prev [SEP] Next >\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 13,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 13 (Total results: 50) [SEP] < Prev [SEP] Next >\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 14,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 14 (Total results: 50) [SEP] < Prev [SEP] Next >\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        },
+        {
+          "t": 15,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 15 (Total results: 50) [SEP] < Prev [SEP] Next >\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"next >\"]",
+          "valid": true,
+          "acted": true,
+          "comparison": "有效翻页；重复浏览未落实“进入候选并检查选项”的指导。有效性与是否有助于任务须分开判断。"
+        }
+      ],
+      "human": {
+        "before_t": 2,
+        "reason": "首轮结果已有 b09dg3ythy，仍连续翻页到结束。",
+        "proposed_continuation": [
+          "click[b09dg3ythy]",
+          "click[39x59in]",
+          "click[thanksgivinggoo4573]",
+          "click[buy now]"
+        ],
+        "first_action_in_observed_clickables": true,
+        "applied_to_training": false
+      }
+    }
+  ],
+  "skills": {
+    "00510": {
+      "task_id": "webshop_00510",
+      "step": 2,
+      "run_label": "pgs_effect_smoke",
+      "final_guidance": "# Current Understanding & Ruled-Out Directions\n\n## Task Requirements\nFind a product matching: machine wash men's dress shirts, polyester heathers/cotton heather fabric, needle sleeve, classic fit, color heather grey, fit type youth, size small, price under $30.00. The executor scores type, attribute, option, and price match; full match requires score 1.0.\n\n## What We Learned From 6 Episodes (0 Successes)\n\n### Search Behavior\n- The search bar appears on a dedicated search page with a `\"search\"` button that must be clicked after typing.\n- On results pages, `\"next >\"` is a no-op — it returns the same \"Page 1 (Total results: 50)\" every time. This has been confirmed across ep001, ep003, ep005, ep006.\n- Different search queries yield different product mixes, but results are noisy: generic queries return t-shirts, tank tops, hoodies, and sweaters alongside shirts.\n\n### Product Discovery\n- B07HRFSNL4 (Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt) appears in search results for queries like `\"youth shirt heather grey classic fit\"` (seen in ep003, ep005, ep006). It has `\"small\"` size and `\"grey heather\"` color options available on its product page. Price ranges from $16.05 to $40.98.\n- The executor purchased B07HRFSNL4 in ep005 (clicked `\"small\"`, `\"grey heather\"`, then `\"buy now\"`) but evaluation FAILED. This product is a T-shirt, not a dress shirt, suggesting the catalog may not contain products matching all criteria exactly.\n\n### Ruled-Out Approaches\n- **Pagination**: Clicking `\"next >\"` does not work — ruled out by repeated observations of identical \"Page 1\" output.\n- **Searching endless variations**: The executor in ep003 and ep006 tried multiple search refinements (3+ searches per episode) without clicking any product, wasting all 15 actions.\n- **Selecting options on results page**: Options like size/color don't appear on results pages — they only appear on product pages.\n\n# Failure Modes & Lessons\n\n## FM1: Infinite pagination loop\n- **Symptom**: 4+ consecutive `\"click[next >]\"` actions. Observation always shows \"Page 1\".\n- **How to recognize**: Multiple steps in a row where the same \"Page 1 (Total results: 50)\" appears in the observation after clicking `\"next >\"`.\n- **Lesson**: Do not use `\"next >\"`. Return to search with a new query instead. Untested as a fixed approach since no run succeeded.\n\n## FM2: Repeated option selection loop\n- **Symptom**: 5+ consecutive clicks on the same option (e.g., `\"click[small]\"` x7). Observation text is identical each time.\n- **How to recognize**: The executor clicks a size or color option, then the next observation shows the exact same available actions — no change in what's clickable.\n- **Lesson**: Option selection produces no visual feedback. Select each option exactly once, then proceed to Buy Now. Untested fix — no run completed successfully to validate.\n\n## FM3: Invalid action spam\n- **Symptom**: Multiple invalid actions logged. The executor clicks elements not in the available list.\n- **How to recognize**: Check the `\"clickables\"` list in the observation before acting. If the executor attempts something not listed, it's invalid.\n- **Lesson**: Always reference the `\"clickables\"` list. Untested.\n\n## FM4: Product type mismatch causing score < 1.0\n- **Symptom**: Executor completes all steps including Buy Now, but evaluation still fails.\n- **How to recognize**: Product name in the observation indicates a different category (e.g., \"T-Shirt\" instead of \"dress shirt\").\n- **Lesson**: Read product names carefully before selecting. The required \"dress shirt\" may not exist with all specified attributes in the catalog. Untested alternative approach.\n\n## FM5: Premature search without product examination\n- **Symptom**: Executor cycles through 3+ searches without clicking any product, running out of actions.\n- **How to recognize**: Multiple `\"search[...]\"` actions in sequence with no `\"click[product_id]\"` actions.\n- **Lesson**: Click on at least one product from each results page to inspect full details. Attributes like material, sleeve type, and fit are only visible on the product page. Untested.",
+      "source_sha256": "644e4506b7e6481e13cdbd8ce109fa9c7d397f45663521eb3c34d54c53fa7515"
+    },
+    "00512": {
+      "task_id": "webshop_00512",
+      "step": 2,
+      "run_label": "pgs_effect_smoke",
+      "final_guidance": "# Current Understanding & Ruled-Out Directions\n\nThis task requires finding an eco-friendly fleece throw blanket with color: thanksgivinggoo4573, size: 39x59in, and price under $50.00.\n\nSearch page allows keyword searches returning paginated product listings (IDs, titles, prices). Clicking a product shows available sizes and colors as clickable options, plus a \"buy now\" button.\n\n**Ruled-out directions:**\n\n1. **Searching with full attributes** — Searched \"eco friendly throw blankets fleece throw thanksgivinggoo4573 39x59in\" repeatedly. Ineffective: search results don't change meaningfully, and products don't display color/size codes in search listings.\n\n2. **Browsing pages looking for matching products** — Clicking \"next >\" across pages is wasteful: executor cycles without inspecting individual products for their options.\n\n3. **Relying on product titles** — Titles show some size info (e.g., \"39x49inch\") but not the color codes needed.\n\n4. **Direct product specification in guidance** — Explicit guidance to click b09dg3ythy was ignored; executor defaults to browsing.\n\n**Key finding from raw logs:** Product b09dg3ythy (Gogobebe fleece throw, $31.39) has all required attributes. On its product page, colors include \"thanksgivinggoo4573\" and sizes include \"39x59in\" as selectable clickables. The correct approach: search \"throw blanket\", click b09dg3ythy, select size 39x59in, select color thanksgivinggoo4573, click buy now. Untested.\n\n# Failure Modes & Lessons\n\n**Pattern 1: Page-browsing loop instead of product inspection**\n- Recognized by: executor repeatedly clicks \"next >\"/\"< prev\"/\"back to search\" without clicking any product.\n- Cause: Executor cannot see color codes in search results, assumes no match exists, and keeps searching.\n- Fix: When on search results page, click the first fleece throw product under $50. On the product page, sizes and colors become visible as selectable options. Untested.\n\n**Pattern 2: Not selecting color/size before buying**\n- Recognized by: executor is on a product page (clickables include \"size\", \"color\", \"buy now\") but either clicks \"buy now\" without selecting options, or goes back immediately.\n- Cause: Executor may not realize color and size are separate clickable options to be chosen.\n- Fix: On product page, click \"size\" → select \"39x59in\". Click \"color\" → select \"thanksgivinggoo4573\". Then click \"buy now\". Untested.\n\n**Pattern 3: Wasting actions on repeated searches**\n- Recognized by: executor returns to search bar and performs search multiple times across episodes.\n- Cause: Keeps trying to find matching product from search results alone.\n- Fix: After one initial search, stop searching and start inspecting products. Each search costs 1 action. Untested.\n\n**Pattern 4: Invalid action attempts**\n- Recognized by: 4 invalid actions in some episodes (e.g., click[next > → with extra characters).\n- Cause: Executor emits malformed action strings in some turns.\n- Fix: Ensure guidance uses clean, simple action syntax. Untested.\n\n**Core strategy (untested but identified):** Search \"throw blanket\" → click b09dg3ythy → click \"size\" → click \"39x59in\" → click \"color\" → click \"thanksgivinggoo4573\" → click \"buy now\". Total: ~7 actions.",
+      "source_sha256": "e91a8691acdfcaf163c7fc6ab02c33e37fa36e7ad8eb041bfcc81558f2f357bf"
+    }
+  },
+  "historical_success_00510": {
+    "task_id": "webshop_00510",
+    "split": "train",
+    "sample_idx": 11,
+    "score": 1.0,
+    "arm": "bare",
+    "outcome": "SUCCESS",
+    "won": true,
+    "env_steps": 6,
+    "invalid_format": 0,
+    "truncated": false,
+    "source_path": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/base_probe/episodes.jsonl",
+    "source_row_sha256": "ecddeceee34d1a3749e076a09608c6883f7ae60773f426caa2088218a1cc58de",
+    "initial_observation": "WebShop [SEP] Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Search\n\n[Available actions]\nsearch bar: available\nclickables: [\"search\"]",
+    "steps": [
+      {
+        "t": 1,
+        "action_norm": "search[machine wash men's dress shirts polyester heathers heathers cotton cotton heather needle sleeve classic fit heather grey youth small price <30]",
+        "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B07JVVDJ6L [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] $19.99 [SEP] B09P39QN2W [SEP] I Tackled 100 Day Of School Football Boy 100th Day School T-Shirt [SEP] $16.99 [SEP] B08HF132PN [SEP] Flamingo Pink waterbird costume Gift Premium T-Shirt [SEP] $19.99 [SEP] B09RVF4JP1 [SEP] Once Upon A Time Queen Born In 1982 T Shirts It Was Me Tank Top [SEP] $19.99 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B09P7H5YK7 [SEP] It's In My DNA Palestinian Shirt Arabic Gifts Palestine Flag Tank Top [SEP] $19.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B09Q8RD8YN [SEP] Bungo Stray Anime Dogs Anime Character, Long Sleeve, Sweatshirt, Hoodie, T shirt [SEP] $19.99 [SEP] B08226NDZW [SEP] Disney Winnie The Pooh Tigger Upside Down Portrait Tank Top [SEP] $25.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b07jvvdj6l\", \"b09p39qn2w\", \"b08hf132pn\", \"b09rvf4jp1\", \"b07dkgjr74\", \"b07t3vmgdg\", \"b09p7h5yk7\", \"b07hrfsnl4\", \"b09q8rd8yn\", \"b08226ndzw\"]",
+        "valid": true,
+        "acted": true
+      },
+      {
+        "t": 2,
+        "action_norm": "click[b07jvvdj6l]",
+        "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+        "valid": true,
+        "acted": true
+      },
+      {
+        "t": 3,
+        "action_norm": "click[youth]",
+        "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+        "valid": true,
+        "acted": true
+      },
+      {
+        "t": 4,
+        "action_norm": "click[heather grey]",
+        "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+        "valid": true,
+        "acted": true
+      },
+      {
+        "t": 5,
+        "action_norm": "click[small]",
+        "observation": "Instruction: [SEP] Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: small, and price lower than 30.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] fit type [SEP] men [SEP] women [SEP] youth [SEP] color [SEP] royal blue [SEP] baby blue [SEP] heather grey [SEP] heather blue [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] 3x-large [SEP] 2t [SEP] 3t [SEP] 4t [SEP] x-small [SEP] Canadian Tuxedo T Shirt - Novelty Denim Tux T-Shirt [SEP] Price: $19.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"men\", \"women\", \"youth\", \"royal blue\", \"baby blue\", \"heather grey\", \"heather blue\", \"small\", \"medium\", \"large\", \"x-large\", \"xx-large\", \"3x-large\", \"2t\", \"3t\", \"4t\", \"x-small\"]",
+        "valid": true,
+        "acted": true
+      },
+      {
+        "t": 6,
+        "action_norm": "click[buy now]",
+        "observation": "Purchase completed. The episode has ended.",
+        "valid": true,
+        "acted": true
+      }
+    ]
+  },
+  "historical_success_00512": [
+    {
+      "run_label": "pgs_mixed_smoke",
+      "task_id": "webshop_00512",
+      "sample_id": "5329982b-eee1-44a2-a98a-616d8e1351a3_0_0",
+      "step": 1,
+      "session_id": 0,
+      "split": "train",
+      "validate": false,
+      "won": true,
+      "score": 1.0,
+      "outcome": "SUCCESS",
+      "initial_observation": "WebShop [SEP] Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Search\n\n[Available actions]\nsearch bar: available\nclickables: [\"search\"]",
+      "error": null,
+      "policy_version": {
+        "min_global_steps": 0,
+        "max_global_steps": 0
+      },
+      "steering": {
+        "steer_arm": 1,
+        "steer_count": 0,
+        "steer_theta": null,
+        "task_skill_eligible": 1
+      },
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 6,
+        "research_turns": 10,
+        "research_final_success": 0.0,
+        "research_doc_words": 456,
+        "research_doc_missing": 0,
+        "research_policy_version": 0,
+        "research_archive": "research/webshop_00512--ae6ae7a349/20261023_094027_v0"
+      },
+      "source_path": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/code/runs/pass5_selective_smoke112k_s42/rollouts/step_00001/webshop_00512_033c5b0f.json",
+      "source_sha256": "f1b0421213fafa87c4a47c6b1b30003bbbe89cb0050327edaa65dde8a2facc8f",
+      "steps": [
+        {
+          "t": 1,
+          "action_norm": "search[eco friendly throw blankets fleece thanksgivinggoo4573 39x59in price under 50]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09DG3YTHY [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] $31.39 [SEP] B0836D6CW4 [SEP] Sunbeam Heated Electric Fleece Throw Comforter Blanket with Controller, Auto Off Setting, Thermofine Wiring, and 3 Heat Settings, Red Plaid [SEP] $45.99 [SEP] B09KTB1VG6 [SEP] FOHOG Collection Flannel Fleece Silky Soft Throw Shaggy Blanket Lightweight Comfy and Cozy Plush Microfiber Travel Silk 50\" X 60\" for Sofa Couch Bed (127 cm X 152 cm) (Buffalo Plaid) [SEP] $11.99 [SEP] B08FGWZZ8J [SEP] Itachishop Flannel Fleece Blanket with Pompom Fringe, Fuzzy Throw Blanket Bed Blanket for Couch Home Decor, 60x50in [SEP] $28.8 [SEP] B09C1YWG8W [SEP] Soft Plush Electric Heated Blanket Throw with Foot Pocket | Navy Blue 50 x 62 | 3 Heat Settings with 2 Hour Auto Shut Off, UL Certified | Machine Washable [SEP] $69.99 [SEP] B09BNCFGLY [SEP] Wrington Storage Platform Bed, Frame Material: Solid Wood, Eco-Friendly Solid Hardwood with Non-Toxic Finish [SEP] $1514.48 [SEP] B08SKH3LTM [SEP] RACHEL Rachel Roy Jacquard Textured Oversized Throw - Silky Soft and Cozy Flannel Fleece, Blanket for Bed and Couch - Oversized Throw 60\" X 70\", Coconut Milk [SEP] $26.99 [SEP] B07SXRVKZ2 [SEP] Fab Habitat Seagrass Storage Basket Set - Wicker Pattern Baskets, Strong Handles - Organizer for Blankets, Towels, Pillows, Toys, Laundry, Baby, Kids, Home Décor - Harlem - XL [SEP] $69.0 [SEP] B08WKMHTGH [SEP] ECOAND Natural Exfoliating Bath Spa Shower Scrub - Dual Side Sisal and Cotton Glove - Deep Exfoliation Wash Mitten (1) [SEP] $5.99 [SEP] B09MYFGDY5 [SEP] Orthodontic Elastics, Safe Orthodontic Rubber Band Pet Grooming Eco Friendly for Men Women for Dental Hospital for Home for Dentist [SEP] $24.35\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b09dg3ythy\", \"b0836d6cw4\", \"b09ktb1vg6\", \"b08fgwzz8j\", \"b09c1ywg8w\", \"b09bncfgly\", \"b08skh3ltm\", \"b07sxrvkz2\", \"b08wkmhtgh\", \"b09myfgdy5\"]",
+          "valid": true,
+          "acted": true
+        },
+        {
+          "t": 2,
+          "action_norm": "click[b09dg3ythy]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 39 x 49 in [SEP] 39x49in [SEP] 39x59in [SEP] 49x59in [SEP] 49x79in [SEP] 59x79in [SEP] color [SEP] love32goo9557 [SEP] cartoon2goo8633 [SEP] christmas 2374lgoo8402 [SEP] christmasgoo1747 [SEP] christmasgoo2799 [SEP] clovergoo4857 [SEP] fish scale1goo8111 [SEP] graffiti1goo9830 [SEP] halloween-018goo7397 [SEP] halloweengoo6082 [SEP] halloweengoo7556 [SEP] paris eiffel tower1goo8867 [SEP] peacock2goo1111 [SEP] shamrockgoo9573 [SEP] snowflakegoo5851 [SEP] snowflakesgoo3985 [SEP] starfish beach8goo3481 [SEP] thanksgiving1goo6115 [SEP] thanksgivinggoo1780 [SEP] thanksgivinggoo4573 [SEP] thanksgivinggoo6016 [SEP] thanksgivinggoo9948 [SEP] tortoisegoo9511 [SEP] wood grain4goo3989 [SEP] wood grain5goo6823 [SEP] you are my sunshinegoo1809 [SEP] christmas-003goo3552 [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] Price: $31.39 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"39 x 49 in\", \"39x49in\", \"39x59in\", \"49x59in\", \"49x79in\", \"59x79in\", \"love32goo9557\", \"cartoon2goo8633\", \"christmas 2374lgoo8402\", \"christmasgoo1747\", \"christmasgoo2799\", \"clovergoo4857\", \"fish scale1goo8111\", \"graffiti1goo9830\", \"halloween-018goo7397\", \"halloweengoo6082\", \"halloweengoo7556\", \"paris eiffel tower1goo8867\", \"peacock2goo1111\", \"shamrockgoo9573\", \"snowflakegoo5851\", \"snowflakesgoo3985\", \"starfish beach8goo3481\", \"thanksgiving1goo6115\", \"thanksgivinggoo1780\", \"thanksgivinggoo4573\", \"thanksgivinggoo6016\", \"thanksgivinggoo9948\", \"tortoisegoo9511\", \"wood grain4goo3989\", \"wood grain5goo6823\", \"you are my sunshinegoo1809\", \"christmas-003goo3552\"]",
+          "valid": true,
+          "acted": true
+        },
+        {
+          "t": 3,
+          "action_norm": "click[39x59in]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 39 x 49 in [SEP] 39x49in [SEP] 39x59in [SEP] 49x59in [SEP] 49x79in [SEP] 59x79in [SEP] color [SEP] love32goo9557 [SEP] cartoon2goo8633 [SEP] christmas 2374lgoo8402 [SEP] christmasgoo1747 [SEP] christmasgoo2799 [SEP] clovergoo4857 [SEP] fish scale1goo8111 [SEP] graffiti1goo9830 [SEP] halloween-018goo7397 [SEP] halloweengoo6082 [SEP] halloweengoo7556 [SEP] paris eiffel tower1goo8867 [SEP] peacock2goo1111 [SEP] shamrockgoo9573 [SEP] snowflakegoo5851 [SEP] snowflakesgoo3985 [SEP] starfish beach8goo3481 [SEP] thanksgiving1goo6115 [SEP] thanksgivinggoo1780 [SEP] thanksgivinggoo4573 [SEP] thanksgivinggoo6016 [SEP] thanksgivinggoo9948 [SEP] tortoisegoo9511 [SEP] wood grain4goo3989 [SEP] wood grain5goo6823 [SEP] you are my sunshinegoo1809 [SEP] christmas-003goo3552 [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] Price: $31.39 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"39 x 49 in\", \"39x49in\", \"39x59in\", \"49x59in\", \"49x79in\", \"59x79in\", \"love32goo9557\", \"cartoon2goo8633\", \"christmas 2374lgoo8402\", \"christmasgoo1747\", \"christmasgoo2799\", \"clovergoo4857\", \"fish scale1goo8111\", \"graffiti1goo9830\", \"halloween-018goo7397\", \"halloweengoo6082\", \"halloweengoo7556\", \"paris eiffel tower1goo8867\", \"peacock2goo1111\", \"shamrockgoo9573\", \"snowflakegoo5851\", \"snowflakesgoo3985\", \"starfish beach8goo3481\", \"thanksgiving1goo6115\", \"thanksgivinggoo1780\", \"thanksgivinggoo4573\", \"thanksgivinggoo6016\", \"thanksgivinggoo9948\", \"tortoisegoo9511\", \"wood grain4goo3989\", \"wood grain5goo6823\", \"you are my sunshinegoo1809\", \"christmas-003goo3552\"]",
+          "valid": true,
+          "acted": true
+        },
+        {
+          "t": 4,
+          "action_norm": "click[39x59in]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 39 x 49 in [SEP] 39x49in [SEP] 39x59in [SEP] 49x59in [SEP] 49x79in [SEP] 59x79in [SEP] color [SEP] love32goo9557 [SEP] cartoon2goo8633 [SEP] christmas 2374lgoo8402 [SEP] christmasgoo1747 [SEP] christmasgoo2799 [SEP] clovergoo4857 [SEP] fish scale1goo8111 [SEP] graffiti1goo9830 [SEP] halloween-018goo7397 [SEP] halloweengoo6082 [SEP] halloweengoo7556 [SEP] paris eiffel tower1goo8867 [SEP] peacock2goo1111 [SEP] shamrockgoo9573 [SEP] snowflakegoo5851 [SEP] snowflakesgoo3985 [SEP] starfish beach8goo3481 [SEP] thanksgiving1goo6115 [SEP] thanksgivinggoo1780 [SEP] thanksgivinggoo4573 [SEP] thanksgivinggoo6016 [SEP] thanksgivinggoo9948 [SEP] tortoisegoo9511 [SEP] wood grain4goo3989 [SEP] wood grain5goo6823 [SEP] you are my sunshinegoo1809 [SEP] christmas-003goo3552 [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] Price: $31.39 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"39 x 49 in\", \"39x49in\", \"39x59in\", \"49x59in\", \"49x79in\", \"59x79in\", \"love32goo9557\", \"cartoon2goo8633\", \"christmas 2374lgoo8402\", \"christmasgoo1747\", \"christmasgoo2799\", \"clovergoo4857\", \"fish scale1goo8111\", \"graffiti1goo9830\", \"halloween-018goo7397\", \"halloweengoo6082\", \"halloweengoo7556\", \"paris eiffel tower1goo8867\", \"peacock2goo1111\", \"shamrockgoo9573\", \"snowflakegoo5851\", \"snowflakesgoo3985\", \"starfish beach8goo3481\", \"thanksgiving1goo6115\", \"thanksgivinggoo1780\", \"thanksgivinggoo4573\", \"thanksgivinggoo6016\", \"thanksgivinggoo9948\", \"tortoisegoo9511\", \"wood grain4goo3989\", \"wood grain5goo6823\", \"you are my sunshinegoo1809\", \"christmas-003goo3552\"]",
+          "valid": true,
+          "acted": true
+        },
+        {
+          "t": 5,
+          "action_norm": "click[thanksgivinggoo4573]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 39 x 49 in [SEP] 39x49in [SEP] 39x59in [SEP] 49x59in [SEP] 49x79in [SEP] 59x79in [SEP] color [SEP] love32goo9557 [SEP] cartoon2goo8633 [SEP] christmas 2374lgoo8402 [SEP] christmasgoo1747 [SEP] christmasgoo2799 [SEP] clovergoo4857 [SEP] fish scale1goo8111 [SEP] graffiti1goo9830 [SEP] halloween-018goo7397 [SEP] halloweengoo6082 [SEP] halloweengoo7556 [SEP] paris eiffel tower1goo8867 [SEP] peacock2goo1111 [SEP] shamrockgoo9573 [SEP] snowflakegoo5851 [SEP] snowflakesgoo3985 [SEP] starfish beach8goo3481 [SEP] thanksgiving1goo6115 [SEP] thanksgivinggoo1780 [SEP] thanksgivinggoo4573 [SEP] thanksgivinggoo6016 [SEP] thanksgivinggoo9948 [SEP] tortoisegoo9511 [SEP] wood grain4goo3989 [SEP] wood grain5goo6823 [SEP] you are my sunshinegoo1809 [SEP] christmas-003goo3552 [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] Price: $31.39 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"39 x 49 in\", \"39x49in\", \"39x59in\", \"49x59in\", \"49x79in\", \"59x79in\", \"love32goo9557\", \"cartoon2goo8633\", \"christmas 2374lgoo8402\", \"christmasgoo1747\", \"christmasgoo2799\", \"clovergoo4857\", \"fish scale1goo8111\", \"graffiti1goo9830\", \"halloween-018goo7397\", \"halloweengoo6082\", \"halloweengoo7556\", \"paris eiffel tower1goo8867\", \"peacock2goo1111\", \"shamrockgoo9573\", \"snowflakegoo5851\", \"snowflakesgoo3985\", \"starfish beach8goo3481\", \"thanksgiving1goo6115\", \"thanksgivinggoo1780\", \"thanksgivinggoo4573\", \"thanksgivinggoo6016\", \"thanksgivinggoo9948\", \"tortoisegoo9511\", \"wood grain4goo3989\", \"wood grain5goo6823\", \"you are my sunshinegoo1809\", \"christmas-003goo3552\"]",
+          "valid": true,
+          "acted": true
+        },
+        {
+          "t": 6,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 39 x 49 in [SEP] 39x49in [SEP] 39x59in [SEP] 49x59in [SEP] 49x79in [SEP] 59x79in [SEP] color [SEP] love32goo9557 [SEP] cartoon2goo8633 [SEP] christmas 2374lgoo8402 [SEP] christmasgoo1747 [SEP] christmasgoo2799 [SEP] clovergoo4857 [SEP] fish scale1goo8111 [SEP] graffiti1goo9830 [SEP] halloween-018goo7397 [SEP] halloweengoo6082 [SEP] halloweengoo7556 [SEP] paris eiffel tower1goo8867 [SEP] peacock2goo1111 [SEP] shamrockgoo9573 [SEP] snowflakegoo5851 [SEP] snowflakesgoo3985 [SEP] starfish beach8goo3481 [SEP] thanksgiving1goo6115 [SEP] thanksgivinggoo1780 [SEP] thanksgivinggoo4573 [SEP] thanksgivinggoo6016 [SEP] thanksgivinggoo9948 [SEP] tortoisegoo9511 [SEP] wood grain4goo3989 [SEP] wood grain5goo6823 [SEP] you are my sunshinegoo1809 [SEP] christmas-003goo3552 [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] Price: $31.39 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"39 x 49 in\", \"39x49in\", \"39x59in\", \"49x59in\", \"49x79in\", \"59x79in\", \"love32goo9557\", \"cartoon2goo8633\", \"christmas 2374lgoo8402\", \"christmasgoo1747\", \"christmasgoo2799\", \"clovergoo4857\", \"fish scale1goo8111\", \"graffiti1goo9830\", \"halloween-018goo7397\", \"halloweengoo6082\", \"halloweengoo7556\", \"paris eiffel tower1goo8867\", \"peacock2goo1111\", \"shamrockgoo9573\", \"snowflakegoo5851\", \"snowflakesgoo3985\", \"starfish beach8goo3481\", \"thanksgiving1goo6115\", \"thanksgivinggoo1780\", \"thanksgivinggoo4573\", \"thanksgivinggoo6016\", \"thanksgivinggoo9948\", \"tortoisegoo9511\", \"wood grain4goo3989\", \"wood grain5goo6823\", \"you are my sunshinegoo1809\", \"christmas-003goo3552\"]",
+          "valid": false,
+          "acted": true
+        },
+        {
+          "t": 7,
+          "action_norm": "click[thanksgivinggoo4573]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 39 x 49 in [SEP] 39x49in [SEP] 39x59in [SEP] 49x59in [SEP] 49x79in [SEP] 59x79in [SEP] color [SEP] love32goo9557 [SEP] cartoon2goo8633 [SEP] christmas 2374lgoo8402 [SEP] christmasgoo1747 [SEP] christmasgoo2799 [SEP] clovergoo4857 [SEP] fish scale1goo8111 [SEP] graffiti1goo9830 [SEP] halloween-018goo7397 [SEP] halloweengoo6082 [SEP] halloweengoo7556 [SEP] paris eiffel tower1goo8867 [SEP] peacock2goo1111 [SEP] shamrockgoo9573 [SEP] snowflakegoo5851 [SEP] snowflakesgoo3985 [SEP] starfish beach8goo3481 [SEP] thanksgiving1goo6115 [SEP] thanksgivinggoo1780 [SEP] thanksgivinggoo4573 [SEP] thanksgivinggoo6016 [SEP] thanksgivinggoo9948 [SEP] tortoisegoo9511 [SEP] wood grain4goo3989 [SEP] wood grain5goo6823 [SEP] you are my sunshinegoo1809 [SEP] christmas-003goo3552 [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] Price: $31.39 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"39 x 49 in\", \"39x49in\", \"39x59in\", \"49x59in\", \"49x79in\", \"59x79in\", \"love32goo9557\", \"cartoon2goo8633\", \"christmas 2374lgoo8402\", \"christmasgoo1747\", \"christmasgoo2799\", \"clovergoo4857\", \"fish scale1goo8111\", \"graffiti1goo9830\", \"halloween-018goo7397\", \"halloweengoo6082\", \"halloweengoo7556\", \"paris eiffel tower1goo8867\", \"peacock2goo1111\", \"shamrockgoo9573\", \"snowflakegoo5851\", \"snowflakesgoo3985\", \"starfish beach8goo3481\", \"thanksgiving1goo6115\", \"thanksgivinggoo1780\", \"thanksgivinggoo4573\", \"thanksgivinggoo6016\", \"thanksgivinggoo9948\", \"tortoisegoo9511\", \"wood grain4goo3989\", \"wood grain5goo6823\", \"you are my sunshinegoo1809\", \"christmas-003goo3552\"]",
+          "valid": true,
+          "acted": true
+        },
+        {
+          "t": 8,
+          "action_norm": "click[next >]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 39 x 49 in [SEP] 39x49in [SEP] 39x59in [SEP] 49x59in [SEP] 49x79in [SEP] 59x79in [SEP] color [SEP] love32goo9557 [SEP] cartoon2goo8633 [SEP] christmas 2374lgoo8402 [SEP] christmasgoo1747 [SEP] christmasgoo2799 [SEP] clovergoo4857 [SEP] fish scale1goo8111 [SEP] graffiti1goo9830 [SEP] halloween-018goo7397 [SEP] halloweengoo6082 [SEP] halloweengoo7556 [SEP] paris eiffel tower1goo8867 [SEP] peacock2goo1111 [SEP] shamrockgoo9573 [SEP] snowflakegoo5851 [SEP] snowflakesgoo3985 [SEP] starfish beach8goo3481 [SEP] thanksgiving1goo6115 [SEP] thanksgivinggoo1780 [SEP] thanksgivinggoo4573 [SEP] thanksgivinggoo6016 [SEP] thanksgivinggoo9948 [SEP] tortoisegoo9511 [SEP] wood grain4goo3989 [SEP] wood grain5goo6823 [SEP] you are my sunshinegoo1809 [SEP] christmas-003goo3552 [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] Price: $31.39 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"39 x 49 in\", \"39x49in\", \"39x59in\", \"49x59in\", \"49x79in\", \"59x79in\", \"love32goo9557\", \"cartoon2goo8633\", \"christmas 2374lgoo8402\", \"christmasgoo1747\", \"christmasgoo2799\", \"clovergoo4857\", \"fish scale1goo8111\", \"graffiti1goo9830\", \"halloween-018goo7397\", \"halloweengoo6082\", \"halloweengoo7556\", \"paris eiffel tower1goo8867\", \"peacock2goo1111\", \"shamrockgoo9573\", \"snowflakegoo5851\", \"snowflakesgoo3985\", \"starfish beach8goo3481\", \"thanksgiving1goo6115\", \"thanksgivinggoo1780\", \"thanksgivinggoo4573\", \"thanksgivinggoo6016\", \"thanksgivinggoo9948\", \"tortoisegoo9511\", \"wood grain4goo3989\", \"wood grain5goo6823\", \"you are my sunshinegoo1809\", \"christmas-003goo3552\"]",
+          "valid": false,
+          "acted": true
+        },
+        {
+          "t": 9,
+          "action_norm": "click[buy now]",
+          "observation": "Purchase completed. The episode has ended.",
+          "valid": true,
+          "acted": true
+        }
+      ]
+    },
+    {
+      "run_label": "pgs_mixed_smoke",
+      "task_id": "webshop_00512",
+      "sample_id": "5329982b-eee1-44a2-a98a-616d8e1351a3_6_0",
+      "step": 1,
+      "session_id": 6,
+      "split": "train",
+      "validate": false,
+      "won": true,
+      "score": 1.0,
+      "outcome": "SUCCESS",
+      "initial_observation": "WebShop [SEP] Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Search\n\n[Available actions]\nsearch bar: available\nclickables: [\"search\"]",
+      "error": null,
+      "policy_version": {
+        "min_global_steps": 0,
+        "max_global_steps": 0
+      },
+      "steering": {
+        "steer_arm": 0,
+        "steer_count": 0,
+        "steer_theta": null,
+        "task_skill_eligible": 1
+      },
+      "research": {
+        "research_error": 0,
+        "research_experiments": 3,
+        "research_episodes": 6,
+        "research_turns": 10,
+        "research_final_success": 0.0,
+        "research_doc_words": 456,
+        "research_doc_missing": 0,
+        "research_policy_version": 0,
+        "research_archive": "research/webshop_00512--ae6ae7a349/20261023_094027_v0"
+      },
+      "source_path": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/code/runs/pass5_selective_smoke112k_s42/rollouts/step_00001/webshop_00512_8611983b.json",
+      "source_sha256": "10695cf51d0d0b567605697481b177ea3d5bdf413851c6497c8c29ea8256df73",
+      "steps": [
+        {
+          "t": 1,
+          "action_norm": "search[eco friendly throw blankets fleece 39x59in thanksgivinggoo4573]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09DG3YTHY [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] $31.39 [SEP] B0836D6CW4 [SEP] Sunbeam Heated Electric Fleece Throw Comforter Blanket with Controller, Auto Off Setting, Thermofine Wiring, and 3 Heat Settings, Red Plaid [SEP] $45.99 [SEP] B08FGWZZ8J [SEP] Itachishop Flannel Fleece Blanket with Pompom Fringe, Fuzzy Throw Blanket Bed Blanket for Couch Home Decor, 60x50in [SEP] $28.8 [SEP] B09KTB1VG6 [SEP] FOHOG Collection Flannel Fleece Silky Soft Throw Shaggy Blanket Lightweight Comfy and Cozy Plush Microfiber Travel Silk 50\" X 60\" for Sofa Couch Bed (127 cm X 152 cm) (Buffalo Plaid) [SEP] $11.99 [SEP] B08SKH3LTM [SEP] RACHEL Rachel Roy Jacquard Textured Oversized Throw - Silky Soft and Cozy Flannel Fleece, Blanket for Bed and Couch - Oversized Throw 60\" X 70\", Coconut Milk [SEP] $26.99 [SEP] B07SXRVKZ2 [SEP] Fab Habitat Seagrass Storage Basket Set - Wicker Pattern Baskets, Strong Handles - Organizer for Blankets, Towels, Pillows, Toys, Laundry, Baby, Kids, Home Décor - Harlem - XL [SEP] $69.0 [SEP] B09C1YWG8W [SEP] Soft Plush Electric Heated Blanket Throw with Foot Pocket | Navy Blue 50 x 62 | 3 Heat Settings with 2 Hour Auto Shut Off, UL Certified | Machine Washable [SEP] $69.99 [SEP] B08WKMHTGH [SEP] ECOAND Natural Exfoliating Bath Spa Shower Scrub - Dual Side Sisal and Cotton Glove - Deep Exfoliation Wash Mitten (1) [SEP] $5.99 [SEP] B09MYFGDY5 [SEP] Orthodontic Elastics, Safe Orthodontic Rubber Band Pet Grooming Eco Friendly for Men Women for Dental Hospital for Home for Dentist [SEP] $24.35 [SEP] B09BNCFGLY [SEP] Wrington Storage Platform Bed, Frame Material: Solid Wood, Eco-Friendly Solid Hardwood with Non-Toxic Finish [SEP] $1514.48\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b09dg3ythy\", \"b0836d6cw4\", \"b08fgwzz8j\", \"b09ktb1vg6\", \"b08skh3ltm\", \"b07sxrvkz2\", \"b09c1ywg8w\", \"b08wkmhtgh\", \"b09myfgdy5\", \"b09bncfgly\"]",
+          "valid": true,
+          "acted": true
+        },
+        {
+          "t": 2,
+          "action_norm": "click[b09dg3ythy]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 39 x 49 in [SEP] 39x49in [SEP] 39x59in [SEP] 49x59in [SEP] 49x79in [SEP] 59x79in [SEP] color [SEP] love32goo9557 [SEP] cartoon2goo8633 [SEP] christmas 2374lgoo8402 [SEP] christmasgoo1747 [SEP] christmasgoo2799 [SEP] clovergoo4857 [SEP] fish scale1goo8111 [SEP] graffiti1goo9830 [SEP] halloween-018goo7397 [SEP] halloweengoo6082 [SEP] halloweengoo7556 [SEP] paris eiffel tower1goo8867 [SEP] peacock2goo1111 [SEP] shamrockgoo9573 [SEP] snowflakegoo5851 [SEP] snowflakesgoo3985 [SEP] starfish beach8goo3481 [SEP] thanksgiving1goo6115 [SEP] thanksgivinggoo1780 [SEP] thanksgivinggoo4573 [SEP] thanksgivinggoo6016 [SEP] thanksgivinggoo9948 [SEP] tortoisegoo9511 [SEP] wood grain4goo3989 [SEP] wood grain5goo6823 [SEP] you are my sunshinegoo1809 [SEP] christmas-003goo3552 [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] Price: $31.39 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"39 x 49 in\", \"39x49in\", \"39x59in\", \"49x59in\", \"49x79in\", \"59x79in\", \"love32goo9557\", \"cartoon2goo8633\", \"christmas 2374lgoo8402\", \"christmasgoo1747\", \"christmasgoo2799\", \"clovergoo4857\", \"fish scale1goo8111\", \"graffiti1goo9830\", \"halloween-018goo7397\", \"halloweengoo6082\", \"halloweengoo7556\", \"paris eiffel tower1goo8867\", \"peacock2goo1111\", \"shamrockgoo9573\", \"snowflakegoo5851\", \"snowflakesgoo3985\", \"starfish beach8goo3481\", \"thanksgiving1goo6115\", \"thanksgivinggoo1780\", \"thanksgivinggoo4573\", \"thanksgivinggoo6016\", \"thanksgivinggoo9948\", \"tortoisegoo9511\", \"wood grain4goo3989\", \"wood grain5goo6823\", \"you are my sunshinegoo1809\", \"christmas-003goo3552\"]",
+          "valid": true,
+          "acted": true
+        },
+        {
+          "t": 3,
+          "action_norm": "click[back to search]",
+          "observation": "WebShop [SEP] Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Search\n\n[Available actions]\nsearch bar: available\nclickables: [\"search\"]",
+          "valid": true,
+          "acted": true
+        },
+        {
+          "t": 4,
+          "action_norm": "search[eco friendly throw blanket thanksgivinggoo4573 size 39x59in price <50]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09DG3YTHY [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] $31.39 [SEP] B0836D6CW4 [SEP] Sunbeam Heated Electric Fleece Throw Comforter Blanket with Controller, Auto Off Setting, Thermofine Wiring, and 3 Heat Settings, Red Plaid [SEP] $45.99 [SEP] B09C1YWG8W [SEP] Soft Plush Electric Heated Blanket Throw with Foot Pocket | Navy Blue 50 x 62 | 3 Heat Settings with 2 Hour Auto Shut Off, UL Certified | Machine Washable [SEP] $69.99 [SEP] B07SXRVKZ2 [SEP] Fab Habitat Seagrass Storage Basket Set - Wicker Pattern Baskets, Strong Handles - Organizer for Blankets, Towels, Pillows, Toys, Laundry, Baby, Kids, Home Décor - Harlem - XL [SEP] $69.0 [SEP] B09KTB1VG6 [SEP] FOHOG Collection Flannel Fleece Silky Soft Throw Shaggy Blanket Lightweight Comfy and Cozy Plush Microfiber Travel Silk 50\" X 60\" for Sofa Couch Bed (127 cm X 152 cm) (Buffalo Plaid) [SEP] $11.99 [SEP] B09BNCFGLY [SEP] Wrington Storage Platform Bed, Frame Material: Solid Wood, Eco-Friendly Solid Hardwood with Non-Toxic Finish [SEP] $1514.48 [SEP] B08WKMHTGH [SEP] ECOAND Natural Exfoliating Bath Spa Shower Scrub - Dual Side Sisal and Cotton Glove - Deep Exfoliation Wash Mitten (1) [SEP] $5.99 [SEP] B08FGWZZ8J [SEP] Itachishop Flannel Fleece Blanket with Pompom Fringe, Fuzzy Throw Blanket Bed Blanket for Couch Home Decor, 60x50in [SEP] $28.8 [SEP] B09MYFGDY5 [SEP] Orthodontic Elastics, Safe Orthodontic Rubber Band Pet Grooming Eco Friendly for Men Women for Dental Hospital for Home for Dentist [SEP] $24.35 [SEP] B08SKH3LTM [SEP] RACHEL Rachel Roy Jacquard Textured Oversized Throw - Silky Soft and Cozy Flannel Fleece, Blanket for Bed and Couch - Oversized Throw 60\" X 70\", Coconut Milk [SEP] $26.99\n\n[Available actions]\nclickables: [\"back to search\", \"next >\", \"b09dg3ythy\", \"b0836d6cw4\", \"b09c1ywg8w\", \"b07sxrvkz2\", \"b09ktb1vg6\", \"b09bncfgly\", \"b08wkmhtgh\", \"b08fgwzz8j\", \"b09myfgdy5\", \"b08skh3ltm\"]",
+          "valid": true,
+          "acted": true
+        },
+        {
+          "t": 5,
+          "action_norm": "click[b09dg3ythy]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 39 x 49 in [SEP] 39x49in [SEP] 39x59in [SEP] 49x59in [SEP] 49x79in [SEP] 59x79in [SEP] color [SEP] love32goo9557 [SEP] cartoon2goo8633 [SEP] christmas 2374lgoo8402 [SEP] christmasgoo1747 [SEP] christmasgoo2799 [SEP] clovergoo4857 [SEP] fish scale1goo8111 [SEP] graffiti1goo9830 [SEP] halloween-018goo7397 [SEP] halloweengoo6082 [SEP] halloweengoo7556 [SEP] paris eiffel tower1goo8867 [SEP] peacock2goo1111 [SEP] shamrockgoo9573 [SEP] snowflakegoo5851 [SEP] snowflakesgoo3985 [SEP] starfish beach8goo3481 [SEP] thanksgiving1goo6115 [SEP] thanksgivinggoo1780 [SEP] thanksgivinggoo4573 [SEP] thanksgivinggoo6016 [SEP] thanksgivinggoo9948 [SEP] tortoisegoo9511 [SEP] wood grain4goo3989 [SEP] wood grain5goo6823 [SEP] you are my sunshinegoo1809 [SEP] christmas-003goo3552 [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] Price: $31.39 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"39 x 49 in\", \"39x49in\", \"39x59in\", \"49x59in\", \"49x79in\", \"59x79in\", \"love32goo9557\", \"cartoon2goo8633\", \"christmas 2374lgoo8402\", \"christmasgoo1747\", \"christmasgoo2799\", \"clovergoo4857\", \"fish scale1goo8111\", \"graffiti1goo9830\", \"halloween-018goo7397\", \"halloweengoo6082\", \"halloweengoo7556\", \"paris eiffel tower1goo8867\", \"peacock2goo1111\", \"shamrockgoo9573\", \"snowflakegoo5851\", \"snowflakesgoo3985\", \"starfish beach8goo3481\", \"thanksgiving1goo6115\", \"thanksgivinggoo1780\", \"thanksgivinggoo4573\", \"thanksgivinggoo6016\", \"thanksgivinggoo9948\", \"tortoisegoo9511\", \"wood grain4goo3989\", \"wood grain5goo6823\", \"you are my sunshinegoo1809\", \"christmas-003goo3552\"]",
+          "valid": true,
+          "acted": true
+        },
+        {
+          "t": 6,
+          "action_norm": "click[thanksgivinggoo4573]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 39 x 49 in [SEP] 39x49in [SEP] 39x59in [SEP] 49x59in [SEP] 49x79in [SEP] 59x79in [SEP] color [SEP] love32goo9557 [SEP] cartoon2goo8633 [SEP] christmas 2374lgoo8402 [SEP] christmasgoo1747 [SEP] christmasgoo2799 [SEP] clovergoo4857 [SEP] fish scale1goo8111 [SEP] graffiti1goo9830 [SEP] halloween-018goo7397 [SEP] halloweengoo6082 [SEP] halloweengoo7556 [SEP] paris eiffel tower1goo8867 [SEP] peacock2goo1111 [SEP] shamrockgoo9573 [SEP] snowflakegoo5851 [SEP] snowflakesgoo3985 [SEP] starfish beach8goo3481 [SEP] thanksgiving1goo6115 [SEP] thanksgivinggoo1780 [SEP] thanksgivinggoo4573 [SEP] thanksgivinggoo6016 [SEP] thanksgivinggoo9948 [SEP] tortoisegoo9511 [SEP] wood grain4goo3989 [SEP] wood grain5goo6823 [SEP] you are my sunshinegoo1809 [SEP] christmas-003goo3552 [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] Price: $31.39 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"39 x 49 in\", \"39x49in\", \"39x59in\", \"49x59in\", \"49x79in\", \"59x79in\", \"love32goo9557\", \"cartoon2goo8633\", \"christmas 2374lgoo8402\", \"christmasgoo1747\", \"christmasgoo2799\", \"clovergoo4857\", \"fish scale1goo8111\", \"graffiti1goo9830\", \"halloween-018goo7397\", \"halloweengoo6082\", \"halloweengoo7556\", \"paris eiffel tower1goo8867\", \"peacock2goo1111\", \"shamrockgoo9573\", \"snowflakegoo5851\", \"snowflakesgoo3985\", \"starfish beach8goo3481\", \"thanksgiving1goo6115\", \"thanksgivinggoo1780\", \"thanksgivinggoo4573\", \"thanksgivinggoo6016\", \"thanksgivinggoo9948\", \"tortoisegoo9511\", \"wood grain4goo3989\", \"wood grain5goo6823\", \"you are my sunshinegoo1809\", \"christmas-003goo3552\"]",
+          "valid": true,
+          "acted": true
+        },
+        {
+          "t": 7,
+          "action_norm": "click[39x59in]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 39 x 49 in [SEP] 39x49in [SEP] 39x59in [SEP] 49x59in [SEP] 49x79in [SEP] 59x79in [SEP] color [SEP] love32goo9557 [SEP] cartoon2goo8633 [SEP] christmas 2374lgoo8402 [SEP] christmasgoo1747 [SEP] christmasgoo2799 [SEP] clovergoo4857 [SEP] fish scale1goo8111 [SEP] graffiti1goo9830 [SEP] halloween-018goo7397 [SEP] halloweengoo6082 [SEP] halloweengoo7556 [SEP] paris eiffel tower1goo8867 [SEP] peacock2goo1111 [SEP] shamrockgoo9573 [SEP] snowflakegoo5851 [SEP] snowflakesgoo3985 [SEP] starfish beach8goo3481 [SEP] thanksgiving1goo6115 [SEP] thanksgivinggoo1780 [SEP] thanksgivinggoo4573 [SEP] thanksgivinggoo6016 [SEP] thanksgivinggoo9948 [SEP] tortoisegoo9511 [SEP] wood grain4goo3989 [SEP] wood grain5goo6823 [SEP] you are my sunshinegoo1809 [SEP] christmas-003goo3552 [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] Price: $31.39 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"39 x 49 in\", \"39x49in\", \"39x59in\", \"49x59in\", \"49x79in\", \"59x79in\", \"love32goo9557\", \"cartoon2goo8633\", \"christmas 2374lgoo8402\", \"christmasgoo1747\", \"christmasgoo2799\", \"clovergoo4857\", \"fish scale1goo8111\", \"graffiti1goo9830\", \"halloween-018goo7397\", \"halloweengoo6082\", \"halloweengoo7556\", \"paris eiffel tower1goo8867\", \"peacock2goo1111\", \"shamrockgoo9573\", \"snowflakegoo5851\", \"snowflakesgoo3985\", \"starfish beach8goo3481\", \"thanksgiving1goo6115\", \"thanksgivinggoo1780\", \"thanksgivinggoo4573\", \"thanksgivinggoo6016\", \"thanksgivinggoo9948\", \"tortoisegoo9511\", \"wood grain4goo3989\", \"wood grain5goo6823\", \"you are my sunshinegoo1809\", \"christmas-003goo3552\"]",
+          "valid": true,
+          "acted": true
+        },
+        {
+          "t": 8,
+          "action_norm": "click[thanksgivinggoo4573]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 39 x 49 in [SEP] 39x49in [SEP] 39x59in [SEP] 49x59in [SEP] 49x79in [SEP] 59x79in [SEP] color [SEP] love32goo9557 [SEP] cartoon2goo8633 [SEP] christmas 2374lgoo8402 [SEP] christmasgoo1747 [SEP] christmasgoo2799 [SEP] clovergoo4857 [SEP] fish scale1goo8111 [SEP] graffiti1goo9830 [SEP] halloween-018goo7397 [SEP] halloweengoo6082 [SEP] halloweengoo7556 [SEP] paris eiffel tower1goo8867 [SEP] peacock2goo1111 [SEP] shamrockgoo9573 [SEP] snowflakegoo5851 [SEP] snowflakesgoo3985 [SEP] starfish beach8goo3481 [SEP] thanksgiving1goo6115 [SEP] thanksgivinggoo1780 [SEP] thanksgivinggoo4573 [SEP] thanksgivinggoo6016 [SEP] thanksgivinggoo9948 [SEP] tortoisegoo9511 [SEP] wood grain4goo3989 [SEP] wood grain5goo6823 [SEP] you are my sunshinegoo1809 [SEP] christmas-003goo3552 [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] Price: $31.39 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"39 x 49 in\", \"39x49in\", \"39x59in\", \"49x59in\", \"49x79in\", \"59x79in\", \"love32goo9557\", \"cartoon2goo8633\", \"christmas 2374lgoo8402\", \"christmasgoo1747\", \"christmasgoo2799\", \"clovergoo4857\", \"fish scale1goo8111\", \"graffiti1goo9830\", \"halloween-018goo7397\", \"halloweengoo6082\", \"halloweengoo7556\", \"paris eiffel tower1goo8867\", \"peacock2goo1111\", \"shamrockgoo9573\", \"snowflakegoo5851\", \"snowflakesgoo3985\", \"starfish beach8goo3481\", \"thanksgiving1goo6115\", \"thanksgivinggoo1780\", \"thanksgivinggoo4573\", \"thanksgivinggoo6016\", \"thanksgivinggoo9948\", \"tortoisegoo9511\", \"wood grain4goo3989\", \"wood grain5goo6823\", \"you are my sunshinegoo1809\", \"christmas-003goo3552\"]",
+          "valid": true,
+          "acted": true
+        },
+        {
+          "t": 9,
+          "action_norm": "click[39x59in]",
+          "observation": "Instruction: [SEP] Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo4573, and size: 39x59in, and price lower than 50.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] 39 x 49 in [SEP] 39x49in [SEP] 39x59in [SEP] 49x59in [SEP] 49x79in [SEP] 59x79in [SEP] color [SEP] love32goo9557 [SEP] cartoon2goo8633 [SEP] christmas 2374lgoo8402 [SEP] christmasgoo1747 [SEP] christmasgoo2799 [SEP] clovergoo4857 [SEP] fish scale1goo8111 [SEP] graffiti1goo9830 [SEP] halloween-018goo7397 [SEP] halloweengoo6082 [SEP] halloweengoo7556 [SEP] paris eiffel tower1goo8867 [SEP] peacock2goo1111 [SEP] shamrockgoo9573 [SEP] snowflakegoo5851 [SEP] snowflakesgoo3985 [SEP] starfish beach8goo3481 [SEP] thanksgiving1goo6115 [SEP] thanksgivinggoo1780 [SEP] thanksgivinggoo4573 [SEP] thanksgivinggoo6016 [SEP] thanksgivinggoo9948 [SEP] tortoisegoo9511 [SEP] wood grain4goo3989 [SEP] wood grain5goo6823 [SEP] you are my sunshinegoo1809 [SEP] christmas-003goo3552 [SEP] Gogobebe Teal Green and Brown Flannel Fleece Throw Blanket for Sofa Couch Bed Retro Rustic Wood Grain Soft Cozy Lightweight Blanket for Adults/Kids 39x49inch [SEP] Price: $31.39 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now\n\n[Available actions]\nclickables: [\"back to search\", \"< prev\", \"description\", \"features\", \"reviews\", \"buy now\", \"39 x 49 in\", \"39x49in\", \"39x59in\", \"49x59in\", \"49x79in\", \"59x79in\", \"love32goo9557\", \"cartoon2goo8633\", \"christmas 2374lgoo8402\", \"christmasgoo1747\", \"christmasgoo2799\", \"clovergoo4857\", \"fish scale1goo8111\", \"graffiti1goo9830\", \"halloween-018goo7397\", \"halloweengoo6082\", \"halloweengoo7556\", \"paris eiffel tower1goo8867\", \"peacock2goo1111\", \"shamrockgoo9573\", \"snowflakegoo5851\", \"snowflakesgoo3985\", \"starfish beach8goo3481\", \"thanksgiving1goo6115\", \"thanksgivinggoo1780\", \"thanksgivinggoo4573\", \"thanksgivinggoo6016\", \"thanksgivinggoo9948\", \"tortoisegoo9511\", \"wood grain4goo3989\", \"wood grain5goo6823\", \"you are my sunshinegoo1809\", \"christmas-003goo3552\"]",
+          "valid": true,
+          "acted": true
+        },
+        {
+          "t": 10,
+          "action_norm": "click[buy now]",
+          "observation": "Purchase completed. The episode has ended.",
+          "valid": true,
+          "acted": true
+        }
+      ]
+    }
+  ],
+  "new_correction_rollouts_run": false,
+  "frozen_training_modified": false
+}

@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "inference_calls": 0,
+  "rollouts": 0,
+  "arms": {
+    "all_skill": {
+      "same_student_and_reward": true,
+      "same_sampling_and_eval": true,
+      "fresh_start": true,
+      "strict_input_limit": 3072,
+      "concurrency": 16,
+      "real_tokenizer_clip": "passed"
+    },
+    "selective_skill": {
+      "same_student_and_reward": true,
+      "same_sampling_and_eval": true,
+      "fresh_start": true,
+      "strict_input_limit": 3072,
+      "concurrency": 16,
+      "real_tokenizer_clip": "passed"
+    }
+  }
+}

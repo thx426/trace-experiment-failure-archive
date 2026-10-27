@@ -1,0 +1,11 @@
+Clean-Skill GRPO v1
+
+170/320 missing Skill: 146 never finalize (144 at turn16), 15 second overlength rejection, 9 uncompleted revision. No research_error. Bounded prompt did not include the wrapup reminder.
+
+Changes: reserve finalization from turn14; at most two raw fetches after exploration exhausted; mechanically compile exact public task specs, allowed action procedure, completion/Buy Now condition and checked task-grounded search suggestions; retain original prose for audit; do not forward unverified free-form prose or discovered hidden product IDs; explicitly label normal-budget checklist fallback. Fail closed on infrastructure errors or missing Skill.
+
+Only one new fresh-start guided GRPO run, 100-step cap. Old All-Skill/Selective remain stopped. Same Qwen2.5-3B initial checkpoint, Qwen3.6-35B-A3B researcher, reward, dataset, seed42, optimizer, guided fraction0.5, actual researcher input<=3072, concurrency16. No GPU pilot.
+
+At full bare dev eval every20steps, compare same-step archived GRPO. Stop if either pooled pass1 or pass5 is lower. This is a user-requested stopping rule, not evidence of statistical significance.
+
+This changes the guidance method, not only infrastructure. Do not attribute any outcome to a single component; report researcher cost, fallback rate, actual steering, and bare performance.

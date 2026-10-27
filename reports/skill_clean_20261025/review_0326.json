@@ -1,0 +1,419 @@
+{
+  "checked_at": "2026-10-25T03:25:49.654506+08:00",
+  "initial_bare_evaluation": {
+    "passed": true,
+    "tasks": 256,
+    "rows": 1280,
+    "successes": 81,
+    "solved": 52
+  },
+  "steering_by_step": {
+    "1": {
+      "rows": 128,
+      "guided_assigned": 64,
+      "positive_count": 0,
+      "warmup_rows": 64,
+      "entropy_theta": {
+        "-1.0": 64
+      },
+      "count_total": 0,
+      "n_gate_bypassed": 46337,
+      "doc_overflow": 0
+    }
+  },
+  "spec_audit": {
+    "groups": 16,
+    "issues": [],
+    "samples": [
+      {
+        "group": [
+          1,
+          "webshop_06536"
+        ],
+        "exact_specs": {
+          "color": "a2-green",
+          "size": "x-large"
+        },
+        "origin": "researcher_finalized",
+        "exploration_successes": 2,
+        "words": 313
+      },
+      {
+        "group": [
+          1,
+          "webshop_01450"
+        ],
+        "exact_specs": {
+          "color": "floral yellow",
+          "size": "medium"
+        },
+        "origin": "researcher_finalized",
+        "exploration_successes": 1,
+        "words": 306
+      },
+      {
+        "group": [
+          1,
+          "webshop_06600"
+        ],
+        "exact_specs": {
+          "color": "mossy oak country",
+          "size": "x-large tall"
+        },
+        "origin": "researcher_finalized",
+        "exploration_successes": 1,
+        "words": 303
+      },
+      {
+        "group": [
+          1,
+          "webshop_02896"
+        ],
+        "exact_specs": {
+          "color": "xnj-tshirt335-navy",
+          "size": "small"
+        },
+        "origin": "researcher_finalized",
+        "exploration_successes": 0,
+        "words": 316
+      },
+      {
+        "group": [
+          1,
+          "webshop_05117"
+        ],
+        "exact_specs": {
+          "color": "1877r.brown",
+          "size": "8.5"
+        },
+        "origin": "researcher_finalized",
+        "exploration_successes": 0,
+        "words": 316
+      },
+      {
+        "group": [
+          1,
+          "webshop_03934"
+        ],
+        "exact_specs": {
+          "color": "black",
+          "size": "x-large"
+        },
+        "origin": "researcher_finalized",
+        "exploration_successes": 1,
+        "words": 302
+      },
+      {
+        "group": [
+          1,
+          "webshop_01887"
+        ],
+        "exact_specs": {
+          "color": "#1 light grey",
+          "size": "40"
+        },
+        "origin": "researcher_finalized",
+        "exploration_successes": 0,
+        "words": 318
+      },
+      {
+        "group": [
+          1,
+          "webshop_00709"
+        ],
+        "exact_specs": {
+          "size": "12 count (pack of 1)"
+        },
+        "origin": "researcher_finalized",
+        "exploration_successes": 2,
+        "words": 300
+      },
+      {
+        "group": [
+          1,
+          "webshop_01856"
+        ],
+        "exact_specs": {
+          "color": "white",
+          "size": "52\"w x 96\"l"
+        },
+        "origin": "researcher_finalized",
+        "exploration_successes": 0,
+        "words": 318
+      },
+      {
+        "group": [
+          1,
+          "webshop_06866"
+        ],
+        "exact_specs": {
+          "color": "brown | beige, and item shape: round",
+          "size": "21 in x 35 in"
+        },
+        "origin": "researcher_finalized",
+        "exploration_successes": 0,
+        "words": 326
+      },
+      {
+        "group": [
+          1,
+          "webshop_02737"
+        ],
+        "exact_specs": {
+          "color": "blue grey",
+          "size": "x-large"
+        },
+        "origin": "researcher_finalized",
+        "exploration_successes": 0,
+        "words": 317
+      },
+      {
+        "group": [
+          1,
+          "webshop_02135"
+        ],
+        "exact_specs": {
+          "color": "black1901",
+          "size": "14"
+        },
+        "origin": "researcher_finalized",
+        "exploration_successes": 0,
+        "words": 316
+      },
+      {
+        "group": [
+          1,
+          "webshop_02300"
+        ],
+        "exact_specs": {
+          "color": "#2 khaki",
+          "size": "34"
+        },
+        "origin": "researcher_finalized",
+        "exploration_successes": 0,
+        "words": 317
+      },
+      {
+        "group": [
+          1,
+          "webshop_05625"
+        ],
+        "exact_specs": {
+          "color": "mint spring",
+          "size": "large tall"
+        },
+        "origin": "researcher_finalized",
+        "exploration_successes": 0,
+        "words": 318
+      },
+      {
+        "group": [
+          1,
+          "webshop_02827"
+        ],
+        "exact_specs": {
+          "color": "xnj-tshirt348-black",
+          "size": "small"
+        },
+        "origin": "researcher_finalized",
+        "exploration_successes": 0,
+        "words": 316
+      },
+      {
+        "group": [
+          1,
+          "webshop_00826"
+        ],
+        "exact_specs": {
+          "color": "fish scale1goo8111",
+          "size": "59x79in"
+        },
+        "origin": "researcher_finalized",
+        "exploration_successes": 2,
+        "words": 302
+      }
+    ]
+  },
+  "input_by_role": {
+    "researcher": {
+      "calls": 80,
+      "mean": 1956.1875,
+      "max": 2498,
+      "above3072": 0
+    }
+  },
+  "training_metric_lines": [],
+  "log_tail": "raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.\u001b[32m [repeated 6x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m   return fn(*args, **kwargs)\u001b[32m [repeated 6x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/utils/checkpoint.py:85: UserWarning: None of the inputs have requires_grad=True. Gradients will be None\u001b[32m [repeated 6x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m   warnings.warn(\u001b[32m [repeated 10x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/_inductor/lowering.py:7242: UserWarning: \u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m Online softmax is disabled on the fly since Inductor decides to\u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m split the reduction. Cut an issue to PyTorch if this is an\u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m important use case and you want to speed it up with online\u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m softmax.\u001b[32m [repeated 2x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m [rank1]:W1025 03:22:27.957000 2481039 torch/_dynamo/convert_frame.py:1358] [0/8] torch._dynamo hit config.recompile_limit (8)\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m [rank1]:W1025 03:22:27.957000 2481039 torch/_dynamo/convert_frame.py:1358] [0/8]    function: 'entropy_from_logits_with_chunking' (/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/verl/verl/utils/torch_functional.py:241)\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m [rank1]:W1025 03:22:27.957000 2481039 torch/_dynamo/convert_frame.py:1358] [0/8]    last reason: 0/7: tensor 'logits' size mismatch at index 0. expected 2459, actual 2535\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m [rank1]:W1025 03:22:27.957000 2481039 torch/_dynamo/convert_frame.py:1358] [0/8] To log all recompilation reasons, use TORCH_LOGS=\"recompiles\".\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m [rank1]:W1025 03:22:27.957000 2481039 torch/_dynamo/convert_frame.py:1358] [0/8] To diagnose recompilation issues, see https://pytorch.org/docs/main/torch.compiler_troubleshooting.html\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1044: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. Starting in PyTorch 2.9, calling checkpoint without use_reentrant will raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.\u001b[32m [repeated 6x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m   return fn(*args, **kwargs)\u001b[32m [repeated 6x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/utils/checkpoint.py:85: UserWarning: None of the inputs have requires_grad=True. Gradients will be None\u001b[32m [repeated 6x across cluster]\u001b[0m\n\u001b[36m(WorkerDict pid=2481039)\u001b[0m   warnings.warn(\u001b[32m [repeated 6x across cluster]\u001b[0m\n\u001b[36m(SimpleStorageUnit pid=2480494)\u001b[0m 2026-10-25 03:23:35,628 - INFO - transfer_queue.utils.perf_utils - TQ_STORAGE_UNIT_fd1f5c87: [Performance] Total success requests: 18, Total req/min: 3.30, Total avg process time: 0.0026s; \n\u001b[36m(SimpleStorageUnit pid=2480494)\u001b[0m Time range: last 5.45 minutes; \n\u001b[36m(SimpleStorageUnit pid=2480494)\u001b[0m Per-operation statistics: PUT_DATA: req_count=15, req/min=2.75, avg_time=0.002451s, max_time=0.003986s, min_time=0.002163s; CLEAR_DATA: req_count=1, req/min=0.18, avg_time=0.004063s, max_time=0.004063s, min_time=0.004063s; GET_DATA: req_count=2, req/min=0.37, avg_time=0.003235s, max_time=0.003425s, min_time=0.003045s\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m [rank0]:W1025 03:22:27.958000 2481038 torch/_dynamo/convert_frame.py:1358] [0/8] torch._dynamo hit config.recompile_limit (8)\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m [rank0]:W1025 03:22:27.958000 2481038 torch/_dynamo/convert_frame.py:1358] [0/8]    function: 'entropy_from_logits_with_chunking' (/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/verl/verl/utils/torch_functional.py:241)\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m [rank0]:W1025 03:22:27.958000 2481038 torch/_dynamo/convert_frame.py:1358] [0/8]    last reason: 0/7: tensor 'logits' size mismatch at index 0. expected 2459, actual 2535\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m [rank0]:W1025 03:22:27.958000 2481038 torch/_dynamo/convert_frame.py:1358] [0/8] To log all recompilation reasons, use TORCH_LOGS=\"recompiles\".\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m [rank0]:W1025 03:22:27.958000 2481038 torch/_dynamo/convert_frame.py:1358] [0/8] To diagnose recompilation issues, see https://pytorch.org/docs/main/torch.compiler_troubleshooting.html\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1044: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. Starting in PyTorch 2.9, calling checkpoint without use_reentrant will raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m   return fn(*args, **kwargs)\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/utils/checkpoint.py:85: UserWarning: None of the inputs have requires_grad=True. Gradients will be None\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m   warnings.warn(\n\u001b[36m(SimpleStorageUnit pid=2480499)\u001b[0m Per-operation statistics: PUT_DATA: req_count=19, req/min=3.49, avg_time=0.002472s, max_time=0.003613s, min_time=0.002114s; GET_DATA: req_count=2, req/min=0.37, avg_time=0.005294s, max_time=0.005421s, min_time=0.005166s\n\u001b[36m(WorkerDict pid=2481038)\u001b[0m WARNING:2026-10-25 03:23:38,501:max_token_len=8192 below longest sequence 13093 — 58 oversized sample(s) ride in their own micro-batch; packing budget stays at 8192 so the rest of the batch is not inflated\n",
+  "gate_config": {
+    "gate_mode": "entropy",
+    "entropy_theta_init": 0,
+    "entropy_theta_update": "direct",
+    "entropy_target_rate": 0.05
+  },
+  "gate_warmup_code": "#: 自标定 warmup 哨兵阈值(``theta_init<=0`` 即「无先验,首个 step 边界从\n#: 真实分布分位落地」)。取有限大数而非 inf:JSON/wire 可安全传输,且\n#: IntensityGate 下 w = H/θ ≈ 1e-9 < w_min ⇒ 全 bypass、零 rng draw、零干预\n#: ——warmup 期 steered 臂行为与 bare 逐位一致(rng 对齐:bypass 位不 draw),\n#: G-E 段级 bypass 还会跳过教师 verify(零额外开销)。剂量控制通用化\n#: (2026-08-11 用户裁定,MENTOR「首步 γ_p=999」同款先例):绝对 nats 阈值\n#: 是 benchmark 锚定的(1.28 占位值事故),分位自标定是无量纲的。\nTHETA_WARMUP = 1.0e9\n\n\n",
+  "snapshot": {
+    "checked_at": "2026-10-25T03:25:52.401669+08:00",
+    "sequence": {
+      "phase": "running",
+      "pid": 2475494,
+      "time": 1792867982.2478464,
+      "input_limit": 3072,
+      "server_concurrency": 16,
+      "order": [
+        "clean_skill"
+      ],
+      "job": "clean_skill",
+      "run": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42",
+      "owner_pid": 2476238,
+      "owner_state": "/tmp/p5compact3072-clean25v1",
+      "researcher_owner_pid": 2475801,
+      "next_job": null
+    },
+    "webshop": {
+      "8321": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 5380,
+          "queue_seconds": 688.3899640701711,
+          "backend_seconds": 166.68518205732107,
+          "max_queue_seconds": 2.672474544495344,
+          "max_backend_seconds": 0.47693464159965515
+        },
+        "http_statuses": {
+          "200": 5380
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8322": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 4931,
+          "queue_seconds": 261.82562958821654,
+          "backend_seconds": 152.91503522917628,
+          "max_queue_seconds": 1.3939007557928562,
+          "max_backend_seconds": 0.5835222639143467
+        },
+        "http_statuses": {
+          "200": 4931
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8323": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 4253,
+          "queue_seconds": 265.37032502517104,
+          "backend_seconds": 131.6801863834262,
+          "max_queue_seconds": 1.7735321335494518,
+          "max_backend_seconds": 0.4519883841276169
+        },
+        "http_statuses": {
+          "200": 4253
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      },
+      "8324": {
+        "active": 0,
+        "stats": {
+          "reset_replays": 0,
+          "step_replays": 0,
+          "operations": 6201,
+          "queue_seconds": 1839.6645120419562,
+          "backend_seconds": 200.16187895089388,
+          "max_queue_seconds": 4.946343157440424,
+          "max_backend_seconds": 0.6878308355808258
+        },
+        "http_statuses": {
+          "200": 6201
+        },
+        "disconnects": 0,
+        "tracebacks": 0
+      }
+    },
+    "rollout_rows": {
+      "step_00000_val": 1280,
+      "step_00001": 128
+    },
+    "error_mentions": {
+      "webshop service unreachable": 0,
+      "webshop HTTP 409": 0,
+      "student episode infra error": 0,
+      "OutOfMemoryError": 0,
+      "ReplayBuffer:": 0
+    },
+    "training_tail": [
+      "\u001b[36m(WorkerDict pid=2481038)\u001b[0m /root/trace-webshop-arm-ratio/.venvs/train/lib/python3.12/site-packages/torch/utils/checkpoint.py:85: UserWarning: None of the inputs have requires_grad=True. Gradients will be None",
+      "\u001b[36m(WorkerDict pid=2481038)\u001b[0m   warnings.warn(",
+      "\u001b[36m(SimpleStorageUnit pid=2480499)\u001b[0m Per-operation statistics: PUT_DATA: req_count=19, req/min=3.49, avg_time=0.002472s, max_time=0.003613s, min_time=0.002114s; GET_DATA: req_count=2, req/min=0.37, avg_time=0.005294s, max_time=0.005421s, min_time=0.005166s",
+      "\u001b[36m(WorkerDict pid=2481038)\u001b[0m WARNING:2026-10-25 03:23:38,501:max_token_len=8192 below longest sequence 13093 — 58 oversized sample(s) ride in their own micro-batch; packing budget stays at 8192 so the rest of the batch is not inflated"
+    ],
+    "completed_steps": [],
+    "timing_rows": [],
+    "researcher_inputs": {
+      "calls": 80,
+      "mean": 1956.1875,
+      "max": 2498,
+      "above_3072": 0
+    },
+    "experiment_root": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1",
+    "gpu": "index, utilization.gpu [%], memory.used [MiB]\n0, 0 %, 39403 MiB\n1, 100 %, 21407 MiB\n2, 100 %, 21407 MiB\n3, 0 %, 39403 MiB\n",
+    "gpu_processes": "pid, used_gpu_memory [MiB]\n1648301, 39396 MiB\n1655596, 20042 MiB\n1658193, 1342 MiB\n1655597, 20044 MiB\n1658186, 1340 MiB\n1648302, 39396 MiB\n",
+    "process_identity": {
+      "sequence": {
+        "pid": 2475494,
+        "alive": true,
+        "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python -u /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/run_sequence.py "
+      },
+      "student_owner": {
+        "pid": 2476238,
+        "alive": true,
+        "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/scripts/cloud/run_owned_job.py --state-dir /tmp/p5compact3072-clean25v1 --gpus 1,2 --no-deadline --abort-file /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/ABORT --cwd /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code -- /root/trace-webshop-arm-ratio/.venvs/train/bin/python -u scripts/launch_train.py --config /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/configs/clean_skill.yaml "
+      },
+      "researcher_owner": {
+        "pid": 2475801,
+        "alive": true,
+        "cmdline": "/root/trace-webshop-arm-ratio/.venvs/train/bin/python /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/scripts/cloud/run_owned_job.py --state-dir /tmp/p5compact3072-research25clean1 --gpus 0,3 --no-deadline --abort-file /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/ABORT --cwd /root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code -- /root/trace-webshop-arm-ratio/.venvs/researcher/bin/vllm serve /root/trace-webshop-arm-ratio/models/Qwen3.6-35B-A3B --served-model-name qwen3.6-35b-a3b --host 127.0.0.1 --port 18881 --api-key loopback-only --tensor-parallel-size 2 --dtype bfloat16 --max-model-len 7168 --max-num-seqs 16 --max-num-batched-tokens 4096 --gpu-memory-utilization 0.95 --enforce-eager --language-model-only --enable-auto-tool-choice --tool-call-parser qwen3_coder --reasoning-parser qwen3 "
+      }
+    },
+    "skill_compiler": {
+      "sessions": 16,
+      "missing_docs": 0,
+      "over_500_words": 0,
+      "origins": {
+        "researcher_finalized": 16
+      },
+      "max_words": 326,
+      "research_errors": 0,
+      "mean_turns": 5
+    },
+    "training_diagnostics": {
+      "complete_groups": 16,
+      "score_heterogeneous_complete_groups": 16,
+      "advantage_proxy_only": true,
+      "guided_assigned_rows": 64,
+      "positive_steering_rows": 0
+    },
+    "baseline_reviews": null,
+    "baseline_stop": null,
+    "cpu_validation": {
+      "passed": true,
+      "inference_calls": 0,
+      "new_rollouts": 0,
+      "configuration_equal_except_name": true,
+      "offline_replayed_groups": 320,
+      "old_missing_covered": 170,
+      "max_doc_words": 330
+    },
+    "last_progress_mtime": 1792869724.4825518,
+    "preflight_note": "researcher_inputs contains role=researcher only; startup tokenize and researcher-preflight excluded. Zero calls means no actual formal-input samples."
+  }
+}

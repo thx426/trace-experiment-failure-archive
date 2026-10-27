@@ -1,0 +1,938 @@
+webshop_05104 完整证据对照
+
+训练步：2；八条训练rollout的学生policy版本：1
+
+选取性质：机制案例，非随机样本，非最终DEV评测。
+
+公开任务原文：
+
+Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars
+
+
+
+证据结论：
+
+原始最终总结强调搜索词，并省略了成功轨迹中的两次选项点击。成功探索 ep008 实际先选 xx-large 和 multi 9，然后购买。编译文档保留这个精确规格和固定操作规则。指导组 sid0、sid1 按这一顺序成功；四条无指导轨迹均失败。不能据此区分模板与研究员探索各自的因果贡献。
+
+
+
+一、研究员最终原始 Skill（finalize.experience_doc 原文）
+
+In episode ep008, the executor achieved a successful purchase (score 1.0) by searching for `men's sleep & lounge long sleeve elastic waistband multi 9 xx-large 70.00`. The search query effectively combined the product category ("men's sleep & lounge"), attributes ("long sleeve", "elastic waistband"), specific color ("multi 9"), size ("xx-large"), and price constraint ("70.00"). The executor then clicked "buy now" on the resulting product page. Previous episodes failed due to invalid clicks (ep007, ep009), incomplete or incorrect search terms (ep001, ep002, ep003, ep005, ep006, ep010), or insufficient actions to reach the product (ep004). The key success factors were using the exact color "multi 9" and size "xx-large" in the search string and avoiding navigation traps like "next >" when the correct item was likely on the first page.
+
+
+
+二、研究员每次探索提交的原始指导（原文）
+
+session.jsonl 第3行，run_experiment 参数：
+
+{
+  "guidance": "Search for \"men's sleep & lounge long sleeve elastic waistband multi 9 xx-large\". Ensure the results are filtered or selected based on these specific attributes. Prioritize items priced below $70.00. When a product page is reached, carefully select the color 'multi 9' and size 'xx-large' if options are presented. Verify the price before buying.",
+  "k": 4
+}
+
+session.jsonl 第5行，run_experiment 参数：
+
+{
+  "guidance": "Task constraints: men's sleep & lounge, long sleeve, elastic waistband, daily wear, color: multi 9, size: xx-large, price < 70.00.\n\nProcedure:\n1. Search for \"men's sleep lounge long sleeve elastic waistband multi 9 xx-large\".\n2. From results, click a product link that appears to match (look for \"multi 9\" or \"multi-color\" in the snippet/title).\n3. On the product page, verify the price is < 70.00.\n4. **CRITICAL**: You MUST select the color option \"multi 9\" if it is available as a clickable choice. Check all color swatches/options. Also select size \"xx-large\".\n5. Click \"Buy Now\".",
+  "k": 2
+}
+
+session.jsonl 第7行，run_experiment 参数：
+
+{
+  "guidance": "1. search[mens lounge wear]\n2. click[first product link]\n3. click[size: xx-large]\n4. click[color: multi 9]\n5. click[Buy Now]",
+  "k": 4
+}
+
+
+
+三、最终编译 Skill（doc.md 原文）
+
+# Task constraints and completion procedure
+
+Exact required option values from your instruction: {"color": "multi 9", "size": "xx-large"}.
+
+Preserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.
+
+WHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.
+
+WHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.
+
+WHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.
+
+Track successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.
+
+WHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.
+
+WHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.
+
+# Evidence and recovery
+
+Candidate search query: "men's sleep & lounge long sleeve elastic waistband multi 9 xx-large 70.00". Observed in a successful attempt; verify current results.
+
+Invalid actions occurred in exploration: copy a single target exactly from current clickables; if unavailable, reconsider the page before acting.
+
+Repeated action/observation pairs occurred in exploration: use your action history to choose the next unmet requirement instead of repeating an unchanged action.
+
+
+
+编译审计：
+
+{
+  "version": "webshop_clean_skill_v2",
+  "origin": "researcher_finalized",
+  "required_options": {
+    "color": "multi 9",
+    "size": "xx-large"
+  },
+  "source": "public_task_and_mechanical_episode_evidence",
+  "successes": 1,
+  "invalid_actions": 14,
+  "repeated_pairs": 23,
+  "candidate_query": "men's sleep & lounge long sleeve elastic waistband multi 9 xx-large 70.00",
+  "free_form_prose_forwarded": false,
+  "words": 301
+}
+
+CPU复核：保存的原稿、公开任务和探索记录可精确重现doc.md；只删除最终原稿，仍得到完全相同的文档。此操作保留了研究员先前安排的全部探索，因此不能视为去研究员的训练消融。
+
+
+
+四、研究员探索的学生动作（全部探索轨迹）
+
+episode=ep001 guidance_hash=881a800f0c62 won=False score=0.6666666666666666 outcome=FAILED
+  01. search[men's sleep lounge long sleeve elastic waistband xx-large]  [valid=True, acted=True]
+  02. click[b09nd8p2qr]  [valid=True, acted=True]
+  03. click[buy now]  [valid=True, acted=True]
+
+
+
+episode=ep002 guidance_hash=881a800f0c62 won=False score=0.8333333333333334 outcome=FAILED
+  01. search[men's sleep & lounge long sleeve elastic waistband multi color xx-large size price 70.00]  [valid=True, acted=True]
+  02. click[b09nd8p2qr]  [valid=True, acted=True]
+  03. click[xx-large]  [valid=True, acted=True]
+  04. click[buy now]  [valid=True, acted=True]
+
+
+
+episode=ep003 guidance_hash=881a800f0c62 won=False score=0.8333333333333334 outcome=FAILED
+  01. search[men's sleep lounge long sleeve elastic waistband daily wear multi 9 xx-large price 70.00]  [valid=True, acted=True]
+  02. click[b09nd8p2qr]  [valid=True, acted=True]
+  03. click[xx-large]  [valid=True, acted=True]
+  04. click[buy now]  [valid=True, acted=True]
+
+
+
+episode=ep004 guidance_hash=881a800f0c62 won=False score=0.0 outcome=FAILED
+  01. search[men's sleep lounge long sleeve elastic waistband multi 9 xx-large price 70.00]  [valid=True, acted=True]
+  02. click[b09nd8p2qr]  [valid=True, acted=True]
+  03. click[xx-large]  [valid=True, acted=True]
+  04. click[xx-large]  [valid=True, acted=True]
+  05. click[xx-large]  [valid=True, acted=True]
+  06. click[< prev]  [valid=True, acted=True]
+  07. click[next >]  [valid=True, acted=True]
+  08. click[next >]  [valid=True, acted=True]
+  09. click[next >]  [valid=True, acted=True]
+  10. click[next >]  [valid=True, acted=True]
+  11. click[next >]  [valid=True, acted=True]
+  12. click[< prev]  [valid=True, acted=True]
+  13. click[next >]  [valid=True, acted=True]
+  14. click[< prev]  [valid=True, acted=True]
+  15. click[next >]  [valid=True, acted=True]
+
+
+
+episode=ep005 guidance_hash=2a0127bcdc1b won=False score=0.8333333333333334 outcome=FAILED
+  01. search[men's sleep & lounge long sleeve elastic waistband multi 9 xx-large price less than 70.00]  [valid=True, acted=True]
+  02. click[b09nd8p2qr]  [valid=True, acted=True]
+  03. click[xx-large]  [valid=True, acted=True]
+  04. click[buy now]  [valid=True, acted=True]
+
+
+
+episode=ep006 guidance_hash=2a0127bcdc1b won=False score=0.8333333333333334 outcome=FAILED
+  01. search[men's sleep & lounge long sleeve elastic waistband multi 9 xx-large price <70]  [valid=True, acted=True]
+  02. click[next >]  [valid=True, acted=True]
+  03. click[back to search]  [valid=True, acted=True]
+  04. search[men's sleep & lounge long sleeve elastic waistband multi 9 xx-large price <70]  [valid=True, acted=True]
+  05. click[b09nd8p2qr]  [valid=True, acted=True]
+  06. click[xx-large]  [valid=True, acted=True]
+  07. click[buy now]  [valid=True, acted=True]
+
+
+
+episode=ep007 guidance_hash=2a0127bcdc1b won=False score=0.0 outcome=FAILED
+  01. search[men's sleep lounge long sleeve elastic waistband multi 9 xx-large price 70.00]  [valid=True, acted=True]
+  02. click[b09nd8p2qr]  [valid=True, acted=True]
+  03. click[b09nd8p2qr]  [valid=False, acted=True]
+  04. click[xx-large]  [valid=True, acted=True]
+  05. click[multi 9]  [valid=True, acted=True]
+  06. click[b09nd8p2qr]  [valid=False, acted=True]
+  07. click[b09nd8p2qr]  [valid=False, acted=True]
+  08. click[b09nd8p2qr]  [valid=False, acted=True]
+  09. click[b09nd8p2qr]  [valid=False, acted=True]
+  10. click[b09nd8p2qr]  [valid=False, acted=True]
+  11. click[b09nd8p2qr]  [valid=False, acted=True]
+  12. click[multi 9]  [valid=True, acted=True]
+  13. click[xx-large]  [valid=True, acted=True]
+  14. click[b09nd8p2qr]  [valid=False, acted=True]
+  15. click[b09nd8p2qr]  [valid=False, acted=True]
+
+
+
+episode=ep008 guidance_hash=2a0127bcdc1b won=True score=1.0 outcome=SUCCESS
+  01. search[men's sleep & lounge long sleeve elastic waistband multi 9 xx-large 70.00]  [valid=True, acted=True]
+  02. click[b09nd8p2qr]  [valid=True, acted=True]
+  03. click[xx-large]  [valid=True, acted=True]
+  04. click[multi 9]  [valid=True, acted=True]
+  05. click[buy now]  [valid=True, acted=True]
+
+
+
+episode=ep009 guidance_hash=2a0127bcdc1b won=False score=0.0 outcome=FAILED
+  01. click[search]  [valid=False, acted=True]
+  02. search[men sleep lounge multi 9 xx-large]  [valid=True, acted=True]
+  03. click[next >]  [valid=True, acted=True]
+  04. click[b09nds8f4v]  [valid=False, acted=True]
+  05. click[next >]  [valid=True, acted=True]
+  06. click[next >]  [valid=True, acted=True]
+  07. click[< prev]  [valid=True, acted=True]
+  08. click[next >]  [valid=True, acted=True]
+  09. click[< prev]  [valid=True, acted=True]
+  10. click[< prev]  [valid=True, acted=True]
+  11. click[back to search]  [valid=True, acted=True]
+  12. search[mens sleep lounge long sleeve multi 9 xx-large price<70]  [valid=True, acted=True]
+  13. click[b09nds8f4v]  [valid=True, acted=True]
+  14. click[< prev]  [valid=True, acted=True]
+  15. click[next >]  [valid=True, acted=True]
+
+
+
+episode=ep010 guidance_hash=2a0127bcdc1b won=False score=0.0 outcome=FAILED
+  01. search[men's sleep & lounge long sleeve elastic waistband multi 9 xx-large under 70.00]  [valid=True, acted=True]
+  02. click[b09nw2hqrk]  [valid=False, acted=True]
+  03. click[next >]  [valid=True, acted=True]
+  04. click[next >]  [valid=True, acted=True]
+  05. click[next >]  [valid=True, acted=True]
+  06. click[< prev]  [valid=True, acted=True]
+  07. click[next >]  [valid=True, acted=True]
+  08. click[< prev]  [valid=True, acted=True]
+  09. click[< prev]  [valid=True, acted=True]
+  10. click[< prev]  [valid=True, acted=True]
+  11. click[next >  [valid=False, acted=True]
+  12. click[back to search]  [valid=True, acted=True]
+  13. search[men's sleep & lounge long sleeve elastic waistband multi 9 xx-large price <70]  [valid=True, acted=True]
+  14. click[next >  [valid=False, acted=True]
+  15. click[back to search]  [valid=True, acted=True]
+
+
+
+五、正式训练的八条学生动作（全部）
+
+sid0 指导组，steer_count=184，won=True，score=1.0
+
+episode=student guidance_hash=bare won=True score=1.0 outcome=SUCCESS
+  01. search[men's sleep & lounge long sleeve elastic waistband size xx-large multi color price under 70]  [valid=True, acted=True]
+  02. click[b09nd8p2qr]  [valid=True, acted=True]
+  03. click[xx-large]  [valid=True, acted=True]
+  04. click[multi 9]  [valid=True, acted=True]
+  05. click[buy now]  [valid=True, acted=True]
+
+
+
+sid1 指导组，steer_count=116，won=True，score=1.0
+
+episode=student guidance_hash=bare won=True score=1.0 outcome=SUCCESS
+  01. search[men's sleep & lounge long sleeve elastic waistband multi xx-large price lower than 70]  [valid=True, acted=True]
+  02. click[b09nd8p2qr]  [valid=True, acted=True]
+  03. click[xx-large]  [valid=True, acted=True]
+  04. click[multi 9]  [valid=True, acted=True]
+  05. click[buy now]  [valid=True, acted=True]
+
+
+
+sid2 指导组，steer_count=505，won=False，score=0.0
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[men's sleep lounge long sleeve elastic waistband multi xx-large]  [valid=True, acted=True]
+  02. click[b09nd8p2qr]  [valid=True, acted=True]
+  03. click[xx-large]  [valid=True, acted=True]
+  04. click[multi 9]  [valid=True, acted=True]
+  05. click[x-large]  [valid=True, acted=True]
+  06. click[multi 10]  [valid=True, acted=True]
+  07. click[multi 9]  [valid=True, acted=True]
+  08. click[xx-large]  [valid=True, acted=True]
+  09. click[multi 8]  [valid=True, acted=True]
+  10. click[back to search]  [valid=True, acted=True]
+  11. search[size:xx-large color:multi 9 price:above 69]  [valid=True, acted=True]
+  12. click[b09nmbv996]  [valid=True, acted=True]
+  13. click[xx-large]  [valid=True, acted=True]
+  14. click[back to search]  [valid=True, acted=True]
+  15. search[size:xx-large color:multi 9 price:under $70]  [valid=True, acted=True]
+
+
+
+sid3 指导组，steer_count=215，won=False，score=0.8333333333333334
+
+episode=student guidance_hash=bare won=False score=0.8333333333333334 outcome=FAILED
+  01. search[men's sleep & lounge long sleeve elastic waistband multi xx-large price <70]  [valid=True, acted=True]
+  02. click[b09nd8p2qr]  [valid=True, acted=True]
+  03. click[xx-large]  [valid=True, acted=True]
+  04. click[xx-large]  [valid=True, acted=True]
+  05. click[xx-large]  [valid=True, acted=True]
+  06. click[xx-large]  [valid=True, acted=True]
+  07. click[xx-large]  [valid=True, acted=True]
+  08. click[xx-large]  [valid=True, acted=True]
+  09. click[xx-large]  [valid=True, acted=True]
+  10. click[buy now]  [valid=True, acted=True]
+
+
+
+sid4 无指导组，steer_count=0，won=False，score=0.6666666666666666
+
+episode=student guidance_hash=bare won=False score=0.6666666666666666 outcome=FAILED
+  01. search[men's sleep lounge long sleeve elastic waistband multicolor xx-large]  [valid=True, acted=True]
+  02. click[b09nd8p2qr]  [valid=True, acted=True]
+  03. click[buy now]  [valid=True, acted=True]
+
+
+
+sid5 无指导组，steer_count=0，won=False，score=0.8333333333333334
+
+episode=student guidance_hash=bare won=False score=0.8333333333333334 outcome=FAILED
+  01. search[men's sleep lounge long sleeve multi xx-large price < 70]  [valid=True, acted=True]
+  02. click[b09nd8p2qr]  [valid=True, acted=True]
+  03. click[xx-large]  [valid=True, acted=True]
+  04. click[xx-large]  [valid=True, acted=True]
+  05. click[buy now]  [valid=True, acted=True]
+
+
+
+sid6 无指导组，steer_count=0，won=False，score=0.0
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[men's sleep lounge long sleeve elastic waistband multi xx-large price 70]  [valid=True, acted=True]
+  02. click[back to search]  [valid=True, acted=True]
+  03. search[men's sleep lounge long sleeve elastic waistband color: multi 9 size: xx-large price 70]  [valid=True, acted=True]
+  04. click[next >]  [valid=True, acted=True]
+  05. click[back to search]  [valid=True, acted=True]
+  06. search[men's sleep lounge long sleeve elastic waistband color: multi 9 size: xx-large price < 70]  [valid=True, acted=True]
+  07. click[next >]  [valid=True, acted=True]
+  08. click[back to search]  [valid=True, acted=True]
+  09. search[men's sleep lounge long sleeve elastic waistband color: multi 9 size: xx-large price < 70]  [valid=True, acted=True]
+  10. click[next >]  [valid=True, acted=True]
+  11. click[next >]  [valid=True, acted=True]
+  12. click[next >]  [valid=True, acted=True]
+  13. click[next >]  [valid=True, acted=True]
+  14. click[next >]  [valid=True, acted=True]
+  15. click[back to search]  [valid=True, acted=True]
+
+
+
+sid7 无指导组，steer_count=0，won=False，score=0.0
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[men's sleep lounge long sleeve elastic waistband multi xx-large price 70]  [valid=True, acted=True]
+  02. click[b09nds8f4v]  [valid=True, acted=True]
+  03. click[next>  [valid=False, acted=True]
+  04. click[xx-large]  [valid=True, acted=True]
+  05. click[back to search]  [valid=True, acted=True]
+  06. search[men's sleep lounge long sleeve elastic waistband multi xx-large price 70]  [valid=True, acted=True]
+  07. click[next>  [valid=False, acted=True]
+  08. click[next>  [valid=False, acted=True]
+  09. click[next>  [valid=False, acted=True]
+  10. click[back to search]  [valid=True, acted=True]
+  11. search[men's sleep lounge long sleeve elastic waistband color: multi 9 size: xx-large price 70]  [valid=True, acted=True]
+  12. click[next>  [valid=False, acted=True]
+  13. click[back to search]  [valid=True, acted=True]
+  14. search[men's sleep lounge long sleeve elastic waistband color: multi 9 size: xx-large price 70]  [valid=True, acted=True]
+  15. click[next>  [valid=False, acted=True]
+
+
+
+六、探索时实际使用的指导（非空原稿也经过编译；以下为guidance_log原文）
+
+experiment_idx=1 k=4 guidance_hash=881a800f0c62 episodes_before=0
+
+# Task constraints and completion procedure
+
+Exact required option values from your instruction: {"color": "multi 9", "size": "xx-large"}.
+
+Preserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.
+
+WHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.
+
+WHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.
+
+WHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.
+
+Track successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.
+
+WHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.
+
+WHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.
+
+# Evidence and recovery
+
+No checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.
+
+No successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.
+
+
+
+experiment_idx=2 k=2 guidance_hash=2a0127bcdc1b episodes_before=4
+
+# Task constraints and completion procedure
+
+Exact required option values from your instruction: {"color": "multi 9", "size": "xx-large"}.
+
+Preserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.
+
+WHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.
+
+WHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.
+
+WHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.
+
+Track successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.
+
+WHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.
+
+WHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.
+
+# Evidence and recovery
+
+No checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.
+
+Repeated action/observation pairs occurred in exploration: use your action history to choose the next unmet requirement instead of repeating an unchanged action.
+
+No successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.
+
+
+
+experiment_idx=3 k=4 guidance_hash=2a0127bcdc1b episodes_before=6
+
+# Task constraints and completion procedure
+
+Exact required option values from your instruction: {"color": "multi 9", "size": "xx-large"}.
+
+Preserve these values verbatim, including codes, punctuation and dimensions. Unusual values are not typos. Retain every other feature and price constraint in the instruction.
+
+WHEN a search bar is available, search for the product type and discriminating task words. Search text does not select product options. Never assume the first result matches.
+
+WHEN results appear, inspect title and price, then open a plausible product using a target from the current clickables list. Do not click Buy Now on a results page.
+
+WHEN on the product page, map each required option above to its exact current clickable and select each with a separate action. Do not combine labels or invent targets.
+
+Track successfully selected values in your action history for the current product. Unchanged page text after a valid option click is not evidence that the selection failed. Do not repeat an already selected value; a different value in that category replaces it.
+
+WHEN all required options have been selected and visible product features and price match, make the NEXT action click[buy now]. Do not keep inspecting, reselect options, or return to search after this completion condition.
+
+WHEN a required option is absent or visible evidence conflicts, inspect another candidate. Reset your selection record when changing products; never drop a requirement to make a purchase.
+
+# Evidence and recovery
+
+No checked search shortcut is supplied. Derive search terms from your instruction and inspect the resulting page.
+
+Repeated action/observation pairs occurred in exploration: use your action history to choose the next unmet requirement instead of repeating an unchanged action.
+
+No successful exploration supports a task-specific solution. The procedure above is a task-grounded checklist, not a claimed verified solution.
+
+
+
+七、正式训练动作后的页面观察（用于检查可用目标、选择是否有效）
+
+sid0 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=True score=1.0 outcome=SUCCESS
+  01. search[men's sleep & lounge long sleeve elastic waistband size xx-large multi color price under 70]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09QW2HQRK [SEP] CandyMan Lace Pajama and Lounge Pants for Men [SEP] $31.0 to $69.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B09NSC5VDG [SEP] CofeeMO Womens Lingerie Sleep Lounge Everyday Nursing Bras Printed Underwear Seamless Printed Bralette for Sex Naughty Play [SEP] $14.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nd8p2qr", "b09nd9dp7j", "b09qw2hqrk", "b09q5zhrvm", "b09nds8f4v", "b09q67h373", "b09nsc5vdg", "b00o30jldk", "b09s3bn15c", "b09nnmv9ln"]
+  02. click[b09nd8p2qr]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  03. click[xx-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  04. click[multi 9]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  05. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+sid1 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=True score=1.0 outcome=SUCCESS
+  01. search[men's sleep & lounge long sleeve elastic waistband multi xx-large price lower than 70]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09QW2HQRK [SEP] CandyMan Lace Pajama and Lounge Pants for Men [SEP] $31.0 to $69.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09NSC5VDG [SEP] CofeeMO Womens Lingerie Sleep Lounge Everyday Nursing Bras Printed Underwear Seamless Printed Bralette for Sex Naughty Play [SEP] $14.99 [SEP] B09HGFV91W [SEP] ZHDD Tops for Mens, Men's Knight Punk Vintage Style Long Sleeve Asymmetric Hem Cowl Neck Teen Boys Gothic Pullover [SEP] $4.98 to $7.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nd8p2qr", "b09nd9dp7j", "b09qw2hqrk", "b09q5zhrvm", "b09nds8f4v", "b09s3bn15c", "b09q67h373", "b00o30jldk", "b09nsc5vdg", "b09hgfv91w"]
+  02. click[b09nd8p2qr]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  03. click[xx-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  04. click[multi 9]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  05. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+sid2 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[men's sleep lounge long sleeve elastic waistband multi xx-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09QW2HQRK [SEP] CandyMan Lace Pajama and Lounge Pants for Men [SEP] $31.0 to $69.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09NSC5VDG [SEP] CofeeMO Womens Lingerie Sleep Lounge Everyday Nursing Bras Printed Underwear Seamless Printed Bralette for Sex Naughty Play [SEP] $14.99 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nd8p2qr", "b09nd9dp7j", "b09qw2hqrk", "b09q5zhrvm", "b09nds8f4v", "b09s3bn15c", "b09q67h373", "b00o30jldk", "b09nsc5vdg", "b09nnmv9ln"]
+  02. click[b09nd8p2qr]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  03. click[xx-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  04. click[multi 9]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  05. click[x-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  06. click[multi 10]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  07. click[multi 9]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  08. click[xx-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  09. click[multi 8]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  10. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  11. search[size:xx-large color:multi 9 price:above 69]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09NMBV996 [SEP] Silk Short Pajama Set for Women Womens Satin Pajamas Set Sexy Lingerie Sleepwear Cami Shorts Set Nightwear NOLYEC [SEP] $1.99 [SEP] B01L2JKW6E [SEP] Melange Amber Notes No. 1 Solid Perfume Blending Palette .69 ounces [SEP] $30.0 [SEP] B09H2NB41N [SEP] YFF-Corrimano Portable Projection Screen 4:3/16:9 HD Roll-Down Pull-Down Retractable Manual Projection Screen W/Auto-Locking, for Indoor Movie Home Theater Office [SEP] $289.57 [SEP] B07N7TDKXQ [SEP] SOCKS'NBULK Mens Cotton Crew Neck Short Sleeve T-Shirts Mix Colors Bulk [SEP] $38.79 to $172.8 [SEP] B092LSVMTY [SEP] YHJIC Helmet Virtual Reality Headset Press for Smartphone Cardboard Casque Phone Android 3D Lense [SEP] $22.57 [SEP] B08HVH2DZF [SEP] 50 PCS mixed batch disposable standard round large needle for tattoo needle, used for tattoo machine handle [SEP] $100.0 [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09PJ5ZXGH [SEP] Lingerie for Women Sexy One Piece Lace Sleepwear Teddy Bodysuit Babydoll Backless Chemise Nightwear [SEP] $3.99 to $10.99 [SEP] B083YVHBXH [SEP] Spa Headbands, Coral Fleece Makeup Headband Cosmetic Headband, Lovely Face Washing Headband Shower Headbands Headwraps, Soft Bowknot Spa Hair Band Spa Birthday Party Supplies (9 Colors) [SEP] $12.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nmbv996", "b01l2jkw6e", "b09h2nb41n", "b07n7tdkxq", "b092lsvmty", "b08hvh2dzf", "b09nd8p2qr", "b09nd9dp7j", "b09pj5zxgh", "b083yvhbxh"]
+  12. click[b09nmbv996]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] Silk Short Pajama Set for Women Womens Satin Pajamas Set Sexy Lingerie Sleepwear Cami Shorts Set Nightwear NOLYEC [SEP] Price: $1.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "medium", "large", "x-large", "xx-large"]
+  13. click[xx-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] Silk Short Pajama Set for Women Womens Satin Pajamas Set Sexy Lingerie Sleepwear Cami Shorts Set Nightwear NOLYEC [SEP] Price: $1.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "medium", "large", "x-large", "xx-large"]
+  14. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  15. search[size:xx-large color:multi 9 price:under $70]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09S6S7LG1 [SEP] TV Stand for 70 Inch TV Entertainment Center Stand TV Stand with Storage for TV Console Cabinet Media Cable Box Gaming 70 inch TV Stands for Bedroom Living Room [SEP] $169.99 [SEP] B07PDKXJSK [SEP] Brilliant Sunshine Gray Heart Love Patchwork Large Recliner Protector for Seat Width up to 28", Slip Resistant Furniture Slipcover, 2" Strap, Reclining Chair Cover for Pets, Kids, Dogs, Recliner, Gray [SEP] $32.99 [SEP] B09H2NB41N [SEP] YFF-Corrimano Portable Projection Screen 4:3/16:9 HD Roll-Down Pull-Down Retractable Manual Projection Screen W/Auto-Locking, for Indoor Movie Home Theater Office [SEP] $289.57 [SEP] B07N7TDKXQ [SEP] SOCKS'NBULK Mens Cotton Crew Neck Short Sleeve T-Shirts Mix Colors Bulk [SEP] $38.79 to $172.8 [SEP] B08W874R8Z [SEP] Nikon D7500 DSLR Camera 2 Lens Kit with 18-55mm VR + 70-300mm Zoom Lens + Deluxe Starter Bundle Including 2 32GB Sandisk SD Memory Cards, Wide Angle and Telephoto Lens, Gadget Bag Plus More [SEP] $1579.0 [SEP] B099YQ75WT [SEP] BOWERY HILL Traditional 84" Tall 12-Shelf Double Wide Wood Bookcase in Espresso [SEP] $596.71 [SEP] B08SKH3LTM [SEP] RACHEL Rachel Roy Jacquard Textured Oversized Throw - Silky Soft and Cozy Flannel Fleece, Blanket for Bed and Couch - Oversized Throw 60" X 70", Coconut Milk [SEP] $26.99 [SEP] B08HVH2DZF [SEP] 50 PCS mixed batch disposable standard round large needle for tattoo needle, used for tattoo machine handle [SEP] $100.0 [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59
+
+[Available actions]
+clickables: ["back to search", "next >", "b09s6s7lg1", "b07pdkxjsk", "b09h2nb41n", "b07n7tdkxq", "b08w874r8z", "b099yq75wt", "b08skh3ltm", "b08hvh2dzf", "b09nd8p2qr", "b09nd9dp7j"]
+
+
+
+sid3 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.8333333333333334 outcome=FAILED
+  01. search[men's sleep & lounge long sleeve elastic waistband multi xx-large price <70]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09QW2HQRK [SEP] CandyMan Lace Pajama and Lounge Pants for Men [SEP] $31.0 to $69.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09NSC5VDG [SEP] CofeeMO Womens Lingerie Sleep Lounge Everyday Nursing Bras Printed Underwear Seamless Printed Bralette for Sex Naughty Play [SEP] $14.99 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nd8p2qr", "b09nd9dp7j", "b09qw2hqrk", "b09q5zhrvm", "b09nds8f4v", "b09s3bn15c", "b09q67h373", "b00o30jldk", "b09nsc5vdg", "b09nnmv9ln"]
+  02. click[b09nd8p2qr]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  03. click[xx-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  04. click[xx-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  05. click[xx-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  06. click[xx-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  07. click[xx-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  08. click[xx-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  09. click[xx-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  10. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+sid4 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.6666666666666666 outcome=FAILED
+  01. search[men's sleep lounge long sleeve elastic waistband multicolor xx-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09QW2HQRK [SEP] CandyMan Lace Pajama and Lounge Pants for Men [SEP] $31.0 to $69.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09NSC5VDG [SEP] CofeeMO Womens Lingerie Sleep Lounge Everyday Nursing Bras Printed Underwear Seamless Printed Bralette for Sex Naughty Play [SEP] $14.99 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nd8p2qr", "b09nd9dp7j", "b09qw2hqrk", "b09q5zhrvm", "b09nds8f4v", "b09s3bn15c", "b09q67h373", "b00o30jldk", "b09nsc5vdg", "b09nnmv9ln"]
+  02. click[b09nd8p2qr]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  03. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+sid5 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.8333333333333334 outcome=FAILED
+  01. search[men's sleep lounge long sleeve multi xx-large price < 70]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09NSC5VDG [SEP] CofeeMO Womens Lingerie Sleep Lounge Everyday Nursing Bras Printed Underwear Seamless Printed Bralette for Sex Naughty Play [SEP] $14.99 [SEP] B09QQP3356 [SEP] HAUKLIE Men's Sports Waffle Ribbed Polo Shirts Summer Short Sleeve Cotton Muscle Quarter-Zip Henley T-Shirt Tunics Tops [SEP] $10.99 [SEP] B09KLQLLT2 [SEP] Long Sleeve Superhero T Shirt Tank Top Mens Compression Shirt Men Workout Fitness Gym Shirt [SEP] $19.99 [SEP] B09HGFV91W [SEP] ZHDD Tops for Mens, Men's Knight Punk Vintage Style Long Sleeve Asymmetric Hem Cowl Neck Teen Boys Gothic Pullover [SEP] $4.98 to $7.99 [SEP] B09Q37JQZ6 [SEP] Women's Sexy Swimsuit One Piece High Neck Halter Bikini Floral Stiching See Through Monokini Tummy Control Beachwear [SEP] $10.99 to $18.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nd8p2qr", "b09nd9dp7j", "b09nds8f4v", "b09s3bn15c", "b00o30jldk", "b09nsc5vdg", "b09qqp3356", "b09klqllt2", "b09hgfv91w", "b09q37jqz6"]
+  02. click[b09nd8p2qr]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  03. click[xx-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  04. click[xx-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] size [SEP] small [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] color [SEP] multi 1 [SEP] multi 10 [SEP] multi 2 [SEP] multi 3 [SEP] multi 4 [SEP] multi 5 [SEP] multi 6 [SEP] multi 7 [SEP] multi 8 [SEP] multi 9 [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] Price: $43.59 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "small", "medium", "large", "x-large", "xx-large", "multi 1", "multi 10", "multi 2", "multi 3", "multi 4", "multi 5", "multi 6", "multi 7", "multi 8", "multi 9"]
+  05. click[buy now]  [valid=True, acted=True]
+      动作后观察（原文）: Purchase completed. The episode has ended.
+
+
+
+sid6 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[men's sleep lounge long sleeve elastic waistband multi xx-large price 70]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09QW2HQRK [SEP] CandyMan Lace Pajama and Lounge Pants for Men [SEP] $31.0 to $69.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09NSC5VDG [SEP] CofeeMO Womens Lingerie Sleep Lounge Everyday Nursing Bras Printed Underwear Seamless Printed Bralette for Sex Naughty Play [SEP] $14.99 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nd8p2qr", "b09nd9dp7j", "b09qw2hqrk", "b09q5zhrvm", "b09nds8f4v", "b09s3bn15c", "b09q67h373", "b00o30jldk", "b09nsc5vdg", "b09nnmv9ln"]
+  02. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  03. search[men's sleep lounge long sleeve elastic waistband color: multi 9 size: xx-large price 70]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09QW2HQRK [SEP] CandyMan Lace Pajama and Lounge Pants for Men [SEP] $31.0 to $69.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B09NSC5VDG [SEP] CofeeMO Womens Lingerie Sleep Lounge Everyday Nursing Bras Printed Underwear Seamless Printed Bralette for Sex Naughty Play [SEP] $14.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nd8p2qr", "b09nd9dp7j", "b09qw2hqrk", "b09q5zhrvm", "b09nds8f4v", "b09q67h373", "b09nsc5vdg", "b00o30jldk", "b09s3bn15c", "b09nnmv9ln"]
+  04. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B07N7TDKXQ [SEP] SOCKS'NBULK Mens Cotton Crew Neck Short Sleeve T-Shirts Mix Colors Bulk [SEP] $38.79 to $172.8 [SEP] B09QQP3356 [SEP] HAUKLIE Men's Sports Waffle Ribbed Polo Shirts Summer Short Sleeve Cotton Muscle Quarter-Zip Henley T-Shirt Tunics Tops [SEP] $10.99 [SEP] B09KLQLLT2 [SEP] Long Sleeve Superhero T Shirt Tank Top Mens Compression Shirt Men Workout Fitness Gym Shirt [SEP] $19.99 [SEP] B09HGFV91W [SEP] ZHDD Tops for Mens, Men's Knight Punk Vintage Style Long Sleeve Asymmetric Hem Cowl Neck Teen Boys Gothic Pullover [SEP] $4.98 to $7.99 [SEP] B09PJ5ZXGH [SEP] Lingerie for Women Sexy One Piece Lace Sleepwear Teddy Bodysuit Babydoll Backless Chemise Nightwear [SEP] $3.99 to $10.99 [SEP] B09R9YCM6R [SEP] XXBR Summer T-shirts for Mens, Soldier Short Sleeve 3D Street Vintage Printed Shirt Slim Fit Muscle Casual Tee Tops [SEP] $8.98 to $11.99 [SEP] B07MGB73NJ [SEP] Viracy Women's Short Sleeve V-Neck Casual Flowy Tunic Shirt (M-3XL) [SEP] $16.99 to $26.99 [SEP] B09Q37JQZ6 [SEP] Women's Sexy Swimsuit One Piece High Neck Halter Bikini Floral Stiching See Through Monokini Tummy Control Beachwear [SEP] $10.99 to $18.99 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07 [SEP] B09HX5CD2D [SEP] CSU Cleveland State University Vikings Property Fleece Drawstring Shorts Heather Charcoal [SEP] $39.95
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b07n7tdkxq", "b09qqp3356", "b09klqllt2", "b09hgfv91w", "b09pj5zxgh", "b09r9ycm6r", "b07mgb73nj", "b09q37jqz6", "b09kp78g37", "b09hx5cd2d"]
+  05. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  06. search[men's sleep lounge long sleeve elastic waistband color: multi 9 size: xx-large price < 70]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09QW2HQRK [SEP] CandyMan Lace Pajama and Lounge Pants for Men [SEP] $31.0 to $69.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B09NSC5VDG [SEP] CofeeMO Womens Lingerie Sleep Lounge Everyday Nursing Bras Printed Underwear Seamless Printed Bralette for Sex Naughty Play [SEP] $14.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nd8p2qr", "b09nd9dp7j", "b09qw2hqrk", "b09q5zhrvm", "b09nds8f4v", "b09q67h373", "b09nsc5vdg", "b00o30jldk", "b09s3bn15c", "b09nnmv9ln"]
+  07. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B07N7TDKXQ [SEP] SOCKS'NBULK Mens Cotton Crew Neck Short Sleeve T-Shirts Mix Colors Bulk [SEP] $38.79 to $172.8 [SEP] B09QQP3356 [SEP] HAUKLIE Men's Sports Waffle Ribbed Polo Shirts Summer Short Sleeve Cotton Muscle Quarter-Zip Henley T-Shirt Tunics Tops [SEP] $10.99 [SEP] B09KLQLLT2 [SEP] Long Sleeve Superhero T Shirt Tank Top Mens Compression Shirt Men Workout Fitness Gym Shirt [SEP] $19.99 [SEP] B09HGFV91W [SEP] ZHDD Tops for Mens, Men's Knight Punk Vintage Style Long Sleeve Asymmetric Hem Cowl Neck Teen Boys Gothic Pullover [SEP] $4.98 to $7.99 [SEP] B09PJ5ZXGH [SEP] Lingerie for Women Sexy One Piece Lace Sleepwear Teddy Bodysuit Babydoll Backless Chemise Nightwear [SEP] $3.99 to $10.99 [SEP] B09R9YCM6R [SEP] XXBR Summer T-shirts for Mens, Soldier Short Sleeve 3D Street Vintage Printed Shirt Slim Fit Muscle Casual Tee Tops [SEP] $8.98 to $11.99 [SEP] B07MGB73NJ [SEP] Viracy Women's Short Sleeve V-Neck Casual Flowy Tunic Shirt (M-3XL) [SEP] $16.99 to $26.99 [SEP] B09Q37JQZ6 [SEP] Women's Sexy Swimsuit One Piece High Neck Halter Bikini Floral Stiching See Through Monokini Tummy Control Beachwear [SEP] $10.99 to $18.99 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07 [SEP] B09HX5CD2D [SEP] CSU Cleveland State University Vikings Property Fleece Drawstring Shorts Heather Charcoal [SEP] $39.95
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b07n7tdkxq", "b09qqp3356", "b09klqllt2", "b09hgfv91w", "b09pj5zxgh", "b09r9ycm6r", "b07mgb73nj", "b09q37jqz6", "b09kp78g37", "b09hx5cd2d"]
+  08. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  09. search[men's sleep lounge long sleeve elastic waistband color: multi 9 size: xx-large price < 70]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09QW2HQRK [SEP] CandyMan Lace Pajama and Lounge Pants for Men [SEP] $31.0 to $69.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B09NSC5VDG [SEP] CofeeMO Womens Lingerie Sleep Lounge Everyday Nursing Bras Printed Underwear Seamless Printed Bralette for Sex Naughty Play [SEP] $14.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nd8p2qr", "b09nd9dp7j", "b09qw2hqrk", "b09q5zhrvm", "b09nds8f4v", "b09q67h373", "b09nsc5vdg", "b00o30jldk", "b09s3bn15c", "b09nnmv9ln"]
+  10. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 2 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B07N7TDKXQ [SEP] SOCKS'NBULK Mens Cotton Crew Neck Short Sleeve T-Shirts Mix Colors Bulk [SEP] $38.79 to $172.8 [SEP] B09QQP3356 [SEP] HAUKLIE Men's Sports Waffle Ribbed Polo Shirts Summer Short Sleeve Cotton Muscle Quarter-Zip Henley T-Shirt Tunics Tops [SEP] $10.99 [SEP] B09KLQLLT2 [SEP] Long Sleeve Superhero T Shirt Tank Top Mens Compression Shirt Men Workout Fitness Gym Shirt [SEP] $19.99 [SEP] B09HGFV91W [SEP] ZHDD Tops for Mens, Men's Knight Punk Vintage Style Long Sleeve Asymmetric Hem Cowl Neck Teen Boys Gothic Pullover [SEP] $4.98 to $7.99 [SEP] B09PJ5ZXGH [SEP] Lingerie for Women Sexy One Piece Lace Sleepwear Teddy Bodysuit Babydoll Backless Chemise Nightwear [SEP] $3.99 to $10.99 [SEP] B09R9YCM6R [SEP] XXBR Summer T-shirts for Mens, Soldier Short Sleeve 3D Street Vintage Printed Shirt Slim Fit Muscle Casual Tee Tops [SEP] $8.98 to $11.99 [SEP] B07MGB73NJ [SEP] Viracy Women's Short Sleeve V-Neck Casual Flowy Tunic Shirt (M-3XL) [SEP] $16.99 to $26.99 [SEP] B09Q37JQZ6 [SEP] Women's Sexy Swimsuit One Piece High Neck Halter Bikini Floral Stiching See Through Monokini Tummy Control Beachwear [SEP] $10.99 to $18.99 [SEP] B09KP78G37 [SEP] Women Faux Fur Lined Jacket Coat Winter Warm Thick Fleece Outwear Trench Zipper Plus Size Long Sleeve Plush Overcoat [SEP] $47.41 to $59.07 [SEP] B09HX5CD2D [SEP] CSU Cleveland State University Vikings Property Fleece Drawstring Shorts Heather Charcoal [SEP] $39.95
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b07n7tdkxq", "b09qqp3356", "b09klqllt2", "b09hgfv91w", "b09pj5zxgh", "b09r9ycm6r", "b07mgb73nj", "b09q37jqz6", "b09kp78g37", "b09hx5cd2d"]
+  11. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 3 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B07F2G93BJ [SEP] Amazon Essentials Men's Slim-fit Long-Sleeve Solid Pocket Oxford Shirt [SEP] $18.5 [SEP] B09T756KQ5 [SEP] WENKOMG1 Men's Crewneck Goth Tee Shirts Skull Print Tops Spring/Summer Long Sleeve Sports T-Shirt Baggy Y2K Soft Streetwear [SEP] $4.09 to $8.09 [SEP] B09QT2369P [SEP] Stylish Women's Long Sleeve Sweatshirt Letters Printed Tops Casual Crewneck Solid Blouses Loose Fitting Soft Pullover [SEP] $11.99 to $14.99 [SEP] B07HRFSNL4 [SEP] Nautica Men's Solid Crew Neck Short-Sleeve Pocket T-Shirt [SEP] $16.05 to $40.98 [SEP] B099231V35 [SEP] Mens Casual Cargo Pants Hi Vis Viz Reflective Overalls High Visibility Safe Work Pants Outdoor Hiking Trousers Big and Tall [SEP] $16.79 [SEP] B078WSND96 [SEP] Clearance Deals Retro T-Shirt Bee Printed Blouse, 2021 Summer Fashion Boys Men 3D Round Neck Short Sleeve Tee Tops [SEP] $9.99 to $11.99 [SEP] B09PYSKD7H [SEP] FIN86 Men's Elastic High Waisted Shorts,Men's Summer Printed Casual Shorts Loose Tether Pocket Board Shorts [SEP] $9.98 to $12.98 [SEP] B085WQKRRJ [SEP] CLANMILUMS Men's Classic Comfort Soft Regular Fit Short Sleeve Henley T-Shirt Tee [SEP] $17.99 to $19.99 [SEP] B09MSZ4VS8 [SEP] Goldweather Women Winter Leggings Printed Warm Fleece Lined Yoga Pants Trousers Thermal High Waist Thicken Cashmere Tights (Navy, L) [SEP] $20.99 [SEP] B00ITCBD3Y [SEP] Laredo Womens Spellbound Studded Square Toe Dress Boots Mid Calf Low Heel 1-2" - Black [SEP] $132.0 to $150.26
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b07f2g93bj", "b09t756kq5", "b09qt2369p", "b07hrfsnl4", "b099231v35", "b078wsnd96", "b09pyskd7h", "b085wqkrrj", "b09msz4vs8", "b00itcbd3y"]
+  12. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 4 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09QCVCYVY [SEP] Burband Womens High Waist Bike Shorts Tummy Control Workout Yoga Pants Running Exercise Running Shorts with Side Pockets [SEP] $6.82 [SEP] B09LVMQ1K6 [SEP] Women's Warm Fall Winter Tops, Thicken Padded Plus Size Outerwear Drawstring Long Sleeve Pockets Hooded Overcoats S-5XL [SEP] $71.99 to $79.99 [SEP] B07T3VMGDG [SEP] Tuxedo Cat 4th of July Hat Patriotic Gift Adults Kids Raglan Baseball Tee [SEP] $23.99 [SEP] B074Z315KK [SEP] Novia's Choice Men Shiny Metallic Shirt Blouse T-Shirt Tee for Nightclub [SEP] $18.99 to $25.43 [SEP] B09S632DT3 [SEP] Sleepwear Womens Chemise Nightgown Full Slip Lace Lounge Dress with Briefs Mesh Chemise V Neck Soft Pajama Dress Nightdress [SEP] $11.99 to $14.99 [SEP] B09QGK5XHZ [SEP] WENKOMG1 Men's Long Sleeve Undershirt with Mask Turtleneck Hooded T-Shirt Solid Color Workout Tops Zipper Side Slit Shirts Slim Fit Sweatshirt Spring/Summer Tee Shirts(Gray,) [SEP] $8.39 [SEP] B085GLK7X4 [SEP] Slip Silk Sleep Mask, Hollywood Hills (One Size) - 100% Pure Mulberry 22 Momme Silk Eye Mask - Comfortable Sleeping Mask with Elastic Band + Pure Silk Filler and Internal Liner [SEP] $89.99 [SEP] B07FKGQKZ1 [SEP] Home Dynamix Lyndhurst Rotana Modern Area Rug, Contemporary Blue/Gray/Ivory 5'2"x7'4" [SEP] $44.99 to $33.98 [SEP] B09PVNLVRW [SEP] Women's V-Neck Rompers Printed Jumpsuit Long Sleeve Homewear Butt Flap Pajamas One-Piece Onesies Nightwear Sexy Bodysuit [SEP] $17.4 to $28.67 [SEP] B08DXL22JN [SEP] Cicy Bell Womens Casual Blazers Open Front Long Sleeve Work Office Jackets Blazer [SEP] $48.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b09qcvcyvy", "b09lvmq1k6", "b07t3vmgdg", "b074z315kk", "b09s632dt3", "b09qgk5xhz", "b085glk7x4", "b07fkgqkz1", "b09pvnlvrw", "b08dxl22jn"]
+  13. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 5 (Total results: 50) [SEP] < Prev [SEP] Next > [SEP] B09QCP4579 [SEP] LWLW High Waist Yoga Shorts for Women,Tummy Control Biker Shorts Exercise Workout Butt Lifting Tights Women's Short Pants [SEP] $13.99 [SEP] B09PBG3GYB [SEP] LowProfile Comfortable Seamless Underpanty Lingerie for Women Sexy Ice Silk Breathable Briefs Panties Workout Sleepwear, n8 [SEP] $9.99 [SEP] B09DD2C1XD [SEP] Beaupretty 8pcs Kids Nightcaps Hair Bonnets Sleeping Caps Hair Protection Wide Rim Hat Bath Shower Accessories for Home [SEP] $19.99 [SEP] B089KGBJGW [SEP] ZINUS 10 Inch Cooling Copper ADAPTIVE Pocket Spring Hybrid Mattress / Moisture Wicking Cover / Cooling Foam / Pocket Innersprings for Motion Isolation / Mattress-in-a-Box, Full [SEP] $289.0 [SEP] B07DKGJR74 [SEP] Amazon Brand - Daily Ritual Women's 100% Cotton Oversized Fit V-Neck Pullover Sweater [SEP] $20.66 to $29.2 [SEP] B08JD14GJF [SEP] COOrun Women's UPF 50+ Sun Protection Shirts Quick Dry Long Sleeve Shirts Lightweight T-Shirt Outdoor Hiking Runing Fishing [SEP] $9.98 to $16.98 [SEP] B095SX6366 [SEP] WYTong Women Dress Summer V Neck Swing Dress Fashion Solid Color Tie the knot Short sleeves Leisure Dress [SEP] $9.99 to $11.99 [SEP] B09KM7X1G4 [SEP] Fishouflage Ladies Hoodie - Women's Fishing Sweatshirt [SEP] $69.99 [SEP] B01HQTWL6S [SEP] Expression Tees Pug Life Funny Thug Life Unisex Adult Hoodie [SEP] $36.99 to $48.99 [SEP] B08BC7JRLQ [SEP] YEAQING Women's Sweatpants Pockets High Waist Gym Athletic Cinch Bottom Jogger Pants Baggy Lounge Trousers [SEP] $19.99 to $21.99
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >", "b09qcp4579", "b09pbg3gyb", "b09dd2c1xd", "b089kgbjgw", "b07dkgjr74", "b08jd14gjf", "b095sx6366", "b09km7x1g4", "b01hqtwl6s", "b08bc7jrlq"]
+  14. click[next >]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 6 (Total results: 50) [SEP] < Prev [SEP] Next >
+
+[Available actions]
+clickables: ["back to search", "< prev", "next >"]
+  15. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+
+
+sid7 初始观察：
+
+WebShop [SEP] Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+
+episode=student guidance_hash=bare won=False score=0.0 outcome=FAILED
+  01. search[men's sleep lounge long sleeve elastic waistband multi xx-large price 70]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09QW2HQRK [SEP] CandyMan Lace Pajama and Lounge Pants for Men [SEP] $31.0 to $69.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09NSC5VDG [SEP] CofeeMO Womens Lingerie Sleep Lounge Everyday Nursing Bras Printed Underwear Seamless Printed Bralette for Sex Naughty Play [SEP] $14.99 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nd8p2qr", "b09nd9dp7j", "b09qw2hqrk", "b09q5zhrvm", "b09nds8f4v", "b09s3bn15c", "b09q67h373", "b00o30jldk", "b09nsc5vdg", "b09nnmv9ln"]
+  02. click[b09nds8f4v]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] hot pink [SEP] wine [SEP] red [SEP] size [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] Price: $2.99 to $7.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "hot pink", "wine", "red", "medium", "large", "x-large", "xx-large"]
+  03. click[next>  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] hot pink [SEP] wine [SEP] red [SEP] size [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] Price: $2.99 to $7.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "hot pink", "wine", "red", "medium", "large", "x-large", "xx-large"]
+  04. click[xx-large]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] < Prev [SEP] color [SEP] hot pink [SEP] wine [SEP] red [SEP] size [SEP] medium [SEP] large [SEP] x-large [SEP] xx-large [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] Price: $2.99 to $7.99 [SEP] Rating: N.A. [SEP] Description [SEP] Features [SEP] Reviews [SEP] Buy Now
+
+[Available actions]
+clickables: ["back to search", "< prev", "description", "features", "reviews", "buy now", "hot pink", "wine", "red", "medium", "large", "x-large", "xx-large"]
+  05. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  06. search[men's sleep lounge long sleeve elastic waistband multi xx-large price 70]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09QW2HQRK [SEP] CandyMan Lace Pajama and Lounge Pants for Men [SEP] $31.0 to $69.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09NSC5VDG [SEP] CofeeMO Womens Lingerie Sleep Lounge Everyday Nursing Bras Printed Underwear Seamless Printed Bralette for Sex Naughty Play [SEP] $14.99 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nd8p2qr", "b09nd9dp7j", "b09qw2hqrk", "b09q5zhrvm", "b09nds8f4v", "b09s3bn15c", "b09q67h373", "b00o30jldk", "b09nsc5vdg", "b09nnmv9ln"]
+  07. click[next>  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09QW2HQRK [SEP] CandyMan Lace Pajama and Lounge Pants for Men [SEP] $31.0 to $69.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09NSC5VDG [SEP] CofeeMO Womens Lingerie Sleep Lounge Everyday Nursing Bras Printed Underwear Seamless Printed Bralette for Sex Naughty Play [SEP] $14.99 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nd8p2qr", "b09nd9dp7j", "b09qw2hqrk", "b09q5zhrvm", "b09nds8f4v", "b09s3bn15c", "b09q67h373", "b00o30jldk", "b09nsc5vdg", "b09nnmv9ln"]
+  08. click[next>  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09QW2HQRK [SEP] CandyMan Lace Pajama and Lounge Pants for Men [SEP] $31.0 to $69.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09NSC5VDG [SEP] CofeeMO Womens Lingerie Sleep Lounge Everyday Nursing Bras Printed Underwear Seamless Printed Bralette for Sex Naughty Play [SEP] $14.99 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nd8p2qr", "b09nd9dp7j", "b09qw2hqrk", "b09q5zhrvm", "b09nds8f4v", "b09s3bn15c", "b09q67h373", "b00o30jldk", "b09nsc5vdg", "b09nnmv9ln"]
+  09. click[next>  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09QW2HQRK [SEP] CandyMan Lace Pajama and Lounge Pants for Men [SEP] $31.0 to $69.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09NSC5VDG [SEP] CofeeMO Womens Lingerie Sleep Lounge Everyday Nursing Bras Printed Underwear Seamless Printed Bralette for Sex Naughty Play [SEP] $14.99 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nd8p2qr", "b09nd9dp7j", "b09qw2hqrk", "b09q5zhrvm", "b09nds8f4v", "b09s3bn15c", "b09q67h373", "b00o30jldk", "b09nsc5vdg", "b09nnmv9ln"]
+  10. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  11. search[men's sleep lounge long sleeve elastic waistband color: multi 9 size: xx-large price 70]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09QW2HQRK [SEP] CandyMan Lace Pajama and Lounge Pants for Men [SEP] $31.0 to $69.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B09NSC5VDG [SEP] CofeeMO Womens Lingerie Sleep Lounge Everyday Nursing Bras Printed Underwear Seamless Printed Bralette for Sex Naughty Play [SEP] $14.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nd8p2qr", "b09nd9dp7j", "b09qw2hqrk", "b09q5zhrvm", "b09nds8f4v", "b09q67h373", "b09nsc5vdg", "b00o30jldk", "b09s3bn15c", "b09nnmv9ln"]
+  12. click[next>  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09QW2HQRK [SEP] CandyMan Lace Pajama and Lounge Pants for Men [SEP] $31.0 to $69.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B09NSC5VDG [SEP] CofeeMO Womens Lingerie Sleep Lounge Everyday Nursing Bras Printed Underwear Seamless Printed Bralette for Sex Naughty Play [SEP] $14.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nd8p2qr", "b09nd9dp7j", "b09qw2hqrk", "b09q5zhrvm", "b09nds8f4v", "b09q67h373", "b09nsc5vdg", "b00o30jldk", "b09s3bn15c", "b09nnmv9ln"]
+  13. click[back to search]  [valid=True, acted=True]
+      动作后观察（原文）: WebShop [SEP] Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Search
+
+[Available actions]
+search bar: available
+clickables: ["search"]
+  14. search[men's sleep lounge long sleeve elastic waistband color: multi 9 size: xx-large price 70]  [valid=True, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09QW2HQRK [SEP] CandyMan Lace Pajama and Lounge Pants for Men [SEP] $31.0 to $69.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B09NSC5VDG [SEP] CofeeMO Womens Lingerie Sleep Lounge Everyday Nursing Bras Printed Underwear Seamless Printed Bralette for Sex Naughty Play [SEP] $14.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nd8p2qr", "b09nd9dp7j", "b09qw2hqrk", "b09q5zhrvm", "b09nds8f4v", "b09q67h373", "b09nsc5vdg", "b00o30jldk", "b09s3bn15c", "b09nnmv9ln"]
+  15. click[next>  [valid=False, acted=True]
+      动作后观察（原文）: Instruction: [SEP] Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 9, and size: xx-large, and price lower than 70.00 dollars [SEP] Back to Search [SEP] Page 1 (Total results: 50) [SEP] Next > [SEP] B09ND8P2QR [SEP] InterestPrint Deer and Stars Men's Loungewear Pajama Sets - Long Sleeve Tee and Jogger Pant [SEP] $43.59 [SEP] B09ND9DP7J [SEP] InterestPrint Gold Horse Pattern Men's 2-Piece Sleepwear Set, Long Sleeve Shirt with Pants Loungewear [SEP] $43.59 [SEP] B09QW2HQRK [SEP] CandyMan Lace Pajama and Lounge Pants for Men [SEP] $31.0 to $69.0 [SEP] B09Q5ZHRVM [SEP] Yinimo Mens Gym Shorts Fashionable Loose Beach Drawstring Turkey Print Beach Cool Shorts [SEP] $19.19 [SEP] B09NDS8F4V [SEP] AODONG Onesie Pajamas for Women Onesies Romper Pajamas Printed Bodycon Jumpsuit Shorts Sexy One Piece Pjs Overall [SEP] $2.99 to $7.99 [SEP] B09Q67H373 [SEP] JSPOYOU 2022 Newly T-Shirt for Mens Funny 3D Graphics Pattern Crewneck Short Sleeve Tees Big and Tall Summer Casual Comfy Top [SEP] $1.99 to $8.99 [SEP] B09NSC5VDG [SEP] CofeeMO Womens Lingerie Sleep Lounge Everyday Nursing Bras Printed Underwear Seamless Printed Bralette for Sex Naughty Play [SEP] $14.99 [SEP] B00O30JLDK [SEP] Legendary Whitetails Men's Non-Typical Long Sleeve T-Shirt [SEP] $10.52 to $40.5 [SEP] B09S3BN15C [SEP] Mens Linen Shirt,Men's Striped Shirts Casual Short Sleeve Button Down Shirts Regular Fit Hawaiian Shirts Beach Tees Tops [SEP] $3.78 to $11.38 [SEP] B09NNMV9LN [SEP] JSPOYOU Mens Short Sleeve Crewneck 3D Graphic Tunic Shirts Big & Tall Tie Dye Summer Top Basic Designed Classic Cotton Shirt [SEP] $3.99 to $10.99
+
+[Available actions]
+clickables: ["back to search", "next >", "b09nd8p2qr", "b09nd9dp7j", "b09qw2hqrk", "b09q5zhrvm", "b09nds8f4v", "b09q67h373", "b09nsc5vdg", "b00o30jldk", "b09s3bn15c", "b09nnmv9ln"]
+
+
+
+八、来源
+
+远端会话目录：/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/research/webshop_05104--591c855fd6/20261025_041249_v1
+
+原始文件SHA256：
+
+{
+  "meta.json": "61a1b378c2b5062b47c8630c5364e85c93b7bea273ff628eebef53daf2e870f6",
+  "session.jsonl": "201cd599c7e4ee2dca9da95d45603310102c51db1cff5dcdf0f46642353de429",
+  "doc.md": "262168306f13f88d473905d8316e07b209ae31ebbc2342a69509049e356525d4",
+  "episodes.jsonl": "23a938345574e0702ba6846d805e01d6c7fe24972f5583a320c944c41aa40feb"
+}
+
+训练rollout来源及SHA256：
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00002/webshop_05104_34910b92.json
+920b2c79e53dca23214f34aba2ca6487c3bd00ecc309a2a8dac456d8d9c6b2e8
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00002/webshop_05104_cbcb4cdc.json
+dc9acd2d0ea39bd0a7937f49da127f6411be4e43e915e493c58d47b99cce17e6
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00002/webshop_05104_c2629fae.json
+c2c0a27317765e69827dee7b49d1c0a4f58c0eb714188be59aae9eeb0e7d1662
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00002/webshop_05104_02f7864c.json
+c65950d4ac79d641f259c95e88d62f112714b95397d22654c0f4b735fbd2aaec
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00002/webshop_05104_3305e9de.json
+884eb3642063c79e8424d93b01aea057eb19085e4636752a586822b7caadb108
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00002/webshop_05104_dfea6fe5.json
+09b75882141a6b6e247ce1327ac19a5c1ae25a69be9eda32bb6f79d2561ddaff
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00002/webshop_05104_30d36b90.json
+f89318c2dbe165af7a184696f68d311c6577cc49a0ea36ebc59ec13f93d98f81
+
+/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/rollouts/step_00002/webshop_05104_2c4fd0ca.json
+9bfedea00a833ec9592136b056b4ca509724274c0e1b32853e3b2ea86515ee87

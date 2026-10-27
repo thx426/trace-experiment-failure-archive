@@ -1,0 +1,833 @@
+{
+  "same_step_task_sets": true,
+  "reward_from_score": {
+    "clean": false,
+    "grpo": false
+  },
+  "windows": {
+    "all": {
+      "clean": {
+        "groups": 1600,
+        "rows": 12800,
+        "successes": 7325,
+        "mixed_binary_reward_groups": 543,
+        "all_zero_groups": 424,
+        "all_success_groups": 633,
+        "guided_successes": 3681,
+        "bare_successes": 3644,
+        "guided_success_bare_all_fail_groups": 81,
+        "bare_success_guided_all_fail_groups": 73,
+        "both_arms_have_success_groups": 1022,
+        "actual_steer_episodes": 6333,
+        "mixed_binary_reward_group_fraction": 0.339375
+      },
+      "grpo": {
+        "groups": 1600,
+        "rows": 12800,
+        "successes": 6245,
+        "mixed_binary_reward_groups": 776,
+        "all_zero_groups": 450,
+        "all_success_groups": 374,
+        "mixed_binary_reward_group_fraction": 0.485
+      }
+    },
+    "1-20": {
+      "clean": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 223,
+        "mixed_binary_reward_groups": 127,
+        "all_zero_groups": 193,
+        "all_success_groups": 0,
+        "guided_successes": 111,
+        "bare_successes": 112,
+        "guided_success_bare_all_fail_groups": 47,
+        "bare_success_guided_all_fail_groups": 43,
+        "both_arms_have_success_groups": 37,
+        "actual_steer_episodes": 1216,
+        "mixed_binary_reward_group_fraction": 0.396875
+      },
+      "grpo": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 215,
+        "mixed_binary_reward_groups": 116,
+        "all_zero_groups": 204,
+        "all_success_groups": 0,
+        "mixed_binary_reward_group_fraction": 0.3625
+      }
+    },
+    "21-40": {
+      "clean": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 1270,
+        "mixed_binary_reward_groups": 194,
+        "all_zero_groups": 68,
+        "all_success_groups": 58,
+        "guided_successes": 658,
+        "bare_successes": 612,
+        "guided_success_bare_all_fail_groups": 27,
+        "bare_success_guided_all_fail_groups": 18,
+        "both_arms_have_success_groups": 207,
+        "actual_steer_episodes": 1280,
+        "mixed_binary_reward_group_fraction": 0.60625
+      },
+      "grpo": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 875,
+        "mixed_binary_reward_groups": 218,
+        "all_zero_groups": 93,
+        "all_success_groups": 9,
+        "mixed_binary_reward_group_fraction": 0.68125
+      }
+    },
+    "41-60": {
+      "clean": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 1814,
+        "mixed_binary_reward_groups": 112,
+        "all_zero_groups": 57,
+        "all_success_groups": 151,
+        "guided_successes": 901,
+        "bare_successes": 913,
+        "guided_success_bare_all_fail_groups": 4,
+        "bare_success_guided_all_fail_groups": 6,
+        "both_arms_have_success_groups": 253,
+        "actual_steer_episodes": 1280,
+        "mixed_binary_reward_group_fraction": 0.35
+      },
+      "grpo": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 1507,
+        "mixed_binary_reward_groups": 192,
+        "all_zero_groups": 54,
+        "all_success_groups": 74,
+        "mixed_binary_reward_group_fraction": 0.6
+      }
+    },
+    "61-80": {
+      "clean": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 1954,
+        "mixed_binary_reward_groups": 61,
+        "all_zero_groups": 56,
+        "all_success_groups": 203,
+        "guided_successes": 978,
+        "bare_successes": 976,
+        "guided_success_bare_all_fail_groups": 2,
+        "bare_success_guided_all_fail_groups": 4,
+        "both_arms_have_success_groups": 258,
+        "actual_steer_episodes": 1280,
+        "mixed_binary_reward_group_fraction": 0.190625
+      },
+      "grpo": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 1768,
+        "mixed_binary_reward_groups": 136,
+        "all_zero_groups": 51,
+        "all_success_groups": 133,
+        "mixed_binary_reward_group_fraction": 0.425
+      }
+    },
+    "81-100": {
+      "clean": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 2064,
+        "mixed_binary_reward_groups": 49,
+        "all_zero_groups": 50,
+        "all_success_groups": 221,
+        "guided_successes": 1033,
+        "bare_successes": 1031,
+        "guided_success_bare_all_fail_groups": 1,
+        "bare_success_guided_all_fail_groups": 2,
+        "both_arms_have_success_groups": 267,
+        "actual_steer_episodes": 1277,
+        "mixed_binary_reward_group_fraction": 0.153125
+      },
+      "grpo": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 1880,
+        "mixed_binary_reward_groups": 114,
+        "all_zero_groups": 48,
+        "all_success_groups": 158,
+        "mixed_binary_reward_group_fraction": 0.35625
+      }
+    }
+  },
+  "examples": [
+    {
+      "step": 2,
+      "task_id": "webshop_05104",
+      "clean_guided_successes": 2,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        0.75,
+        0.75,
+        -0.25,
+        -0.25,
+        -0.25,
+        -0.25,
+        -0.25,
+        -0.25
+      ],
+      "actual_steering": [
+        184,
+        116,
+        505,
+        215,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 2,
+      "task_id": "webshop_06545",
+      "clean_guided_successes": 1,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        -0.125,
+        -0.125,
+        -0.125,
+        0.875,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125
+      ],
+      "actual_steering": [
+        144,
+        540,
+        331,
+        150,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 3,
+      "task_id": "webshop_03680",
+      "clean_guided_successes": 1,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        -0.125,
+        -0.125,
+        0.875,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125
+      ],
+      "actual_steering": [
+        226,
+        353,
+        178,
+        260,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 4,
+      "task_id": "webshop_02145",
+      "clean_guided_successes": 1,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        -0.125,
+        -0.125,
+        0.875,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125
+      ],
+      "actual_steering": [
+        229,
+        120,
+        124,
+        109,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 4,
+      "task_id": "webshop_05556",
+      "clean_guided_successes": 1,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        -0.125,
+        0.875,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125
+      ],
+      "actual_steering": [
+        74,
+        24,
+        112,
+        107,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 5,
+      "task_id": "webshop_03525",
+      "clean_guided_successes": 1,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        -0.125,
+        -0.125,
+        0.875,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125
+      ],
+      "actual_steering": [
+        139,
+        165,
+        177,
+        299,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 6,
+      "task_id": "webshop_06506",
+      "clean_guided_successes": 1,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        -0.125,
+        -0.125,
+        0.875,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125
+      ],
+      "actual_steering": [
+        320,
+        551,
+        144,
+        453,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 7,
+      "task_id": "webshop_06540",
+      "clean_guided_successes": 2,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        0.75,
+        -0.25,
+        0.75,
+        -0.25,
+        -0.25,
+        -0.25,
+        -0.25,
+        -0.25
+      ],
+      "actual_steering": [
+        153,
+        542,
+        119,
+        430,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 9,
+      "task_id": "webshop_05686",
+      "clean_guided_successes": 1,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        -0.125,
+        -0.125,
+        0.875,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125
+      ],
+      "actual_steering": [
+        351,
+        507,
+        177,
+        505,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 10,
+      "task_id": "webshop_05934",
+      "clean_guided_successes": 1,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        -0.125,
+        -0.125,
+        -0.125,
+        0.875,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125
+      ],
+      "actual_steering": [
+        677,
+        500,
+        537,
+        164,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 11,
+      "task_id": "webshop_01885",
+      "clean_guided_successes": 1,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        0.875,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125
+      ],
+      "actual_steering": [
+        170,
+        115,
+        428,
+        187,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 11,
+      "task_id": "webshop_03296",
+      "clean_guided_successes": 1,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        -0.125,
+        -0.125,
+        0.875,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125
+      ],
+      "actual_steering": [
+        338,
+        612,
+        136,
+        572,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 12,
+      "task_id": "webshop_02019",
+      "clean_guided_successes": 1,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        0.875,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125
+      ],
+      "actual_steering": [
+        540,
+        489,
+        434,
+        210,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 13,
+      "task_id": "webshop_05137",
+      "clean_guided_successes": 1,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        -0.125,
+        0.875,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125
+      ],
+      "actual_steering": [
+        229,
+        117,
+        502,
+        796,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 15,
+      "task_id": "webshop_05516",
+      "clean_guided_successes": 1,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        -0.125,
+        -0.125,
+        0.875,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125
+      ],
+      "actual_steering": [
+        428,
+        337,
+        138,
+        110,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 17,
+      "task_id": "webshop_06563",
+      "clean_guided_successes": 1,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        0.875,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125
+      ],
+      "actual_steering": [
+        263,
+        14,
+        368,
+        429,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 18,
+      "task_id": "webshop_05422",
+      "clean_guided_successes": 1,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        -0.125,
+        -0.125,
+        0.875,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125
+      ],
+      "actual_steering": [
+        528,
+        544,
+        164,
+        614,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 19,
+      "task_id": "webshop_06807",
+      "clean_guided_successes": 1,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        -0.125,
+        -0.125,
+        0.875,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125
+      ],
+      "actual_steering": [
+        475,
+        432,
+        132,
+        529,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}

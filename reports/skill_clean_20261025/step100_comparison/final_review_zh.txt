@@ -1,0 +1,785 @@
+Clean-Skill v2 与普通 GRPO：第100步最终审计与逐题分析
+仅分析已保存的数据；未启动新实验、未改模型或训练配置。
+评测口径：同一256道dev题，每题5次，temperature=0.6。pass@1估计=1280次成功比例；pass@5=256题中至少成功一次的比例。
+所有第100步记录已核验同一launch、step100权重、bare=true、空steering/research。两组都是Qwen2.5-3B学生无Skill评测。
+GRPO：937/1280=73.203125%；205/256=80.078125%。Clean：1019/1280=79.609375%；214/256=83.59375%。差值+6.40625/+3.515625个百分点。
+逐题成功次数：58提升、18下降、180相同。19题从0/5变为有成功；10题从有成功变0/5。5/5题从158变193。
+第20步丢失的28题全部恢复，其中27题5/5；最终10道丢失题与这28题不重合。
+净增加82次成功 = 新解题贡献74 − 丢失题损失39 + 双方都能做对的题净增加47。
+同题配对bootstrap（20000次，仅评测题抽样不确定性）：pass@1增益95%区间[2.42,10.39]pp；pass@5[-0.39,7.81]pp。pass@5精确McNemar双侧p=0.136。不是多训练seed置信区间。
+
+你实际改变了什么
+保持同一初始学生、seed42、相同训练题目/日程、16题×8条rollout、100步、lr=1e-6、二值成功奖励、普通GRPO。
+Clean每题4条指定guided、4条bare；研究员探索后把指导编译为精确公开规格+逐项点击+满足条件后购买+失败恢复检查表，只保留受约束的检索建议。自由文本不直接注入。
+改动还包括收尾轮次保留、探索预算结束后限制重复读取、明确标注检查表兜底、缺文档/基础设施错误中止、独立规格审计。
+guided臂使用Skill影响采样，和bare臂一起做GRPO；当前不是OPD/SFT，也不是历史asymmetric PGS目标。adv归一化关闭；w_beh_mode=off，不能宣称已完整消除引导采样偏差。
+没有做A/B/C/D，因此无法把增益唯一归因于某一条清洗规则。训练结束后的bare提升支持部分迁移，不代表全部指导都被学会。
+
+为什么这次分数高，解释到哪里为止
+可观察改善：无效动作episode从183降至127，购买完成从1256升至1278，五次全对题增加35；查询平均词数从15.36降到6.64。
+查询简化有双面性：00511、00989、01102、01987等更易找对商品；02397、03571、04717、06752等删掉区分词后找错。不能说查询越短越好。
+两组均没有打开Description/Features；首次选中搜索首项分别1251/1280和1273/1280。这是一套在固定WebShop分布上更有效的搜索/选择/购买策略，还不是充分的语义核验或多候选恢复策略。
+训练与dev题ID和完整指令无重合；212/256 dev题的规格前文字前缀出现在训练中。这是同域/相近模板迁移，不能据此声称未知商品或开放场景泛化。
+研究员额外成本：1600研究会话、3502探索实验、7511额外episode；学生正式训练两组均12800episode。不是等总计算预算的胜利。
+评测用dev，并已用于人工分析与停止规则；单seed。不是独立保留test的最终证据。传输分片/幂等修复保持奖励和环境语义，但可能改变时序和随机采样顺序。
+
+按初始无Skill pass@5分层（冻结gate：每题20次，1-C(20-c,5)/C(20,5)；不是把第100步k/5称为pass@5）
+层	题数	GRPO pass@1	Clean pass@1	GRPO pass@5	Clean pass@5	新增/丢失
+low	221	70.14%	76.92%	77.38%	81.45%	18/9
+middle	21	93.33%	99.05%	95.24%	100.00%	1/0
+high	14	91.43%	92.86%	100.00%	92.86%	0/1
+低层<0.5；中层[0.5,0.8)；高层≥0.8。10道丢失题：7道初始为0、2道44.74%、1道87.09%；中层无丢失。
+
+新增成功的19道题（GRPO100 → Clean100成功次数/5）
+webshop_00511	0/5 → 5/5	Instruction: Find me women's lingerie, sleep & lounge with long sleeve, tummy control, high waist, short sleeve with color: khaki, and size: large, and price lower than 50.00 dollars
+webshop_00989	0/5 → 5/5	Instruction: Find me machine wash men's pants with drawstring closure, elastic waist, polyester spandex with color: navy, and size: large, and price lower than 50.00 dollars
+webshop_01102	0/5 → 5/5	Instruction: Find me men's polos with short sleeve, button closure with color: green, and price lower than 20.00 dollars
+webshop_01987	0/5 → 5/5	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: bright white, and size: x-large, and price lower than 40.00 dollars
+webshop_03021	0/5 → 5/5	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: navy, and fit type: men, and size: xx-large, and price lower than 40.00 dollars
+webshop_03404	0/5 → 5/5	Instruction: Find me men's shorts with comfortable fit, elastic waistband for gym workout, daily wear with color: black 1, and size: xx-large, and price lower than 40.00 dollars
+webshop_03538	0/5 → 5/5	Instruction: Find me officially licensed, machine wash men's t-shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: baby blue, and fit type: youth, and size: 3t, and price lower than 50.00 dollars
+webshop_03561	0/5 → 5/5	Instruction: Find me officially licensed, machine wash men's t-shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: 3t, and price lower than 50.00 dollars
+webshop_03993	0/5 → 2/5	Instruction: Find me eco friendly decorative pillows for living room with color: love heart flower, and price lower than 40.00 dollars
+webshop_04378	0/5 → 4/5	Instruction: Find me soy free, plant based, dairy free, non gmo, gluten free wasabi peas with artificial flavors with flavor: 3-flavor variety, and size: 0.8 ounce (pack of 20), and price lower than 50.00 dollars
+webshop_04477	0/5 → 1/5	Instruction: Find me wash cold, hand wash, machine wash men's t-shirts & tanks with color: silver 2, and size: x-large, and price lower than 60.00 dollars
+webshop_04565	0/5 → 4/5	Instruction: Find me officially licensed, machine wash men's t-shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: white, and fit type: youth, and size: 3t, and price lower than 50.00 dollars
+webshop_04587	0/5 → 5/5	Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: women, and size: 3t, and price lower than 50.00 dollars
+webshop_04726	0/5 → 4/5	Instruction: Find me knee high, open toe women's loafers & slip-ons with steel toe, high heel, faux fur, arch support with color: black, and size: 9, and price lower than 30.00 dollars
+webshop_04792	0/5 → 2/5	Instruction: Find me slim fit men's suits & sport coats with button closure, classic fit with color: green, and size: x-small, and price lower than 90.00 dollars
+webshop_05152	0/5 → 1/5	Instruction: Find me men's fashion sneakers with lace closure, rubber outsole, rubber sole with color: white | black, and size: 11, and price lower than 60.00 dollars
+webshop_05219	0/5 → 5/5	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: men, and size: x-large, and price lower than 30.00 dollars
+webshop_06171	0/5 → 1/5	Instruction: Find me men's shorts with elastic waist, classic fit, short sleeve for gym workout with color: navy, and size: small, and price lower than 50.00 dollars
+webshop_06667	0/5 → 5/5	Instruction: Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: rectangular, and size: 21 in x 35 in, and price lower than 60.00 dollars
+
+10道完全丢失题：全部50次Clean失败都有购买，无截断，也不是环境超时。7题主要检索/商品选择错误，3题为正确商品上的规格错误。
+
+webshop_00985 | 初始pass@5 0.00%（0/20） | GRPO 5/5 → Clean 0/5
+Instruction: Find me machine washable men's t-shirts with short sleeve for tumble dry with color: 12 pack tank top undershirts, and size: medium, and price lower than 160.00 dollars
+5次都找到正确商品，却将 12 pack tank top undershirts 选成 12 pack mix；不是检索失败。
+纠正建议（未执行）：在购买前逐字核对颜色/套装规格；不能把共享商品的另一变体作为默认值。
+dev题不在训练/研究员任务集合中。以下训练文档仅作相似任务的机制参照，不是本题接受的Skill，也不是因果证据。
+相似训练任务：webshop_06746，step 86；明确规格 {"color": "12 pack mix", "size": "7x-large"}；候选查询 men's t-shirts 12 pack mix tumble dry；探索成功数 2。
+动作证据（不包含模型内部思维文本；✓有效，×无效）：
+  grpo sid=0 won=True score=1.000000 [webshop_00985_6397ae45.json] ✓search[machine washable men's t-shirts short sleeve tumble dry color 12 pack tank top undershirts size medium price <160.00] → ✓click[b07n7tdkxq] → ✓click[medium] → ✓click[12 pack tank top undershirts] → ✓click[medium] → ✓click[buy now]
+  grpo sid=1 won=True score=1.000000 [webshop_00985_ec3d6ea3.json] ✓search[12 pack men's t-shirts short sleeve tumble dry 160.00 color 12 pack tank top undershirts size medium] → ✓click[b07n7tdkxq] → ✓click[medium] → ✓click[12 pack tank top undershirts] → ✓click[medium] → ✓click[buy now]
+  grpo sid=2 won=True score=1.000000 [webshop_00985_41c7aef2.json] ✓search[12 pack men's t-shirts short sleeve tumble dry color 12 pack tank top undershirts size medium price less than 160.00] → ✓click[b07n7tdkxq] → ✓click[medium] → ✓click[12 pack tank top undershirts] → ✓click[medium] → ✓click[buy now]
+  grpo sid=3 won=True score=1.000000 [webshop_00985_4e894ae6.json] ✓search[12 pack men's t-shirts short sleeve tumble dry color 12 pack tank top undershirts size medium price less than 160.00] → ✓click[b07n7tdkxq] → ✓click[medium] → ✓click[12 pack tank top undershirts] → ✓click[medium] → ✓click[buy now]
+  grpo sid=4 won=True score=1.000000 [webshop_00985_9279851b.json] ✓search[men's t-shirts short sleeve 12 pack tank top undershirts 12 pack tumble dry color 12 pack medium 12 pack under 160.00] → ✓click[b07n7tdkxq] → ✓click[medium] → ✓click[12 pack tank top undershirts] → ✓click[medium] → ✓click[buy now]
+  clean sid=0 won=False score=0.833333 [webshop_00985_cd5bfcbc.json] ✓search[men's t-shirts 12 pack medium] → ✓click[b07n7tdkxq] → ✓click[12 pack mix] → ✓click[medium] → ✓click[buy now]
+  clean sid=1 won=False score=0.833333 [webshop_00985_82dab204.json] ✓search[men's t-shirts 12 pack short sleeve size medium color 12 pack] → ✓click[b07n7tdkxq] → ✓click[12 pack mix] → ✓click[medium] → ✓click[buy now]
+  clean sid=2 won=False score=0.833333 [webshop_00985_8aec54b6.json] ✓search[men's t-shirts 12 pack medium] → ✓click[b07n7tdkxq] → ✓click[12 pack mix] → ✓click[medium] → ✓click[buy now]
+  clean sid=3 won=False score=0.833333 [webshop_00985_d102c3b8.json] ✓search[men's t-shirts 12 pack short sleeve medium] → ✓click[b07n7tdkxq] → ✓click[12 pack mix] → ✓click[medium] → ✓click[buy now]
+  clean sid=4 won=False score=0.833333 [webshop_00985_cc46ebd8.json] ✓search[men's t-shirts 12 pack medium color 12 pack] → ✓click[b07n7tdkxq] → ✓click[12 pack mix] → ✓click[medium] → ✓click[buy now]
+
+webshop_01705 | 初始pass@5 0.00%（0/20） | GRPO 5/5 → Clean 0/5
+Instruction: Find me home office furniture sets for dining room, living room with color: navy-multi, and item shape: runner, and size: 7 ft 8 in x 10 ft 7 in, and price lower than 60.00 dollars
+5次都找到正确地毯，选尺寸→颜色→重复尺寸→购买，均漏掉 item shape: runner。
+纠正建议（未执行）：用按属性名分开的已选状态表；补 click[runner]，无需重复尺寸。
+dev题不在训练/研究员任务集合中。以下训练文档仅作相似任务的机制参照，不是本题接受的Skill，也不是因果证据。
+相似训练任务：webshop_04233，step 85；明确规格 {"color": "blue | gray", "item shape": "round", "size": "7 ft 9 in x 10 ft 8 in"}；候选查询 home office furniture sets dining room living room blue gray；探索成功数 2。
+动作证据（不包含模型内部思维文本；✓有效，×无效）：
+  grpo sid=0 won=True score=1.000000 [webshop_01705_4fc74bbb.json] ✓search[home office furniture sets dining room living room navy-multi runner 7 ft 8 in x 10 ft 7 in price <60.00] → ✓click[b07fkgqkz1] → ✓click[7 ft 8 in x 10 ft 7 in] → ✓click[runner] → ✓click[navy-multi] → ✓click[buy now]
+  grpo sid=1 won=True score=1.000000 [webshop_01705_ab2c568d.json] ✓search[navy-multi runner furniture 7 ft 8 in x 10 ft 7 in price < 60] → ✓click[b07fkgqkz1] → ✓click[7 ft 8 in x 10 ft 7 in] → ✓click[runner] → ✓click[navy-multi] → ✓click[buy now]
+  grpo sid=2 won=True score=1.000000 [webshop_01705_b5a27cde.json] ✓search[navy-multi home office furniture sets dining room living room runner 7 ft 8 in x 10 ft 7 in price < 60.00] → ✓click[b07fkgqkz1] → ✓click[7 ft 8 in x 10 ft 7 in] → ✓click[runner] → ✓click[navy-multi] → ✓click[buy now]
+  grpo sid=3 won=True score=1.000000 [webshop_01705_1ce7e530.json] ✓search[home office furniture sets navy-multi runner 7 ft 8 in x 10 ft 7 in price <60] → ✓click[b07fkgqkz1] → ✓click[7 ft 8 in x 10 ft 7 in] → ✓click[runner] → ✓click[navy-multi] → ✓click[buy now]
+  grpo sid=4 won=True score=1.000000 [webshop_01705_f67a4af8.json] ✓search[home office furniture sets dining room living room navy-multi runner 7 ft 8 in x 10 ft 7 in price < 60.00] → ✓click[b07fkgqkz1] → ✓click[7 ft 8 in x 10 ft 7 in] → ✓click[runner] → ✓click[navy-multi] → ✓click[buy now]
+  clean sid=0 won=False score=0.833333 [webshop_01705_69555757.json] ✓search[home office furniture navy multi runner 7 ft 8 in x 10 ft 7 in] → ✓click[b07fkgqkz1] → ✓click[7 ft 8 in x 10 ft 7 in] → ✓click[navy-multi] → ✓click[7 ft 8 in x 10 ft 7 in] → ✓click[buy now]
+  clean sid=1 won=False score=0.833333 [webshop_01705_22aed968.json] ✓search[home office furniture navy-multi runner 7 ft 8 in x 10 ft 7 in] → ✓click[b07fkgqkz1] → ✓click[7 ft 8 in x 10 ft 7 in] → ✓click[navy-multi] → ✓click[7 ft 8 in x 10 ft 7 in] → ✓click[buy now]
+  clean sid=2 won=False score=0.833333 [webshop_01705_e4fcc7b3.json] ✓search[home office furniture navy-multi runner 7 ft 8 in x 10 ft 7 in] → ✓click[b07fkgqkz1] → ✓click[7 ft 8 in x 10 ft 7 in] → ✓click[navy-multi] → ✓click[7 ft 8 in x 10 ft 7 in] → ✓click[buy now]
+  clean sid=3 won=False score=0.833333 [webshop_01705_e71bfd54.json] ✓search[home office furniture navy multi runner 7 ft 8 in x 10 ft 7 in] → ✓click[b07fkgqkz1] → ✓click[7 ft 8 in x 10 ft 7 in] → ✓click[navy-multi] → ✓click[7 ft 8 in x 10 ft 7 in] → ✓click[buy now]
+  clean sid=4 won=False score=0.833333 [webshop_01705_a0322172.json] ✓search[home office furniture navy multi runner 7 ft 8 in x 10 ft 7 in] → ✓click[b07fkgqkz1] → ✓click[7 ft 8 in x 10 ft 7 in] → ✓click[navy-multi] → ✓click[7 ft 8 in x 10 ft 7 in] → ✓click[buy now]
+
+webshop_02397 | 初始pass@5 0.00%（0/20） | GRPO 5/5 → Clean 0/5
+Instruction: Find me officially licensed, machine wash men's t-shirts & tanks with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: women, and size: x-large, and price lower than 60.00 dollars
+5次均打开 Marvel T-shirt（b07xpr3r7n），GRPO成功轨迹打开 Tigger Tank Top（b08226ndzw）；选项都有效但最终得分为0。Clean查询省略多项材质/版型特征。
+纠正建议（未执行）：保留区分商品的特征词，核验商品类型/特征，不能仅凭颜色、fit type和尺码相同就购买。
+dev题不在训练/研究员任务集合中。以下训练文档仅作相似任务的机制参照，不是本题接受的Skill，也不是因果证据。
+相似训练任务：webshop_03262，step 96；明确规格 {"color": "navy", "fit type": "women", "size": "xx-large"}；候选查询 None；探索成功数 0。
+动作证据（不包含模型内部思维文本；✓有效，×无效）：
+  grpo sid=0 won=True score=1.000000 [webshop_02397_71363982.json] ✓search[officially licensed men's t-shirts & tanks polyester heathers heathers cotton cotton heather needle sleeve classic fit black women x-large size 60.00] → ✓click[b08226ndzw] → ✓click[women] → ✓click[black] → ✓click[x-large] → ✓click[buy now]
+  grpo sid=1 won=True score=1.000000 [webshop_02397_1d6eebf2.json] ✓search[officially licensed men's t-shirts tanks polyester heathers heathers cotton cotton heather needle sleeve classic fit black women x-large size 60.00] → ✓click[b08226ndzw] → ✓click[women] → ✓click[black] → ✓click[x-large] → ✓click[buy now]
+  grpo sid=2 won=True score=1.000000 [webshop_02397_a5e04f6e.json] ✓search[officially licensed men's t-shirts & tanks polyester heathers heathers cotton cotton heather needle sleeve classic fit black women x-large price <60] → ✓click[b08226ndzw] → ✓click[women] → ✓click[black] → ✓click[x-large] → ✓click[buy now]
+  grpo sid=3 won=True score=1.000000 [webshop_02397_608b461a.json] ✓search[officially licensed men's t-shirts tanks polyester heathers heathers cotton cotton heather needle sleeve classic fit black women x-large 60.00] → ✓click[b08226ndzw] → ✓click[women] → ✓click[black] → ✓click[x-large] → ✓click[women] → ✓click[black] → ✓click[x-large] → ×click[<] → ✓click[buy now]
+  grpo sid=4 won=True score=1.000000 [webshop_02397_b0172716.json] ✓search[officially licensed men's t-shirts tanks polyester heathers heathers cotton cotton heather needle sleeve classic fit black women x-large price <60] → ✓click[b08226ndzw] → ✓click[women] → ✓click[black] → ✓click[x-large] → ✓click[buy now]
+  clean sid=0 won=False score=0.000000 [webshop_02397_9cd6acb5.json] ✓search[officially licensed men's t-shirts black women x-large] → ✓click[b07xpr3r7n] → ✓click[women] → ✓click[black] → ✓click[x-large] → ✓click[buy now]
+  clean sid=1 won=False score=0.000000 [webshop_02397_0e18d208.json] ✓search[officially licensed men's t-shirts & tanks black x-large] → ✓click[b07xpr3r7n] → ✓click[women] → ✓click[black] → ✓click[x-large] → ✓click[buy now]
+  clean sid=2 won=False score=0.000000 [webshop_02397_2b8cb76a.json] ✓search[officially licensed men's t-shirts black women x-large] → ✓click[b07xpr3r7n] → ✓click[women] → ✓click[black] → ✓click[x-large] → ✓click[buy now]
+  clean sid=3 won=False score=0.000000 [webshop_02397_bd1796f8.json] ✓search[officially licensed men's t-shirts black x-large] → ✓click[b07xpr3r7n] → ✓click[women] → ✓click[black] → ✓click[x-large] → ✓click[buy now]
+  clean sid=4 won=False score=0.000000 [webshop_02397_5487c0af.json] ✓search[officially licensed men t shirts black x-large] → ✓click[b07xpr3r7n] → ✓click[women] → ✓click[black] → ✓click[x-large] → ✓click[buy now]
+
+webshop_02839 | 初始pass@5 0.00%（0/20） | GRPO 2/5 → Clean 0/5
+Instruction: Find me men's t-shirts & tanks with short sleeve, fashion design, long sleeve, button closure with color: a-red, and size: 5x-large, and price lower than 50.00 dollars
+4次打开Nautica商品，click[5x-large]无效后选择nautica red并购买；另1次打开内衣套装并选择12 pack mix。
+纠正建议（未执行）：5x-large与a-red必须同时可选；不能用nautica red替代a-red。当前候选不满足时返回检索。
+dev题不在训练/研究员任务集合中。以下训练文档仅作相似任务的机制参照，不是本题接受的Skill，也不是因果证据。
+相似训练任务：webshop_02909，step 95；明确规格 {"color": "a-red", "size": "large"}；候选查询 None；探索成功数 0。
+动作证据（不包含模型内部思维文本；✓有效，×无效）：
+  grpo sid=0 won=True score=1.000000 [webshop_02839_a6b5f480.json] ✓search[tanks men short sleeve fashion design a-red 5x-large price 50] → ✓click[b078wsnd96] → ✓click[a-red] → ✓click[5x-large] → ✓click[buy now]
+  grpo sid=1 won=False score=0.571429 [webshop_02839_5283eb3e.json] ✓search[t-shirt men fashion a-red 5x-large price<50.00] → ✓click[b07hrfsnl4] → ✓click[5x-large tall] → ✓click[nautica red] → ✓click[buy now]
+  grpo sid=2 won=False score=0.571429 [webshop_02839_d21c7043.json] ✓search[tanks men's short sleeve fashion design long sleeve button closure a-red 5x-large price 50] → ✓click[b09qqp3356] → ×click[a-red] → ✓click[x-large] → ×click[a-red] → ✓click[x-large] → ✓click[buy now]
+  grpo sid=3 won=False score=0.428571 [webshop_02839_2d0c5a9a.json] ✓search[t men's t-shirt short sleeve fashion design long sleeve button closure a-red 5x-large price <50] → ✓click[b09qqp3356] → ×click[a-red] → ×click[5x-large] → ✓click[buy now]
+  grpo sid=4 won=True score=1.000000 [webshop_02839_a3b5e099.json] ✓search[tanks men short sleeve fashion design color a-red size 5x-large price <50.00] → ✓click[b078wsnd96] → ✓click[a-red] → ✓click[5x-large] → ✓click[buy now]
+  clean sid=0 won=False score=0.428571 [webshop_02839_bb30af4f.json] ✓search[men's t-shirts a-red 5x-large] → ✓click[b07hrfsnl4] → ×click[5x-large] → ✓click[nautica red] → ✓click[buy now]
+  clean sid=1 won=False score=0.428571 [webshop_02839_7cf9db22.json] ✓search[men's t-shirts a-red 5x-large] → ✓click[b07hrfsnl4] → ×click[5x-large] → ✓click[nautica red] → ✓click[buy now]
+  clean sid=2 won=False score=0.428571 [webshop_02839_7fa35289.json] ✓search[men's t shirts a-red 5x large] → ✓click[b07hrfsnl4] → ×click[5x-large] → ✓click[nautica red] → ✓click[buy now]
+  clean sid=3 won=False score=0.285714 [webshop_02839_9efe8620.json] ✓search[men's t-shirts & tanks a-red 5x-large] → ✓click[b07n7tdkxq] → ✓click[12 pack mix] → ✓click[5x-large] → ✓click[buy now]
+  clean sid=4 won=False score=0.428571 [webshop_02839_6bb54fdf.json] ✓search[men's t-shirts a-red 5x-large] → ✓click[b07hrfsnl4] → ×click[5x-large] → ✓click[nautica red] → ✓click[buy now]
+
+webshop_03385 | 初始pass@5 44.74%（2/20） | GRPO 5/5 → Clean 0/5
+Instruction: Find me machine wash women's swimsuits & cover ups with tummy control, high waist with color: green, and size: small, and price lower than 40.00 dollars
+5次选择错误泳装b09s6lzyhq并选择pink/yellow；要求green。GRPO成功用tummy control、high waist检索另一商品。
+纠正建议（未执行）：保留tummy control/high waist；找不到green时换候选，不能选择别的颜色后下单。
+dev题不在训练/研究员任务集合中。以下训练文档仅作相似任务的机制参照，不是本题接受的Skill，也不是因果证据。
+相似训练任务：webshop_04359，step 92；明确规格 {"color": "pink", "size": "large"}；候选查询 swimsuits pink teen large；探索成功数 2。
+动作证据（不包含模型内部思维文本；✓有效，×无效）：
+  grpo sid=0 won=True score=1.000000 [webshop_03385_1ef5a744.json] ✓search[green tummy control high waist women swimsuits cover ups size small price <40] → ✓click[b09q37jqz6] → ✓click[green] → ✓click[small] → ✓click[buy now]
+  grpo sid=1 won=True score=1.000000 [webshop_03385_a603b198.json] ✓search[green high waist tummy control women's swimsuits cover ups size small price <40] → ✓click[b09q37jqz6] → ✓click[green] → ✓click[small] → ✓click[buy now]
+  grpo sid=2 won=True score=1.000000 [webshop_03385_31458fd7.json] ✓search[green women's swimsuits high waist tummy control size small price <40] → ✓click[b09q37jqz6] → ✓click[green] → ✓click[small] → ✓click[buy now]
+  grpo sid=3 won=True score=1.000000 [webshop_03385_17d13917.json] ✓search[green tummy control women's swimsuits high waist size small color green price <40] → ✓click[b09q37jqz6] → ✓click[green] → ✓click[small] → ✓click[buy now]
+  grpo sid=4 won=True score=1.000000 [webshop_03385_f0794c90.json] ✓search[green tummy control high waist women's swimsuits cover ups size small price less than 40] → ✓click[b09q37jqz6] → ✓click[green] → ✓click[small] → ✓click[buy now]
+  clean sid=0 won=False score=0.666667 [webshop_03385_c51aea87.json] ✓search[swimsuits women green small] → ✓click[b09s6lzyhq] → ✓click[pink] → ✓click[small] → ✓click[buy now]
+  clean sid=1 won=False score=0.666667 [webshop_03385_e4f5ca49.json] ✓search[swimsuits women green small] → ✓click[b09s6lzyhq] → ✓click[pink] → ✓click[small] → ✓click[buy now]
+  clean sid=2 won=False score=0.666667 [webshop_03385_87ecf7e1.json] ✓search[swimsuits green size small] → ✓click[b09s6lzyhq] → ✓click[pink] → ✓click[small] → ✓click[buy now]
+  clean sid=3 won=False score=0.666667 [webshop_03385_bd9b42b9.json] ✓search[swimsuits women green small] → ✓click[b09s6lzyhq] → ✓click[pink] → ✓click[yellow] → ✓click[small] → ✓click[buy now]
+  clean sid=4 won=False score=0.666667 [webshop_03385_aca468d6.json] ✓search[swimsuits women green small] → ✓click[b09s6lzyhq] → ✓click[pink] → ✓click[small] → ×click[green] → ✓click[buy now]
+
+webshop_03571 | 初始pass@5 0.00%（0/20） | GRPO 4/5 → Clean 0/5
+Instruction: Find me slim fit men's henleys with short sleeve with color: 158- purple, and size: large, and price lower than 40.00 dollars
+5次查询仍保留158- purple，却省略slim fit，均打开b09qqp3356；紫色点击无效后仍购买。GRPO成功商品是b09r9ycm6r。
+纠正建议（未执行）：保留slim fit；颜色目标不可用即判定当前候选不合格，禁止继续购买。
+dev题不在训练/研究员任务集合中。以下训练文档仅作相似任务的机制参照，不是本题接受的Skill，也不是因果证据。
+相似训练任务：webshop_04270，step 82；明确规格 {"color": "157- green", "size": "x-large"}；候选查询 slim fit men's henleys 157- green x-large price 40；探索成功数 1。
+动作证据（不包含模型内部思维文本；✓有效，×无效）：
+  grpo sid=0 won=True score=1.000000 [webshop_03571_eb6a2ae3.json] ✓search[slim fit men's henleys 158- purple large size under 40] → ✓click[b09r9ycm6r] → ✓click[158- purple] → ✓click[large] → ✓click[buy now]
+  grpo sid=1 won=True score=1.000000 [webshop_03571_ab015da6.json] ✓search[slim fit men's henleys 158- purple large size 40.00] → ✓click[b09r9ycm6r] → ✓click[158- purple] → ✓click[large] → ✓click[buy now]
+  grpo sid=2 won=True score=1.000000 [webshop_03571_d983ece2.json] ✓search[slim fit men's henleys with short sleeve color: 158- purple size: large price: < 40.00] → ✓click[b09r9ycm6r] → ✓click[158- purple] → ✓click[large] → ✓click[buy now]
+  grpo sid=3 won=True score=1.000000 [webshop_03571_f4cd4ca2.json] ✓search[slim fit men's henleys 158- purple large size <40.00] → ✓click[b09r9ycm6r] → ✓click[158- purple] → ✓click[large] → ✓click[buy now]
+  grpo sid=4 won=False score=0.800000 [webshop_03571_feb9c982.json] ✓search[slim fit men's henleys with short sleeve color purple size large price <40] → ✓click[b09qqp3356] → ✓click[large] → ×click[purple] → ✓click[large] → ×click[purple] → ✓click[large] → ✓click[buy now]
+  clean sid=0 won=False score=0.800000 [webshop_03571_64621cfc.json] ✓search[men's henleys 158- purple large] → ✓click[b09qqp3356] → ✓click[large] → ×click[purple] → ✓click[large] → ✓click[buy now]
+  clean sid=1 won=False score=0.800000 [webshop_03571_57a758af.json] ✓search[men's henleys 158- purple large] → ✓click[b09qqp3356] → ✓click[large] → ×click[158- purple] → ✓click[large] → ✓click[buy now]
+  clean sid=2 won=False score=0.800000 [webshop_03571_0caca529.json] ✓search[men's henleys 158- purple large] → ✓click[b09qqp3356] → ✓click[large] → ×click[158- purple] → ✓click[large] → ✓click[buy now]
+  clean sid=3 won=False score=0.800000 [webshop_03571_343e661f.json] ✓search[men's henleys 158- purple large] → ✓click[b09qqp3356] → ✓click[large] → ×click[158- purple] → ✓click[large] → ✓click[buy now]
+  clean sid=4 won=False score=0.800000 [webshop_03571_8d96a9a6.json] ✓search[men's henleys 158- purple large] → ✓click[b09qqp3356] → ✓click[large] → ×click[158- purple] → ✓click[large] → ✓click[buy now]
+
+webshop_04195 | 初始pass@5 87.09%（6/20） | GRPO 1/5 → Clean 0/5
+Instruction: Find me long lasting, white item table lamps for living room with color: black, and price lower than 60.00 dollars
+5次均在同一商品先选black，再选white，最后购买；GRPO仅1次重新选black后成功。任务含white item，但明确color:black。
+纠正建议（未执行）：区分描述性特征和明确选项字段；最终颜色必须为black，不能被white覆盖。
+dev题不在训练/研究员任务集合中。以下训练文档仅作相似任务的机制参照，不是本题接受的Skill，也不是因果证据。
+动作证据（不包含模型内部思维文本；✓有效，×无效）：
+  grpo sid=0 won=False score=0.800000 [webshop_04195_ea18ed89.json] ✓search[long lasting white item table lamps for living room black color price <60.00] → ✓click[b084q7c6tx] → ✓click[black] → ✓click[white] → ✓click[buy now]
+  grpo sid=1 won=False score=0.800000 [webshop_04195_3a0eac09.json] ✓search[long lasting white item table lamps living room black color 0-60] → ✓click[b084q7c6tx] → ✓click[black] → ✓click[white] → ✓click[buy now]
+  grpo sid=2 won=True score=1.000000 [webshop_04195_4939051c.json] ✓search[long lasting white item table lamps for living room black color price <60.00] → ✓click[b084q7c6tx] → ✓click[black] → ✓click[white] → ✓click[black] → ✓click[buy now]
+  grpo sid=3 won=False score=0.800000 [webshop_04195_9e7e1821.json] ✓search[long lasting white item table lamps for living room black color under 60 dollars] → ✓click[b084q7c6tx] → ✓click[black] → ✓click[white] → ✓click[buy now]
+  grpo sid=4 won=False score=0.800000 [webshop_04195_851f8a3c.json] ✓search[long lasting white item table lamps for living room black color price <60.00] → ✓click[b084q7c6tx] → ✓click[black] → ✓click[white] → ✓click[buy now]
+  clean sid=0 won=False score=0.800000 [webshop_04195_c7bf7186.json] ✓search[long lasting white table lamps black color] → ✓click[b084q7c6tx] → ✓click[black] → ✓click[white] → ✓click[buy now]
+  clean sid=1 won=False score=0.800000 [webshop_04195_eacd9c26.json] ✓search[long lasting white table lamps living room black] → ✓click[b084q7c6tx] → ✓click[black] → ✓click[white] → ✓click[buy now]
+  clean sid=2 won=False score=0.800000 [webshop_04195_d8da804f.json] ✓search[long lasting white table lamps black color] → ✓click[b084q7c6tx] → ✓click[black] → ✓click[white] → ✓click[buy now]
+  clean sid=3 won=False score=0.800000 [webshop_04195_5d70dc43.json] ✓search[long lasting white table lamps living room black color] → ✓click[b084q7c6tx] → ✓click[black] → ✓click[white] → ✓click[buy now]
+  clean sid=4 won=False score=0.800000 [webshop_04195_e300e387.json] ✓search[long lasting white table lamps living room black color] → ✓click[b084q7c6tx] → ✓click[black] → ✓click[white] → ✓click[buy now]
+
+webshop_04717 | 初始pass@5 0.00%（0/20） | GRPO 5/5 → Clean 0/5
+Instruction: Find me hand wash, machine wash women's sweaters with long sleeve, unique design with color: black, and size: medium, and price lower than 50.00 dollars
+5次查询省略long sleeve/unique design，选择b08g8dxr5n，GRPO选择b09krlgsc5；颜色/尺码都选了但得分仅0.7143。
+纠正建议（未执行）：不要把选项齐全当作商品符合全部条件；保留特征词并核验候选。
+dev题不在训练/研究员任务集合中。以下训练文档仅作相似任务的机制参照，不是本题接受的Skill，也不是因果证据。
+动作证据（不包含模型内部思维文本；✓有效，×无效）：
+  grpo sid=0 won=True score=1.000000 [webshop_04717_e25cc7a4.json] ✓search[hand wash women's sweaters long sleeve black medium price <50] → ✓click[b09krlgsc5] → ✓click[medium] → ✓click[black] → ✓click[buy now]
+  grpo sid=1 won=True score=1.000000 [webshop_04717_bf76916d.json] ✓search[hand wash women's sweaters long sleeve black medium 50.00] → ✓click[b09krlgsc5] → ✓click[medium] → ✓click[black] → ✓click[buy now]
+  grpo sid=2 won=True score=1.000000 [webshop_04717_fdc93c85.json] ✓search[hand wash women's sweaters long sleeve black medium unique design price <50] → ✓click[b09krlgsc5] → ✓click[medium] → ✓click[black] → ✓click[buy now]
+  grpo sid=3 won=True score=1.000000 [webshop_04717_a8bf6b44.json] ✓search[hand wash women's sweaters long sleeve black medium 50.00] → ✓click[b09krlgsc5] → ✓click[medium] → ✓click[black] → ✓click[buy now]
+  grpo sid=4 won=True score=1.000000 [webshop_04717_24a12ef9.json] ✓search[hand wash women's sweaters long sleeve black medium price <50] → ✓click[b09krlgsc5] → ✓click[medium] → ✓click[black] → ✓click[buy now]
+  clean sid=0 won=False score=0.714286 [webshop_04717_f7d7b260.json] ✓search[hand wash women's sweaters black medium] → ✓click[b08g8dxr5n] → ✓click[medium] → ✓click[black] → ✓click[medium] → ✓click[buy now]
+  clean sid=1 won=False score=0.714286 [webshop_04717_f7259e77.json] ✓search[hand wash women's sweaters black medium] → ✓click[b08g8dxr5n] → ✓click[medium] → ✓click[black] → ✓click[buy now]
+  clean sid=2 won=False score=0.714286 [webshop_04717_f4d5a4b5.json] ✓search[hand wash women's sweaters black medium] → ✓click[b08g8dxr5n] → ✓click[medium] → ✓click[black] → ✓click[buy now]
+  clean sid=3 won=False score=0.714286 [webshop_04717_f5e08412.json] ✓search[hand wash women's sweaters black medium] → ✓click[b08g8dxr5n] → ✓click[medium] → ✓click[black] → ✓click[buy now]
+  clean sid=4 won=False score=0.714286 [webshop_04717_27148a93.json] ✓search[hand wash women's sweaters black medium] → ✓click[b08g8dxr5n] → ✓click[medium] → ✓click[black] → ✓click[buy now]
+
+webshop_05317 | 初始pass@5 44.74%（2/20） | GRPO 2/5 → Clean 0/5
+Instruction: Find me machine wash, wash cold women's fashion hoodies & sweatshirts for dry clean, tumble dry with color: red, and size: large, and price lower than 70.00 dollars
+5次没有选到GRPO成功的b01hqtwl6s；4次尝试不存在的red，另1次选xnj-tshirt328-red；均购买。
+纠正建议（未执行）：保留wash cold、dry clean、tumble dry等区分词；核对精确red选项与商品属性，不满足则换候选。
+dev题不在训练/研究员任务集合中。以下训练文档仅作相似任务的机制参照，不是本题接受的Skill，也不是因果证据。
+相似训练任务：webshop_05837，step 82；明确规格 {"color": "charcoal grey", "size": "large"}；候选查询 None；探索成功数 2。
+动作证据（不包含模型内部思维文本；✓有效，×无效）：
+  grpo sid=0 won=False score=0.000000 [webshop_05317_3eda0e4b.json] ✓search[machine wash women hoodies sweatshirts wash cold color red size large price <70] → ✓click[b09m63b87v] → ✓click[xnj-tshirt328-red] → ✓click[large] → ✓click[buy now]
+  grpo sid=1 won=False score=0.000000 [webshop_05317_ed6ffcfb.json] ✓search[machine wash women hoodies sweatshirts wash cold red large price <70] → ✓click[b09m63b87v] → ✓click[xnj-tshirt328-red] → ✓click[large] → ✓click[buy now]
+  grpo sid=2 won=False score=0.000000 [webshop_05317_1f7a4cc8.json] ✓search[machine wash women hoodies sweatshirts wash cold dry clean red large size l price <70] → ✓click[b09m63b87v] → ✓click[xnj-tshirt328-red] → ✓click[large] → ✓click[xnj-tshirt328-red] → ✓click[large] → ✓click[buy now]
+  grpo sid=3 won=True score=1.000000 [webshop_05317_2dea21d9.json] ✓search[machine wash women hoodies sweatshirts wash cold red large dry clean tumble dry color red size large price <70] → ✓click[b01hqtwl6s] → ✓click[large] → ✓click[red] → ✓click[buy now]
+  grpo sid=4 won=True score=1.000000 [webshop_05317_d0c8a205.json] ✓search[machine wash women hoodies sweatshirts red large dry clean wash cold tumble dry color red size large price <70] → ✓click[b01hqtwl6s] → ✓click[large] → ✓click[red] → ✓click[buy now]
+  clean sid=0 won=False score=0.000000 [webshop_05317_4da007cd.json] ✓search[woman hoodies wash cold red large] → ✓click[b09m63b87v] → ✓click[xnj-tshirt328-red] → ✓click[large] → ✓click[buy now]
+  clean sid=1 won=False score=0.428571 [webshop_05317_97f6e009.json] ✓search[woman hoodies red large] → ✓click[b072pchzc3] → ✓click[large] → ×click[red] → ✓click[buy now]
+  clean sid=2 won=False score=0.285714 [webshop_05317_05b93875.json] ✓search[men's women's hoodies sweatshirts red large] → ✓click[b09s3bn15c] → ✓click[large] → ×click[red] → ✓click[large] → ×click[b09kp78g37] → ×click[red] → ✓click[buy now]
+  clean sid=3 won=False score=0.428571 [webshop_05317_3f791c94.json] ✓search[woman hoodie red large] → ✓click[b072pchzc3] → ✓click[large] → ×click[red] → ✓click[buy now]
+  clean sid=4 won=False score=0.285714 [webshop_05317_3af9ca5b.json] ✓search[men's women's hoodies sweatshirts wash cold red large] → ✓click[b09s3bn15c] → ✓click[large] → ×click[red] → ✓click[large] → ✓click[buy now]
+
+webshop_06752 | 初始pass@5 0.00%（0/20） | GRPO 5/5 → Clean 0/5
+Instruction: Find me machine wash men's t-shirts with long sleeve with color: black, and size: 4x-large big tall, and price lower than 70.00 dollars
+5次查询丢掉long sleeve/big tall，选Nautica b07hrfsnl4，将4x-large big tall选成4x-large tall，black选成true black。
+纠正建议（未执行）：保留long sleeve和big tall；精确规格不做同义近似替换，不满足时重新找商品。
+dev题不在训练/研究员任务集合中。以下训练文档仅作相似任务的机制参照，不是本题接受的Skill，也不是因果证据。
+相似训练任务：webshop_00932，step 86；明确规格 {"color": "flag", "size": "3x-large big tall"}；候选查询 flag men's t-shirts 3x-large big tall；探索成功数 2。
+动作证据（不包含模型内部思维文本；✓有效，×无效）：
+  grpo sid=0 won=True score=1.000000 [webshop_06752_c777ca0f.json] ✓search[men's t-shirts long sleeve black 4x-large big tall price <70] → ✓click[b00o30jldk] → ✓click[black] → ✓click[4x-large big tall] → ✓click[buy now]
+  grpo sid=1 won=True score=1.000000 [webshop_06752_c692c42a.json] ✓search[men's t-shirts 4x-large black long sleeve size 4x-large big tall color black under 70] → ✓click[b00o30jldk] → ✓click[black] → ✓click[4x-large big tall] → ✓click[buy now]
+  grpo sid=2 won=True score=1.000000 [webshop_06752_77fc1c41.json] ✓search[men's t-shirts 4x-large black long sleeve color black size 4x-large 70.00] → ✓click[b00o30jldk] → ✓click[black] → ✓click[4x-large big tall] → ✓click[buy now]
+  grpo sid=3 won=True score=1.000000 [webshop_06752_e5abe293.json] ✓search[men's t-shirts 4x-large black long sleeve size 4x-large big tall price <70.00] → ✓click[b00o30jldk] → ✓click[black] → ✓click[4x-large big tall] → ✓click[buy now]
+  grpo sid=4 won=True score=1.000000 [webshop_06752_4a98859a.json] ✓search[men's t-shirts long sleeve black 4x-large big tall price <70] → ✓click[b00o30jldk] → ✓click[black] → ✓click[4x-large big tall] → ✓click[buy now]
+  clean sid=0 won=False score=0.800000 [webshop_06752_8c9279d4.json] ✓search[men's t-shirts 4x-large black] → ✓click[b07hrfsnl4] → ✓click[4x-large tall] → ✓click[true black] → ×click[b07hrfsnl4] → ✓click[buy now]
+  clean sid=1 won=False score=0.800000 [webshop_06752_a5b13fcf.json] ✓search[men's t-shirts 4x-large black] → ✓click[b07hrfsnl4] → ✓click[4x-large tall] → ✓click[true black] → ×click[b07hrfsnl4] → ✓click[buy now]
+  clean sid=2 won=False score=0.800000 [webshop_06752_e4120f14.json] ✓search[men's t-shirts 4x-large black] → ✓click[b07hrfsnl4] → ✓click[4x-large tall] → ✓click[true black] → ×click[b07hrfsnl4] → ✓click[buy now]
+  clean sid=3 won=False score=0.800000 [webshop_06752_2f08524e.json] ✓search[men's t-shirts 4x-large black] → ✓click[b07hrfsnl4] → ✓click[4x-large tall] → ✓click[true black] → ×click[b07hrfsnl4] → ✓click[buy now]
+  clean sid=4 won=False score=0.800000 [webshop_06752_3dc4c43b.json] ✓search[men's t-shirts 4x-large black] → ✓click[b07hrfsnl4] → ✓click[4x-large tall] → ✓click[true black] → ×click[b07hrfsnl4] → ✓click[buy now]
+
+另外8道成功率下降但未完全丢失的题
+webshop_01075	5/5 → 4/5	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: charcoal heather (dark), and size: xx-large tall, and price lower than 40.00 dollars
+webshop_01159	5/5 → 1/5	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: charcoal heather (dark), and size: 3x, and price lower than 40.00 dollars
+webshop_02060	5/5 → 2/5	Instruction: Find me home office furniture sets for dining room, living room with color: taupe | orange, and item shape: runner, and size: 7 ft 8 in x 10 ft 7 in, and price lower than 60.00 dollars
+webshop_02086	5/5 → 4/5	Instruction: Find me slim fit, loose fit women's tops, tees & blouses with long sleeve, short sleeve with color: a01#sky blue, and size: small, and price lower than 40.00 dollars
+webshop_02945	5/5 → 4/5	Instruction: Find me machine wash men's tuxedo shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: x-large, and price lower than 40.00 dollars
+webshop_04008	5/5 → 3/5	Instruction: Find me machine wash men's tuxedo shirts with cotton heather, needle sleeve, classic fit with color: navy | athletic heather, and fit type: women, and size: xx-large, and price lower than 60.00 dollars
+webshop_05397	4/5 → 3/5	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: purple, and fit type: women, and size: x-large, and price lower than 40.00 dollars
+webshop_05863	4/5 → 1/5	Instruction: Find me machine wash men's t-shirts with long sleeve with color: country, and size: medium, and price lower than 70.00 dollars
+
+训练奖励差异与优势代理（不是读取实际优势张量）
+两组每一步训练题集合完全相同，reward_from_score=False，使用won二值奖励。不能把连续环境score的差异直接当作训练优势。
+1—20步：Clean组内二值奖励不全相同127/320=39.69%，GRPO116/320=36.25%。全程则为543/1600=33.94%对776/1600=48.50%。
+全程Clean全成功组633，GRPO374；全失败组424对450。非零优势组比例下降可能来自成功饱和，不能单独作为方法好坏指标。
+Clean全程81组引导臂至少1次成功而裸跑4次全失败；反方向73组。两臂总成功数3681/6400对3644/6400，差距很小，不能声称引导臂全面压倒裸跑。
+前20步存在18个同题同步组：GRPO8次全失败，Clean裸跑4次全失败而引导有成功。这里只说明改变探索分布确实产生了有价值样本，不隔离训练随机性或单个清洗组件的因果作用。
+实例：step2 / webshop_05104，Clean奖励[1,1,0,0,0,0,0,0]，前4条为引导臂；按已核验普通GRPO且不除std的公式，重构优势为[0.75,0.75,-0.25,-0.25,-0.25,-0.25,-0.25,-0.25]。同题同步GRPO为8个0。此处是公式重构，不冒充实际训练优势张量。
+{
+  "windows": {
+    "all": {
+      "clean": {
+        "groups": 1600,
+        "rows": 12800,
+        "successes": 7325,
+        "mixed_binary_reward_groups": 543,
+        "all_zero_groups": 424,
+        "all_success_groups": 633,
+        "guided_successes": 3681,
+        "bare_successes": 3644,
+        "guided_success_bare_all_fail_groups": 81,
+        "bare_success_guided_all_fail_groups": 73,
+        "both_arms_have_success_groups": 1022,
+        "actual_steer_episodes": 6333,
+        "mixed_binary_reward_group_fraction": 0.339375
+      },
+      "grpo": {
+        "groups": 1600,
+        "rows": 12800,
+        "successes": 6245,
+        "mixed_binary_reward_groups": 776,
+        "all_zero_groups": 450,
+        "all_success_groups": 374,
+        "mixed_binary_reward_group_fraction": 0.485
+      }
+    },
+    "1-20": {
+      "clean": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 223,
+        "mixed_binary_reward_groups": 127,
+        "all_zero_groups": 193,
+        "all_success_groups": 0,
+        "guided_successes": 111,
+        "bare_successes": 112,
+        "guided_success_bare_all_fail_groups": 47,
+        "bare_success_guided_all_fail_groups": 43,
+        "both_arms_have_success_groups": 37,
+        "actual_steer_episodes": 1216,
+        "mixed_binary_reward_group_fraction": 0.396875
+      },
+      "grpo": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 215,
+        "mixed_binary_reward_groups": 116,
+        "all_zero_groups": 204,
+        "all_success_groups": 0,
+        "mixed_binary_reward_group_fraction": 0.3625
+      }
+    },
+    "21-40": {
+      "clean": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 1270,
+        "mixed_binary_reward_groups": 194,
+        "all_zero_groups": 68,
+        "all_success_groups": 58,
+        "guided_successes": 658,
+        "bare_successes": 612,
+        "guided_success_bare_all_fail_groups": 27,
+        "bare_success_guided_all_fail_groups": 18,
+        "both_arms_have_success_groups": 207,
+        "actual_steer_episodes": 1280,
+        "mixed_binary_reward_group_fraction": 0.60625
+      },
+      "grpo": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 875,
+        "mixed_binary_reward_groups": 218,
+        "all_zero_groups": 93,
+        "all_success_groups": 9,
+        "mixed_binary_reward_group_fraction": 0.68125
+      }
+    },
+    "41-60": {
+      "clean": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 1814,
+        "mixed_binary_reward_groups": 112,
+        "all_zero_groups": 57,
+        "all_success_groups": 151,
+        "guided_successes": 901,
+        "bare_successes": 913,
+        "guided_success_bare_all_fail_groups": 4,
+        "bare_success_guided_all_fail_groups": 6,
+        "both_arms_have_success_groups": 253,
+        "actual_steer_episodes": 1280,
+        "mixed_binary_reward_group_fraction": 0.35
+      },
+      "grpo": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 1507,
+        "mixed_binary_reward_groups": 192,
+        "all_zero_groups": 54,
+        "all_success_groups": 74,
+        "mixed_binary_reward_group_fraction": 0.6
+      }
+    },
+    "61-80": {
+      "clean": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 1954,
+        "mixed_binary_reward_groups": 61,
+        "all_zero_groups": 56,
+        "all_success_groups": 203,
+        "guided_successes": 978,
+        "bare_successes": 976,
+        "guided_success_bare_all_fail_groups": 2,
+        "bare_success_guided_all_fail_groups": 4,
+        "both_arms_have_success_groups": 258,
+        "actual_steer_episodes": 1280,
+        "mixed_binary_reward_group_fraction": 0.190625
+      },
+      "grpo": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 1768,
+        "mixed_binary_reward_groups": 136,
+        "all_zero_groups": 51,
+        "all_success_groups": 133,
+        "mixed_binary_reward_group_fraction": 0.425
+      }
+    },
+    "81-100": {
+      "clean": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 2064,
+        "mixed_binary_reward_groups": 49,
+        "all_zero_groups": 50,
+        "all_success_groups": 221,
+        "guided_successes": 1033,
+        "bare_successes": 1031,
+        "guided_success_bare_all_fail_groups": 1,
+        "bare_success_guided_all_fail_groups": 2,
+        "both_arms_have_success_groups": 267,
+        "actual_steer_episodes": 1277,
+        "mixed_binary_reward_group_fraction": 0.153125
+      },
+      "grpo": {
+        "groups": 320,
+        "rows": 2560,
+        "successes": 1880,
+        "mixed_binary_reward_groups": 114,
+        "all_zero_groups": 48,
+        "all_success_groups": 158,
+        "mixed_binary_reward_group_fraction": 0.35625
+      }
+    }
+  },
+  "first_three_examples": [
+    {
+      "step": 2,
+      "task_id": "webshop_05104",
+      "clean_guided_successes": 2,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        0.75,
+        0.75,
+        -0.25,
+        -0.25,
+        -0.25,
+        -0.25,
+        -0.25,
+        -0.25
+      ],
+      "actual_steering": [
+        184,
+        116,
+        505,
+        215,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 2,
+      "task_id": "webshop_06545",
+      "clean_guided_successes": 1,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        -0.125,
+        -0.125,
+        -0.125,
+        0.875,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125
+      ],
+      "actual_steering": [
+        144,
+        540,
+        331,
+        150,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 3,
+      "task_id": "webshop_03680",
+      "clean_guided_successes": 1,
+      "clean_bare_successes": 0,
+      "grpo_successes": 0,
+      "clean_rewards": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reconstructed_group_advantages": [
+        -0.125,
+        -0.125,
+        0.875,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125,
+        -0.125
+      ],
+      "actual_steering": [
+        226,
+        353,
+        178,
+        260,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}
+
+完整256题对照（k=5次中的成功次数；初始pass@5来自20次冻结基线）
+task_id	初始pass@5	初始层	GRPO100 k	Clean100 k	变化	GRPO20 k	Clean20 k	任务
+webshop_00511	0.000000	low	0	5	+5	0	0	Instruction: Find me women's lingerie, sleep & lounge with long sleeve, tummy control, high waist, short sleeve with color: khaki, and size: large, and price lower than 50.00 dollars
+webshop_00529	0.000000	low	4	5	+1	0	1	Instruction: Find me machine washable, hand wash, machine wash women's pants with tummy control, high waist for daily wear with size: x-large, and price lower than 30.00 dollars
+webshop_00532	0.000000	low	0	0	+0	0	0	Instruction: Find me wash cold, hand wash, machine wash men's t-shirts & tanks with color: silver 1, and size: x-large, and price lower than 60.00 dollars
+webshop_00545	0.000000	low	4	5	+1	1	0	Instruction: Find me slip resistant, non slip men's loafers & slip-ons with rubber outsole, rubber sole with color: 228black, and size: 10.5, and price lower than 70.00 dollars
+webshop_00579	0.000000	low	1	1	+0	0	0	Instruction: Find me machine wash women's tops, tees & blouses with short sleeve, unique design, relaxed fit, button closure, polyester spandex with color: blue, and size: xx-large, and price lower than 50.00 dollars
+webshop_00616	0.250000	low	5	5	+0	0	2	Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: dark heather, and fit type: youth, and size: 3x-large, and price lower than 50.00 dollars
+webshop_00617	0.600877	middle	5	5	+0	0	1	Instruction: Find me machine wash men's tuxedo shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: baby blue, and fit type: men, and size: 4t, and price lower than 40.00 dollars
+webshop_00665	0.000000	low	4	5	+1	1	2	Instruction: Find me slim fit, loose fit men's tuxedo shirts with long sleeve, short sleeve, contrast color, classic fit for teen girls with color: b-bk1, and size: large, and price lower than 30.00 dollars
+webshop_00671	0.000000	low	3	5	+2	3	0	Instruction: Find me slim fit, hand wash, machine wash men's tuxedo shirts with short sleeve, regular fit, long sleeve, polyester cotton for gym workout with color: black, and size: medium, and price lower than 30.00 dollars
+webshop_00680	0.000000	low	5	5	+0	1	0	Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: navy, and fit type: women, and size: 3t, and price lower than 50.00 dollars
+webshop_00714	0.447368	low	5	5	+0	2	2	Instruction: Find me hand wash women's sweaters with long sleeve, stretch fabric, polyester spandex for teen girls, daily wear with color: xnj-tshirt339-black, and size: small, and price lower than 30.00 dollars
+webshop_00724	0.000000	low	4	5	+1	0	0	Instruction: Find me slim fit, loose fit women's tops, tees & blouses with long sleeve, short sleeve with color: a01#purple, and size: x-large, and price lower than 40.00 dollars
+webshop_00743	0.000000	low	0	0	+0	0	0	Instruction: Find me day comfort, anti slip, non slip women's oxfords with high heel, closed toe, ankle strap, memory foam, rubber sole with color: brown, and size: 8.5, and price lower than 70.00 dollars
+webshop_00757	0.250000	low	5	5	+0	2	0	Instruction: Find me ready hang wall art with solid wood for living room with color: fashion black girl02, and size: 8x10 inch, and price lower than 50.00 dollars
+webshop_00767	0.000000	low	5	5	+0	1	0	Instruction: Find me home office furniture sets for dining room, living room with color: taupe, and item shape: rectangular, and size: 7 ft 8 in x 10 ft 7 in, and price lower than 60.00 dollars
+webshop_00805	0.000000	low	5	5	+0	2	3	Instruction: Find me ready hang wall art with solid wood for living room with color: fashion black woman, and size: 12x18 inch, and price lower than 50.00 dollars
+webshop_00814	0.000000	low	0	0	+0	0	0	Instruction: Find me loose fit, slim fit men's tuxedo shirts with long sleeve, short sleeve, polyester cotton, elastic waist, regular fit for gym workout with color: c-blue, and size: small, and price lower than 20.00 dollars
+webshop_00841	0.000000	low	5	5	+0	2	0	Instruction: Find me machine washable men's t-shirts with short sleeve for tumble dry with color: 12 pack mix, and size: 4x-large, and price lower than 160.00 dollars
+webshop_00856	0.447368	low	5	5	+0	2	2	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: baby blue, and fit type: men, and size: 3t, and price lower than 30.00 dollars
+webshop_00875	0.996388	high	5	5	+0	2	3	Instruction: Find me high quality, easy carry shave & hair removal with stainless steel for hair removal, sensitive skin, and price lower than 30.00 dollars
+webshop_00878	0.250000	low	2	5	+3	0	0	Instruction: Find me loose fit women's tops, tees & blouses with short sleeve, long sleeve with color: b3-wine, and size: small, and price lower than 30.00 dollars
+webshop_00887	0.250000	low	5	5	+0	0	0	Instruction: Find me machine wash men's tuxedo shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: women, and size: 3x-large, and price lower than 40.00 dollars
+webshop_00925	0.000000	low	0	0	+0	0	0	Instruction: Find me long lasting, high quality hair loss products with color: 1b, and price lower than 60.00 dollars
+webshop_00927	0.000000	low	5	5	+0	3	2	Instruction: Find me loose fit, day comfort, hand wash women's tops, tees & blouses with short sleeve, polyester spandex for teen girls with color: a1-black, and size: large, and price lower than 40.00 dollars
+webshop_00950	0.000000	low	4	5	+1	0	1	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: estate blue, and size: xx-large, and price lower than 40.00 dollars
+webshop_00961	0.000000	low	0	0	+0	0	0	Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: royal blue, and fit type: men, and size: medium, and price lower than 50.00 dollars
+webshop_00985	0.000000	low	5	0	-5	1	2	Instruction: Find me machine washable men's t-shirts with short sleeve for tumble dry with color: 12 pack tank top undershirts, and size: medium, and price lower than 160.00 dollars
+webshop_00988	0.000000	low	0	0	+0	0	0	Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: men, and size: medium, and price lower than 50.00 dollars
+webshop_00989	0.000000	low	0	5	+5	0	0	Instruction: Find me machine wash men's pants with drawstring closure, elastic waist, polyester spandex with color: navy, and size: large, and price lower than 50.00 dollars
+webshop_01022	0.000000	low	0	0	+0	0	0	Instruction: Find me machine wash men's pants with drawstring closure, elastic waist, polyester spandex with color: black, and size: medium, and price lower than 50.00 dollars
+webshop_01030	0.000000	low	0	0	+0	0	0	Instruction: Find me slim fit, machine wash men's casual button-down shirts with button closure, long sleeve with color: navy, and size: x-large, and price lower than 50.00 dollars
+webshop_01042	0.870872	high	5	5	+0	1	2	Instruction: Find me women's pumps with closed toe, rubber sole with color: red black, and size: 8, and price lower than 60.00 dollars
+webshop_01075	0.718266	middle	5	4	-1	2	1	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: charcoal heather (dark), and size: xx-large tall, and price lower than 40.00 dollars
+webshop_01102	0.600877	middle	0	5	+5	0	1	Instruction: Find me men's polos with short sleeve, button closure with color: green, and price lower than 20.00 dollars
+webshop_01125	0.250000	low	5	5	+0	3	4	Instruction: Find me slim fit men's henleys with short sleeve with color: 156- gray, and size: large, and price lower than 40.00 dollars
+webshop_01144	0.000000	low	5	5	+0	1	0	Instruction: Find me slip resistant, non slip men's loafers & slip-ons with rubber outsole, rubber sole with color: r.brown2070, and size: 10.5, and price lower than 70.00 dollars
+webshop_01159	0.250000	low	5	1	-4	0	1	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: charcoal heather (dark), and size: 3x, and price lower than 40.00 dollars
+webshop_01184	0.447368	low	5	5	+0	2	2	Instruction: Find me loose fit, day comfort, hand wash women's tops, tees & blouses with short sleeve, polyester spandex for teen girls with color: a1-blue, and size: medium, and price lower than 40.00 dollars
+webshop_01188	0.000000	low	5	5	+0	1	4	Instruction: Find me officially licensed men's t-shirts & tanks with needle sleeve, classic fit with color: navy, and fit type: women, and size: large, and price lower than 60.00 dollars
+webshop_01194	0.600877	middle	5	5	+0	4	1	Instruction: Find me loose fit, day comfort, hand wash women's tops, tees & blouses with short sleeve, polyester spandex for teen girls with color: a1-purple, and size: x-large, and price lower than 40.00 dollars
+webshop_01243	0.000000	low	0	0	+0	0	0	Instruction: Find me eco friendly, white item, easy install nightstands with storage space for living room with color: white, and price lower than 510.00 dollars
+webshop_01284	0.250000	low	4	5	+1	1	2	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: barolo, and size: 5x-large tall, and price lower than 40.00 dollars
+webshop_01289	1.000000	high	5	5	+0	5	3	Instruction: Find me easy install sconces with vanity light, glass shade, light fixture for living room, and price lower than 70.00 dollars
+webshop_01351	0.000000	low	0	0	+0	0	0	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: youth, and size: medium, and price lower than 30.00 dollars
+webshop_01385	0.000000	low	0	0	+0	0	0	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: navy, and size: 4x, and price lower than 40.00 dollars
+webshop_01435	0.000000	low	5	5	+0	0	3	Instruction: Find me eco friendly throw blankets with fleece throw with color: halloweengoo7556, and size: 49x59in, and price lower than 50.00 dollars
+webshop_01447	0.250000	low	5	5	+0	2	2	Instruction: Find me machine wash men's pants with relaxed fit with color: navy, and size: 46w x 30l, and price lower than 80.00 dollars
+webshop_01460	0.600877	middle	5	5	+0	4	4	Instruction: Find me women's sweaters with relaxed fit, long sleeve with color: light heather grey, and size: large, and price lower than 60.00 dollars
+webshop_01489	0.000000	low	5	5	+0	0	0	Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: asphalt, and fit type: women, and size: medium, and price lower than 50.00 dollars
+webshop_01537	0.000000	low	5	5	+0	1	1	Instruction: Find me high speed flashes with usb port with color: usb256-purple, and size: 256gb, and price lower than 50.00 dollars
+webshop_01628	0.000000	low	4	5	+1	1	1	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: baby blue, and fit type: women, and size: xx-large, and price lower than 30.00 dollars
+webshop_01649	0.600877	middle	4	5	+1	3	2	Instruction: Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-blue, and size: medium, and price lower than 40.00 dollars
+webshop_01664	0.000000	low	5	5	+0	0	0	Instruction: Find me machine wash men's tuxedo shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: royal blue, and fit type: women, and size: x-small, and price lower than 40.00 dollars
+webshop_01705	0.000000	low	5	0	-5	0	0	Instruction: Find me home office furniture sets for dining room, living room with color: navy-multi, and item shape: runner, and size: 7 ft 8 in x 10 ft 7 in, and price lower than 60.00 dollars
+webshop_01712	0.000000	low	0	0	+0	0	0	Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: royal blue, and fit type: men, and size: small, and price lower than 50.00 dollars
+webshop_01714	0.000000	low	5	5	+0	2	4	Instruction: Find me hand wash women's sweaters with long sleeve, stretch fabric, polyester spandex for teen girls, daily wear with color: xnj-tshirt339-black, and size: x-large, and price lower than 30.00 dollars
+webshop_01730	0.806308	high	5	5	+0	2	0	Instruction: Find me women's socks & hosiery with blouse hosiery for laundry bag, and price lower than 40.00 dollars
+webshop_01752	0.000000	low	5	5	+0	4	1	Instruction: Find me hand wash women's sweaters with long sleeve, stretch fabric, polyester spandex for teen girls, daily wear with color: xnj-tshirt335-navy, and size: x-large, and price lower than 30.00 dollars
+webshop_01803	0.000000	low	5	5	+0	2	3	Instruction: Find me slim fit, machine wash women's jumpsuits, rompers & overalls with short sleeve, high waist, polyester spandex for daily wear with color: letter green, and size: medium, and price lower than 50.00 dollars
+webshop_01820	0.000000	low	5	5	+0	1	3	Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: olive, and fit type: youth, and size: 2t, and price lower than 50.00 dollars
+webshop_01838	0.250000	low	1	3	+2	3	0	Instruction: Find me height adjustable dining tables with glass shade, contemporary design, clear glass for dining room with color: black and brass, and price lower than 230.00 dollars
+webshop_01872	0.447368	low	5	5	+0	1	2	Instruction: Find me non slip desks for living room with color: spt-026goo3844, and size: 19.7x31.5in+19.7x63in, and price lower than 50.00 dollars
+webshop_01907	0.718266	middle	5	5	+0	3	2	Instruction: Find me quick drying, moisture wicking women's activewear with long sleeve with color: c-blue, and size: large, and price lower than 40.00 dollars
+webshop_01987	0.000000	low	0	5	+5	0	0	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: bright white, and size: x-large, and price lower than 40.00 dollars
+webshop_02020	0.000000	low	4	5	+1	0	1	Instruction: Find me machine wash men's t-shirts & tanks with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: women, and size: x-large, and price lower than 40.00 dollars
+webshop_02060	0.000000	low	5	2	-3	0	1	Instruction: Find me home office furniture sets for dining room, living room with color: taupe | orange, and item shape: runner, and size: 7 ft 8 in x 10 ft 7 in, and price lower than 60.00 dollars
+webshop_02086	0.000000	low	5	4	-1	0	3	Instruction: Find me slim fit, loose fit women's tops, tees & blouses with long sleeve, short sleeve with color: a01#sky blue, and size: small, and price lower than 40.00 dollars
+webshop_02121	0.000000	low	5	5	+0	2	2	Instruction: Find me super soft decorative pillows for living room with color: beige latte, and size: 20''x20'', and price lower than 50.00 dollars
+webshop_02133	0.447368	low	5	5	+0	2	2	Instruction: Find me women's sandals with arch support, rubber outsole, rubber sole with color: navy combi, and size: 7 wide, and price lower than 80.00 dollars
+webshop_02137	0.000000	low	4	5	+1	0	0	Instruction: Find me machine washable window coverings for living room with color: sea mist, and size: 52"w x 96"l, and price lower than 50.00 dollars
+webshop_02140	0.000000	low	5	5	+0	1	1	Instruction: Find me slip resistant, non slip men's loafers & slip-ons with rubber outsole, rubber sole with color: 1877blue, and size: 9, and price lower than 70.00 dollars
+webshop_02151	0.000000	low	5	5	+0	0	0	Instruction: Find me gluten free, protein serving pantry staples with flavor name: pecan, and size: 4.25 ounce (pack of 6), and price lower than 50.00 dollars
+webshop_02158	0.250000	low	4	5	+1	0	3	Instruction: Find me wall mounted decorative mirrors for living room with size: 40x40cm | 15.7x15.7in, and price lower than 130.00 dollars
+webshop_02180	0.447368	low	5	5	+0	1	3	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather with fit type: women, and size: 3t, and price lower than 30.00 dollars
+webshop_02191	0.000000	low	5	5	+0	1	0	Instruction: Find me high speed flashes with usb port with color: usb256-dark blue, and size: 256gb, and price lower than 50.00 dollars
+webshop_02272	0.447368	low	2	2	+0	3	2	Instruction: Find me compatible apple online game services with case cover with color: butterfly, and price lower than 40.00 dollars
+webshop_02281	0.447368	low	5	5	+0	1	3	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: men, and size: large, and price lower than 30.00 dollars
+webshop_02325	0.250000	low	5	5	+0	2	3	Instruction: Find me hand wash, machine wash women's sweaters with long sleeve, unique design with color: mocha brown, and size: medium, and price lower than 50.00 dollars
+webshop_02378	0.000000	low	2	4	+2	0	0	Instruction: Find me men's t-shirts & tanks with needle sleeve, classic fit with color: black, and fit type: women, and size: x-large, and price lower than 40.00 dollars
+webshop_02379	0.447368	low	5	5	+0	0	2	Instruction: Find me slim fit men's henleys with short sleeve with color: 154- coffee, and size: 3x-large, and price lower than 40.00 dollars
+webshop_02383	0.250000	low	5	5	+0	2	1	Instruction: Find me slim fit men's henleys with short sleeve with color: 156- yellow, and size: 3x-large, and price lower than 40.00 dollars
+webshop_02397	0.000000	low	5	0	-5	0	0	Instruction: Find me officially licensed, machine wash men's t-shirts & tanks with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: women, and size: x-large, and price lower than 60.00 dollars
+webshop_02399	0.250000	low	4	5	+1	4	1	Instruction: Find me height adjustable, high density, easy install, easy assemble home office chairs for living room with color: type 2-grey pu, and price lower than 130.00 dollars
+webshop_02435	0.000000	low	0	0	+0	1	1	Instruction: Find me non slip men's outdoor shoes with rubber sole, comfortable fit, unique design with size: 9, and price lower than 120.00 dollars
+webshop_02516	0.000000	low	5	5	+0	1	1	Instruction: Find me slim fit men's henleys with short sleeve with color: 153- yellow, and size: x-large, and price lower than 40.00 dollars
+webshop_02530	0.000000	low	4	5	+1	1	1	Instruction: Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo1780, and size: 39x49in, and price lower than 50.00 dollars
+webshop_02558	0.000000	low	4	5	+1	0	1	Instruction: Find me home office furniture sets for dining room, living room with color: taupe | orange, and item shape: runner, and size: 7 ft 9 in x 10 ft 8 in, and price lower than 60.00 dollars
+webshop_02569	0.600877	middle	5	5	+0	3	2	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: bright aqua blue, and size: 6x, and price lower than 40.00 dollars
+webshop_02592	0.000000	low	5	5	+0	3	0	Instruction: Find me ready hang wall art with solid wood for living room with color: turtles and african american couple, and size: 16x24 inch, and price lower than 50.00 dollars
+webshop_02607	0.000000	low	3	5	+2	1	2	Instruction: Find me slip resistant, non slip men's loafers & slip-ons with rubber outsole, rubber sole with color: black137, and size: 11, and price lower than 70.00 dollars
+webshop_02665	0.000000	low	5	5	+0	0	1	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: delft, and size: 2x, and price lower than 40.00 dollars
+webshop_02677	0.000000	low	5	5	+0	0	0	Instruction: Find me loose fit, day comfort, hand wash women's tops, tees & blouses with short sleeve, polyester spandex for teen girls with color: a7-black, and size: xx-large, and price lower than 40.00 dollars
+webshop_02758	0.000000	low	0	0	+0	0	0	Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: dark heather, and fit type: women, and size: large, and price lower than 50.00 dollars
+webshop_02762	0.250000	low	5	5	+0	2	1	Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: cranberry, and fit type: youth, and size: xx-large, and price lower than 50.00 dollars
+webshop_02778	0.983746	high	5	5	+0	3	0	Instruction: Find me mid century, heavy duty, easy install furniture sets, and price lower than 50.00 dollars
+webshop_02779	0.948916	high	4	5	+1	4	2	Instruction: Find me non slip, easy install ottomans with faux leather with size: 100x40x40cm, and price lower than 170.00 dollars
+webshop_02839	0.000000	low	2	0	-2	0	0	Instruction: Find me men's t-shirts & tanks with short sleeve, fashion design, long sleeve, button closure with color: a-red, and size: 5x-large, and price lower than 50.00 dollars
+webshop_02875	0.000000	low	5	5	+0	3	1	Instruction: Find me compatible apple online game services with case cover with color: red mandala, and price lower than 40.00 dollars
+webshop_02926	0.000000	low	4	5	+1	0	1	Instruction: Find me machine wash women's pants with elastic waist with color: victory crimson, and size: xx-small, and price lower than 40.00 dollars
+webshop_02945	0.250000	low	5	4	-1	3	1	Instruction: Find me machine wash men's tuxedo shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: x-large, and price lower than 40.00 dollars
+webshop_02955	0.000000	low	1	5	+4	0	0	Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: women, and size: 4t, and price lower than 50.00 dollars
+webshop_02984	0.447368	low	5	5	+0	2	1	Instruction: Find me machine wash men's t-shirts with long sleeve with color: mossy oak bottomland, and size: x-large tall, and price lower than 70.00 dollars
+webshop_03021	0.000000	low	0	5	+5	0	2	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: navy, and fit type: men, and size: xx-large, and price lower than 40.00 dollars
+webshop_03072	0.000000	low	5	5	+0	0	0	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: bright aqua, and size: small, and price lower than 40.00 dollars
+webshop_03087	0.000000	low	5	5	+0	2	2	Instruction: Find me height adjustable, assembly required bases with pu leather, faux leather with color: light grey, and style: pu leather, and price lower than 130.00 dollars
+webshop_03100	0.000000	low	0	0	+0	0	0	Instruction: Find me men's polos with relaxed fit, needle sleeve with color: black, and size: 3x-large, and price lower than 60.00 dollars
+webshop_03208	0.000000	low	5	5	+0	0	0	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: royal blue, and fit type: youth, and size: xx-large, and price lower than 30.00 dollars
+webshop_03219	0.000000	low	5	5	+0	0	0	Instruction: Find me men's shorts with drawstring closure, elastic waist for gym workout with color: #1 black grey, and size: 32, and price lower than 50.00 dollars
+webshop_03277	0.600877	middle	5	5	+0	2	2	Instruction: Find me machine wash men's t-shirts & tanks with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: navy, and fit type: men, and size: x-large, and price lower than 40.00 dollars
+webshop_03307	0.000000	low	5	5	+0	2	4	Instruction: Find me high speed flashes with usb port with color: usb256-purple, and size: 512gb, and price lower than 50.00 dollars
+webshop_03323	0.718266	middle	5	5	+0	3	2	Instruction: Find me hand wash men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 7, and size: xx-large, and price lower than 80.00 dollars
+webshop_03324	0.000000	low	0	0	+0	0	0	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: white, and size: large, and price lower than 40.00 dollars
+webshop_03341	0.000000	low	5	5	+0	1	0	Instruction: Find me machine wash men's t-shirts with long sleeve with color: big game field camo, and size: 4x-large big tall, and price lower than 70.00 dollars
+webshop_03353	0.000000	low	0	0	+0	0	0	Instruction: Find me loose fit women's tops, tees & blouses with short sleeve, long sleeve with color: a2-black, and size: medium, and price lower than 30.00 dollars
+webshop_03359	0.250000	low	5	5	+0	1	1	Instruction: Find me home office furniture sets for dining room, living room with color: navy | red, and item shape: rectangular, and size: 7 ft 8 in x 10 ft 7 in, and price lower than 60.00 dollars
+webshop_03385	0.447368	low	5	0	-5	3	1	Instruction: Find me machine wash women's swimsuits & cover ups with tummy control, high waist with color: green, and size: small, and price lower than 40.00 dollars
+webshop_03404	0.000000	low	0	5	+5	0	0	Instruction: Find me men's shorts with comfortable fit, elastic waistband for gym workout, daily wear with color: black 1, and size: xx-large, and price lower than 40.00 dollars
+webshop_03425	0.000000	low	5	5	+0	0	0	Instruction: Find me machine wash men's tuxedo shirts with cotton heather, needle sleeve, classic fit with color: black | athletic heather, and fit type: women, and size: large, and price lower than 60.00 dollars
+webshop_03442	0.000000	low	5	5	+0	0	1	Instruction: Find me eco friendly throw blankets with fleece throw with color: you are my sunshinegoo1809, and size: 39x49in, and price lower than 50.00 dollars
+webshop_03470	0.000000	low	5	5	+0	2	2	Instruction: Find me eco friendly throw blankets with fleece throw with color: christmasgoo2799, and size: 59x79in, and price lower than 50.00 dollars
+webshop_03477	0.000000	low	2	5	+3	0	0	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: navy, and fit type: women, and size: large, and price lower than 30.00 dollars
+webshop_03478	0.718266	middle	5	5	+0	1	1	Instruction: Find me women's sweaters with relaxed fit, long sleeve with color: black, and size: x-large, and price lower than 60.00 dollars
+webshop_03509	0.000000	low	5	5	+0	0	0	Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: asphalt, and fit type: women, and size: xx-large, and price lower than 50.00 dollars
+webshop_03538	0.000000	low	0	5	+5	1	0	Instruction: Find me officially licensed, machine wash men's t-shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: baby blue, and fit type: youth, and size: 3t, and price lower than 50.00 dollars
+webshop_03561	0.000000	low	0	5	+5	0	0	Instruction: Find me officially licensed, machine wash men's t-shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: youth, and size: 3t, and price lower than 50.00 dollars
+webshop_03571	0.000000	low	4	0	-4	0	0	Instruction: Find me slim fit men's henleys with short sleeve with color: 158- purple, and size: large, and price lower than 40.00 dollars
+webshop_03624	0.250000	low	5	5	+0	0	2	Instruction: Find me wide leg, slim fit, straight leg, loose fit women's shorts with long sleeve, elastic waist, high waist, tummy control, short sleeve with color: black, and size: small, and price lower than 40.00 dollars
+webshop_03626	0.447368	low	5	5	+0	0	1	Instruction: Find me loose fit, day comfort, hand wash women's tops, tees & blouses with short sleeve, polyester spandex for teen girls with color: a3-navy, and size: xx-large, and price lower than 40.00 dollars
+webshop_03631	0.000000	low	1	5	+4	0	4	Instruction: Find me machine wash men's t-shirts & tanks with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: women, and size: small, and price lower than 40.00 dollars
+webshop_03652	0.000000	low	5	5	+0	2	1	Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: brown, and fit type: men, and size: x-large, and price lower than 50.00 dollars
+webshop_03664	0.000000	low	1	5	+4	0	0	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: delft, and size: xx-large, and price lower than 40.00 dollars
+webshop_03687	0.000000	low	5	5	+0	1	2	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: deep anchor heather, and size: 4x-large tall, and price lower than 40.00 dollars
+webshop_03717	0.000000	low	0	0	+0	0	0	Instruction: Find me slim fit, machine wash men's casual button-down shirts with button closure, long sleeve with color: pink, and size: xx-large, and price lower than 50.00 dollars
+webshop_03758	0.250000	low	5	5	+0	3	4	Instruction: Find me men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 6, and size: xx-large, and price lower than 70.00 dollars
+webshop_03766	0.970201	high	5	5	+0	2	1	Instruction: Find me women's dresses with polyester spandex for daily wear with color: pink, and size: x-large, and price lower than 40.00 dollars
+webshop_03768	0.447368	low	5	5	+0	2	5	Instruction: Find me long lasting, moisture wicking, loose fit men's shorts with elastic waistband, quality materials, polyester cotton, short sleeve with color: red, and size: large, and price lower than 30.00 dollars
+webshop_03797	0.000000	low	5	5	+0	1	3	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: noon blue, and size: 5x-large tall, and price lower than 40.00 dollars
+webshop_03835	0.000000	low	0	0	+0	0	0	Instruction: Find me slim fit, machine wash men's casual button-down shirts with button closure, long sleeve with color: navy, and size: large, and price lower than 50.00 dollars
+webshop_03867	0.250000	low	5	5	+0	3	3	Instruction: Find me wash cold, machine wash women's suiting & blazers with button closure, polyester spandex, long sleeve with color: z-dark khaki, and size: x-large, and price lower than 70.00 dollars
+webshop_03954	0.447368	low	5	5	+0	4	2	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: bright aqua blue, and size: xx-large, and price lower than 40.00 dollars
+webshop_03984	0.000000	low	5	5	+0	2	0	Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: navy, and fit type: youth, and size: 2t, and price lower than 50.00 dollars
+webshop_03993	0.250000	low	0	2	+2	4	1	Instruction: Find me eco friendly decorative pillows for living room with color: love heart flower, and price lower than 40.00 dollars
+webshop_03997	0.250000	low	5	5	+0	1	3	Instruction: Find me men's loafers & slip-ons with rubber outsole, rubber sole with color: yellow-a, and size: 11.5, and price lower than 40.00 dollars
+webshop_04008	0.000000	low	5	3	-2	0	1	Instruction: Find me machine wash men's tuxedo shirts with cotton heather, needle sleeve, classic fit with color: navy | athletic heather, and fit type: women, and size: xx-large, and price lower than 60.00 dollars
+webshop_04021	0.000000	low	5	5	+0	2	0	Instruction: Find me eco friendly throw blankets with fleece throw with color: thanksgivinggoo9948, and size: 39x49in, and price lower than 50.00 dollars
+webshop_04027	0.000000	low	4	5	+1	1	0	Instruction: Find me high performance, high speed flashes with color: blue, and size: 512mb, and price lower than 130.00 dollars
+webshop_04045	0.250000	low	5	5	+0	1	1	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: baby blue, and fit type: youth, and size: x-large, and price lower than 30.00 dollars
+webshop_04093	0.600877	middle	5	5	+0	3	2	Instruction: Find me men's loafers & slip-ons with rubber outsole, rubber sole with color: yellow-a, and size: 8.5, and price lower than 40.00 dollars
+webshop_04132	0.000000	low	0	0	+0	0	0	Instruction: Find me non slip men's outdoor shoes with rubber sole, comfortable fit, unique design with size: 11, and price lower than 120.00 dollars
+webshop_04195	0.870872	high	1	0	-1	2	4	Instruction: Find me long lasting, white item table lamps for living room with color: black, and price lower than 60.00 dollars
+webshop_04223	0.000000	low	0	0	+0	0	0	Instruction: Find me men's polos with relaxed fit, needle sleeve with color: maroon, and size: 3x-large, and price lower than 60.00 dollars
+webshop_04243	0.000000	low	5	5	+0	2	0	Instruction: Find me queen size, spot clean, easy clean mattresses with color: icey blue, and size: queen, and style: contemporary, and price lower than 310.00 dollars
+webshop_04266	0.000000	low	5	5	+0	0	2	Instruction: Find me men's polos with relaxed fit, needle sleeve with color: kelly green, and size: 5x-large, and price lower than 60.00 dollars
+webshop_04267	0.000000	low	0	0	+0	0	0	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: pink, and fit type: women, and size: 4t, and price lower than 30.00 dollars
+webshop_04280	0.447368	low	5	5	+0	3	3	Instruction: Find me hand wash women's sweaters with long sleeve, stretch fabric, polyester spandex for teen girls, daily wear with color: xnj-tshirt326-blue, and size: medium, and price lower than 30.00 dollars
+webshop_04355	0.250000	low	5	5	+0	5	3	Instruction: Find me compatible apple wearable technology with stainless steel with color: rose gold, and size: 40mm, and price lower than 30.00 dollars
+webshop_04378	0.000000	low	0	4	+4	0	0	Instruction: Find me soy free, plant based, dairy free, non gmo, gluten free wasabi peas with artificial flavors with flavor: 3-flavor variety, and size: 0.8 ounce (pack of 20), and price lower than 50.00 dollars
+webshop_04460	0.000000	low	5	5	+0	1	1	Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: kelly green, and fit type: youth, and size: 4t, and price lower than 50.00 dollars
+webshop_04469	0.600877	middle	5	5	+0	0	4	Instruction: Find me coffee tables with steel frame, storage space for living room with color: oak, and size: with shelf, and price lower than 120.00 dollars
+webshop_04477	0.000000	low	0	1	+1	0	0	Instruction: Find me wash cold, hand wash, machine wash men's t-shirts & tanks with color: silver 2, and size: x-large, and price lower than 60.00 dollars
+webshop_04495	0.718266	middle	5	5	+0	2	2	Instruction: Find me slip resistant, non slip men's loafers & slip-ons with rubber outsole, rubber sole with color: r.brown-hole1887, and size: 11, and price lower than 70.00 dollars
+webshop_04507	0.600877	middle	4	5	+1	2	2	Instruction: Find me loose fit, day comfort, hand wash women's tops, tees & blouses with short sleeve, polyester spandex for teen girls with color: a1-gray, and size: large, and price lower than 40.00 dollars
+webshop_04542	0.250000	low	5	5	+0	0	0	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: kelly green, and fit type: women, and size: x-large, and price lower than 30.00 dollars
+webshop_04565	0.000000	low	0	4	+4	0	0	Instruction: Find me officially licensed, machine wash men's t-shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: white, and fit type: youth, and size: 3t, and price lower than 50.00 dollars
+webshop_04587	0.000000	low	0	5	+5	0	0	Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: women, and size: 3t, and price lower than 50.00 dollars
+webshop_04603	0.447368	low	5	5	+0	1	0	Instruction: Find me wide leg, slim fit, straight leg, loose fit women's shorts with long sleeve, elastic waist, high waist, tummy control, short sleeve with color: red, and size: large, and price lower than 40.00 dollars
+webshop_04605	0.000000	low	0	0	+0	0	0	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: red, and fit type: women, and size: small, and price lower than 30.00 dollars
+webshop_04675	0.000000	low	0	0	+0	0	0	Instruction: Find me butt lifting, machine washable, hand wash men's shorts with short sleeve, elastic waistband with color: khaki, and size: large, and price lower than 40.00 dollars
+webshop_04707	0.000000	low	5	5	+0	2	1	Instruction: Find me non slip, easy clean computer armoires with pu leather with color: blue, and size: 90x40cm, and price lower than 60.00 dollars
+webshop_04717	0.000000	low	5	0	-5	0	2	Instruction: Find me hand wash, machine wash women's sweaters with long sleeve, unique design with color: black, and size: medium, and price lower than 50.00 dollars
+webshop_04726	0.000000	low	0	4	+4	0	0	Instruction: Find me knee high, open toe women's loafers & slip-ons with steel toe, high heel, faux fur, arch support with color: black, and size: 9, and price lower than 30.00 dollars
+webshop_04766	0.718266	middle	5	5	+0	2	1	Instruction: Find me women's dresses with polyester spandex for daily wear with color: pink, and size: small, and price lower than 40.00 dollars
+webshop_04792	0.000000	low	0	2	+2	0	0	Instruction: Find me slim fit men's suits & sport coats with button closure, classic fit with color: green, and size: x-small, and price lower than 90.00 dollars
+webshop_04804	0.447368	low	5	5	+0	0	3	Instruction: Find me winter warm women's coats, jackets & vests with long sleeve, faux fur with color: yellow, and size: 3x-large, and price lower than 80.00 dollars
+webshop_04809	0.000000	low	5	5	+0	0	2	Instruction: Find me machine wash men's tuxedo shirts with cotton heather, needle sleeve, classic fit with color: dark heather | white, and fit type: men, and size: small, and price lower than 60.00 dollars
+webshop_04827	0.250000	low	1	5	+4	1	1	Instruction: Find me officially licensed, machine wash men's t-shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: silver, and fit type: women, and size: 2t, and price lower than 50.00 dollars
+webshop_04912	0.000000	low	5	5	+0	2	0	Instruction: Find me wide leg, slim fit, straight leg, loose fit women's shorts with long sleeve, elastic waist, high waist, tummy control, short sleeve with color: red, and size: xx-large, and price lower than 40.00 dollars
+webshop_04956	0.250000	low	5	5	+0	2	2	Instruction: Find me loose fit, day comfort, hand wash women's tops, tees & blouses with short sleeve, polyester spandex for teen girls with color: a1-purple, and size: 3x-large, and price lower than 40.00 dollars
+webshop_04965	0.000000	low	5	5	+0	2	1	Instruction: Find me non slip desks for living room with color: rabbit3555lgoo1957, and size: 20x24in+20x48in, and price lower than 50.00 dollars
+webshop_04978	0.000000	low	5	5	+0	0	3	Instruction: Find me machine wash men's pants with relaxed fit with color: navy, and size: 48w x 30l, and price lower than 80.00 dollars
+webshop_04995	0.447368	low	5	5	+0	4	3	Instruction: Find me hand wash men's sleep & lounge with long sleeve, elastic waistband for daily wear with color: multi 7, and size: x-large, and price lower than 80.00 dollars
+webshop_05071	0.000000	low	0	0	+0	0	0	Instruction: Find me beds with wood frame, box spring, solid wood with color: charcoal, and size: queen, and price lower than 410.00 dollars
+webshop_05152	0.000000	low	0	1	+1	0	0	Instruction: Find me men's fashion sneakers with lace closure, rubber outsole, rubber sole with color: white | black, and size: 11, and price lower than 60.00 dollars
+webshop_05163	0.000000	low	5	5	+0	0	0	Instruction: Find me machine wash men's tuxedo shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: baby blue, and fit type: women, and size: 2t, and price lower than 40.00 dollars
+webshop_05175	0.447368	low	5	5	+0	0	0	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: bright cobalt, and size: 6x, and price lower than 40.00 dollars
+webshop_05192	0.000000	low	0	0	+0	0	0	Instruction: Find me men's t-shirts & tanks with needle sleeve, classic fit with color: navy, and fit type: men, and size: 3x-large, and price lower than 40.00 dollars
+webshop_05219	0.000000	low	0	5	+5	0	0	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: black, and fit type: men, and size: x-large, and price lower than 30.00 dollars
+webshop_05255	0.000000	low	5	5	+0	0	0	Instruction: Find me loose fit, day comfort, hand wash women's tops, tees & blouses with short sleeve, polyester spandex for teen girls with color: a2-yellow, and size: small, and price lower than 40.00 dollars
+webshop_05267	0.000000	low	5	5	+0	0	1	Instruction: Find me machine wash men's t-shirts with long sleeve with color: cardinal, and size: xx-large, and price lower than 70.00 dollars
+webshop_05310	0.250000	low	4	5	+1	4	3	Instruction: Find me slim fit, machine wash women's jumpsuits, rompers & overalls with short sleeve, high waist, polyester spandex for daily wear with color: letter blue, and size: small, and price lower than 50.00 dollars
+webshop_05317	0.447368	low	2	0	-2	0	3	Instruction: Find me machine wash, wash cold women's fashion hoodies & sweatshirts for dry clean, tumble dry with color: red, and size: large, and price lower than 70.00 dollars
+webshop_05335	0.000000	low	5	5	+0	2	1	Instruction: Find me slip resistant, non slip men's loafers & slip-ons with rubber outsole, rubber sole with color: 228r.brown, and size: 9.5, and price lower than 70.00 dollars
+webshop_05350	0.250000	low	5	5	+0	1	1	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: tidal green, and size: large, and price lower than 40.00 dollars
+webshop_05360	0.718266	middle	5	5	+0	2	4	Instruction: Find me winter warm women's coats, jackets & vests with long sleeve, faux fur with color: yellow, and size: small, and price lower than 80.00 dollars
+webshop_05397	0.000000	low	4	3	-1	0	0	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: purple, and fit type: women, and size: x-large, and price lower than 40.00 dollars
+webshop_05433	0.000000	low	0	0	+0	0	0	Instruction: Find me machine wash men's t-shirts with long sleeve with color: army, and size: small, and price lower than 70.00 dollars
+webshop_05463	0.250000	low	4	5	+1	1	1	Instruction: Find me machine washable men's t-shirts with short sleeve for tumble dry with color: 36 pack mix, and size: 3x-large, and price lower than 160.00 dollars
+webshop_05473	0.000000	low	5	5	+0	1	0	Instruction: Find me slip resistant, non slip men's loafers & slip-ons with rubber outsole, rubber sole with color: r.brown2060, and size: 10, and price lower than 70.00 dollars
+webshop_05478	0.000000	low	5	5	+0	2	1	Instruction: Find me slim fit, loose fit women's tops, tees & blouses with long sleeve, short sleeve with color: a01#sky blue, and size: large, and price lower than 40.00 dollars
+webshop_05536	1.000000	high	5	5	+0	5	4	Instruction: Find me floor lamps for living room, dining room, and price lower than 90.00 dollars
+webshop_05587	0.000000	low	5	5	+0	1	0	Instruction: Find me machine wash men's tuxedo shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: baby blue, and fit type: youth, and size: x-small, and price lower than 40.00 dollars
+webshop_05596	0.000000	low	4	5	+1	0	0	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: noon blue, and size: 3x, and price lower than 40.00 dollars
+webshop_05599	0.806308	high	5	5	+0	4	4	Instruction: Find me easy clean bathing accessories for dead skin with color: random color 1pc, and price lower than 40.00 dollars
+webshop_05639	0.250000	low	5	5	+0	2	3	Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: cranberry, and fit type: men, and size: large, and price lower than 50.00 dollars
+webshop_05660	0.000000	low	5	5	+0	0	2	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: pine forest green, and size: 6x, and price lower than 40.00 dollars
+webshop_05687	0.983746	high	4	5	+1	4	2	Instruction: Find me hands free flashes with usb port, and price lower than 100.00 dollars
+webshop_05756	0.870872	high	5	5	+0	3	1	Instruction: Find me women's sweaters with relaxed fit, long sleeve with color: olive, and size: xx-large, and price lower than 60.00 dollars
+webshop_05784	0.250000	low	5	5	+0	0	0	Instruction: Find me loose fit women's tops, tees & blouses with short sleeve, long sleeve with color: c1-pink, and size: small, and price lower than 30.00 dollars
+webshop_05796	1.000000	high	5	5	+0	5	5	Instruction: Find me fat free puffed snacks with resealable bag, and price lower than 30.00 dollars
+webshop_05798	0.000000	low	2	5	+3	0	1	Instruction: Find me slim fit, loose fit men's tuxedo shirts with long sleeve, short sleeve, contrast color, classic fit for teen girls with color: a-bk1, and size: x-large, and price lower than 30.00 dollars
+webshop_05800	0.250000	low	5	5	+0	2	0	Instruction: Find me ready hang wall art with solid wood for living room with color: fashion black girl01, and size: 12x18 inch, and price lower than 50.00 dollars
+webshop_05803	0.600877	middle	5	5	+0	3	3	Instruction: Find me slim fit, machine wash women's jumpsuits, rompers & overalls with short sleeve, high waist, polyester spandex for daily wear with color: floral yellow, and size: x-large, and price lower than 50.00 dollars
+webshop_05859	0.000000	low	4	5	+1	0	0	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: kelly green, and fit type: women, and size: xx-large, and price lower than 30.00 dollars
+webshop_05860	0.000000	low	5	5	+0	0	1	Instruction: Find me men's shorts with drawstring closure, elastic waist for gym workout with color: #2 army green, and size: 32, and price lower than 50.00 dollars
+webshop_05862	0.000000	low	5	5	+0	1	0	Instruction: Find me loose fit, day comfort, hand wash women's tops, tees & blouses with short sleeve, polyester spandex for teen girls with color: a2-gray, and size: small, and price lower than 40.00 dollars
+webshop_05863	0.000000	low	4	1	-3	0	2	Instruction: Find me machine wash men's t-shirts with long sleeve with color: country, and size: medium, and price lower than 70.00 dollars
+webshop_05873	0.000000	low	4	5	+1	0	0	Instruction: Find me home office furniture sets for dining room, living room with color: blue, and item shape: round, and size: 9 ft 2 in x 12 ft 5 in, and price lower than 60.00 dollars
+webshop_05891	0.000000	low	5	5	+0	1	3	Instruction: Find me slim fit, machine wash women's jumpsuits, rompers & overalls with short sleeve, high waist, polyester spandex for daily wear with color: floral yellow, and size: small, and price lower than 50.00 dollars
+webshop_05906	0.000000	low	0	0	+0	0	0	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: red, and fit type: women, and size: 3t, and price lower than 30.00 dollars
+webshop_05920	0.000000	low	0	0	+0	0	0	Instruction: Find me high quality hair extensions, wigs & accessories for hair loss with size: 14 inch, and price lower than 80.00 dollars
+webshop_05939	0.000000	low	5	5	+0	1	0	Instruction: Find me loose fit women's tops, tees & blouses with short sleeve, long sleeve with color: c5-green, and size: medium, and price lower than 30.00 dollars
+webshop_05944	0.600877	middle	5	5	+0	2	3	Instruction: Find me hand wash women's sweaters with long sleeve, stretch fabric, polyester spandex for teen girls, daily wear with color: xnj-tshirt333-black, and size: x-large, and price lower than 30.00 dollars
+webshop_05964	0.000000	low	5	5	+0	0	1	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: zest, and size: 6x, and price lower than 40.00 dollars
+webshop_05995	0.000000	low	5	5	+0	2	2	Instruction: Find me loose fit, day comfort, hand wash women's tops, tees & blouses with short sleeve, polyester spandex for teen girls with color: b17-red, and size: xx-large, and price lower than 40.00 dollars
+webshop_06028	0.000000	low	5	5	+0	1	0	Instruction: Find me loose fit women's tops, tees & blouses with short sleeve, long sleeve with color: c2-green, and size: x-large, and price lower than 30.00 dollars
+webshop_06036	0.806308	high	5	5	+0	1	3	Instruction: Find me machine wash women's swimsuits & cover ups with drawstring closure, elastic waistband, tummy control with color: red, and size: medium, and price lower than 40.00 dollars
+webshop_06041	0.000000	low	5	5	+0	0	2	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: patina green, and size: x-small, and price lower than 40.00 dollars
+webshop_06082	0.250000	low	5	5	+0	1	2	Instruction: Find me wide leg, slim fit, straight leg, loose fit women's shorts with long sleeve, elastic waist, high waist, tummy control, short sleeve with color: black, and size: large, and price lower than 40.00 dollars
+webshop_06090	0.250000	low	5	5	+0	0	2	Instruction: Find me eco friendly throw blankets with fleece throw with color: snowflakesgoo3985, and size: 59x79in, and price lower than 50.00 dollars
+webshop_06142	0.000000	low	5	5	+0	0	1	Instruction: Find me loose fit, day comfort, hand wash women's tops, tees & blouses with short sleeve, polyester spandex for teen girls with color: a3-gray, and size: small, and price lower than 40.00 dollars
+webshop_06171	0.250000	low	0	1	+1	0	0	Instruction: Find me men's shorts with elastic waist, classic fit, short sleeve for gym workout with color: navy, and size: small, and price lower than 50.00 dollars
+webshop_06218	0.250000	low	5	5	+0	2	0	Instruction: Find me women's sweaters with relaxed fit, long sleeve with color: black, and size: medium, and price lower than 60.00 dollars
+webshop_06223	0.447368	low	5	5	+0	0	1	Instruction: Find me home office furniture sets for dining room, living room with color: taupe | orange, and item shape: runner, and size: 5 ft 2 in x 7 ft 4 in, and price lower than 60.00 dollars
+webshop_06275	0.250000	low	4	5	+1	0	3	Instruction: Find me slip resistant, non slip men's loafers & slip-ons with rubber outsole, rubber sole with color: black2070, and size: 10, and price lower than 70.00 dollars
+webshop_06351	0.000000	low	0	0	+0	0	0	Instruction: Find me officially licensed, machine wash men's t-shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: heather grey, and fit type: women, and size: small, and price lower than 50.00 dollars
+webshop_06457	0.000000	low	0	0	+0	0	0	Instruction: Find me slim fit, loose fit men's tuxedo shirts with long sleeve, short sleeve, contrast color, classic fit for teen girls with color: a-blue, and size: small, and price lower than 30.00 dollars
+webshop_06458	0.000000	low	4	5	+1	0	0	Instruction: Find me slip resistant, non slip men's loafers & slip-ons with rubber outsole, rubber sole with color: 228blue, and size: 8, and price lower than 70.00 dollars
+webshop_06502	0.250000	low	3	5	+2	1	1	Instruction: Find me loose fit, day comfort, hand wash women's tops, tees & blouses with short sleeve, polyester spandex for teen girls with color: b15-red, and size: small, and price lower than 40.00 dollars
+webshop_06542	0.447368	low	1	3	+2	0	0	Instruction: Find me quick drying, moisture wicking women's activewear with long sleeve with color: b-green-thumbhole, and size: xx-large, and price lower than 40.00 dollars
+webshop_06543	0.000000	low	5	5	+0	0	1	Instruction: Find me home office furniture sets for dining room, living room with color: blue, and item shape: round, and size: 3 ft 7 in x 5 ft 2 in, and price lower than 60.00 dollars
+webshop_06546	0.250000	low	5	5	+0	1	2	Instruction: Find me hand wash women's sweaters with long sleeve, stretch fabric, polyester spandex for teen girls, daily wear with color: xnj-tshirt328-red, and size: x-large, and price lower than 30.00 dollars
+webshop_06549	0.000000	low	5	5	+0	0	3	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: bright cobalt, and size: x-large, and price lower than 40.00 dollars
+webshop_06578	0.718266	middle	5	5	+0	2	1	Instruction: Find me machine wash men's dress shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: kelly green, and fit type: men, and size: 2t, and price lower than 30.00 dollars
+webshop_06604	0.600877	middle	5	5	+0	1	2	Instruction: Find me men's loafers & slip-ons with rubber outsole, rubber sole with color: yellow-a, and size: 6.5, and price lower than 40.00 dollars
+webshop_06624	0.250000	low	5	5	+0	1	4	Instruction: Find me winter warm women's coats, jackets & vests with long sleeve, faux fur with color: black, and size: small, and price lower than 80.00 dollars
+webshop_06633	0.000000	low	0	0	+0	0	0	Instruction: Find me butt lifting, machine washable, hand wash men's shorts with short sleeve, elastic waistband with color: khaki, and size: xx-large, and price lower than 40.00 dollars
+webshop_06635	0.000000	low	5	5	+0	0	2	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: tidal green, and size: x-large, and price lower than 40.00 dollars
+webshop_06667	0.000000	low	0	5	+5	1	2	Instruction: Find me home office furniture sets for dining room, living room with color: brown | beige, and item shape: rectangular, and size: 21 in x 35 in, and price lower than 60.00 dollars
+webshop_06703	0.000000	low	5	5	+0	0	0	Instruction: Find me home office furniture sets for dining room, living room with color: taupe, and item shape: round, and size: 7 ft 8 in, and price lower than 60.00 dollars
+webshop_06723	0.000000	low	5	5	+0	0	0	Instruction: Find me wash cold, machine wash men's shirts with polyester heathers, heathers cotton, cotton heather, needle sleeve, classic fit with color: asphalt, and fit type: women, and size: large, and price lower than 50.00 dollars
+webshop_06749	0.000000	low	5	5	+0	0	0	Instruction: Find me slip resistant, non slip men's loafers & slip-ons with rubber outsole, rubber sole with color: 1877brown, and size: 8.5, and price lower than 70.00 dollars
+webshop_06752	0.000000	low	5	0	-5	0	1	Instruction: Find me machine wash men's t-shirts with long sleeve with color: black, and size: 4x-large big tall, and price lower than 70.00 dollars
+webshop_06788	0.250000	low	5	5	+0	0	1	Instruction: Find me machine wash women's pants with high waist, elastic closure with color: c-grey, and size: x-large, and price lower than 50.00 dollars
+webshop_06884	0.000000	low	5	5	+0	2	0	Instruction: Find me loose fit, day comfort, hand wash women's tops, tees & blouses with short sleeve, polyester spandex for teen girls with color: b17-black, and size: medium, and price lower than 40.00 dollars
+webshop_06890	0.000000	low	5	5	+0	1	1	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: bright cobalt, and size: 3x, and price lower than 40.00 dollars
+webshop_06908	0.000000	low	5	5	+0	0	1	Instruction: Find me machine wash men's dress shirts with cotton spandex, classic fit, short sleeve with color: coral sands, and size: 3x, and price lower than 40.00 dollars
+
+证据文件：complete_audited_per_task.json；summary_complete.json；action_audit.json；final_review_evidence.json；derived_final_stats.json。
+审计仅复核当前保存的训练/评测证据；因果归因需独立消融，但本次没有启动任何新实验。

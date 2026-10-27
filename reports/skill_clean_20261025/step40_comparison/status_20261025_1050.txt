@@ -1,0 +1,38 @@
+Clean-Skill 第40步只读检查
+检查时间：2026-10-25 10:50:37—10:50:42，北京时间。
+已完成38次参数更新；第39步已写入112/128条训练rollout。
+第40步无Skill评测：0/1280条，尚未生成，不能计算完整pass@1/pass@5。
+GRPO第40步完整无Skill评测审计通过：同256题，每题5次，温度0.6。
+GRPO pass@1估计=710/1280=55.46875%；pass@5=195/256=76.171875%。
+第20步丢失的固定28题已从两组原始评测重新确认；当前无法判断第40步恢复情况，不能记作0题恢复。
+序列进程存活；无baseline_stop；冻结文件哈希未变。未修改训练、配置或调度。
+
+固定28题：
+webshop_00545
+webshop_00671
+webshop_00680
+webshop_00757
+webshop_00767
+webshop_00841
+webshop_01144
+webshop_01730
+webshop_01838
+webshop_02191
+webshop_02592
+webshop_02778
+webshop_03341
+webshop_03538
+webshop_03984
+webshop_04021
+webshop_04027
+webshop_04243
+webshop_04603
+webshop_04912
+webshop_05473
+webshop_05587
+webshop_05800
+webshop_05862
+webshop_05939
+webshop_06028
+webshop_06218
+webshop_06884

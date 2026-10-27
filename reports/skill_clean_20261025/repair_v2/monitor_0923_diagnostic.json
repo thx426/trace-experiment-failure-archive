@@ -1,0 +1,558 @@
+{
+  "checked_at": "2026-10-25T09:26:03.873379+08:00",
+  "parser_path": "/root/trace-webshop-arm-ratio/.venvs/researcher/lib/python3.12/site-packages/vllm/tool_parsers/qwen3coder_tool_parser.py",
+  "parser_parse_context": "    def _parse_xml_function_call(\n        self, function_call_str: str, tools: list[Tool] | None\n    ) -> ToolCall | None:\n        # Extract function name\n        end_index = function_call_str.find(\">\")\n        # If there's no \">\" character, this is not a valid xml function call\n        if end_index == -1:\n            return None\n        function_name = function_call_str[:end_index]\n        param_config = self._get_arguments_config(function_name, tools)\n        parameters = function_call_str[end_index + 1 :]\n        param_dict = {}\n        for match_text in self.tool_call_parameter_regex.findall(parameters):\n            idx = match_text.index(\">\")\n            param_name = match_text[:idx]\n            param_value = str(match_text[idx + 1 :])\n            # Remove prefix and trailing \\n\n            if param_value.startswith(\"\\n\"):\n                param_value = param_value[1:]\n            if param_value.endswith(\"\\n\"):",
+  "parser_exception_handling": "        request: ChatCompletionRequest,\n    ) -> ExtractedToolCallInformation:\n        # Quick check to avoid unnecessary processing\n        if self.tool_call_prefix not in model_output:\n            return ExtractedToolCallInformation(\n                tools_called=False, tool_calls=[], content=model_output\n            )\n\n        try:\n            function_calls = self._get_function_calls(model_output)\n            if len(function_calls) == 0:\n                return ExtractedToolCallInformation(\n                    tools_called=False, tool_calls=[], content=model_output\n                )\n\n            tool_calls = [\n                self._parse_xml_function_call(function_call_str, request.tools)\n                for function_call_str in function_calls\n            ]\n            # Populate prev_tool_call_arr for serving layer to set finish_reason\n            self.prev_tool_call_arr.clear()  # Clear previous calls\n            for tool_call in tool_calls:\n                if tool_call:\n                    self.prev_tool_call_arr.append(\n                        {\n                            \"name\": tool_call.function.name,\n                            \"arguments\": tool_call.function.arguments,\n                        }\n                    )\n\n            # Extract content before tool calls\n            content_index = model_output.find(self.tool_call_start_token)\n            idx = model_output.find(self.tool_call_prefix)\n            content_index = content_index if content_index >= 0 else idx\n            content = model_output[:content_index]  # .rstrip()\n            valid_tool_calls = [tc for tc in tool_calls if tc is not None]\n            return ExtractedToolCallInformation(\n                tools_called=(len(valid_tool_calls) > 0),\n                tool_calls=valid_tool_calls,\n                content=content if content else None,\n            )\n\n        except Exception:\n            logger.exception(\"Error in extracting tool call from response.\")\n            return ExtractedToolCallInformation(\n                tools_called=False, tool_calls=[], content=model_output\n            )\n\n    def extract_tool_calls_streaming(\n        self,\n        previous_text: str,\n        current_text: str,\n        delta_text: str,\n        previous_token_ids: Sequence[int],\n        current_token_ids: Sequence[int],",
+  "sample_record_structure": {
+    "ts": "float",
+    "ctx": "str",
+    "role": "str",
+    "model": "str",
+    "endpoint": "str",
+    "attempts": "int",
+    "dp_rank": "NoneType",
+    "latency_s": "float",
+    "request": "dict",
+    "response": "dict",
+    "finish_reason": "str",
+    "usage": "dict",
+    "error": "NoneType"
+  },
+  "malformed_function_records": [],
+  "sample_metadata": {
+    "ts": 1792871835.2720215,
+    "role": "researcher",
+    "finish_reason": "tool_calls",
+    "usage": {
+      "prompt_tokens": 932,
+      "completion_tokens": 69
+    }
+  },
+  "no_tool_records_near_error": [
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543428.jsonl",
+      "line": 120,
+      "ts": 1792890145.904213,
+      "ctx": "research:webshop_05513:turn05",
+      "finish_reason": "stop",
+      "latency_s": 1.603,
+      "usage": {
+        "prompt_tokens": 2446,
+        "completion_tokens": 17
+      },
+      "error": null,
+      "response_keys": [
+        "role",
+        "content",
+        "refusal",
+        "annotations",
+        "audio",
+        "function_call",
+        "tool_calls",
+        "reasoning"
+      ],
+      "message_keys": [
+        "role",
+        "content",
+        "refusal",
+        "annotations",
+        "audio",
+        "function_call",
+        "tool_calls",
+        "reasoning"
+      ],
+      "tool_calls": 0,
+      "content_chars": 34,
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543417.jsonl",
+      "line": 137,
+      "ts": 1792890040.790258,
+      "ctx": "research:webshop_05879:turn03",
+      "finish_reason": "stop",
+      "latency_s": 22.75,
+      "usage": {
+        "prompt_tokens": 2226,
+        "completion_tokens": 272
+      },
+      "error": null,
+      "response_keys": [
+        "role",
+        "content",
+        "refusal",
+        "annotations",
+        "audio",
+        "function_call",
+        "tool_calls",
+        "reasoning"
+      ],
+      "message_keys": [
+        "role",
+        "content",
+        "refusal",
+        "annotations",
+        "audio",
+        "function_call",
+        "tool_calls",
+        "reasoning"
+      ],
+      "tool_calls": 0,
+      "content_chars": 1434,
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543414.jsonl",
+      "line": 141,
+      "ts": 1792890028.29798,
+      "ctx": "research:webshop_01127:turn02",
+      "finish_reason": "stop",
+      "latency_s": 10.406,
+      "usage": {
+        "prompt_tokens": 1963,
+        "completion_tokens": 124
+      },
+      "error": null,
+      "response_keys": [
+        "role",
+        "content",
+        "refusal",
+        "annotations",
+        "audio",
+        "function_call",
+        "tool_calls",
+        "reasoning"
+      ],
+      "message_keys": [
+        "role",
+        "content",
+        "refusal",
+        "annotations",
+        "audio",
+        "function_call",
+        "tool_calls",
+        "reasoning"
+      ],
+      "tool_calls": 0,
+      "content_chars": 569,
+      "parameter_headers": [
+        "<parameter=guid guidance_id=8b2c9d1e4f5a k=2"
+      ],
+      "function_names": [
+        "run_experiment"
+      ]
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543414.jsonl",
+      "line": 145,
+      "ts": 1792890130.4794085,
+      "ctx": "research:webshop_01127:turn06",
+      "finish_reason": "stop",
+      "latency_s": 1.163,
+      "usage": {
+        "prompt_tokens": 2399,
+        "completion_tokens": 12
+      },
+      "error": null,
+      "response_keys": [
+        "role",
+        "content",
+        "refusal",
+        "annotations",
+        "audio",
+        "function_call",
+        "tool_calls",
+        "reasoning"
+      ],
+      "message_keys": [
+        "role",
+        "content",
+        "refusal",
+        "annotations",
+        "audio",
+        "function_call",
+        "tool_calls",
+        "reasoning"
+      ],
+      "tool_calls": 0,
+      "content_chars": 30,
+      "parameter_headers": [],
+      "function_names": []
+    },
+    {
+      "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543419.jsonl",
+      "line": 135,
+      "ts": 1792890084.001774,
+      "ctx": "research:webshop_04240:turn04",
+      "finish_reason": "stop",
+      "latency_s": 8.9,
+      "usage": {
+        "prompt_tokens": 2331,
+        "completion_tokens": 107
+      },
+      "error": null,
+      "response_keys": [
+        "role",
+        "content",
+        "refusal",
+        "annotations",
+        "audio",
+        "function_call",
+        "tool_calls",
+        "reasoning"
+      ],
+      "message_keys": [
+        "role",
+        "content",
+        "refusal",
+        "annotations",
+        "audio",
+        "function_call",
+        "tool_calls",
+        "reasoning"
+      ],
+      "tool_calls": 0,
+      "content_chars": 530,
+      "parameter_headers": [],
+      "function_names": []
+    }
+  ],
+  "affected_task_followup": {
+    "task_id": "webshop_01127",
+    "metadata": [
+      {
+        "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/research/webshop_01127--abf75e5001/20261025_053701_v8/meta.json",
+        "task_id": "webshop_01127",
+        "global_step": 9,
+        "turns_used": 6,
+        "experiments_used": 3,
+        "doc_words": 313,
+        "self_assessment": "{\"version\": \"webshop_clean_skill_v2\", \"origin\": \"researcher_finalized\", \"required_options\": {\"color\": \"red\", \"size\": \"large\"}, \"source\": \"public_task_and_mechanical_episode_evidence\", \"successes\": 0, \"invalid_actions\": 21, \"repeated_pairs\": 21, \"candidate_query\": null, \"free_form_prose_forwarded\": false, \"words\": 313}",
+        "research_wall_s": 228.75279953703284,
+        "error": null
+      },
+      {
+        "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/research/webshop_01127--abf75e5001/20261025_090345_v25/meta.json",
+        "task_id": "webshop_01127",
+        "global_step": 26,
+        "turns_used": 9,
+        "experiments_used": 3,
+        "doc_words": 313,
+        "self_assessment": "{\"version\": \"webshop_clean_skill_v2\", \"origin\": \"researcher_finalized\", \"required_options\": {\"color\": \"red\", \"size\": \"large\"}, \"source\": \"public_task_and_mechanical_episode_evidence\", \"successes\": 0, \"invalid_actions\": 30, \"repeated_pairs\": 20, \"candidate_query\": null, \"free_form_prose_forwarded\": false, \"words\": 313}",
+        "research_wall_s": 243.57031805440784,
+        "error": null
+      }
+    ],
+    "tool_sequence": [
+      {
+        "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543414.jsonl",
+        "line": 140,
+        "ts": 1792889992.3936424,
+        "ctx": "research:webshop_01127:turn01",
+        "finish_reason": "tool_calls",
+        "usage": {
+          "prompt_tokens": 940,
+          "completion_tokens": 119
+        },
+        "error": null,
+        "tool_names": [
+          "run_experiment"
+        ]
+      },
+      {
+        "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543414.jsonl",
+        "line": 141,
+        "ts": 1792890028.29798,
+        "ctx": "research:webshop_01127:turn02",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 1963,
+          "completion_tokens": 124
+        },
+        "error": null,
+        "tool_names": []
+      },
+      {
+        "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543414.jsonl",
+        "line": 142,
+        "ts": 1792890052.688102,
+        "ctx": "research:webshop_01127:turn03",
+        "finish_reason": "tool_calls",
+        "usage": {
+          "prompt_tokens": 1468,
+          "completion_tokens": 291
+        },
+        "error": null,
+        "tool_names": [
+          "run_experiment"
+        ]
+      },
+      {
+        "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543414.jsonl",
+        "line": 143,
+        "ts": 1792890105.6629071,
+        "ctx": "research:webshop_01127:turn04",
+        "finish_reason": "tool_calls",
+        "usage": {
+          "prompt_tokens": 2478,
+          "completion_tokens": 545
+        },
+        "error": null,
+        "tool_names": [
+          "run_experiment"
+        ]
+      },
+      {
+        "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543414.jsonl",
+        "line": 144,
+        "ts": 1792890129.269844,
+        "ctx": "research:webshop_01127:turn05",
+        "finish_reason": "tool_calls",
+        "usage": {
+          "prompt_tokens": 2459,
+          "completion_tokens": 222
+        },
+        "error": null,
+        "tool_names": [
+          "fetch_raw"
+        ]
+      },
+      {
+        "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543414.jsonl",
+        "line": 145,
+        "ts": 1792890130.4794085,
+        "ctx": "research:webshop_01127:turn06",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 2399,
+          "completion_tokens": 12
+        },
+        "error": null,
+        "tool_names": []
+      },
+      {
+        "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543414.jsonl",
+        "line": 146,
+        "ts": 1792890151.491627,
+        "ctx": "research:webshop_01127:turn07",
+        "finish_reason": "tool_calls",
+        "usage": {
+          "prompt_tokens": 2282,
+          "completion_tokens": 254
+        },
+        "error": null,
+        "tool_names": [
+          "fetch_raw"
+        ]
+      },
+      {
+        "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543414.jsonl",
+        "line": 147,
+        "ts": 1792890192.5038874,
+        "ctx": "research:webshop_01127:turn08",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 2292,
+          "completion_tokens": 505
+        },
+        "error": null,
+        "tool_names": []
+      },
+      {
+        "path": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42/tape/researcher.2543414.jsonl",
+        "line": 148,
+        "ts": 1792890225.096123,
+        "ctx": "research:webshop_01127:turn09",
+        "finish_reason": "tool_calls",
+        "usage": {
+          "prompt_tokens": 2175,
+          "completion_tokens": 395
+        },
+        "error": null,
+        "tool_names": [
+          "finalize"
+        ]
+      }
+    ],
+    "rollout_summary": [
+      {
+        "global_step": 9,
+        "task_id": "webshop_01127",
+        "session_id": 5,
+        "won": false,
+        "score": 0.375,
+        "outcome": "FAILED",
+        "steer_count": 0,
+        "doc_missing": 0,
+        "research_error": 0
+      },
+      {
+        "global_step": 9,
+        "task_id": "webshop_01127",
+        "session_id": 7,
+        "won": false,
+        "score": 0.875,
+        "outcome": "FAILED",
+        "steer_count": 0,
+        "doc_missing": 0,
+        "research_error": 0
+      },
+      {
+        "global_step": 9,
+        "task_id": "webshop_01127",
+        "session_id": 4,
+        "won": false,
+        "score": 0.5,
+        "outcome": "FAILED",
+        "steer_count": 0,
+        "doc_missing": 0,
+        "research_error": 0
+      },
+      {
+        "global_step": 9,
+        "task_id": "webshop_01127",
+        "session_id": 6,
+        "won": false,
+        "score": 0,
+        "outcome": "FAILED",
+        "steer_count": 0,
+        "doc_missing": 0,
+        "research_error": 0
+      },
+      {
+        "global_step": 9,
+        "task_id": "webshop_01127",
+        "session_id": 3,
+        "won": false,
+        "score": 0.25,
+        "outcome": "FAILED",
+        "steer_count": 158,
+        "doc_missing": 0,
+        "research_error": 0
+      },
+      {
+        "global_step": 9,
+        "task_id": "webshop_01127",
+        "session_id": 2,
+        "won": false,
+        "score": 0.3125,
+        "outcome": "FAILED",
+        "steer_count": 204,
+        "doc_missing": 0,
+        "research_error": 0
+      },
+      {
+        "global_step": 9,
+        "task_id": "webshop_01127",
+        "session_id": 0,
+        "won": false,
+        "score": 0,
+        "outcome": "FAILED",
+        "steer_count": 205,
+        "doc_missing": 0,
+        "research_error": 0
+      },
+      {
+        "global_step": 9,
+        "task_id": "webshop_01127",
+        "session_id": 1,
+        "won": false,
+        "score": 0.75,
+        "outcome": "FAILED",
+        "steer_count": 497,
+        "doc_missing": 0,
+        "research_error": 0
+      },
+      {
+        "global_step": 26,
+        "task_id": "webshop_01127",
+        "session_id": 6,
+        "won": false,
+        "score": 0.5,
+        "outcome": "FAILED",
+        "steer_count": 0,
+        "doc_missing": 0,
+        "research_error": 0
+      },
+      {
+        "global_step": 26,
+        "task_id": "webshop_01127",
+        "session_id": 7,
+        "won": false,
+        "score": 0.5,
+        "outcome": "FAILED",
+        "steer_count": 0,
+        "doc_missing": 0,
+        "research_error": 0
+      },
+      {
+        "global_step": 26,
+        "task_id": "webshop_01127",
+        "session_id": 5,
+        "won": false,
+        "score": 0,
+        "outcome": "FAILED",
+        "steer_count": 0,
+        "doc_missing": 0,
+        "research_error": 0
+      },
+      {
+        "global_step": 26,
+        "task_id": "webshop_01127",
+        "session_id": 4,
+        "won": false,
+        "score": 0.3125,
+        "outcome": "FAILED",
+        "steer_count": 0,
+        "doc_missing": 0,
+        "research_error": 0
+      },
+      {
+        "global_step": 26,
+        "task_id": "webshop_01127",
+        "session_id": 0,
+        "won": false,
+        "score": 0.5,
+        "outcome": "FAILED",
+        "steer_count": 12,
+        "doc_missing": 0,
+        "research_error": 0
+      },
+      {
+        "global_step": 26,
+        "task_id": "webshop_01127",
+        "session_id": 2,
+        "won": false,
+        "score": 0.037500000000000006,
+        "outcome": "FAILED",
+        "steer_count": 13,
+        "doc_missing": 0,
+        "research_error": 0
+      },
+      {
+        "global_step": 26,
+        "task_id": "webshop_01127",
+        "session_id": 1,
+        "won": true,
+        "score": 1,
+        "outcome": "SUCCESS",
+        "steer_count": 12,
+        "doc_missing": 0,
+        "research_error": 0
+      },
+      {
+        "global_step": 26,
+        "task_id": "webshop_01127",
+        "session_id": 3,
+        "won": false,
+        "score": 0.5,
+        "outcome": "FAILED",
+        "steer_count": 18,
+        "doc_missing": 0,
+        "research_error": 0
+      }
+    ]
+  }
+}

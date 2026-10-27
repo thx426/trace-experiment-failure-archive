@@ -1,0 +1,53 @@
+test_actual_generate_method_bare_and_blocked_paths (test_information_dependencies.InformationDependencyTests) ... ok
+test_asin_case_normalization_preserves_path_case (test_information_dependencies.InformationDependencyTests) ... ok
+test_assistant_cannot_self_certify (test_information_dependencies.InformationDependencyTests) ... ok
+test_clean_discovery_before_use (test_information_dependencies.InformationDependencyTests) ... ok
+test_config_validates_and_guard_changes_fingerprint (test_information_dependencies.InformationDependencyTests) ... ok
+test_existing_finalize_accepts_unobserved_path (test_information_dependencies.InformationDependencyTests) ... ok
+test_locators (test_information_dependencies.InformationDependencyTests) ... ok
+test_lowercase_doc_is_blocked_unless_public (test_information_dependencies.InformationDependencyTests) ... ok
+test_markup_is_not_a_path (test_information_dependencies.InformationDependencyTests) ... ok
+test_no_future_observation_credit (test_information_dependencies.InformationDependencyTests) ... ok
+test_non_doc_hallucination_is_outside_scope (test_information_dependencies.InformationDependencyTests) ... ok
+test_off_preserves_exact_bytes (test_information_dependencies.InformationDependencyTests) ... ok
+test_prefix_and_partial_id_not_evidence (test_information_dependencies.InformationDependencyTests) ... ok
+test_public_path_permitted (test_information_dependencies.InformationDependencyTests) ... ok
+test_repeat_submission_bypasses_existing_warning (test_information_dependencies.InformationDependencyTests) ... ok
+test_strategy_only (test_information_dependencies.InformationDependencyTests) ... ok
+test_strict_blocks_even_when_doc_says_verify (test_information_dependencies.InformationDependencyTests) ... ok
+test_tainted_suffix_cannot_certify_next_locator (test_information_dependencies.InformationDependencyTests) ... ok
+test_unknown_mode_fails (test_information_dependencies.InformationDependencyTests) ... ok
+test_discovery_precedes_use (test_skill_information_audit.SkillAuditTests) ... ok
+test_duplicate_rollouts_are_not_counted_twice (test_skill_information_audit.SkillAuditTests) ... ok
+test_lowercase_action_cannot_use_future_observation (test_skill_information_audit.SkillAuditTests) ... ok
+test_wrong_archive_version_is_rejected (test_skill_information_audit.SkillAuditTests) ... ok
+test_control_candidate_only_change_fraction_and_names (test_webshop_arm_ratio_runtime.WebshopArmRatioRuntimeTests) ... ok
+test_dry_run_has_no_run_directory_network_or_subprocess_side_effects (test_webshop_arm_ratio_runtime.WebshopArmRatioRuntimeTests) ... ok
+test_frozen_commands_emit_budget_and_all_seed_channels (test_webshop_arm_ratio_runtime.WebshopArmRatioRuntimeTests) ... ok
+test_historical_defaults_do_not_emit_new_hydra_arguments (test_webshop_arm_ratio_runtime.WebshopArmRatioRuntimeTests) ... ok
+test_invalid_seed_step_and_boolean_types_are_rejected (test_webshop_arm_ratio_runtime.WebshopArmRatioRuntimeTests) ... ok
+test_atomic_unique_bundles_and_completion_marker (test_training_audit.TrainingAuditTests) ... ok
+test_metadata_whitelist_excludes_text_and_secrets (test_training_audit.TrainingAuditTests) ... ok
+test_multiple_outputs_are_not_counted_as_complete_sessions (test_training_audit.TrainingAuditTests) ... ok
+test_nonconstant_advantage_is_not_averaged_away (test_training_audit.TrainingAuditTests) ... ok
+test_nonfinite_is_explicit_not_silently_excluded (test_training_audit.TrainingAuditTests) ... ok
+test_orphan_and_unknown_arm_are_visible (test_training_audit.TrainingAuditTests) ... ok
+test_out_of_range_session_is_not_a_complete_group (test_training_audit.TrainingAuditTests) ... ok
+test_overflowing_reward_is_recorded_as_failed (test_training_audit.TrainingAuditTests) ... ok
+test_padding_is_excluded_even_with_copied_arm_and_nonfinite_values (test_training_audit.TrainingAuditTests) ... ok
+test_scalar_mass_is_not_multiplied_by_token_length (test_training_audit.TrainingAuditTests) ... ok
+test_shape_mismatch_and_relative_path_fail_loud (test_training_audit.TrainingAuditTests) ... ok
+test_zero_mask_has_no_recoverable_scalar (test_training_audit.TrainingAuditTests) ... ok
+test_abort_counts_returned_tokens_without_accepting_or_executing (test_episode_quality.EpisodeQualityTests) ... ok
+test_exact_limit_retains_normal_success_semantics (test_episode_quality.EpisodeQualityTests) ... ok
+test_overrun_never_executes_or_silently_clips (test_episode_quality.EpisodeQualityTests) ... ok
+test_partial_metadata_survives_later_backend_exception (test_episode_quality.EpisodeQualityTests) ... ok
+test_remaining_session_budget_is_also_enforced (test_episode_quality.EpisodeQualityTests) ... ok
+test_repetition_is_counted_without_early_stopping (test_episode_quality.EpisodeQualityTests) ... ok
+test_repetition_requires_same_action_and_observation_and_streak_resets (test_episode_quality.EpisodeQualityTests) ... ok
+test_unparseable_and_invalid_executed_actions_are_separate (test_episode_quality.EpisodeQualityTests) ... ok
+
+----------------------------------------------------------------------
+Ran 48 tests in 0.268s
+
+OK

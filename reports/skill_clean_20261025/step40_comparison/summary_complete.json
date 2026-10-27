@@ -1,0 +1,70 @@
+{
+  "checked_at": "2026-10-25T11:25:15.953271+08:00",
+  "clean": {
+    "run": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v2/code/runs/pass5_clean_skill_v2_s42",
+    "launch_id": "e0440f1d825843128aaee6dd642a9cee",
+    "step": 40,
+    "rows": 1280,
+    "expected_rows": 1280,
+    "complete": true,
+    "passed": true,
+    "tasks": 256,
+    "successes": 885,
+    "solved": 205,
+    "pass1_estimate": 0.69140625,
+    "pass5": 0.80078125,
+    "bare": true,
+    "n": 5,
+    "temperature": 0.6,
+    "raw_sha256": "10068c4b61501126697e5ef3150680a40f815eb6ff822b21f5444c5c7ce156ef"
+  },
+  "grpo": {
+    "run": "/root/trace-webshop-arm-ratio/experiments/pass5_20261023/code/runs/pass5_grpo_s42",
+    "launch_id": "1b1eb15aa46944d1a13b11b549b01df2",
+    "step": 40,
+    "rows": 1280,
+    "expected_rows": 1280,
+    "complete": true,
+    "passed": true,
+    "tasks": 256,
+    "successes": 710,
+    "solved": 195,
+    "pass1_estimate": 0.5546875,
+    "pass5": 0.76171875,
+    "bare": true,
+    "n": 5,
+    "temperature": 0.6,
+    "raw_sha256": "8ec242b4f1adbdaef685ea07f7de953b2f007bc1c0c292130cc45e1722203f52"
+  },
+  "delta_pp": {
+    "pass1": 13.671875,
+    "pass5": 3.90625
+  },
+  "overall_task_comparison": {
+    "improved": 110,
+    "regressed": 36,
+    "same": 110,
+    "newly_solved": 21,
+    "lost": 11
+  },
+  "lost_at20": {
+    "n": 28,
+    "recovered": 25,
+    "unrecovered": [
+      "webshop_00545",
+      "webshop_00671",
+      "webshop_01838"
+    ],
+    "clean_successes": 107,
+    "grpo_successes": 82,
+    "clean_all5": 14,
+    "matched_or_exceeded_grpo20": 25,
+    "vs_grpo40": {
+      "improved": 13,
+      "regressed": 6,
+      "same": 9,
+      "newly_solved": 3,
+      "lost": 3
+    }
+  }
+}

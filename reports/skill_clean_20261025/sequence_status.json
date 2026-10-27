@@ -1,0 +1,16 @@
+{
+  "phase": "running",
+  "pid": 2475494,
+  "time": 1792867982.2478464,
+  "input_limit": 3072,
+  "server_concurrency": 16,
+  "order": [
+    "clean_skill"
+  ],
+  "job": "clean_skill",
+  "run": "/root/trace-webshop-arm-ratio/experiments/pass5_clean_skill_20261025_v1/code/runs/pass5_clean_skill_s42",
+  "owner_pid": 2476238,
+  "owner_state": "/tmp/p5compact3072-clean25v1",
+  "researcher_owner_pid": 2475801,
+  "next_job": null
+}
